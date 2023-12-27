@@ -3,7 +3,6 @@ import { useContext, useRef } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
 import { useGLTF, useTexture, shaderMaterial } from '@react-three/drei'
 // import { useControls } from 'leva'
-import * as easing from 'maath/easing'
 
 import { AppContext } from '@/src/context/appContext'
 import canvasVertexShader from '@/shaders/canvas/canvasVertexShader.glsl'
@@ -82,7 +81,8 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
 
     useFrame((_state, delta) => {
         if (canvasPhotosRef.current) {
-            easing.damp(canvasPhotosRef.current, 'displacementFactor', isLightMode ? 0 : 1, 0.4, delta)
+            const dampedDisplacementFactor = THREE.MathUtils.damp(canvasPhotosRef.current.displacementFactor, isLightMode ? 0 : 1, 1.4, delta)
+            canvasPhotosRef.current.displacementFactor = dampedDisplacementFactor
         }
     })
 
