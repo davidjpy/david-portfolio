@@ -6,7 +6,7 @@ import { CameraControls, ScrollControls, useScroll } from '@react-three/drei'
 
 import LighthouseScene from '@/src/components/experience/LighthouseScene'
 import HtmlContent from '@/src/components/experience/HtmlContent'
-import ColorModeSlider from '@/src/components/experience/ColorModeSlider'
+import BrightnessSlider from '@/src/components/experience/BrightnessSlider'
 
 import {
     cameraConfig,
@@ -151,7 +151,7 @@ function Scene() {
 
     return (
         <>
-            <ColorModeSlider />
+            <BrightnessSlider />
             <HtmlContent />
             <LighthouseScene oceanRef={oceanRef} />
 
