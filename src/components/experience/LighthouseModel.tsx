@@ -15,8 +15,8 @@ interface CanvasPhotosUniforms {
     uArtTexture: THREE.Texture
     uPhotoTexture: THREE.Texture
     uDisplacementTexture: THREE.Texture
-    effectFactor: number,
-    displacementFactor: number
+    uEffectFactor: number,
+    uDisplacementFactor: number
 }
 
 declare module '@react-three/fiber' {
@@ -30,8 +30,8 @@ const CanvasPhotosMaterial = shaderMaterial(
         uArtTexture: null,
         uPhotoTexture: null,
         uDisplacementTexture: null,
-        effectFactor: 1.2,
-        displacementFactor: 0
+        uEffectFactor: 1.2,
+        uDisplacementFactor: 0
     },
     canvasVertexShader,
     canvasFragmentShader
@@ -85,8 +85,8 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
 
     useFrame((_state, delta) => {
         if (canvasPhotosRef.current) {
-            const dampedDisplacementFactor = THREE.MathUtils.damp((canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.displacementFactor, isLightMode ? 0 : 1, 1.4, delta) as number
-            (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.displacementFactor = dampedDisplacementFactor
+            const dampedDisplacementFactor = THREE.MathUtils.damp((canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor, isLightMode ? 0 : 1, 1.4, delta) as number
+            (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor = dampedDisplacementFactor
         }
     })
 
@@ -151,8 +151,8 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
                     uArtTexture={davidArtTexture}
                     uPhotoTexture={davidPhotoTexture}
                     uDisplacementTexture={displacementTexture}
-                    effectFactor={1.2}
-                    displacementFactor={0}
+                    uEffectFactor={1.2}
+                    uDisplacementFactor={0}
                 />
             </mesh>
         </group>
