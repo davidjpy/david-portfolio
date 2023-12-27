@@ -11,13 +11,17 @@ import canvasFragmentShader from '@/shaders/canvas/canvasFragmentShader.glsl'
 import type { GLTF } from 'three-stdlib'
 import type { Object3DNode } from '@react-three/fiber'
 
+interface CanvasPhotosUniforms {
+    uArtTexture: THREE.Texture
+    uPhotoTexture: THREE.Texture
+    uDisplacementTexture: THREE.Texture
+    effectFactor: number,
+    displacementFactor: number
+}
+
 declare module '@react-three/fiber' {
     interface ThreeElements {
-        canvasPhotosMaterial: Object3DNode<typeof CanvasPhotosMaterial, typeof CanvasPhotosMaterial> & {
-            uArtTexture: THREE.Texture
-            uPhotoTexture: THREE.Texture
-            uDisplacementTexture: THREE.Texture
-        }
+        canvasPhotosMaterial: Object3DNode<typeof CanvasPhotosMaterial, typeof CanvasPhotosMaterial> & CanvasPhotosUniforms
     }
 }
 
@@ -47,7 +51,7 @@ type GLTFResult = GLTF & {
 
 export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     const { isLightMode } = useContext(AppContext)
-    const canvasPhotosRef = useRef(null)
+    const canvasPhotosRef = useRef<unknown>()
     const { nodes } = useGLTF('/lighthouse.glb') as GLTFResult
     const [lighthouseTexture, davidArtTexture, davidPhotoTexture, displacementTexture] = useTexture([
         '/lighthouse_bake.jpg',
@@ -81,8 +85,8 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
 
     useFrame((_state, delta) => {
         if (canvasPhotosRef.current) {
-            const dampedDisplacementFactor = THREE.MathUtils.damp(canvasPhotosRef.current.displacementFactor, isLightMode ? 0 : 1, 1.4, delta)
-            canvasPhotosRef.current.displacementFactor = dampedDisplacementFactor
+            const dampedDisplacementFactor = THREE.MathUtils.damp((canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.displacementFactor, isLightMode ? 0 : 1, 1.4, delta) as number
+            (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.displacementFactor = dampedDisplacementFactor
         }
     })
 
@@ -143,10 +147,12 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
             >
                 <planeGeometry args={[1, 1, 1, 1]} />
                 <canvasPhotosMaterial
-                    ref={canvasPhotosRef}
+                    ref={canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms & typeof CanvasPhotosMaterial>}
                     uArtTexture={davidArtTexture}
                     uPhotoTexture={davidPhotoTexture}
                     uDisplacementTexture={displacementTexture}
+                    effectFactor={1.2}
+                    displacementFactor={0}
                 />
             </mesh>
         </group>
