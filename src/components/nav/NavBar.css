@@ -1,0 +1,49 @@
+#darkmode-switch:checked + .switch-button {
+    background: #9669de;
+}
+
+#darkmode-switch:checked + .switch-button::after {
+    left: 58px;
+    transform: translateX(-100%);
+}
+
+.switch-button {
+    width: 60px;
+    height: 30px;
+    position: relative;
+    display: block;
+    border-radius: 200px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: #0073ff;
+}
+
+.switch-button::after {
+    content: '';
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    z-index: 2;
+    top: 2px;
+    left: 2px;
+    background: white;
+    border-radius: 200px;
+    transition: 0.2s;
+}
+
+svg {
+    position: absolute;
+    width: 22px;
+    top: 4px;
+    z-index: 1;
+    fill: white;
+}
+
+.sun {
+    left: 34px;
+    fill: #ffd700;
+}
+
+.moon {
+    left: 4px;
+}

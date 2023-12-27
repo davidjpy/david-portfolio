@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-primary: 255 248 231;
+        --color-secondary: 80 80 80;
+        --color-accent: 246 92 53;
+        --color-clock-blackground: 0 0 0;
+    }
+    :root[theme='dark'] {
+        --color-primary: 86 66 61;
+        --color-secondary: 250 231 230;
+        --color-accent: 246 92 53;
+        --color-clock-blackground: 0 0 0;
+    }
+}
+
+@layer components {
+    .scroll-content {
+        @apply bg-transition right-0 top-[200vh] h-[200vh] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-[0px_0px_20px_0px_rgba(0,0,0,0.25)];
+    }
+
+    .clock-blackground-sm {
+        @apply bg-clock-element rounded-[8px] p-[4px] shadow-lg;
+    }
+
+    .clock-blackground-md {
+        @apply bg-clock-element rounded-[8px] p-[8px] shadow-lg;
+    }
+
+    .clock-list-xl {
+        @apply block h-[24px] overflow-hidden text-[24px] font-black leading-[24px];
+    }
+
+    .clock-list-sm {
+        @apply block h-[10px] overflow-hidden text-[10px] font-semibold leading-[10px];
+    }
+
+    .bg-transition {
+        @apply transition-colors duration-300 ease-linear;
+    }
+
+    .flex-center {
+        @apply flex items-center justify-center;
+    }
+}
+
+@media (max-width: 1536px) {
+    .scroll-content {
+        @apply pl-[80px] pr-[80px];
+    }
+}
+
+@media (max-width: 1280px) {
+    .scroll-content {
+        @apply pl-[40px] pr-[40px];
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-content {
+        @apply w-full rounded-l-[0px];
+    }
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}

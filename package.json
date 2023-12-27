@@ -1,0 +1,39 @@
+{
+    "name": "portfolio",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@react-spring/three": "^9.7.3",
+        "@react-spring/web": "^9.7.3",
+        "@react-three/drei": "^9.88.9",
+        "@react-three/fiber": "^8.15.9",
+        "@react-three/postprocessing": "^2.15.10",
+        "autoprefixer": "^10.4.16",
+        "leva": "^0.9.35",
+        "maath": "^0.10.7",
+        "postprocessing": "^6.33.3",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "three": "^0.158.0"
+    },
+    "devDependencies": {
+        "@types/react": "^18.2.15",
+        "@types/react-dom": "^18.2.7",
+        "@types/three": "^0.158.1",
+        "@vitejs/plugin-react-swc": "^3.3.2",
+        "postcss": "^8.4.31",
+        "prettier": "^3.1.0",
+        "prettier-plugin-tailwindcss": "^0.5.6",
+        "tailwindcss": "^3.3.5",
+        "typescript": "^5.0.2",
+        "vite": "^4.4.5",
+        "vite-plugin-glsl": "^1.1.2",
+        "vite-tsconfig-paths": "^4.2.1"
+    }
+}
