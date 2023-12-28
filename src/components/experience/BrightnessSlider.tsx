@@ -172,7 +172,7 @@ export default function ColorModeSlider() {
             className='top-[32px] grid h-[100px] w-[400px] grid-cols-7 grid-rows-2 gap-[8px] rounded-[8px] bg-black/40 p-[12px] text-center text-white shadow-xl backdrop-blur-sm'
         >
             <div className='clock-blackground-md col-span-3 row-span-1 select-none'>
-                <label htmlFor='brightness-slider' className='flex-center h-full'>
+                <label className='flex-center h-full'>
                     {clockDigitSpring.slice(0, 2).map((props, index) => (
                         <span key={index} className='clock-list-xl'>
                             <animated.ul style={props}>
@@ -242,8 +242,8 @@ export default function ColorModeSlider() {
                         step={0.1}
                         value={brightness}
                         onChange={(e) => handleSetBrightness(Number(e.target.value))}
-                        id='brightness-slider'
                         className='w-[150px]'
+                        aria-label='Brightness'
                     />
                     <SliderSunSvg fill='#ffffff' width={20} height={20} />
                 </div>
