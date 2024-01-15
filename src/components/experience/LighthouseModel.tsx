@@ -15,13 +15,14 @@ interface CanvasPhotosUniforms {
     uArtTexture: THREE.Texture
     uPhotoTexture: THREE.Texture
     uDisplacementTexture: THREE.Texture
-    uEffectFactor: number,
+    uEffectFactor: number
     uDisplacementFactor: number
 }
 
 declare module '@react-three/fiber' {
     interface ThreeElements {
-        canvasPhotosMaterial: Object3DNode<typeof CanvasPhotosMaterial, typeof CanvasPhotosMaterial> & CanvasPhotosUniforms
+        canvasPhotosMaterial: Object3DNode<typeof CanvasPhotosMaterial, typeof CanvasPhotosMaterial> &
+            CanvasPhotosUniforms
     }
 }
 
@@ -41,10 +42,11 @@ extend({ CanvasPhotosMaterial })
 
 type GLTFResult = GLTF & {
     nodes: {
-        lighthouse: THREE.Mesh
-        lampLight: THREE.Mesh
-        rockFormation: THREE.Mesh
-        windowLight: THREE.Mesh
+        canvas: THREE.Mesh
+        lightHouse: THREE.Mesh
+        wall: THREE.Mesh
+        Globe: THREE.Mesh
+        ['1stFloor']: THREE.Mesh
     }
     materials: {}
 }
@@ -53,13 +55,16 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     const { isLightMode } = useContext(AppContext)
     const canvasPhotosRef = useRef<unknown>()
     const { nodes } = useGLTF('/lighthouse.glb') as GLTFResult
-    const [lighthouseTexture, davidArtTexture, davidPhotoTexture, displacementTexture] = useTexture([
-        '/lighthouse_bake.jpg',
+    // const { nodes } = useGLTF('/lighthouse.glb') as GLTFResult
+    const [lighthouseTexture, firstFloorTexture, davidArtTexture, davidPhotoTexture, displacementTexture] = useTexture([
+        '/lighthouse_bake.webp',
+        '/lighthouse_1stFloor_bake.webp',
         '/david_art.webp',
         '/david_photo.webp',
         '/water_displacement_map.jpg'
     ])
     lighthouseTexture.flipY = false
+    firstFloorTexture.flipY = false
 
     // const { position, rotation } = useControls('Canvas', {
     //     position: {
@@ -85,75 +90,113 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
 
     useFrame((_state, delta) => {
         if (canvasPhotosRef.current) {
-            const dampedDisplacementFactor = THREE.MathUtils.damp((canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor, isLightMode ? 0 : 1, 1.4, delta) as number
-            (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor = dampedDisplacementFactor
+            const dampedDisplacementFactor = THREE.MathUtils.damp(
+                (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor,
+                isLightMode ? 0 : 1,
+                1.4,
+                delta
+            ) as number
+            ;(canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
+                dampedDisplacementFactor
         }
     })
 
     return (
-        <group {...props} dispose={null} scale={0.4} rotation={[0, -Math.PI * 0.23, 0]}>
-            <mesh
-                name='lighthouse'
-                geometry={nodes.lighthouse.geometry}
-                material={nodes.lighthouse.material}
-                position={[-0.278, 0.896, -0.177]}
-                rotation={[0, -0.523, 0]}
-            >
-                <meshBasicMaterial map={lighthouseTexture} />
-            </mesh>
-            <mesh
-                name='rockFormation'
-                geometry={nodes.rockFormation.geometry}
-                material={nodes.rockFormation.material}
-                position={[0.007, 0, -0.009]}
-                rotation={[0, 0.051, 0]}
-            >
-                <meshBasicMaterial map={lighthouseTexture} />
-            </mesh>
-            <mesh
-                name='lampLight'
-                geometry={nodes.lampLight.geometry}
-                position={[-0.338, 0.896, -0.215]}
-                rotation={[0, -0.523, 0]}
-            >
-                <meshBasicMaterial color='#C0E8FF' />
-            </mesh>
-            <mesh
-                name='windowLight'
-                geometry={nodes.windowLight.geometry}
-                position={[-0.126, 1.613, -0.094]}
-                rotation={[0, -0.523, 0]}
-            >
-                <meshBasicMaterial color='#C0E8FF' />
-            </mesh>
+        // <group {...props} dispose={null} scale={0.4} rotation={[0, -Math.PI * 0.23, 0]}>
+        //     <mesh
+        //         name='lighthouse'
+        //         geometry={nodes.lighthouse.geometry}
+        //         material={nodes.lighthouse.material}
+        //         position={[-0.278, 0.896, -0.177]}
+        //         rotation={[0, -0.523, 0]}
+        //     >
+        //         <meshBasicMaterial map={lighthouseTexture} />
+        //     </mesh>
+        //     <mesh
+        //         name='rockFormation'
+        //         geometry={nodes.rockFormation.geometry}
+        //         material={nodes.rockFormation.material}
+        //         position={[0.007, 0, -0.009]}
+        //         rotation={[0, 0.051, 0]}
+        //     >
+        //         <meshBasicMaterial map={lighthouseTexture} />
+        //     </mesh>
+        //     <mesh
+        //         name='lampLight'
+        //         geometry={nodes.lampLight.geometry}
+        //         position={[-0.338, 0.896, -0.215]}
+        //         rotation={[0, -0.523, 0]}
+        //     >
+        //         <meshBasicMaterial color='#C0E8FF' />
+        //     </mesh>
+        //     <mesh
+        //         name='windowLight'
+        //         geometry={nodes.windowLight.geometry}
+        //         position={[-0.126, 1.613, -0.094]}
+        //         rotation={[0, -0.523, 0]}
+        //     >
+        //         <meshBasicMaterial color='#C0E8FF' />
+        //     </mesh>
+        //     <mesh
+        //         name='canvas'
+        //         position={[0.1046, 1.0029, -0.2768]}
+        //         rotation={[-0.1825, 0.3334, 0.063]}
+        //         scale-x={0.06}
+        //         scale-y={0.081}
+        //         scale-z={0.0028}
+        //     >
+        //         <boxGeometry args={[1, 1, 1]} />
+        //         <meshBasicMaterial color='#EDEBE8' />
+        //     </mesh>
+        //     <mesh
+        //         name='canvasPhotos'
+        //         position={[0.1051, 1.0029, -0.2753]}
+        //         rotation={[-0.1825, 0.3334, 0.063]}
+        //         scale-x={0.06}
+        //         scale-y={0.081}
+        //         scale-z={0.0028}
+        //     >
+        //         <planeGeometry args={[1, 1, 1, 1]} />
+        //         <canvasPhotosMaterial
+        //             ref={canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms & typeof CanvasPhotosMaterial>}
+        //             uArtTexture={davidArtTexture}
+        //             uPhotoTexture={davidPhotoTexture}
+        //             uDisplacementTexture={displacementTexture}
+        //             uEffectFactor={1.2}
+        //             uDisplacementFactor={0}
+        //         />
+        //     </mesh>
+        // </group>
+        <group {...props} dispose={null}>
             <mesh
                 name='canvas'
-                position={[0.1046, 1.0029, -0.2768]}
-                rotation={[-0.1825, 0.3334, 0.063]}
-                scale-x={0.06}
-                scale-y={0.081}
-                scale-z={0.0028}
-            >
-                <boxGeometry args={[1, 1, 1]} />
-                <meshBasicMaterial color='#EDEBE8' />
+                geometry={nodes.canvas.geometry}
+                material={nodes.canvas.material}
+                position={[-0.059, 4.622, -1.253]}
+            />
+            <mesh name='lightHouse' geometry={nodes.lightHouse.geometry} material={nodes.lightHouse.material}>
+                <meshBasicMaterial map={lighthouseTexture} />
+            </mesh>
+            <mesh name='wall' geometry={nodes.wall.geometry} material={nodes.wall.material}>
+                <meshBasicMaterial map={lighthouseTexture} transparent opacity={0} />
             </mesh>
             <mesh
-                name='canvasPhotos'
-                position={[0.1051, 1.0029, -0.2753]}
-                rotation={[-0.1825, 0.3334, 0.063]}
-                scale-x={0.06}
-                scale-y={0.081}
-                scale-z={0.0028}
+                name='Globe'
+                geometry={nodes.Globe.geometry}
+                material={nodes.Globe.material}
+                position={[0.083, 5.031, 0.049]}
+                rotation={[0, 0.439, 0]}
             >
-                <planeGeometry args={[1, 1, 1, 1]} />
-                <canvasPhotosMaterial
-                    ref={canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms & typeof CanvasPhotosMaterial>}
-                    uArtTexture={davidArtTexture}
-                    uPhotoTexture={davidPhotoTexture}
-                    uDisplacementTexture={displacementTexture}
-                    uEffectFactor={1.2}
-                    uDisplacementFactor={0}
-                />
+                <meshBasicMaterial map={firstFloorTexture} />
+            </mesh>
+            <mesh
+                name='1stFloor'
+                geometry={nodes['1stFloor'].geometry}
+                material={nodes['1stFloor'].material}
+                position={[0.083, 5.031, 0.049]}
+                rotation={[0, 0.439, 0]}
+            >
+                <meshBasicMaterial map={firstFloorTexture} />
             </mesh>
         </group>
     )
