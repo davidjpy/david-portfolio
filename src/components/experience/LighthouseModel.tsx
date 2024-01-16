@@ -45,8 +45,10 @@ type GLTFResult = GLTF & {
         canvas: THREE.Mesh
         lightHouse: THREE.Mesh
         wall: THREE.Mesh
-        Globe: THREE.Mesh
         ['1stFloor']: THREE.Mesh
+        globe: THREE.Mesh
+        lightBulb: THREE.Mesh
+        ['2ndFloor']: THREE.Mesh
     }
     materials: {}
 }
@@ -167,6 +169,7 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
         //         />
         //     </mesh>
         // </group>
+
         <group {...props} dispose={null}>
             <mesh
                 name='canvas'
@@ -181,15 +184,6 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
                 <meshBasicMaterial map={lighthouseTexture} transparent opacity={0} />
             </mesh>
             <mesh
-                name='Globe'
-                geometry={nodes.Globe.geometry}
-                material={nodes.Globe.material}
-                position={[0.083, 5.031, 0.049]}
-                rotation={[0, 0.439, 0]}
-            >
-                <meshBasicMaterial map={firstFloorTexture} />
-            </mesh>
-            <mesh
                 name='1stFloor'
                 geometry={nodes['1stFloor'].geometry}
                 material={nodes['1stFloor'].material}
@@ -198,6 +192,30 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
             >
                 <meshBasicMaterial map={firstFloorTexture} />
             </mesh>
+            <mesh
+                name='globe'
+                geometry={nodes.globe.geometry}
+                material={nodes.globe.material}
+                position={[0.083, 5.031, 0.049]}
+                rotation={[0, 0.439, 0]}
+            >
+                <meshBasicMaterial map={firstFloorTexture} />
+            </mesh>
+            <mesh
+                name='lightBulb'
+                geometry={nodes.lightBulb.geometry}
+                material={nodes.lightBulb.material}
+                position={[0.083, 5.031, 0.049]}
+                rotation={[0, 0.439, 0]}
+            />
+            <mesh
+                name='2ndFloor'
+                geometry={nodes['2ndFloor'].geometry}
+                material={nodes['2ndFloor'].material}
+                position={[-0.156, 5.38, 0.019]}
+                rotation={[0, 0.439, 0]}
+                scale={[0.029, 0.197, 0.029]}
+            />
         </group>
     )
 }

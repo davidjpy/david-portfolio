@@ -51,36 +51,36 @@ function Scene() {
         let nextCameraPosition
         let nextCameraLookAt
 
-        if (cameraControlRef.current) {
-            cameraControlRef.current.disconnect()
-            cameraControlRef.current.smoothTime = 0.3
-            if (isInFirstSection) {
-                nextCameraPosition = cameraPositionCurveRef.current.getPoint(firstSectionOffset)
-                nextCameraLookAt = cameraLookAtCurveRef.current.getPoint(firstSectionOffset)
-            } else {
-                nextCameraPosition = cameraPositionCurveRef.current.getPoint(firstSectionOffset)
-                nextCameraLookAt = cameraLookAtCurveRef.current.getPoint(firstSectionOffset)
-            }
-            // cameraControlRef.current.setLookAt(
-            //     position[0],
-            //     position[1],
-            //     position[2],
-            //     lookAt[0],
-            //     lookAt[1],
-            //     lookAt[2],
-            //     false
-            // )
-            const cameraDistance = cameraControlRef.current.camera.position.distanceTo(nextCameraLookAt)
-            cameraControlRef.current.setLookAt(
-                nextCameraPosition.x + pointer.x * cameraMouseFactor * Math.pow(cameraDistance, 3),
-                nextCameraPosition.y + pointer.y * cameraMouseFactor * Math.pow(cameraDistance, 3),
-                nextCameraPosition.z,
-                nextCameraLookAt.x,
-                nextCameraLookAt.y,
-                nextCameraLookAt.z,
-                true
-            )
-        }
+        // if (cameraControlRef.current) {
+        //     cameraControlRef.current.disconnect()
+        //     cameraControlRef.current.smoothTime = 0.3
+        //     if (isInFirstSection) {
+        //         nextCameraPosition = cameraPositionCurveRef.current.getPoint(firstSectionOffset)
+        //         nextCameraLookAt = cameraLookAtCurveRef.current.getPoint(firstSectionOffset)
+        //     } else {
+        //         nextCameraPosition = cameraPositionCurveRef.current.getPoint(firstSectionOffset)
+        //         nextCameraLookAt = cameraLookAtCurveRef.current.getPoint(firstSectionOffset)
+        //     }
+        //     // cameraControlRef.current.setLookAt(
+        //     //     position[0],
+        //     //     position[1],
+        //     //     position[2],
+        //     //     lookAt[0],
+        //     //     lookAt[1],
+        //     //     lookAt[2],
+        //     //     false
+        //     // )
+        //     const cameraDistance = cameraControlRef.current.camera.position.distanceTo(nextCameraLookAt)
+        //     cameraControlRef.current.setLookAt(
+        //         nextCameraPosition.x + pointer.x * cameraMouseFactor * Math.pow(cameraDistance, 3),
+        //         nextCameraPosition.y + pointer.y * cameraMouseFactor * Math.pow(cameraDistance, 3),
+        //         nextCameraPosition.z,
+        //         nextCameraLookAt.x,
+        //         nextCameraLookAt.y,
+        //         nextCameraLookAt.z,
+        //         true
+        //     )
+        // }
     })
 
     useEffect(() => {
@@ -155,7 +155,7 @@ function Scene() {
             <HtmlContent />
             <LighthouseScene oceanRef={oceanRef} />
 
-            <CameraControls ref={cameraControlRef} />
+            <CameraControls ref={cameraControlRef} makeDefault />
             {/* <fog attach='fog' args={['#17171b', 30, 40]} /> */}
         </>
     )
