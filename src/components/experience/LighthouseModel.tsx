@@ -77,27 +77,37 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     firstFloorTexture.flipY = false
     secondFloorTexture.flipY = false
 
-    // const { position, rotation } = useControls('Canvas', {
+    // const { position, rotation, scaleX, scaleY, scaleZ} = useControls('Canvas', {
     //     position: {
-    //         value: [0.1051, 1.0029, -0.2751]
+    //         value: [
+    //             0.1561,
+    //             4.630,
+    //             -0.8761
+    //         ],
+    //         step: 0.001
     //     },
     //     rotation: {
-    //         value: [-0.1825, 0.3334, 0.063]
+    //         value: [
+    //             -0.4405,
+    //             1.198,
+    //             0.414
+    //         ],
+    //         step: 0.001
+    //     },
+    //     scaleX: {
+    //         value: 0.213,
+    //         step: 0.001
+    //     },
+    //     scaleY: {
+    //         value: 0.293,
+    //         step: 0.001
+    //     },
+    //     scaleZ: {
+    //         value: 1,
+    //         step: 0.001
     //     }
-    //     // scaleX: {
-    //     //     value: 1,
-    //     //     step: 0.001
-    //     // },
-    //     // scaleY: {
-    //     //     value: 1,
-    //     //     step: 0.001
-    //     // },
-    //     // scaleZ: {
-    //     //     value: 1,
-    //     //     step: 0.001
-    //     // }
     // })
-    // console.log(position)
+    // console.log(position, rotation, scaleX, scaleY, scaleZ)
 
     useFrame((_state, delta) => {
         if (canvasPhotosRef.current) {
@@ -180,17 +190,37 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
         // </group>
 
         <group {...props} dispose={null} scale={0.3} rotation={[0, -Math.PI * 0.65, 0]}>
-            <mesh         name="lightHouse"
-        geometry={nodes.lightHouse.geometry}
-        material={nodes.lightHouse.material}
-        position={[-0.062, 0, 0.115]}>
+            <mesh
+                name="lightHouse"
+                geometry={nodes.lightHouse.geometry}
+                material={nodes.lightHouse.material}
+                position={[-0.062, 0, 0.115]}>
                 <meshBasicMaterial map={lighthouseTexture} />
             </mesh>
-            <mesh         name="wall"
-        geometry={nodes.wall.geometry}
-        material={nodes.wall.material}>
+            <mesh
+                name="wall"
+                geometry={nodes.wall.geometry}
+                material={nodes.wall.material}>
                 <meshBasicMaterial map={lighthouseTexture} transparent opacity={0} />
             </mesh>
+            <mesh
+                name='canvasPhotos'
+                position={[0.1561, 4.630, -0.8761]}
+                rotation={[-0.4405, 1.198, 0.414]}
+                scale-x={0.213}
+                scale-y={0.293}
+            >
+                <planeGeometry args={[1, 1, 1, 1]} />
+                <canvasPhotosMaterial
+                    ref={canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms & typeof CanvasPhotosMaterial>}
+                    uArtTexture={davidArtTexture}
+                    uPhotoTexture={davidPhotoTexture}
+                    uDisplacementTexture={displacementTexture}
+                    uEffectFactor={1.2}
+                    uDisplacementFactor={0}
+                />
+            </mesh>
+
             <mesh
                 name='1stFloor'
                 geometry={nodes['1stFloor'].geometry}
@@ -218,6 +248,7 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
             >
                 <meshBasicMaterial color='white' />
             </mesh>
+
             <mesh
                 name="2ndFloor"
                 geometry={nodes["2ndFloor"].geometry}
