@@ -22,7 +22,7 @@ interface CanvasPhotosUniforms {
 declare module '@react-three/fiber' {
     interface ThreeElements {
         canvasPhotosMaterial: Object3DNode<typeof CanvasPhotosMaterial, typeof CanvasPhotosMaterial> &
-        CanvasPhotosUniforms
+            CanvasPhotosUniforms
     }
 }
 
@@ -40,18 +40,17 @@ const CanvasPhotosMaterial = shaderMaterial(
 
 extend({ CanvasPhotosMaterial })
 
-
 type GLTFResult = GLTF & {
     nodes: {
-        lightHouse: THREE.Mesh;
-        wall: THREE.Mesh;
-        ["1stFloor"]: THREE.Mesh;
-        globe: THREE.Mesh;
-        lightBulb: THREE.Mesh;
-        ["2ndFloor"]: THREE.Mesh;
-    };
-    materials: {};
-};
+        lightHouse: THREE.Mesh
+        wall: THREE.Mesh
+        ['1stFloor']: THREE.Mesh
+        globe: THREE.Mesh
+        lightBulb: THREE.Mesh
+        ['2ndFloor']: THREE.Mesh
+    }
+    materials: {}
+}
 
 export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     const { isLightMode } = useContext(AppContext)
@@ -114,11 +113,11 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
             const dampedDisplacementFactor = THREE.MathUtils.damp(
                 (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor,
                 isLightMode ? 0 : 1,
-                1.4,
+                3.5,
                 delta
             ) as number
-                ; (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
-                    dampedDisplacementFactor
+            ;(canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
+                dampedDisplacementFactor
         }
     })
 
@@ -189,23 +188,21 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
         //     </mesh>
         // </group>
 
-        <group {...props} dispose={null} scale={0.3} rotation={[0, -Math.PI * 0.65, 0]}>
+        <group {...props} dispose={null} scale={0.3} rotation={[0, -Math.PI * 0.6, 0]}>
             <mesh
-                name="lightHouse"
+                name='lightHouse'
                 geometry={nodes.lightHouse.geometry}
                 material={nodes.lightHouse.material}
-                position={[-0.062, 0, 0.115]}>
+                position={[-0.062, 0, 0.115]}
+            >
                 <meshBasicMaterial map={lighthouseTexture} />
             </mesh>
-            <mesh
-                name="wall"
-                geometry={nodes.wall.geometry}
-                material={nodes.wall.material}>
+            <mesh name='wall' geometry={nodes.wall.geometry} material={nodes.wall.material}>
                 <meshBasicMaterial map={lighthouseTexture} transparent opacity={0} />
             </mesh>
             <mesh
                 name='canvasPhotos'
-                position={[0.1561, 4.630, -0.8761]}
+                position={[0.1561, 4.63, -0.8761]}
                 rotation={[-0.4405, 1.198, 0.414]}
                 scale-x={0.213}
                 scale-y={0.293}
@@ -250,9 +247,9 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
             </mesh>
 
             <mesh
-                name="2ndFloor"
-                geometry={nodes["2ndFloor"].geometry}
-                material={nodes["2ndFloor"].material}
+                name='2ndFloor'
+                geometry={nodes['2ndFloor'].geometry}
+                material={nodes['2ndFloor'].material}
                 position={[-0.156, 5.38, 0.019]}
                 rotation={[0, 0.439, 0]}
             >
