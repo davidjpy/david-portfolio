@@ -22,7 +22,7 @@ interface CanvasPhotosUniforms {
 declare module '@react-three/fiber' {
     interface ThreeElements {
         canvasPhotosMaterial: Object3DNode<typeof CanvasPhotosMaterial, typeof CanvasPhotosMaterial> &
-            CanvasPhotosUniforms
+        CanvasPhotosUniforms
     }
 }
 
@@ -40,33 +40,42 @@ const CanvasPhotosMaterial = shaderMaterial(
 
 extend({ CanvasPhotosMaterial })
 
+
 type GLTFResult = GLTF & {
     nodes: {
-        canvas: THREE.Mesh
-        lightHouse: THREE.Mesh
-        wall: THREE.Mesh
-        ['1stFloor']: THREE.Mesh
-        globe: THREE.Mesh
-        lightBulb: THREE.Mesh
-        ['2ndFloor']: THREE.Mesh
-    }
-    materials: {}
-}
+        lightHouse: THREE.Mesh;
+        wall: THREE.Mesh;
+        ["1stFloor"]: THREE.Mesh;
+        globe: THREE.Mesh;
+        lightBulb: THREE.Mesh;
+        ["2ndFloor"]: THREE.Mesh;
+    };
+    materials: {};
+};
 
 export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     const { isLightMode } = useContext(AppContext)
     const canvasPhotosRef = useRef<unknown>()
     const { nodes } = useGLTF('/lighthouse.glb') as GLTFResult
     // const { nodes } = useGLTF('/lighthouse.glb') as GLTFResult
-    const [lighthouseTexture, firstFloorTexture, davidArtTexture, davidPhotoTexture, displacementTexture] = useTexture([
+    const [
+        lighthouseTexture,
+        firstFloorTexture,
+        secondFloorTexture,
+        davidArtTexture,
+        davidPhotoTexture,
+        displacementTexture
+    ] = useTexture([
         '/lighthouse_bake.webp',
         '/lighthouse_1stFloor_bake.webp',
+        '/lighthouse_2ndFloor_bake.webp',
         '/david_art.webp',
         '/david_photo.webp',
         '/water_displacement_map.jpg'
     ])
     lighthouseTexture.flipY = false
     firstFloorTexture.flipY = false
+    secondFloorTexture.flipY = false
 
     // const { position, rotation } = useControls('Canvas', {
     //     position: {
@@ -98,8 +107,8 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
                 1.4,
                 delta
             ) as number
-            ;(canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
-                dampedDisplacementFactor
+                ; (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
+                    dampedDisplacementFactor
         }
     })
 
@@ -170,17 +179,16 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
         //     </mesh>
         // </group>
 
-        <group {...props} dispose={null}>
-            <mesh
-                name='canvas'
-                geometry={nodes.canvas.geometry}
-                material={nodes.canvas.material}
-                position={[-0.059, 4.622, -1.253]}
-            />
-            <mesh name='lightHouse' geometry={nodes.lightHouse.geometry} material={nodes.lightHouse.material}>
+        <group {...props} dispose={null} scale={0.3} rotation={[0, -Math.PI * 0.65, 0]}>
+            <mesh         name="lightHouse"
+        geometry={nodes.lightHouse.geometry}
+        material={nodes.lightHouse.material}
+        position={[-0.062, 0, 0.115]}>
                 <meshBasicMaterial map={lighthouseTexture} />
             </mesh>
-            <mesh name='wall' geometry={nodes.wall.geometry} material={nodes.wall.material}>
+            <mesh         name="wall"
+        geometry={nodes.wall.geometry}
+        material={nodes.wall.material}>
                 <meshBasicMaterial map={lighthouseTexture} transparent opacity={0} />
             </mesh>
             <mesh
@@ -207,15 +215,18 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
                 material={nodes.lightBulb.material}
                 position={[0.083, 5.031, 0.049]}
                 rotation={[0, 0.439, 0]}
-            />
+            >
+                <meshBasicMaterial color='white' />
+            </mesh>
             <mesh
-                name='2ndFloor'
-                geometry={nodes['2ndFloor'].geometry}
-                material={nodes['2ndFloor'].material}
+                name="2ndFloor"
+                geometry={nodes["2ndFloor"].geometry}
+                material={nodes["2ndFloor"].material}
                 position={[-0.156, 5.38, 0.019]}
                 rotation={[0, 0.439, 0]}
-                scale={[0.029, 0.197, 0.029]}
-            />
+            >
+                <meshBasicMaterial map={secondFloorTexture} />
+            </mesh>
         </group>
     )
 }
