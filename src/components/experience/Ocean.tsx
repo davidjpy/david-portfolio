@@ -115,7 +115,7 @@ export default function Ocean({ oceanRef }: Props) {
     })
 
     return (
-        <mesh name='ocean' position={[0, 0.18, 0]} rotation={[-Math.PI * 0.5, 0, 0]} scale={[16, 8, 0]}>
+        <mesh name='ocean' position={[0, 0.8, 0]} rotation={[-Math.PI * 0.5, 0, 0]} scale={[16, 8, 0]}>
             <planeGeometry args={[1, 1, 512, 512]} />
             <AnimatedMaterial {...starsAnimationConfigs} />
         </mesh>
