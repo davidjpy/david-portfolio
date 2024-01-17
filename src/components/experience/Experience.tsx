@@ -7,6 +7,7 @@ import { CameraControls, ScrollControls, useScroll } from '@react-three/drei'
 import LighthouseScene from '@/src/components/experience/LighthouseScene'
 import HtmlContent from '@/src/components/experience/HtmlContent'
 import BrightnessSlider from '@/src/components/experience/BrightnessSlider'
+import { getClampedValue } from '@/src/utilities/getClampedValue'
 
 import {
     cameraConfig,
@@ -18,8 +19,8 @@ import {
 
 import '@/components/experience/Experience.css'
 
-const MutableCameraPositions = [new THREE.Vector3(0, 0.3, 1), new THREE.Vector3(0.11, -0.05, 0)]
-const MutableCameraLookAts = [new THREE.Vector3(0, 0.05, 0), new THREE.Vector3(0.17, -0.09, -0.16)]
+const MutableCameraPositions = [new THREE.Vector3(0.046, 0.7857, 1.9249), new THREE.Vector3(0.21, 0.2357, 0.24)]
+const MutableCameraLookAts = [new THREE.Vector3(0, 0.3, 0), new THREE.Vector3(0.39, 0.17, 0)]
 
 interface OceanShaderMaterialUniform {
     uBigWavesElevation: number
@@ -38,12 +39,16 @@ function Scene() {
 
     // const { position, lookAt } = useControls('Camera', {
     //     position: {
-    //         value: [0.11, -0.05, 0]
+    //         value: [MutableCameraPositions[1].x, MutableCameraPositions[1].y, MutableCameraPositions[1].z],
+    //         step: 0.01
     //     },
     //     lookAt: {
-    //         value: [0.17, -0.09, -0.16]
+    //         value: [MutableCameraLookAts[1].x, MutableCameraLookAts[1].y, MutableCameraLookAts[1].z],
+    //         step: 0.01
     //     }
     // })
+
+    // console.log(position, lookAt)
 
     useFrame(({ pointer }) => {
         const firstSectionOffset = scrollData.range(0, 1 / scrollPages)
@@ -51,103 +56,100 @@ function Scene() {
         let nextCameraPosition
         let nextCameraLookAt
 
-        // if (cameraControlRef.current) {
-        //     cameraControlRef.current.disconnect()
-        //     cameraControlRef.current.smoothTime = 0.3
-        //     if (isInFirstSection) {
-        //         nextCameraPosition = cameraPositionCurveRef.current.getPoint(firstSectionOffset)
-        //         nextCameraLookAt = cameraLookAtCurveRef.current.getPoint(firstSectionOffset)
-        //     } else {
-        //         nextCameraPosition = cameraPositionCurveRef.current.getPoint(firstSectionOffset)
-        //         nextCameraLookAt = cameraLookAtCurveRef.current.getPoint(firstSectionOffset)
-        //     }
-        //     // cameraControlRef.current.setLookAt(
-        //     //     position[0],
-        //     //     position[1],
-        //     //     position[2],
-        //     //     lookAt[0],
-        //     //     lookAt[1],
-        //     //     lookAt[2],
-        //     //     false
-        //     // )
-        //     const cameraDistance = cameraControlRef.current.camera.position.distanceTo(nextCameraLookAt)
-        //     cameraControlRef.current.setLookAt(
-        //         nextCameraPosition.x + pointer.x * cameraMouseFactor * Math.pow(cameraDistance, 3),
-        //         nextCameraPosition.y + pointer.y * cameraMouseFactor * Math.pow(cameraDistance, 3),
-        //         nextCameraPosition.z,
-        //         nextCameraLookAt.x,
-        //         nextCameraLookAt.y,
-        //         nextCameraLookAt.z,
-        //         true
-        //     )
-        // }
+        // cameraControlRef.current.setLookAt(position[0], position[1], position[2], lookAt[0], lookAt[1], lookAt[2], true)
+
+        if (cameraControlRef.current) {
+            cameraControlRef.current.disconnect()
+            cameraControlRef.current.smoothTime = 0.3
+
+            if (isInFirstSection) {
+                nextCameraPosition = cameraPositionCurveRef.current.getPoint(firstSectionOffset)
+                nextCameraLookAt = cameraLookAtCurveRef.current.getPoint(firstSectionOffset)
+            } else {
+                nextCameraPosition = cameraPositionCurveRef.current.getPoint(firstSectionOffset)
+                nextCameraLookAt = cameraLookAtCurveRef.current.getPoint(firstSectionOffset)
+            }
+
+            const cameraDistance = cameraControlRef.current.camera.position.distanceTo(nextCameraLookAt)
+            const clampedDistanceFactor = getClampedValue(Math.pow(cameraDistance, 3), 0, 1.5)
+
+            cameraControlRef.current.setLookAt(
+                nextCameraPosition.x + pointer.x * cameraMouseFactor * clampedDistanceFactor,
+                nextCameraPosition.y + pointer.y * cameraMouseFactor * clampedDistanceFactor,
+                nextCameraPosition.z,
+                nextCameraLookAt.x,
+                nextCameraLookAt.y,
+                nextCameraLookAt.z,
+                true
+            )
+        }
     })
 
-    useEffect(() => {
-        // Initial adjustment for responsive camera path
-        let isMobileLegacyData = false
-        const perfectWindowWidth = 1920
-        const canvas = scene.getObjectByName('canvas')
-        const lighthouseGroup = scene.getObjectByName('lighthouseScene')
-        const canvasGlobalPosition = new THREE.Vector3()
-        const resizeMobileScene = () => {
-            lighthouseGroup?.scale.set(0.7, 0.7, 0.7)
-            if (oceanRef.current) {
-                ;(oceanRef as OceanRefType).current.uBigWavesElevation = 0.1
-                ;(oceanRef as OceanRefType).current.uSmallWavesElevation = 0.12
-            }
+    // useEffect(() => {
+    //     // Initial adjustment for responsive camera path
+    //     let isMobileLegacyData = false
+    //     const perfectWindowWidth = 1920
+    //     const canvas = scene.getObjectByName('canvas')
+    //     const lighthouseGroup = scene.getObjectByName('lighthouseScene')
+    //     const canvasGlobalPosition = new THREE.Vector3()
+    //     const resizeMobileScene = () => {
+    //         lighthouseGroup?.scale.set(0.7, 0.7, 0.7)
+    //         if (oceanRef.current) {
+    //             ;(oceanRef as OceanRefType).current.uBigWavesElevation = 0.1
+    //             ;(oceanRef as OceanRefType).current.uSmallWavesElevation = 0.12
+    //         }
 
-            canvas?.getWorldPosition(canvasGlobalPosition)
-            MutableCameraPositions[1].set(0.058, -0.033, 0)
-            MutableCameraLookAts[1] = canvasGlobalPosition
-            isMobileLegacyData = true
-        }
+    //         canvas?.getWorldPosition(canvasGlobalPosition)
+    //         MutableCameraPositions[1].set(0.058, -0.033, 0)
+    //         MutableCameraLookAts[1] = canvasGlobalPosition
+    //         isMobileLegacyData = true
+    //     }
 
-        const resetScene = () => {
-            MutableCameraPositions[1].set(
-                defaultCameraPositions[1][0],
-                defaultCameraPositions[1][1],
-                defaultCameraPositions[1][2]
-            )
+    //     const resetScene = () => {
+    //         MutableCameraPositions[1].set(
+    //             defaultCameraPositions[1][0],
+    //             defaultCameraPositions[1][1],
+    //             defaultCameraPositions[1][2]
+    //         )
 
-            lighthouseGroup?.scale.set(1, 1, 1)
+    //         lighthouseGroup?.scale.set(1, 1, 1)
 
-            if (oceanRef.current) {
-                ;(oceanRef as OceanRefType).current.uBigWavesElevation = 0.15
-                ;(oceanRef as OceanRefType).current.uSmallWavesElevation = 0.15
-            }
+    //         if (oceanRef.current) {
+    //             ;(oceanRef as OceanRefType).current.uBigWavesElevation = 0.15
+    //             ;(oceanRef as OceanRefType).current.uSmallWavesElevation = 0.15
+    //         }
 
-            MutableCameraLookAts[1].setY(defaultCameraLookAts[1][1])
-            MutableCameraLookAts[1].setZ(defaultCameraLookAts[1][2])
-            isMobileLegacyData = false
-        }
+    //         MutableCameraLookAts[1].setY(defaultCameraLookAts[1][1])
+    //         MutableCameraLookAts[1].setZ(defaultCameraLookAts[1][2])
+    //         isMobileLegacyData = false
+    //     }
 
-        const handleExperienceResize = () => {
-            const isMobile = window.innerWidth <= 768
-            const responsiveCameraOffset = (perfectWindowWidth - window.innerWidth) * 0.00001
+    //     const handleExperienceResize = () => {
+    //         const isMobile = window.innerWidth <= 768
+    //         const responsiveCameraOffset = (perfectWindowWidth - window.innerWidth) * 0.00001
 
-            if (isMobile) {
-                resizeMobileScene()
-            } else {
-                if (isMobileLegacyData) {
-                    resetScene()
-                }
+    //         if (isMobile) {
+    //             resizeMobileScene()
+    //         } else {
+    //             if (isMobileLegacyData) {
+    //                 resetScene()
+    //             }
 
-                MutableCameraPositions[1].setX(defaultCameraPositions[1][0] - responsiveCameraOffset)
-                MutableCameraLookAts[1].setX(defaultCameraLookAts[1][0] - responsiveCameraOffset)
-            }
+    //             MutableCameraPositions[1].setX(defaultCameraPositions[1][0] - responsiveCameraOffset)
+    //             MutableCameraLookAts[1].setX(defaultCameraLookAts[1][0] - responsiveCameraOffset)
+    //         }
 
-            cameraPositionCurveRef.current = new THREE.CatmullRomCurve3(MutableCameraPositions)
-            cameraLookAtCurveRef.current = new THREE.CatmullRomCurve3(MutableCameraLookAts)
-        }
+    //         cameraPositionCurveRef.current = new THREE.CatmullRomCurve3(MutableCameraPositions)
+    //         cameraLookAtCurveRef.current = new THREE.CatmullRomCurve3(MutableCameraLookAts)
+    //     }
 
-        handleExperienceResize()
-        addEventListener('resize', handleExperienceResize)
+    //     handleExperienceResize()
+    //     addEventListener('resize', handleExperienceResize)
 
-        return () => {
-            removeEventListener('resize', handleExperienceResize)
-        }
-    }, [])
+    //     return () => {
+    //         removeEventListener('resize', handleExperienceResize)
+    //     }
+    // }, [])
 
     return (
         <>
@@ -155,7 +157,7 @@ function Scene() {
             <HtmlContent />
             <LighthouseScene oceanRef={oceanRef} />
 
-            <CameraControls ref={cameraControlRef} makeDefault />
+            <CameraControls ref={cameraControlRef} />
             {/* <fog attach='fog' args={['#17171b', 30, 40]} /> */}
         </>
     )
