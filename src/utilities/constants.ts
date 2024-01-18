@@ -4,15 +4,6 @@ export const cameraConfig = {
     far: 40
 }
 
-export const defaultCameraPositions = [
-    [0, 0.3, 1],
-    [0.11, -0.05, 0]
-]
-export const defaultCameraLookAts = [
-    [0, 0.05, 0],
-    [0.17, -0.09, -0.16]
-]
-
 export const cameraMouseFactor = 0.15
 
 export const scrollPages = 5
