@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber'
 
 import { scrollPages } from '@/src/utilities/constants'
 
-const wordChoices = ['Application Developer', 'Web Designer', '3D Modeler']
+const wordChoices = ['Full-Stack Developer', 'Web Designer', '3D Modeler']
 const funFacts = [
     'I believe life without a golden retriever is incomplete.',
     'I am a concert enjoyer.',
@@ -75,7 +75,7 @@ export default function HtmlContent() {
         const isInFirstHTML = scrollData.visible(1 / scrollPages, 4 / scrollPages)
         const isInSecondHTML = scrollData.visible(5 / scrollPages, 4 / scrollPages)
         const width = aboutSectionRef.current?.clientWidth
-        
+
         if (isInFirstHTML) {
             setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
         } else if (isInSecondHTML) {
@@ -92,9 +92,9 @@ export default function HtmlContent() {
             element.style.borderTopRightRadius = `${width * topDistanceRatioToWindowTop}px`
             element.style.borderBottomRightRadius = `${width * bottomDistanceRatioToWindowTop}px`
         } else if (position === 'right') {
-           element.style.borderTopLeftRadius = `${width * topDistanceRatioToWindowTop}px`
-           element.style.borderBottomLeftRadius = `${width * bottomDistanceRatioToWindowTop}px`
-        } 
+            element.style.borderTopLeftRadius = `${width * topDistanceRatioToWindowTop}px`
+            element.style.borderBottomLeftRadius = `${width * bottomDistanceRatioToWindowTop}px`
+        }
     }
 
     return (
@@ -105,9 +105,10 @@ export default function HtmlContent() {
             }}
             className='scroll-container'
         >
-            <section ref={aboutSectionRef} className='scroll-text-box top-[200vh] right-0'>
-                <div className='mb-4 h-1 w-16 bg-accent' />
-                <header>
+            <section ref={aboutSectionRef} className='scroll-text-box right-0 top-[200vh]'>
+                <span className='header-bg-text'>About</span>
+                <header className='header-wrapper'>
+                    <div className='header-divider' />
                     <h1 className='text-lg font-bold text-secondary'>Hello. I'm</h1>
                     <h1 className='text-xl font-black text-secondary'>
                         Ho Chi Hang, <span className='text-accent'>David</span>
@@ -191,12 +192,13 @@ export default function HtmlContent() {
                 </section> */}
             </section>
 
-            <section ref={skillsSectionRef} className='scroll-text-box top-[600vh] left-0'>
-                <div className='mb-4 h-1 w-16 bg-accent' />
-                <header>
-                    <h1 className='text-lg font-bold text-secondary'>How about...</h1>
+            <section ref={skillsSectionRef} className='scroll-text-box left-0 top-[600vh]'>
+                <span className='header-bg-text'>Skills</span>
+                <header className='header-wrapper'>
+                    <div className='header-divider' />
+                    <h1 className='text-lg font-bold text-secondary'>Cool. How about...</h1>
                     <h1 className='text-xl font-black text-secondary'>
-                        My <span className='text-accent'>skills</span>
+                        My <span className='text-accent'> Expertise</span>
                     </h1>
                 </header>
 
