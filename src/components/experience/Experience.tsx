@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { useEffect, useRef } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { CameraControls, ScrollControls, useScroll } from '@react-three/drei'
-// import { useControls } from 'leva'
+import { useControls } from 'leva'
 
 import LighthouseScene from '@/src/components/experience/LighthouseScene'
 import HtmlContent from '@/src/components/experience/HtmlContent'
@@ -14,45 +14,24 @@ import { cameraConfig, cameraMouseFactor, scrollPages } from '@/src/utilities/co
 import '@/components/experience/Experience.css'
 
 const tabletCameraPositions = [
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.046, 0.7857, 1.9249),
-        new THREE.Vector3(0.21, 0.2357, 0.24)
-    ]),
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.21, 0.2357, 0.24),
-        new THREE.Vector3(-0.03, 0.3597, -0.132)
-    ]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.046, 0.7857, 1.9249), new THREE.Vector3(0.21, 0.2357, 0.24)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 0.2357, 0.24), new THREE.Vector3(0.201, 0.4122, 0.1468)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.201, 0.4122, 0.1468), new THREE.Vector3(-0.016, 0.3597, -0.075)])
 ]
 const tabletCameraLookAts = [
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0, 0.3, 0),
-        new THREE.Vector3(0.39, 0.17, 0)
-    ]),
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.39, 0.17, 0),
-        new THREE.Vector3(-0.1135, 0.3508, -0.221)
-    ]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0.3, 0), new THREE.Vector3(0.39, 0.17, 0)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.39, 0.17, 0), new THREE.Vector3(-0.082, 0.267, -0.17)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.082, 0.267, -0.17), new THREE.Vector3(-0.2355, 0.3508, -0.258)])
 ]
-
 const mobileCameraPositions = [
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.046, 0.7857, 1.9249),
-        new THREE.Vector3(0.176, 0.2347, 0.2045)
-    ]),
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.176, 0.2347, 0.2045),
-        new THREE.Vector3(-0.03, 0.3597, -0.132)
-    ])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.046, 0.7857, 1.9249), new THREE.Vector3(0.176, 0.2347, 0.2045)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.176, 0.2347, 0.2045), new THREE.Vector3(0.252, 0.4122, 0.2708)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.252, 0.4122, 0.2708), new THREE.Vector3(0.003, 0.3597, -0.084)])
 ]
 const mobileCameraLookAts = [
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0, 0.3, 0),
-        new THREE.Vector3(0.2385, 0.2148, 0.1238)
-    ]),
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(0.2385, 0.2148, 0.1238),
-        new THREE.Vector3(-0.1135, 0.3508, -0.221)
-    ])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0.3, 0), new THREE.Vector3(0.2385, 0.2148, 0.1238)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.2385, 0.2148, 0.1238), new THREE.Vector3(-0.082, 0.267, -0.17)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.082, 0.267, -0.17), new THREE.Vector3(-0.075, 0.3508, -0.194)])
 ]
 
 function Scene() {
@@ -75,22 +54,14 @@ function Scene() {
     // console.log(position, lookAt)
 
     const getNextCameraPosition = (index: number, isMobile: boolean, offset: number): THREE.Vector3 => {
-        return isMobile ?
-            mobileCameraPositions[index].getPoint(offset) :
-            tabletCameraPositions[index].getPoint(offset)
+        return isMobile ? mobileCameraPositions[index].getPoint(offset) : tabletCameraPositions[index].getPoint(offset)
     }
 
     const getNextCameraLookAt = (index: number, isMobile: boolean, offset: number): THREE.Vector3 => {
-        return isMobile ?
-            mobileCameraLookAts[index].getPoint(offset) :
-            tabletCameraLookAts[index].getPoint(offset)
+        return isMobile ? mobileCameraLookAts[index].getPoint(offset) : tabletCameraLookAts[index].getPoint(offset)
     }
 
     // useFrame(() => {
-    //     const canvas = scene.getObjectByName('canvasPhotos')
-    //     const canvasGlobalPosition = new THREE.Vector3()
-    //     canvas?.getWorldPosition(canvasGlobalPosition)
-    //     console.log(canvasGlobalPosition)
     //     cameraControlRef.current!.setLookAt(
     //         position[0],
     //         position[1],
@@ -103,7 +74,7 @@ function Scene() {
     // })
 
     useFrame(({ pointer }) => {
-        const isInCanvasSection = scrollData.visible(0, 1 / scrollPages)
+        const isInCanvasSection = scrollData.visible(0, 4 / scrollPages)
         const isInTowerOverviewSection = scrollData.visible(4 / scrollPages, 0.5 / scrollPages)
         const isInSkillBoardSection = scrollData.visible(4.5 / scrollPages, 0.5 / scrollPages)
 
@@ -121,15 +92,15 @@ function Scene() {
 
             case isInTowerOverviewSection:
                 const towerOverviewSectionOffset = scrollData.range(4 / scrollPages, 0.5 / scrollPages)
-                nextCameraPosition = getNextCameraPosition(0, isMobile.current, towerOverviewSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(0, isMobile.current, towerOverviewSectionOffset)
+                nextCameraPosition = getNextCameraPosition(1, isMobile.current, towerOverviewSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(1, isMobile.current, towerOverviewSectionOffset)
                 break
 
             case isInSkillBoardSection:
             default:
                 const skillBoardSectionOffset = scrollData.range(4.5 / scrollPages, 0.5 / scrollPages)
-                nextCameraPosition = getNextCameraPosition(1, isMobile.current, skillBoardSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(1, isMobile.current, skillBoardSectionOffset)
+                nextCameraPosition = getNextCameraPosition(2, isMobile.current, skillBoardSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(2, isMobile.current, skillBoardSectionOffset)
                 break
         }
 
@@ -155,7 +126,7 @@ function Scene() {
             } else {
                 isMobile.current = false
             }
-            camera.fov = getClampedValue((perfectWindowWidth - window.innerWidth) / 40 + 60, 60, 90)
+            camera.fov = getClampedValue((perfectWindowWidth - window.innerWidth) / 40 + 60, 60, 85)
             camera.updateProjectionMatrix()
         }
         handleResizeExperience()
