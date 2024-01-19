@@ -5,6 +5,7 @@ export default {
         extend: {
             colors: {
                 primary: 'rgb(var(--color-primary) / <alpha-value>)',
+                'primary-monochrome': 'rgb(var(--color-primary-monochrome) / <alpha-value>)',
                 secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
                 accent: 'rgb(var(--color-accent) / <alpha-value>)',
                 'clock-element': 'rgb(var(--color-clock-blackground) / 0.2)',
