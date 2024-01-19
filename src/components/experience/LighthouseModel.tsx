@@ -22,7 +22,7 @@ interface CanvasPhotosUniforms {
 declare module '@react-three/fiber' {
     interface ThreeElements {
         canvasPhotosMaterial: Object3DNode<typeof CanvasPhotosMaterial, typeof CanvasPhotosMaterial> &
-        CanvasPhotosUniforms
+            CanvasPhotosUniforms
     }
 }
 
@@ -77,7 +77,6 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     firstFloorTexture.flipY = false
     secondFloorTexture.flipY = false
 
-
     useFrame((_state, delta) => {
         const dampedDisplacementFactor = THREE.MathUtils.damp(
             (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor,
@@ -85,10 +84,11 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
             3.5,
             delta
         ) as number
-            ; (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor = dampedDisplacementFactor
+        ;(canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
+            dampedDisplacementFactor
 
         const isInInterior = scrollData.visible(4 / scrollPages, 1)
-        const dampedWallOpacity = THREE.MathUtils.damp(wallMaterialRef.current.opacity, isInInterior ? 0 : 1, 2.5, delta)
+        const dampedWallOpacity = THREE.MathUtils.damp(wallMaterialRef.current.opacity, isInInterior ? 0 : 1, 5, delta)
         wallMaterialRef.current.opacity = dampedWallOpacity
     })
 
