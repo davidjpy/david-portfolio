@@ -75,7 +75,7 @@ export default function HtmlContent() {
         const isInFirstHTML = scrollData.visible(1 / scrollPages, 4 / scrollPages)
         const isInSecondHTML = scrollData.visible(5 / scrollPages, 4 / scrollPages)
         const width = aboutSectionRef.current?.clientWidth
-        console.log(isInFirstHTML, isInSecondHTML)
+        
         if (isInFirstHTML) {
             setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
         } else if (isInSecondHTML) {
