@@ -13,12 +13,6 @@ import { cameraConfig, cameraMouseFactor, scrollPages } from '@/src/utilities/co
 
 import '@/components/experience/Experience.css'
 
-// const tabletCameraPositions = new THREE.CatmullRomCurve3([
-//     new THREE.Vector3(0.046, 0.7857, 1.9249),
-//     new THREE.Vector3(0.21, 0.2357, 0.24)
-// ])
-// const tabletCameraLookAts = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0.3, 0), new THREE.Vector3(0.39, 0.17, 0)])
-
 const tabletCameraPositions = [
     new THREE.CatmullRomCurve3([
         new THREE.Vector3(0.046, 0.7857, 1.9249),
@@ -39,15 +33,6 @@ const tabletCameraLookAts = [
         new THREE.Vector3(-0.1135, 0.3508, -0.221)
     ]),
 ]
-
-// const mobileCameraPositions = new THREE.CatmullRomCurve3([
-//     new THREE.Vector3(0.046, 0.7857, 1.9249),
-//     new THREE.Vector3(0.176, 0.2347, 0.2045)
-// ])
-// const mobileCameraLookAts = new THREE.CatmullRomCurve3([
-//     new THREE.Vector3(0, 0.3, 0),
-//     new THREE.Vector3(0.2385, 0.2148, 0.1238)
-// ])
 
 const mobileCameraPositions = [
     new THREE.CatmullRomCurve3([
@@ -101,42 +86,50 @@ function Scene() {
             tabletCameraLookAts[index].getPoint(offset)
     }
 
-    useFrame(({ pointer }) => {
-        const firstSectionOffset = scrollData.range(0, 1 / scrollPages)
-        const isInFirstSection = scrollData.visible(0, 1 / scrollPages)
+    // useFrame(() => {
+    //     const canvas = scene.getObjectByName('canvasPhotos')
+    //     const canvasGlobalPosition = new THREE.Vector3()
+    //     canvas?.getWorldPosition(canvasGlobalPosition)
+    //     console.log(canvasGlobalPosition)
+    //     cameraControlRef.current!.setLookAt(
+    //         position[0],
+    //         position[1],
+    //         position[2],
+    //         lookAt[0],
+    //         lookAt[1],
+    //         lookAt[2],
+    //         true
+    //     )
+    // })
 
-        const secondSectionOffset = scrollData.range(4 / scrollPages, 1 / scrollPages)
-        const isInSecondSection = scrollData.visible(4 / scrollPages, 1 / scrollPages)
+    useFrame(({ pointer }) => {
+        const isInCanvasSection = scrollData.visible(0, 1 / scrollPages)
+        const isInTowerOverviewSection = scrollData.visible(4 / scrollPages, 0.5 / scrollPages)
+        const isInSkillBoardSection = scrollData.visible(4.5 / scrollPages, 0.5 / scrollPages)
 
         let nextCameraPosition
         let nextCameraLookAt
-        
-        // const canvas = scene.getObjectByName('canvasPhotos')
-        // const canvasGlobalPosition = new THREE.Vector3()
-        // canvas?.getWorldPosition(canvasGlobalPosition)
-        // console.log(canvasGlobalPosition)
-        // cameraControlRef.current!.setLookAt(
-        //     position[0],
-        //     position[1],
-        //     position[2],
-        //     lookAt[0],
-        //     lookAt[1],
-        //     lookAt[2],
-        //     true
-        // )
 
         cameraControlRef.current!.disconnect()
         cameraControlRef.current!.smoothTime = 0.3
         switch (true) {
-            case isInFirstSection:
-                nextCameraPosition = getNextCameraPosition(0, isMobile.current, firstSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(0, isMobile.current, firstSectionOffset)
+            case isInCanvasSection:
+                const canvasSectionOffset = scrollData.range(0, 1 / scrollPages)
+                nextCameraPosition = getNextCameraPosition(0, isMobile.current, canvasSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(0, isMobile.current, canvasSectionOffset)
                 break
 
-            case isInSecondSection:
+            case isInTowerOverviewSection:
+                const towerOverviewSectionOffset = scrollData.range(4 / scrollPages, 0.5 / scrollPages)
+                nextCameraPosition = getNextCameraPosition(0, isMobile.current, towerOverviewSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(0, isMobile.current, towerOverviewSectionOffset)
+                break
+
+            case isInSkillBoardSection:
             default:
-                nextCameraPosition = getNextCameraPosition(1, isMobile.current, secondSectionOffset)
-                nextCameraLookAt     = getNextCameraLookAt(1, isMobile.current, secondSectionOffset)
+                const skillBoardSectionOffset = scrollData.range(4.5 / scrollPages, 0.5 / scrollPages)
+                nextCameraPosition = getNextCameraPosition(1, isMobile.current, skillBoardSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(1, isMobile.current, skillBoardSectionOffset)
                 break
         }
 
