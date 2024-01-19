@@ -7,6 +7,7 @@
 @layer base {
     :root {
         --color-primary: 255 248 231;
+        --color-primary-monochrome: 245 239 224;
         --color-secondary: 80 80 80;
         --color-accent: 246 92 53;
         --color-clock-blackground: 0 0 0;
@@ -14,6 +15,7 @@
 
     :root[theme='dark'] {
         --color-primary: 86 66 61;
+        --color-primary-monochrome: 97 76 70;
         --color-secondary: 250 231 230;
         --color-accent: 246 92 53;
         --color-clock-blackground: 0 0 0;
@@ -26,15 +28,27 @@
     }
 
     .scroll-text-box {
-        @apply absolute w-[50%] h-[200vh] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl;
+        @apply absolute h-[200vh] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl;
+    }
+
+    .header-wrapper {
+        @apply relative z-[10];
+    }
+
+    .header-divider {
+        @apply mb-4 h-2 w-32 bg-accent;
+    }
+
+    .header-bg-text {
+        @apply text-primary-monochrome pointer-events-none absolute left-[160px] top-[160px] z-[0] text-[250px] font-black;
     }
 
     .clock-blackground-sm {
-        @apply bg-clock-element rounded-[8px] p-[4px] shadow-lg;
+        @apply rounded-[8px] bg-clock-element p-[4px] shadow-lg;
     }
 
     .clock-blackground-md {
-        @apply bg-clock-element rounded-[8px] p-[8px] shadow-lg;
+        @apply rounded-[8px] bg-clock-element p-[8px] shadow-lg;
     }
 
     .clock-list-xl {
