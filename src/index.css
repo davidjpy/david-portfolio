@@ -11,6 +11,7 @@
         --color-accent: 246 92 53;
         --color-clock-blackground: 0 0 0;
     }
+
     :root[theme='dark'] {
         --color-primary: 86 66 61;
         --color-secondary: 250 231 230;
@@ -20,8 +21,12 @@
 }
 
 @layer components {
-    .scroll-content {
-        @apply bg-transition right-0 top-[200vh] h-[200vh] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-[0px_0px_20px_0px_rgba(0,0,0,0.25)];
+    .scroll-container {
+        @apply bg-transition w-full p-0;
+    }
+
+    .scroll-text-box {
+        @apply absolute w-[50%] h-[200vh] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl;
     }
 
     .clock-blackground-sm {
@@ -50,19 +55,19 @@
 }
 
 @media (max-width: 1536px) {
-    .scroll-content {
+    .scroll-text-box {
         @apply pl-[80px] pr-[80px];
     }
 }
 
 @media (max-width: 1280px) {
-    .scroll-content {
+    .scroll-text-box {
         @apply pl-[40px] pr-[40px];
     }
 }
 
 @media (max-width: 768px) {
-    .scroll-content {
+    .scroll-text-box {
         @apply w-full rounded-l-[0px];
     }
 }

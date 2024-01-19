@@ -1,6 +1,8 @@
 import { useRef, useEffect } from 'react'
-import { Html } from '@react-three/drei'
+import { Html, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
+
+import { scrollPages } from '@/src/utilities/constants'
 
 const wordChoices = ['Application Developer', 'Web Designer', '3D Modeler']
 const funFacts = [
@@ -28,8 +30,10 @@ const webDevSkills = [
 const otherSkills = ['Blender', 'Stable Diffusion', 'Cantonese', 'Mandarin', 'English', 'Japanese (In Progress)']
 
 export default function HtmlContent() {
-    const aboutSectionRef = useRef<HTMLDivElement>(null)
+    const aboutSectionRef = useRef<HTMLElement>(null!)
+    const skillsSectionRef = useRef<HTMLElement>(null!)
     const typingTextRef = useRef<HTMLSpanElement>(null)
+    const scrollData = useScroll()
 
     useEffect(() => {
         let currentWord = 0
@@ -68,27 +72,40 @@ export default function HtmlContent() {
     }, [])
 
     useFrame(() => {
-        if (aboutSectionRef.current) {
-            const topDistanceRatioToWindowTop = aboutSectionRef.current.getBoundingClientRect().top / window.innerHeight
-            const bottomDistanceRatioToWindowTop =
-                1 - aboutSectionRef.current.getBoundingClientRect().bottom / window.innerHeight
-
-            const width = aboutSectionRef.current.clientWidth
-            aboutSectionRef.current.style.borderTopLeftRadius = `${width * topDistanceRatioToWindowTop}px`
-            aboutSectionRef.current.style.borderBottomLeftRadius = `${width * bottomDistanceRatioToWindowTop}px`
+        const isInFirstHTML = scrollData.visible(1 / scrollPages, 4 / scrollPages)
+        const isInSecondHTML = scrollData.visible(5 / scrollPages, 4 / scrollPages)
+        const width = aboutSectionRef.current?.clientWidth
+        console.log(isInFirstHTML, isInSecondHTML)
+        if (isInFirstHTML) {
+            setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
+        } else if (isInSecondHTML) {
+            setHTMLSectionBorderRadius(skillsSectionRef.current, width, 'left')
         }
     })
 
+    const setHTMLSectionBorderRadius = (element: HTMLElement, width: number, position: 'left' | 'right') => {
+        const elementPosition = element.getBoundingClientRect()
+        const topDistanceRatioToWindowTop = elementPosition.top / window.innerHeight
+        const bottomDistanceRatioToWindowTop = 1 - elementPosition.bottom / window.innerHeight
+
+        if (position === 'left') {
+            element.style.borderTopRightRadius = `${width * topDistanceRatioToWindowTop}px`
+            element.style.borderBottomRightRadius = `${width * bottomDistanceRatioToWindowTop}px`
+        } else if (position === 'right') {
+           element.style.borderTopLeftRadius = `${width * topDistanceRatioToWindowTop}px`
+           element.style.borderBottomLeftRadius = `${width * bottomDistanceRatioToWindowTop}px`
+        } 
+    }
+
     return (
         <Html
-            ref={aboutSectionRef}
             wrapperClass='w-full'
             calculatePosition={() => {
                 return [0, 0]
             }}
-            className='scroll-content'
+            className='scroll-container'
         >
-            <section>
+            <section ref={aboutSectionRef} className='scroll-text-box top-[200vh] right-0'>
                 <div className='mb-4 h-1 w-16 bg-accent' />
                 <header>
                     <h1 className='text-lg font-bold text-secondary'>Hello. I'm</h1>
@@ -121,7 +138,7 @@ export default function HtmlContent() {
                     </p>
                 </section>
 
-                <section className='mt-12 text-secondary'>
+                {/* <section className='mt-12 text-secondary'>
                     <header className='mb-2 flex items-center'>
                         <div className='mr-2 h-0.5 w-4 bg-accent' />
                         <h1 className='font-bold'>
@@ -134,6 +151,54 @@ export default function HtmlContent() {
                         ))}
                     </ul>
                 </section>
+
+                <section className='mt-12 text-secondary'>
+                    <header className='mb-2 flex items-center'>
+                        <div className='mr-2 h-0.5 w-4 bg-accent' />
+                        <h1 className='font-bold'>
+                            What can I offer as a <span className='text-accent'>web developer</span>?
+                        </h1>
+                    </header>
+                    <ul>
+                        {webDevSkills.map((skill) => (
+                            <li
+                                key={skill}
+                                className='mr-4 mt-4 inline-block rounded-md bg-[#FFC3AC] pb-2 pl-4 pr-4 pt-2 font-light'
+                            >
+                                {skill}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+
+                <section className='mt-12 text-secondary'>
+                    <header className='mb-2 flex items-center'>
+                        <div className='mr-2 h-0.5 w-4 bg-accent' />
+                        <h1 className='font-bold'>
+                            What other <span className='text-accent'>skills</span> do I have?
+                        </h1>
+                    </header>
+                    <ul>
+                        {otherSkills.map((skill) => (
+                            <li
+                                key={skill}
+                                className='mr-4 mt-4 inline-block rounded-md bg-[#FFC3AC] pb-2 pl-4 pr-4 pt-2 font-light'
+                            >
+                                {skill}
+                            </li>
+                        ))}
+                    </ul>
+                </section> */}
+            </section>
+
+            <section ref={skillsSectionRef} className='scroll-text-box top-[600vh] left-0'>
+                <div className='mb-4 h-1 w-16 bg-accent' />
+                <header>
+                    <h1 className='text-lg font-bold text-secondary'>How about...</h1>
+                    <h1 className='text-xl font-black text-secondary'>
+                        My <span className='text-accent'>skills</span>
+                    </h1>
+                </header>
 
                 <section className='mt-12 text-secondary'>
                     <header className='mb-2 flex items-center'>
