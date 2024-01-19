@@ -1,12 +1,12 @@
 import * as THREE from 'three'
 import { useContext, useRef } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
-import { useGLTF, useTexture, shaderMaterial } from '@react-three/drei'
-// import { useControls } from 'leva'
+import { useGLTF, useTexture, shaderMaterial, useScroll } from '@react-three/drei'
 
 import { AppContext } from '@/src/context/appContext'
 import canvasVertexShader from '@/shaders/canvas/canvasVertexShader.glsl'
 import canvasFragmentShader from '@/shaders/canvas/canvasFragmentShader.glsl'
+import { scrollPages } from '@/src/utilities/constants'
 
 import type { GLTF } from 'three-stdlib'
 import type { Object3DNode } from '@react-three/fiber'
@@ -22,7 +22,7 @@ interface CanvasPhotosUniforms {
 declare module '@react-three/fiber' {
     interface ThreeElements {
         canvasPhotosMaterial: Object3DNode<typeof CanvasPhotosMaterial, typeof CanvasPhotosMaterial> &
-            CanvasPhotosUniforms
+        CanvasPhotosUniforms
     }
 }
 
@@ -54,9 +54,10 @@ type GLTFResult = GLTF & {
 
 export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     const { isLightMode } = useContext(AppContext)
-    const canvasPhotosRef = useRef<unknown>()
+    const canvasPhotosRef = useRef(null!)
+    const wallMaterialRef = useRef<THREE.MeshBasicMaterial>(null!)
+    const scrollData = useScroll()
     const { nodes } = useGLTF('/lighthouse.glb') as GLTFResult
-    // const { nodes } = useGLTF('/lighthouse.glb') as GLTFResult
     const [
         lighthouseTexture,
         firstFloorTexture,
@@ -76,49 +77,19 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     firstFloorTexture.flipY = false
     secondFloorTexture.flipY = false
 
-    // const { position, rotation, scaleX, scaleY, scaleZ} = useControls('Canvas', {
-    //     position: {
-    //         value: [
-    //             0.1561,
-    //             4.630,
-    //             -0.8761
-    //         ],
-    //         step: 0.001
-    //     },
-    //     rotation: {
-    //         value: [
-    //             -0.4405,
-    //             1.198,
-    //             0.414
-    //         ],
-    //         step: 0.001
-    //     },
-    //     scaleX: {
-    //         value: 0.213,
-    //         step: 0.001
-    //     },
-    //     scaleY: {
-    //         value: 0.293,
-    //         step: 0.001
-    //     },
-    //     scaleZ: {
-    //         value: 1,
-    //         step: 0.001
-    //     }
-    // })
-    // console.log(position, rotation, scaleX, scaleY, scaleZ)
 
     useFrame((_state, delta) => {
-        if (canvasPhotosRef.current) {
-            const dampedDisplacementFactor = THREE.MathUtils.damp(
-                (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor,
-                isLightMode ? 0 : 1,
-                3.5,
-                delta
-            ) as number
-            ;(canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
-                dampedDisplacementFactor
-        }
+        const dampedDisplacementFactor = THREE.MathUtils.damp(
+            (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor,
+            isLightMode ? 0 : 1,
+            3.5,
+            delta
+        ) as number
+            ; (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor = dampedDisplacementFactor
+
+        const isInInterior = scrollData.visible(4 / scrollPages, 1)
+        const dampedWallOpacity = THREE.MathUtils.damp(wallMaterialRef.current.opacity, isInInterior ? 0 : 1, 2.5, delta)
+        wallMaterialRef.current.opacity = dampedWallOpacity
     })
 
     return (
@@ -198,7 +169,7 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
                 <meshBasicMaterial map={lighthouseTexture} />
             </mesh>
             <mesh name='wall' geometry={nodes.wall.geometry} material={nodes.wall.material}>
-                <meshBasicMaterial map={lighthouseTexture} transparent opacity={0} />
+                <meshBasicMaterial ref={wallMaterialRef} map={lighthouseTexture} transparent />
             </mesh>
             <mesh
                 name='canvasPhotos'
