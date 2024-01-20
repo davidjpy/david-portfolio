@@ -121,15 +121,25 @@ export default function HtmlContent() {
                         ></span>
                     </h1>
                 </header>
-                <p className='mt-4 text-secondary'>
-                    An innovator at heart, I transform ideas into captivating digital experiences that embody elegance,
-                    simplicity, and details.
-                </p>
 
                 <section className='mt-12 text-secondary'>
                     <header className='mb-2 flex items-center'>
                         <div className='mr-2 h-0.5 w-4 bg-accent' />
                         <h1 className='font-bold'>Who am I?</h1>
+                    </header>
+                    <p>
+                        I am an software engineer residing in Hong Kong with extensive experience in transforming ideas
+                        from 0 to 100 and creating captivating digital experiences that embody elegance, simplicity, and
+                        detail. My work consists of a full-time position as an application developer, preparation and
+                        networking for kickstarting my freelancing career, and a never-end journey of learning and
+                        development.
+                    </p>
+                </section>
+
+                <section className='mt-12 text-secondary'>
+                    <header className='mb-2 flex items-center'>
+                        <div className='mr-2 h-0.5 w-4 bg-accent' />
+                        <h1 className='font-bold'>How it started?</h1>
                     </header>
                     <p>
                         I'm a passionate self-taught web developer with over 2 years of professional experience now
