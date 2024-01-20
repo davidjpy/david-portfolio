@@ -19,6 +19,7 @@
         "postprocessing": "^6.33.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-icons": "^5.0.1",
         "three": "^0.158.0"
     },
     "devDependencies": {
