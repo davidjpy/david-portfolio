@@ -9,6 +9,7 @@
         --color-primary: 255 248 231;
         --color-primary-monochrome: 245 239 224;
         --color-secondary: 80 80 80;
+        --color-secondary-light: 130 130 130;
         --color-accent: 246 92 53;
         --color-clock-blackground: 0 0 0;
     }
@@ -17,6 +18,7 @@
         --color-primary: 86 66 61;
         --color-primary-monochrome: 97 76 70;
         --color-secondary: 250 231 230;
+        --color-secondary-light: 151 137 136;
         --color-accent: 246 92 53;
         --color-clock-blackground: 0 0 0;
     }
@@ -24,11 +26,11 @@
 
 @layer components {
     .scroll-container {
-        @apply bg-transition w-full p-0;
+        @apply w-full p-0;
     }
 
     .scroll-text-box {
-        @apply absolute h-[200vh] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl;
+        @apply color-transition-slow absolute h-[200vh] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl;
     }
 
     .header-wrapper {
@@ -39,8 +41,12 @@
         @apply mb-4 h-2 w-32 bg-accent;
     }
 
+    .icon-link {
+        @apply color-transition-slow text-secondary-light h-8 w-8 cursor-pointer hover:text-secondary;
+    }
+
     .header-bg-text {
-        @apply text-primary-monochrome pointer-events-none absolute left-[160px] top-[160px] z-[0] text-[250px] font-black;
+        @apply color-transition-slow pointer-events-none absolute left-[160px] top-[160px] z-[0] text-[250px] font-black text-primary-monochrome;
     }
 
     .clock-blackground-sm {
@@ -59,8 +65,12 @@
         @apply block h-[10px] overflow-hidden text-[10px] font-semibold leading-[10px];
     }
 
-    .bg-transition {
+    .color-transition-slow {
         @apply transition-colors duration-300 ease-linear;
+    }
+
+    .color-transition-fast {
+        @apply transition-colors duration-100 ease-linear;
     }
 
     .flex-center {

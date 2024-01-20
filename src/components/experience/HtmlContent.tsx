@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
+import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa'
 
 import { scrollPages } from '@/src/utilities/constants'
 
@@ -106,8 +107,10 @@ export default function HtmlContent() {
             className='scroll-container'
         >
             <section ref={aboutSectionRef} className='scroll-text-box right-0 top-[200vh]'>
-                <span className='header-bg-text'>About</span>
-                <header className='header-wrapper'>
+                <header>
+                    <h1 className='header-bg-text'>About</h1>
+                </header>
+                <div className='header-wrapper'>
                     <div className='header-divider' />
                     <h1 className='text-lg font-bold text-secondary'>Hello. I'm</h1>
                     <h1 className='text-xl font-black text-secondary'>
@@ -120,7 +123,25 @@ export default function HtmlContent() {
                             className='animate-typing border-r-2 border-accent text-lg font-semibold text-accent'
                         ></span>
                     </h1>
-                </header>
+                </div>
+
+                <ul className='mt-4 flex gap-4'>
+                    <li>
+                        <a href='https://github.com/davidjpy' target='_blank'>
+                            <FaGithub className='icon-link' />
+                        </a>
+                    </li>
+                    <li>
+                        <a href='https://www.linkedin.com/in/davidho-web/' target='_blank'>
+                            <FaLinkedin className='icon-link' />
+                        </a>
+                    </li>
+                    <li>
+                        <a href='https://www.instagram.com/___realdavid/' target='_blank'>
+                            <FaInstagram strokeWidth={20} className='icon-link' />
+                        </a>
+                    </li>
+                </ul>
 
                 <section className='mt-12 text-secondary'>
                     <header className='mb-2 flex items-center'>
@@ -128,11 +149,13 @@ export default function HtmlContent() {
                         <h1 className='font-bold'>Who am I?</h1>
                     </header>
                     <p>
-                        I am an software engineer residing in Hong Kong with extensive experience in transforming ideas
-                        from 0 to 100 and creating captivating digital experiences that embody elegance, simplicity, and
-                        detail. My work consists of a full-time position as an application developer, preparation and
-                        networking for kickstarting my freelancing career, and a never-end journey of learning and
-                        development.
+                        I am an ambitious software engineer based in Hong Kong with over 2 years of professional
+                        experience in transforming ideas from 0 to 100 and creating captivating digital experiences that
+                        embody elegance, simplicity, and detail. In my full-time role as an application developer, I've
+                        successfully made several significant improvements to products with over 2000 daily users while
+                        laying the groundwork for a freelance career through targeted networking and skill-building. I
+                        am also committed to a long-life journey of continuous growth to stay at the forefront of
+                        technology and personal development.
                     </p>
                 </section>
 
@@ -142,13 +165,15 @@ export default function HtmlContent() {
                         <h1 className='font-bold'>How it started?</h1>
                     </header>
                     <p>
-                        I'm a passionate self-taught web developer with over 2 years of professional experience now
-                        residing in Hong Kong. I once was a building surveyor before falling in love with the intriguing
-                        world of programming, which not only permits but also encourages and rewards creativity in
-                        problem resolution.
+                        I'm a self-taught software engineer fueled by a deep passion for the digital world. I began my
+                        career as a building surveyor, a field steeped in rigid practices that often limited my creative
+                        spirit. Seeking a change, I discovered the intriguing world of programming, a place where
+                        innovation thrives and creative problem-solving is encouraged. This propelled me into a mountain
+                        of code, where I've found passion for crafting web applications with stunning visuals and
+                        software that embrace efficiency.
                     </p>
                 </section>
-
+                {/* I'm a self-taught software engineer fueled by a deep fascination with the digital realm. My career began in building surveying, a field steeped in rigid practices that often stifled my creative spirit. Craving a change, I discovered the dynamic world of programming—a realm where innovation thrives and creative problem-solving is celebrated. This epiphany propelled me into the arms of code, where I've found a passion for [specific area, e.g., crafting intuitive web applications]. Each line of code is a building block in constructing something new, mirroring the surveyor's precision but with the boundless creativity that I had always yearned for. */}
                 {/* <section className='mt-12 text-secondary'>
                     <header className='mb-2 flex items-center'>
                         <div className='mr-2 h-0.5 w-4 bg-accent' />
@@ -203,7 +228,9 @@ export default function HtmlContent() {
             </section>
 
             <section ref={skillsSectionRef} className='scroll-text-box left-0 top-[600vh]'>
-                <span className='header-bg-text'>Skills</span>
+                <header>
+                    <h1 className='header-bg-text'>Skills</h1>
+                </header>
                 <header className='header-wrapper'>
                     <div className='header-divider' />
                     <h1 className='text-lg font-bold text-secondary'>Cool. How about...</h1>
