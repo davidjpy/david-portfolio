@@ -42,7 +42,11 @@
     }
 
     .icon-link {
-        @apply color-transition-slow text-secondary-light h-8 w-8 cursor-pointer hover:text-secondary;
+        @apply color-transition-slow h-8 w-8 cursor-pointer text-secondary-light hover:text-secondary;
+    }
+
+    .icon {
+        @apply color-transition-slow h-10 w-10 text-secondary;
     }
 
     .header-bg-text {

@@ -1,7 +1,24 @@
 import { useRef, useEffect } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa'
+import {
+    FaGithub,
+    FaLinkedin,
+    FaInstagram,
+    FaPython,
+    FaReact,
+    FaVuejs,
+    FaNodeJs,
+    FaHtml5,
+    FaCss3Alt,
+    FaGitAlt,
+    FaDocker,
+    FaImages,
+    FaKeyboard
+} from 'react-icons/fa'
+import { SiTypescript, SiTailwindcss, SiBlender } from 'react-icons/si'
+import { MdOutlinePhonelink } from 'react-icons/md'
+import { TbBrandThreejs } from 'react-icons/tb'
 
 import { scrollPages } from '@/src/utilities/constants'
 
@@ -15,20 +32,25 @@ const funFacts = [
     "I can't swim, just shampooing my hair makes me feel like I'm drowning. :("
 ]
 const webDevSkills = [
-    'Typescript',
-    'Python',
-    'React',
-    'Vue',
-    'Accessible & Responsive Design',
-    'ThreeJS',
-    'Node',
-    'Semantic HTML',
-    'CSS',
-    'Tailwind CSS',
-    'Git',
-    'Docker'
+    { name: 'Typescript', icon: <SiTypescript className='icon' /> },
+    { name: 'Python', icon: <FaPython className='icon' /> },
+    { name: 'React', icon: <FaReact strokeWidth={8} className='icon' /> },
+    { name: 'Vue', icon: <FaVuejs className='icon' /> },
+    { name: 'ThreeJS', icon: <TbBrandThreejs strokeWidth={1.5} className='icon' /> },
+    { name: 'Node', icon: <FaNodeJs strokeWidth={8} className='icon' /> },
+    { name: 'Semantic HTML', icon: <FaHtml5 className='icon' /> },
+    { name: 'Responsiveness', icon: <MdOutlinePhonelink className='icon' /> },
+    { name: 'Acessibility', icon: <FaKeyboard className='icon' /> },
+    { name: 'CSS', icon: <FaCss3Alt className='icon' /> },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss className='icon' /> },
+    { name: 'Git', icon: <FaGitAlt className='icon' /> },
+    { name: 'Docker', icon: <FaDocker className='icon' /> }
 ]
-const otherSkills = ['Blender', 'Stable Diffusion', 'Cantonese', 'Mandarin', 'English', 'Japanese (In Progress)']
+// const otherSkills = ['Blender', 'Stable Diffusion', 'Cantonese', 'Mandarin', 'English', 'Japanese (In Progress)']
+const otherSkills = [
+    { name: 'Blender', icon: <SiBlender className='icon' /> },
+    { name: 'Stable Diffusion', icon: <FaImages className='icon' /> }
+]
 
 export default function HtmlContent() {
     const aboutSectionRef = useRef<HTMLElement>(null!)
@@ -146,7 +168,9 @@ export default function HtmlContent() {
                 <section className='mt-12 text-secondary'>
                     <header className='mb-2 flex items-center'>
                         <div className='mr-2 h-0.5 w-4 bg-accent' />
-                        <h1 className='font-bold'>Who am I?</h1>
+                        <h1 className='font-bold'>
+                            <span className='text-accent'>Who</span> am I?
+                        </h1>
                     </header>
                     <p>
                         I am an ambitious software engineer based in Hong Kong with over 2 years of professional
@@ -162,7 +186,9 @@ export default function HtmlContent() {
                 <section className='mt-12 text-secondary'>
                     <header className='mb-2 flex items-center'>
                         <div className='mr-2 h-0.5 w-4 bg-accent' />
-                        <h1 className='font-bold'>How it started?</h1>
+                        <h1 className='font-bold'>
+                            How it <span className='text-accent'>started</span>?
+                        </h1>
                     </header>
                     <p>
                         I'm a self-taught software engineer fueled by a deep passion for the digital world. I began my
@@ -249,10 +275,11 @@ export default function HtmlContent() {
                     <ul>
                         {webDevSkills.map((skill) => (
                             <li
-                                key={skill}
-                                className='mr-4 mt-4 inline-block rounded-md bg-[#FFC3AC] pb-2 pl-4 pr-4 pt-2 font-light'
+                                key={skill.name}
+                                className='mr-4 mt-4 inline-block rounded-md bg-primary-monochrome pb-2 pl-8 pr-8 pt-2 text-center'
                             >
-                                {skill}
+                                <span className='inline-block'>{skill.icon}</span>
+                                <p>{skill.name}</p>
                             </li>
                         ))}
                     </ul>
@@ -268,10 +295,11 @@ export default function HtmlContent() {
                     <ul>
                         {otherSkills.map((skill) => (
                             <li
-                                key={skill}
-                                className='mr-4 mt-4 inline-block rounded-md bg-[#FFC3AC] pb-2 pl-4 pr-4 pt-2 font-light'
+                                key={skill.name}
+                                className='mr-4 mt-4 inline-block rounded-md bg-primary-monochrome pb-2 pl-8 pr-8 pt-2 text-center'
                             >
-                                {skill}
+                                <span className='inline-block'>{skill.icon}</span>
+                                <p>{skill.name}</p>
                             </li>
                         ))}
                     </ul>
