@@ -16,22 +16,33 @@ import '@/components/experience/Experience.css'
 const tabletCameraPositions = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.046, 0.7857, 1.9249), new THREE.Vector3(0.21, 0.2357, 0.24)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 0.2357, 0.24), new THREE.Vector3(0.201, 0.4122, 0.1468)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.201, 0.4122, 0.1468), new THREE.Vector3(-0.016, 0.3597, -0.075)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.201, 0.4122, 0.1468), new THREE.Vector3(-0.016, 0.3597, -0.075)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.016, 0.3597, -0.075), new THREE.Vector3(0.018, 0.374, -0.09)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.018, 0.374, -0.09), new THREE.Vector3(0.042, 0.366, -0.061)])
 ]
 const tabletCameraLookAts = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0.3, 0), new THREE.Vector3(0.39, 0.17, 0)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.39, 0.17, 0), new THREE.Vector3(-0.082, 0.267, -0.17)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.082, 0.267, -0.17), new THREE.Vector3(-0.2355, 0.3508, -0.258)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.082, 0.267, -0.17), new THREE.Vector3(-0.2355, 0.3508, -0.258)]),
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.2355, 0.3508, -0.258),
+        new THREE.Vector3(-0.2015, 0.3398, -0.185)
+    ]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.2015, 0.3398, -0.185), new THREE.Vector3(0.051, 0.3608, -0.088)])
 ]
 const mobileCameraPositions = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.046, 0.7857, 1.9249), new THREE.Vector3(0.176, 0.2347, 0.2045)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.176, 0.2347, 0.2045), new THREE.Vector3(0.252, 0.4122, 0.2708)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.252, 0.4122, 0.2708), new THREE.Vector3(0.003, 0.3597, -0.084)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.252, 0.4122, 0.2708), new THREE.Vector3(0.003, 0.3597, -0.084)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.003, 0.3597, -0.084), new THREE.Vector3(0.009, 0.374, -0.044)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.009, 0.374, -0.044), new THREE.Vector3(0.042, 0.366, -0.061)])
 ]
 const mobileCameraLookAts = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0.3, 0), new THREE.Vector3(0.2385, 0.2148, 0.1238)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.2385, 0.2148, 0.1238), new THREE.Vector3(-0.082, 0.267, -0.17)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.082, 0.267, -0.17), new THREE.Vector3(-0.075, 0.3508, -0.194)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.082, 0.267, -0.17), new THREE.Vector3(-0.075, 0.3508, -0.194)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.075, 0.3508, -0.194), new THREE.Vector3(-0.0665, 0.3718, -0.077)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.0665, 0.3718, -0.077), new THREE.Vector3(0.051, 0.3608, -0.088)])
 ]
 
 function Scene() {
@@ -43,11 +54,11 @@ function Scene() {
 
     // const { position, lookAt } = useControls('Camera', {
     //     position: {
-    //         value: [-0.03, 0.3597, -0.132],
+    //         value: [0.018, 0.374, -0.09],
     //         step: 0.001
     //     },
     //     lookAt: {
-    //         value: [-0.1135, 0.3508, -0.221],
+    //         value: [-0.2015, 0.3398, -0.185],
     //         step: 0.001
     //     }
     // })
@@ -76,8 +87,18 @@ function Scene() {
     useFrame(({ pointer }) => {
         const isInCanvasSection = scrollData.visible(0, 4 / scrollPages)
         const isInTowerOverviewSection = scrollData.visible(4 / scrollPages, 0.5 / scrollPages)
-        const isInSkillBoardSection = scrollData.visible(4.5 / scrollPages, 0.5 / scrollPages)
+        const isInSkillBoardSection = scrollData.visible(4.5 / scrollPages, 4 / scrollPages)
+        const isInBookShelfSection = scrollData.visible(8.5 / scrollPages, 4 / scrollPages)
+        const isInCabinetSection = scrollData.visible(12.5 / scrollPages, 4 / scrollPages)
 
+        console.log(
+            isInCanvasSection,
+            isInTowerOverviewSection,
+            isInSkillBoardSection,
+            isInBookShelfSection,
+            isInCabinetSection,
+            scrollData.range(12.5 / scrollPages, 0.5 / scrollPages)
+        )
         let nextCameraPosition
         let nextCameraLookAt
 
@@ -97,10 +118,22 @@ function Scene() {
                 break
 
             case isInSkillBoardSection:
-            default:
                 const skillBoardSectionOffset = scrollData.range(4.5 / scrollPages, 0.5 / scrollPages)
                 nextCameraPosition = getNextCameraPosition(2, isMobile.current, skillBoardSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(2, isMobile.current, skillBoardSectionOffset)
+                break
+
+            case isInBookShelfSection:
+                const bookShelfSectionOffset = scrollData.range(8.5 / scrollPages, 0.5 / scrollPages)
+                nextCameraPosition = getNextCameraPosition(3, isMobile.current, bookShelfSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(3, isMobile.current, bookShelfSectionOffset)
+                break
+
+            case isInCabinetSection:
+            default:
+                const cabinetSectionOffset = scrollData.range(12.5 / scrollPages, 0.5 / scrollPages)
+                nextCameraPosition = getNextCameraPosition(4, isMobile.current, cabinetSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(4, isMobile.current, cabinetSectionOffset)
                 break
         }
 
