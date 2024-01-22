@@ -2,10 +2,10 @@ import { useEffect, useRef, useState, useContext } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import { useSprings } from '@react-spring/three'
 import { animated, config } from '@react-spring/web'
+import { FaMoon } from 'react-icons/fa'
+import { HiSun } from 'react-icons/hi'
 
 import { AppContext } from '@/src/context/appContext'
-import SliderMoonSvg from '@/src/assets/SliderMoonSvg'
-import SliderSunSvg from '@/src/assets/SliderSunSvg'
 import { getInterpolatedValue } from '@/src/utilities/getInterpolatedValue'
 import { latestHoursInMinutes, earliestHoursInMinutes, minBrightness, maxBrightness } from '@/src/utilities/constants'
 
@@ -234,7 +234,7 @@ export default function ColorModeSlider() {
 
             <div className='clock-blackground-sm col-span-4 row-span-1'>
                 <div className='flex h-full items-center justify-center gap-[8px]'>
-                    <SliderMoonSvg fill='#ffffff' width={20} height={16} />
+                    <FaMoon className='ml-[4px]' />
                     <input
                         type='range'
                         min={minBrightness}
@@ -245,7 +245,7 @@ export default function ColorModeSlider() {
                         className='w-[150px]'
                         aria-label='Brightness'
                     />
-                    <SliderSunSvg fill='#ffffff' width={20} height={20} />
+                    <HiSun className='text-[24px]' />
                 </div>
             </div>
         </Html>
