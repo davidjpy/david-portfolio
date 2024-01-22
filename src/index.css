@@ -45,8 +45,12 @@
         @apply color-transition-slow h-8 w-8 cursor-pointer text-secondary-light hover:text-secondary;
     }
 
-    .icon {
-        @apply color-transition-slow h-10 w-10 text-secondary;
+    .icon-svg {
+        @apply color-transition-slow inline h-10 w-10 text-secondary;
+    }
+
+    .icon-text {
+        @apply color-transition-slow inline-block h-10 w-10 text-[2.2rem] font-black text-secondary;
     }
 
     .header-bg-text {
@@ -70,11 +74,7 @@
     }
 
     .color-transition-slow {
-        @apply transition-colors duration-300 ease-linear;
-    }
-
-    .color-transition-fast {
-        @apply transition-colors duration-100 ease-linear;
+        @apply transition-colors duration-200 ease-linear;
     }
 
     .flex-center {
