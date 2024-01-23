@@ -148,6 +148,7 @@ export default function HtmlContent() {
 
             case isInLifeSection:
                 setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
+                break
 
             default:
                 break
@@ -389,7 +390,7 @@ export default function HtmlContent() {
 
             <section ref={lifeSectionRef} className='scroll-text-box left-0 top-[1400vh]'>
                 <header>
-                    <h1 className='header-bg-text'>Reading</h1>
+                    <h1 className='header-bg-text'>Life</h1>
                 </header>
                 <header className='header-wrapper'>
                     <div className='header-divider' />
