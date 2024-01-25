@@ -1,6 +1,8 @@
 import { useRef, useEffect } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination, Navigation } from 'swiper/modules'
 import {
     FaGithub,
     FaLinkedin,
@@ -22,15 +24,11 @@ import { TbBrandThreejs } from 'react-icons/tb'
 
 import { scrollPages } from '@/src/utilities/constants'
 
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+
 const wordChoices = ['Full-Stack Developer', 'Web Designer', '3D Modeler']
-const funFacts = [
-    'I believe life without a golden retriever is incomplete.',
-    'I am a concert enjoyer.',
-    'I will accomplish my lifelong goal of reaching the summit of Mount Everest.',
-    "I love dark humor, because if a sad story can't be made funny, then it's simply sad.",
-    'I enjoy high quality RPGs.',
-    "I can't swim, just shampooing my hair makes me feel like I'm drowning. :("
-]
 const softwareSkills = [
     { name: 'Typescript', icon: <SiTypescript className='icon-svg' /> },
     { name: 'Python', icon: <FaPython className='icon-svg' /> },
@@ -79,6 +77,15 @@ const bookReadingList = [
         summary:
             'The book provides insight with the system design and risk management, promotes iterative development and testing for reliability, and emphasizes on self-discipline on personal growth.'
     }
+]
+const funFacts = [
+    'I believe golden retriever is the best.',
+    // 'I am a concert enjoyer.',
+    'I wanna reach the summit of Mount Everest.',
+    "I love dark humor, because if a sad story can't be made funny, then it's simply sad.",
+    'I am a gamer, and I enjoy high quality RPGs.',
+    "I can't swim, just shampooing my hair makes me feel like I'm drowning."
+    // 'I would love to travel the world.'
 ]
 
 export default function HtmlContent() {
@@ -394,9 +401,9 @@ export default function HtmlContent() {
                 </header>
                 <header className='header-wrapper'>
                     <div className='header-divider' />
-                    <h1 className='text-lg font-bold text-secondary'>Nice. What about...</h1>
+                    <h1 className='text-lg font-bold text-secondary'>Good. More on...</h1>
                     <h1 className='text-xl font-black text-secondary'>
-                        My <span className='text-accent'> Reads</span>
+                        My <span className='text-accent'> Life</span>
                     </h1>
                 </header>
 
@@ -404,21 +411,59 @@ export default function HtmlContent() {
                     <header className='mb-2 flex items-center'>
                         <div className='mr-2 h-0.5 w-4 bg-accent' />
                         <h1 className='font-bold'>
-                            Any interesting <span className='text-accent'>books</span>?
+                            My <span className='text-accent'>daily</span> life?
                         </h1>
                     </header>
-                    <ul className='ml-5 mt-4 list-outside list-decimal'>
-                        {bookReadingList.map((book) => (
-                            <li key={book.title} className='mb-4'>
-                                <h1 className='inline font-extrabold'>
-                                    {book.title}
-                                    <span className='font-normal text-accent'> - {book.author}</span>
-                                </h1>
-                                <p className='mt-2'>{book.summary}</p>
+                    <p>
+                        My life is simple yet joyful, you'll either find me sitting in front of the computer, losing
+                        myself in the latest gaming adventure or a pile of messy code, or exploring the hidden gems of
+                        the city. I often find surprises and beauty in those untold places. I enjoy talking to strangers
+                        and meeting new friends. I always get along with people regardless of their background, culture,
+                        and language.
+                    </p>
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={16}
+                        // freeMode={true}
+                        loop={true}
+                        pagination={{ clickable: true }}
+                        navigation={true}
+                        modules={[Navigation, Pagination]}
+                        className='mt-4 h-[650px] w-full rounded-[24px] p-[8px]'
+                    >
+                        <SwiperSlide className='img-gallery'>
+                            <img src='/image/japan_shine.jpg' className='swipe-img col-span-2 row-span-5' />
+                            <img src='/image/japan_house.JPG' className='swipe-img col-span-2 row-span-2' />
+                            <img src='/image/hk_island.jpeg' className='swipe-img col-span-2 row-span-3' />
+                        </SwiperSlide>
+                        <SwiperSlide className='img-gallery'>
+                            <img src='/image/taiwan_shine.JPG' className='swipe-img col-span-2 row-span-3' />
+                            <img src='/image/painting.JPG' className='swipe-img col-span-2 row-span-3' />
+                            <img src='/image/love_bridge.JPG' className='swipe-img col-span-4 row-span-2' />
+                        </SwiperSlide>
+                        <SwiperSlide className='img-gallery'>
+                            <img src='/image/fire_dragon_dance.jpeg' className='swipe-img col-span-2 row-span-2' />
+                            <img src='/image/coldplay.JPG' className='swipe-img col-span-2 row-span-2' />
+                            <img src='/image/okinawa_sky.JPG' className='swipe-img col-span-4 row-span-3' />
+                        </SwiperSlide>
+                    </Swiper>
+                </section>
+
+                {/* <section className='mt-12 text-secondary'>
+                    <header className='mb-2 flex items-center'>
+                        <div className='mr-2 h-0.5 w-4 bg-accent' />
+                        <h1 className='font-bold'>
+                            Fun <span className='text-accent'>facts</span> about me?
+                        </h1>
+                    </header>
+                    <ul className='mt-4'>
+                        {funFacts.map((fact) => (
+                            <li key={fact} className='mt-2'>
+                                <p>{fact}</p>
                             </li>
                         ))}
                     </ul>
-                </section>
+                </section> */}
             </section>
         </Html>
     )

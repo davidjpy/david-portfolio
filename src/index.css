@@ -80,17 +80,25 @@
     .flex-center {
         @apply flex items-center justify-center;
     }
+
+    .img-gallery {
+        @apply grid grid-cols-4 grid-rows-5 gap-[16px] rounded-[16px] bg-white p-[16px] shadow-[1px_1px_8px_1px_rgba(0,0,0,0.2)];
+    }
+
+    .swipe-img {
+        @apply h-full w-full rounded-[16px] object-cover;
+    }
 }
 
 @media (max-width: 1536px) {
     .scroll-text-box {
-        @apply pl-[80px] pr-[80px];
+        @apply pl-[40px] pr-[40px];
     }
 }
 
 @media (max-width: 1280px) {
     .scroll-text-box {
-        @apply pl-[40px] pr-[40px];
+        @apply pl-[20px] pr-[20px];
     }
 }
 

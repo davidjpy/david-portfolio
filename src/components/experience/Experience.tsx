@@ -87,14 +87,6 @@ function Scene() {
         const isInBookShelfSection = scrollData.visible(8.5 / scrollPages, 4 / scrollPages)
         const isInCabinetSection = scrollData.visible(12.5 / scrollPages, 4 / scrollPages)
 
-        console.log(
-            isInCanvasSection,
-            isInTowerOverviewSection,
-            isInSkillBoardSection,
-            isInBookShelfSection,
-            isInCabinetSection,
-            scrollData.range(12.5 / scrollPages, 0.5 / scrollPages)
-        )
         let nextCameraPosition
         let nextCameraLookAt
 
