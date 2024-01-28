@@ -57,7 +57,7 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     const canvasPhotosRef = useRef(null!)
     const wallMaterialRef = useRef<THREE.MeshBasicMaterial>(null!)
     const scrollData = useScroll()
-    const { nodes } = useGLTF('/lighthouse.glb') as GLTFResult
+    const { nodes } = useGLTF('models/lighthouse.glb') as GLTFResult
     const [
         lighthouseTexture,
         firstFloorTexture,
@@ -66,12 +66,12 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
         davidPhotoTexture,
         displacementTexture
     ] = useTexture([
-        '/lighthouse_bake.webp',
-        '/lighthouse_1stFloor_bake.webp',
-        '/lighthouse_2ndFloor_bake.webp',
-        '/david_art.webp',
-        '/david_photo.webp',
-        '/water_displacement_map.jpg'
+        'models/lighthouse_bake.webp',
+        'models/lighthouse_1stFloor_bake.webp',
+        'models/lighthouse_2ndFloor_bake.webp',
+        'models/david_art.webp',
+        'models/david_photo.webp',
+        'models/water_displacement_map.jpg'
     ])
     lighthouseTexture.flipY = false
     firstFloorTexture.flipY = false
@@ -230,4 +230,4 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     )
 }
 
-useGLTF.preload('/lighthouse.glb')
+useGLTF.preload('models/lighthouse.glb')

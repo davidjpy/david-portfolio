@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Navigation } from 'swiper/modules'
+import { Pagination } from 'swiper/modules'
 import {
     FaGithub,
     FaLinkedin,
@@ -26,7 +26,6 @@ import { scrollPages } from '@/src/utilities/constants'
 
 import 'swiper/css'
 import 'swiper/css/pagination'
-import 'swiper/css/navigation'
 
 const wordChoices = ['Full-Stack Developer', 'Web Designer', '3D Modeler']
 const softwareSkills = [
@@ -424,27 +423,61 @@ export default function HtmlContent() {
                     <Swiper
                         slidesPerView={1}
                         spaceBetween={16}
-                        // freeMode={true}
                         loop={true}
                         pagination={{ clickable: true }}
-                        navigation={true}
-                        modules={[Navigation, Pagination]}
-                        className='mt-4 h-[650px] w-full rounded-[24px] p-[8px]'
+                        modules={[Pagination]}
+                        className='mt-8 h-[700px] w-full rounded-[24px] p-[8px]'
                     >
                         <SwiperSlide className='img-gallery'>
-                            <img src='/image/japan_shine.jpg' className='swipe-img col-span-2 row-span-5' />
-                            <img src='/image/japan_house.JPG' className='swipe-img col-span-2 row-span-2' />
-                            <img src='/image/hk_island.jpeg' className='swipe-img col-span-2 row-span-3' />
+                            <img
+                                src='images/low_res/japan_shine.webp'
+                                loading='lazy'
+                                className='swipe-img col-span-2 row-span-5'
+                            />
+                            <img
+                                src='images/low_res/japan_house.webp'
+                                loading='lazy'
+                                className='swipe-img col-span-2 row-span-2'
+                            />
+                            <img
+                                src='images/low_res/hk_island.webp'
+                                loading='lazy'
+                                className='swipe-img col-span-2 row-span-3'
+                            />
                         </SwiperSlide>
                         <SwiperSlide className='img-gallery'>
-                            <img src='/image/taiwan_shine.JPG' className='swipe-img col-span-2 row-span-3' />
-                            <img src='/image/painting.JPG' className='swipe-img col-span-2 row-span-3' />
-                            <img src='/image/love_bridge.JPG' className='swipe-img col-span-4 row-span-2' />
+                            <img
+                                src='images/low_res/taiwan_shine.webp'
+                                loading='lazy'
+                                className='swipe-img col-span-2 row-span-3'
+                            />
+                            <img
+                                src='images/low_res/painting.webp'
+                                loading='lazy'
+                                className='swipe-img col-span-2 row-span-3'
+                            />
+                            <img
+                                src='images/low_res/love_bridge.webp'
+                                loading='lazy'
+                                className='swipe-img col-span-4 row-span-2'
+                            />
                         </SwiperSlide>
                         <SwiperSlide className='img-gallery'>
-                            <img src='/image/fire_dragon_dance.jpeg' className='swipe-img col-span-2 row-span-2' />
-                            <img src='/image/coldplay.JPG' className='swipe-img col-span-2 row-span-2' />
-                            <img src='/image/okinawa_sky.JPG' className='swipe-img col-span-4 row-span-3' />
+                            <img
+                                src='images/low_res/fire_dragon_dance.webp'
+                                loading='lazy'
+                                className='swipe-img col-span-2 row-span-2'
+                            />
+                            <img
+                                src='images/low_res/coldplay.webp'
+                                loading='lazy'
+                                className='swipe-img col-span-2 row-span-2'
+                            />
+                            <img
+                                src='images/low_res/okinawa_sky.webp'
+                                loading='lazy'
+                                className='swipe-img col-span-4 row-span-3'
+                            />
                         </SwiperSlide>
                     </Swiper>
                 </section>
