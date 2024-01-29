@@ -142,12 +142,12 @@ function Scene() {
     useEffect(() => {
         const perfectWindowWidth = 1920
         const handleResizeExperience = () => {
-            if (window.innerWidth < 768) {
+            if (window.innerWidth <= 968) {
                 isMobile.current = true
             } else {
                 isMobile.current = false
             }
-            camera.fov = getClampedValue((perfectWindowWidth - window.innerWidth) / 40 + 60, 60, 85)
+            camera.fov = getClampedValue((perfectWindowWidth - window.innerWidth) / 40 + 60, 60, 70)
             camera.updateProjectionMatrix()
         }
         handleResizeExperience()
