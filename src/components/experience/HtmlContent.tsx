@@ -429,55 +429,76 @@ export default function HtmlContent() {
                         className='mt-8 h-[700px] w-full rounded-[24px] p-[8px]'
                     >
                         <SwiperSlide className='img-gallery'>
-                            <img
-                                src='images/low_res/japan_shine.webp'
-                                loading='lazy'
-                                className='swipe-img col-span-2 row-span-5'
-                            />
-                            <img
-                                src='images/low_res/japan_house.webp'
-                                loading='lazy'
-                                className='swipe-img col-span-2 row-span-2'
-                            />
-                            <img
-                                src='images/low_res/hk_island.webp'
-                                loading='lazy'
-                                className='swipe-img col-span-2 row-span-3'
-                            />
+                            <figure className='group relative col-span-2 row-span-5 overflow-hidden rounded-[16px]'>
+                                <img
+                                    src='images/low_res/japan_shine.webp'
+                                    className='swipe-img col-span-2 row-span-5'
+                                />
+                                <figcaption className='img-layer'>
+                                    <h1>Shine hidden in the forest</h1>
+                                    <p>Kumamoto, Japan</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
+                                <img src='images/low_res/japan_house.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Japanese architecture</h1>
+                                    <p>Kurokawa Onsen Ryokan, Japan</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
+                                <img src='images/low_res/hk_island.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Camping on the coast</h1>
+                                    <p>Po Toi Islands, Hong Kong</p>
+                                </figcaption>
+                            </figure>
                         </SwiperSlide>
                         <SwiperSlide className='img-gallery'>
-                            <img
-                                src='images/low_res/taiwan_shine.webp'
-                                loading='lazy'
-                                className='swipe-img col-span-2 row-span-3'
-                            />
-                            <img
-                                src='images/low_res/painting.webp'
-                                loading='lazy'
-                                className='swipe-img col-span-2 row-span-3'
-                            />
-                            <img
-                                src='images/low_res/love_bridge.webp'
-                                loading='lazy'
-                                className='swipe-img col-span-4 row-span-2'
-                            />
+                            <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
+                                <img src='images/low_res/taiwan_shine.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Fancy oriental temple</h1>
+                                    <p>Kaohsiung, Taiwan</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
+                                <img src='images/low_res/painting.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Fake artist</h1>
+                                    <p>Tsim Sha Tsui, Hong Kong</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-4 row-span-2 overflow-hidden rounded-[16px]'>
+                                <img src='images/low_res/love_bridge.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Lover's bridge celebrating Coldplay's arrival</h1>
+                                    <p>Kaohsiung, Taiwan</p>
+                                </figcaption>
+                            </figure>
                         </SwiperSlide>
                         <SwiperSlide className='img-gallery'>
-                            <img
-                                src='images/low_res/fire_dragon_dance.webp'
-                                loading='lazy'
-                                className='swipe-img col-span-2 row-span-2'
-                            />
-                            <img
-                                src='images/low_res/coldplay.webp'
-                                loading='lazy'
-                                className='swipe-img col-span-2 row-span-2'
-                            />
-                            <img
-                                src='images/low_res/okinawa_sky.webp'
-                                loading='lazy'
-                                className='swipe-img col-span-4 row-span-3'
-                            />
+                            <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
+                                <img src='images/low_res/fire_dragon_dance.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Fire Dragon Dance</h1>
+                                    <p>Tai Hang, Hong Kong</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
+                                <img src='images/low_res/coldplay.webp' className='swipe-img ' />
+                                <figcaption className='img-layer'>
+                                    <h1>Coldplay: Music of the Spheres</h1>
+                                    <p>Kaohsiung, Taiwan</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-4 row-span-3 overflow-hidden rounded-[16px]'>
+                                <img src='images/low_res/okinawa_sky.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Okinawa Churaumi Aquarium</h1>
+                                    <p>Okinawa, Japan</p>
+                                </figcaption>
+                            </figure>
                         </SwiperSlide>
                     </Swiper>
                 </section>
