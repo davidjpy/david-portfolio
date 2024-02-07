@@ -68,10 +68,10 @@ export default function LighthouseScene({ oceanRef }: Props) {
 
     return (
         <group name='lighthouseScene'>
-            <Center>
-                <LighthouseModel />
-                <Ocean oceanRef={oceanRef} />
-            </Center>
+            {/* <Center> */}
+            <LighthouseModel />
+            <Ocean oceanRef={oceanRef} />
+            {/* </Center> */}
             <AnimatedSky
                 {...skyAnimationConfigs}
                 material-uniforms-sunPosition-value-z={-600}
