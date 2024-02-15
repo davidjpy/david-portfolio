@@ -7,6 +7,7 @@ export default {
                 primary: 'rgb(var(--color-primary) / <alpha-value>)',
                 'primary-monochrome': 'rgb(var(--color-primary-monochrome) / <alpha-value>)',
                 secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+                'secondary-bg': 'rgb(var(--color-secondary-bg) / <alpha-value>)',
                 'secondary-light': 'rgb(var(--color-secondary-light) / <alpha-value>)',
                 accent: 'rgb(var(--color-accent) / <alpha-value>)',
                 'clock-element': 'rgb(var(--color-clock-blackground) / 0.2)',

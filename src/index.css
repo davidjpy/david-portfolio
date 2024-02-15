@@ -9,7 +9,8 @@
         --color-primary: 255 248 231;
         --color-primary-monochrome: 245 239 224;
         --color-secondary: 80 80 80;
-        --color-secondary-light: 130 130 130;
+        --color-secondary-bg: 130 130 130;
+        --color-secondary-light: 120 120 120;
         --color-accent: 246 92 53;
         --color-clock-blackground: 0 0 0;
     }
@@ -18,7 +19,8 @@
         --color-primary: 86 66 61;
         --color-primary-monochrome: 97 76 70;
         --color-secondary: 250 231 230;
-        --color-secondary-light: 151 137 136;
+        --color-secondary-bg: 151 137 136;
+        --color-secondary-light: 197 179 178;
         --color-accent: 246 92 53;
         --color-clock-blackground: 0 0 0;
     }
@@ -42,7 +44,7 @@
     }
 
     .icon-link {
-        @apply color-transition-slow h-8 w-8 cursor-pointer text-secondary-light hover:text-secondary;
+        @apply color-transition-slow text-secondary-bg h-8 w-8 cursor-pointer hover:text-secondary;
     }
 
     .icon-svg {
@@ -90,7 +92,11 @@
     }
 
     .img-layer {
-        @apply absolute left-0 top-0 flex h-full w-full -translate-y-full flex-col items-center justify-center rounded-[16px] bg-[rgba(0,0,0,0.6)] text-white transition-transform  duration-1000 ease-in-out group-hover:translate-y-0;
+        @apply absolute left-0 top-0 flex h-full w-full -translate-y-full flex-col items-center justify-center rounded-[16px] bg-[rgba(0,0,0,0.6)] text-white transition-transform duration-1000 ease-in-out group-hover:translate-y-0;
+    }
+
+    .project-list-item {
+        @apply mb-4 flex cursor-pointer select-none rounded-[8px] bg-primary-monochrome p-4 shadow-md transition-all duration-300 ease-linear will-change-transform hover:-translate-y-[8px];
     }
 }
 

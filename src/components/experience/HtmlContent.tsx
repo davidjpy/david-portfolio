@@ -92,6 +92,7 @@ export default function HtmlContent() {
     const skillsSectionRef = useRef<HTMLElement>(null!)
     const readingSectionRef = useRef<HTMLElement>(null!)
     const lifeSectionRef = useRef<HTMLElement>(null!)
+    const workSectionRef = useRef<HTMLElement>(null!)
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const scrollData = useScroll()
 
@@ -136,6 +137,7 @@ export default function HtmlContent() {
         const isInSkillsSection = scrollData.visible(5 / scrollPages, 4 / scrollPages)
         const isInReadingSection = scrollData.visible(9 / scrollPages, 4 / scrollPages)
         const isInLifeSection = scrollData.visible(13 / scrollPages, 4 / scrollPages)
+        const isInWorkSection = scrollData.visible(19 / scrollPages, 4 / scrollPages)
 
         const width = aboutSectionRef.current?.clientWidth
 
@@ -154,6 +156,10 @@ export default function HtmlContent() {
 
             case isInLifeSection:
                 setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
+                break
+
+            case isInWorkSection:
+                setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
                 break
 
             default:
@@ -383,11 +389,11 @@ export default function HtmlContent() {
                     <ul className='ml-5 mt-4 list-outside list-decimal'>
                         {bookReadingList.map((book) => (
                             <li key={book.title} className='mb-4'>
-                                <h1 className='inline font-extrabold'>
+                                <h1 className='inline font-semibold'>
                                     {book.title}
                                     <span className='font-normal text-accent'> - {book.author}</span>
                                 </h1>
-                                <p className='mt-2'>{book.summary}</p>
+                                <p className='mt-2 text-secondary-light'>{book.summary}</p>
                             </li>
                         ))}
                     </ul>
@@ -430,24 +436,21 @@ export default function HtmlContent() {
                     >
                         <SwiperSlide className='img-gallery'>
                             <figure className='group relative col-span-2 row-span-5 overflow-hidden rounded-[16px]'>
-                                <img
-                                    src='images/low_res/japan_shine.webp'
-                                    className='swipe-img col-span-2 row-span-5'
-                                />
+                                <img src='images/life/japan_shine.webp' className='swipe-img col-span-2 row-span-5' />
                                 <figcaption className='img-layer'>
                                     <h1>Shine hidden in the forest</h1>
                                     <p>Kumamoto, Japan</p>
                                 </figcaption>
                             </figure>
                             <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
-                                <img src='images/low_res/japan_house.webp' className='swipe-img' />
+                                <img src='images/life/japan_house.webp' className='swipe-img' />
                                 <figcaption className='img-layer'>
                                     <h1>Japanese architecture</h1>
                                     <p>Kurokawa Onsen Ryokan, Japan</p>
                                 </figcaption>
                             </figure>
                             <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
-                                <img src='images/low_res/hk_island.webp' className='swipe-img' />
+                                <img src='images/life/hk_island.webp' className='swipe-img' />
                                 <figcaption className='img-layer'>
                                     <h1>Camping on the coast</h1>
                                     <p>Po Toi Islands, Hong Kong</p>
@@ -456,21 +459,21 @@ export default function HtmlContent() {
                         </SwiperSlide>
                         <SwiperSlide className='img-gallery'>
                             <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
-                                <img src='images/low_res/taiwan_shine.webp' className='swipe-img' />
+                                <img src='images/life/taiwan_shine.webp' className='swipe-img' />
                                 <figcaption className='img-layer'>
                                     <h1>Fancy oriental temple</h1>
                                     <p>Kaohsiung, Taiwan</p>
                                 </figcaption>
                             </figure>
                             <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
-                                <img src='images/low_res/painting.webp' className='swipe-img' />
+                                <img src='images/life/painting.webp' className='swipe-img' />
                                 <figcaption className='img-layer'>
                                     <h1>Fake artist</h1>
                                     <p>Tsim Sha Tsui, Hong Kong</p>
                                 </figcaption>
                             </figure>
                             <figure className='group relative col-span-4 row-span-2 overflow-hidden rounded-[16px]'>
-                                <img src='images/low_res/love_bridge.webp' className='swipe-img' />
+                                <img src='images/life/love_bridge.webp' className='swipe-img' />
                                 <figcaption className='img-layer'>
                                     <h1>Lover's bridge celebrating Coldplay's arrival</h1>
                                     <p>Kaohsiung, Taiwan</p>
@@ -479,21 +482,21 @@ export default function HtmlContent() {
                         </SwiperSlide>
                         <SwiperSlide className='img-gallery'>
                             <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
-                                <img src='images/low_res/fire_dragon_dance.webp' className='swipe-img' />
+                                <img src='images/life/fire_dragon_dance.webp' className='swipe-img' />
                                 <figcaption className='img-layer'>
                                     <h1>Fire Dragon Dance</h1>
                                     <p>Tai Hang, Hong Kong</p>
                                 </figcaption>
                             </figure>
                             <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
-                                <img src='images/low_res/coldplay.webp' className='swipe-img ' />
+                                <img src='images/life/coldplay.webp' className='swipe-img' />
                                 <figcaption className='img-layer'>
                                     <h1>Coldplay: Music of the Spheres</h1>
                                     <p>Kaohsiung, Taiwan</p>
                                 </figcaption>
                             </figure>
                             <figure className='group relative col-span-4 row-span-3 overflow-hidden rounded-[16px]'>
-                                <img src='images/low_res/okinawa_sky.webp' className='swipe-img' />
+                                <img src='images/life/okinawa_sky.webp' className='swipe-img' />
                                 <figcaption className='img-layer'>
                                     <h1>Okinawa Churaumi Aquarium</h1>
                                     <p>Okinawa, Japan</p>
@@ -518,6 +521,44 @@ export default function HtmlContent() {
                         ))}
                     </ul>
                 </section> */}
+            </section>
+
+            <section ref={workSectionRef} className='scroll-text-box right-0 top-[2000vh]'>
+                <header>
+                    <h1 className='header-bg-text'>Works</h1>
+                </header>
+                <header className='header-wrapper'>
+                    <div className='header-divider' />
+                    <h1 className='text-lg font-bold text-secondary'>Sure. Here's my...</h1>
+                    <h1 className='text-xl font-black text-secondary'>
+                        My <span className='text-accent'> Works</span>
+                    </h1>
+                </header>
+
+                <section className='mt-12 text-secondary'>
+                    <header className='mb-2 flex items-center'>
+                        <div className='mr-2 h-0.5 w-4 bg-accent' />
+                        <h1 className='font-bold'>
+                            Any interesting <span className='text-accent'>projects</span>?
+                        </h1>
+                    </header>
+                    <ul className='mt-6'>
+                        <li className='project-list-item'>
+                            <img
+                                src='images/projects/wildbear.webp'
+                                className='max-h-[60px] rounded-[2px] object-cover shadow-lg'
+                            />
+                            <div className='pl-4'>
+                                <h1 className='font-bold'>WildBear Shop</h1>
+                                <p className='mt-2 text-secondary-light'>
+                                    Brittany Chiang’s web developer portfolio incorporates a dark background and light
+                                    colors for other elements like fonts and icons, which is a great way to highlight
+                                    important details.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
             </section>
         </Html>
     )
