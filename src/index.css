@@ -43,8 +43,12 @@
         @apply mb-4 h-2 w-32 bg-accent;
     }
 
-    .icon-link {
-        @apply color-transition-slow text-secondary-bg h-8 w-8 cursor-pointer hover:text-secondary;
+    .icon-link-md {
+        @apply color-transition-slow h-5 w-5 cursor-pointer text-secondary-bg hover:text-secondary;
+    }
+
+    .icon-link-lg {
+        @apply icon-link-md h-8 w-8;
     }
 
     .icon-svg {
@@ -96,7 +100,7 @@
     }
 
     .project-list-item {
-        @apply mb-4 flex cursor-pointer select-none rounded-[8px] bg-primary-monochrome p-4 shadow-md transition-all duration-300 ease-linear will-change-transform hover:-translate-y-[8px];
+        @apply mb-4 flex select-none rounded-[8px] bg-primary-monochrome p-4 shadow-md transition-all duration-300 ease-linear will-change-transform hover:-translate-y-[4px];
     }
 }
 
