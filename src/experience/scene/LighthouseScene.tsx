@@ -1,10 +1,10 @@
 import { useCallback, useContext } from 'react'
-import { Center, Sky, Stars, Sparkles, Html, useScroll } from '@react-three/drei'
+import { Sky, Stars, Sparkles } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
 
 import { AppContext } from '@/src/context/appContext'
-import LighthouseModel from '@/components/experience/LighthouseModel'
-import Ocean from '@/components/experience/Ocean'
+import LighthouseModel from '@/experience/scene/LighthouseModel'
+import Ocean from '@/experience/scene/Ocean'
 import { maxBrightness, minBrightness } from '@/src/utilities/constants'
 
 interface Props {
@@ -68,10 +68,8 @@ export default function LighthouseScene({ oceanRef }: Props) {
 
     return (
         <group name='lighthouseScene'>
-            {/* <Center> */}
             <LighthouseModel />
             <Ocean oceanRef={oceanRef} />
-            {/* </Center> */}
             <AnimatedSky
                 {...skyAnimationConfigs}
                 material-uniforms-sunPosition-value-z={-600}

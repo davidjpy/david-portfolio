@@ -24,7 +24,7 @@
         "paths": {
             "@/*": ["./*"],
             "@/assets/*": ["./src/assets/*"],
-            "@/components/*": ["./src/components/*"],
+            "@/experience/*": ["./src/experience/*"],
             "@/hooks/*": ["./src/hooks/*"],
             "@/shaders/*": ["./src/shaders/*"],
             "@/context/*": ["./src/context/*"],

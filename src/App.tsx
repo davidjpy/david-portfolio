@@ -1,4 +1,4 @@
-import Experience from '@/components/experience/Experience'
+import Experience from '@/experience/Experience'
 import { AppContext } from '@/context/appContext'
 import { useTheme } from '@/src/hooks/useTheme'
 
@@ -14,7 +14,6 @@ function App() {
             }}
         >
             <Experience />
-            {/* <Navbar handleToggleShouldShowDarkMode={handleToggleShouldShowDarkMode} /> */}
         </AppContext.Provider>
     )
 }
