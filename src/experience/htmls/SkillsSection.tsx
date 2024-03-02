@@ -8,6 +8,7 @@ import {
     FaGitAlt,
     FaDocker,
     FaImages,
+    FaFigma,
     FaKeyboard
 } from 'react-icons/fa'
 import { SiTypescript, SiTailwindcss, SiBlender } from 'react-icons/si'
@@ -29,6 +30,7 @@ const softwareSkills = [
     { name: 'Acessibility', icon: <FaKeyboard className='icon-svg' /> },
     { name: 'CSS', icon: <FaCss3Alt className='icon-svg' /> },
     { name: 'Tailwind CSS', icon: <SiTailwindcss className='icon-svg' /> },
+    { name: 'Figma', icon: <FaFigma strokeWidth={6} className='icon-svg' /> },
     { name: 'Git', icon: <FaGitAlt className='icon-svg' /> },
     { name: 'Docker', icon: <FaDocker className='icon-svg' /> }
 ]
