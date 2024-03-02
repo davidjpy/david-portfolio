@@ -100,7 +100,11 @@
     }
 
     .project-list-item {
-        @apply mb-4 flex select-none rounded-[8px] bg-primary-monochrome p-4 shadow-md transition-all duration-300 ease-linear will-change-transform hover:-translate-y-[4px];
+        @apply mb-4 flex select-none rounded-[8px] bg-primary-monochrome p-4 shadow-md transition-all duration-200 ease-linear will-change-transform hover:-translate-y-[4px];
+    }
+
+    .project-list-img {
+        @apply max-h-[70px] flex-shrink-0 rounded-[4px] object-cover shadow-lg;
     }
 }
 
