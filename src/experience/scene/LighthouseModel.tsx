@@ -86,25 +86,25 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     secondFloorTexture01.flipY = false
     secondFloorTexture02.flipY = false
 
-    // useFrame((_state, delta) => {
-    //     const dampedDisplacementFactor = THREE.MathUtils.damp(
-    //         (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor,
-    //         isLightMode ? 0 : 1,
-    //         3.5,
-    //         delta
-    //     ) as number
-    //     ;(canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
-    //         dampedDisplacementFactor
+    useFrame((_state, delta) => {
+        const dampedDisplacementFactor = THREE.MathUtils.damp(
+            (canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor,
+            isLightMode ? 0 : 1,
+            3.5,
+            delta
+        ) as number
+        ;(canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
+            dampedDisplacementFactor
 
-    //     const isInInterior = scrollData.visible(4 / scrollPages, 1)
-    //     const dampedWallOpacity = THREE.MathUtils.damp(wallMaterialRef.current.opacity, isInInterior ? 0 : 1, 5, delta)
-    //     wallMaterialRef.current.opacity = dampedWallOpacity
-    // })
+        const isInInterior = scrollData.visible(4 / scrollPages, 1)
+        const dampedWallOpacity = THREE.MathUtils.damp(wallMaterialRef.current.opacity, isInInterior ? 0 : 1, 5, delta)
+        wallMaterialRef.current.opacity = dampedWallOpacity
+    })
 
     return (
         <group {...props} dispose={null} scale={0.3} rotation={[0, -Math.PI * 0.6, 0]}>
             <mesh name='wall' geometry={nodes.wall.geometry} material={nodes.wall.material}>
-                <meshBasicMaterial ref={wallMaterialRef} map={lighthouseTexture} transparent opacity={0} />
+                <meshBasicMaterial ref={wallMaterialRef} map={lighthouseTexture} transparent />
             </mesh>
             <mesh
                 name='lighthouse'
@@ -164,7 +164,9 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
                 material={nodes['1stFloorLightBulb'].material}
                 position={[0.083, 5.031, 0.049]}
                 rotation={[0, 0.439, 0]}
-            />
+            >
+                <meshBasicMaterial />
+            </mesh>
             <mesh
                 name='2ndFloor01'
                 geometry={nodes['2ndFloor01'].geometry}
@@ -189,7 +191,9 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
                 material={nodes['2ndFloorLightBulb'].material}
                 position={[-0.156, 5.38, 0.019]}
                 rotation={[0, 0.439, 0]}
-            />
+            >
+                <meshBasicMaterial />
+            </mesh>
         </group>
 
         // <group {...props} dispose={null} scale={0.3} rotation={[0, -Math.PI * 0.6, 0]}>
