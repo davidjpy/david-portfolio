@@ -16,7 +16,11 @@ const tabletCameraPositions = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.036, 1.538, -0.088), new THREE.Vector3(0.036, 1.54, -0.057)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.036, 1.54, -0.057), new THREE.Vector3(0.21, 1.5822, 0.1468)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.5822, 0.1468), new THREE.Vector3(0.21, 1.7116, 0.1468)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.7116, 0.1468), new THREE.Vector3(-0.0195, 1.6841, -0.0524)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.7116, 0.1468), new THREE.Vector3(-0.0195, 1.6841, -0.0524)]),
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.0195, 1.6841, -0.0524),
+        new THREE.Vector3(-0.0506, 1.6944, -0.0538)
+    ])
 ]
 
 const tabletCameraLookAts = [
@@ -27,7 +31,8 @@ const tabletCameraLookAts = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(-0.04, 1.529, -0.121), new THREE.Vector3(0.045, 1.534, -0.088)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.045, 1.534, -0.088), new THREE.Vector3(0.038, 1.521, -0.017)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.521, -0.017), new THREE.Vector3(0.038, 1.6638, -0.017)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.6638, -0.017), new THREE.Vector3(-0.0966, 1.6736, -0.0627)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.6638, -0.017), new THREE.Vector3(-0.0966, 1.6736, -0.0627)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.0966, 1.6736, -0.0627), new THREE.Vector3(-0.1, 1.6531, -0.0548)])
 ]
 
 const mobileCameraPositions = [
@@ -44,7 +49,11 @@ const mobileCameraPositions = [
     ]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.0364, 1.5326, -0.0582), new THREE.Vector3(0.234, 1.5822, 0.1528)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.234, 1.5822, 0.1528), new THREE.Vector3(0.21, 1.7116, 0.1468)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.7116, 0.1468), new THREE.Vector3(-0.0274, 1.6841, -0.0524)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.7116, 0.1468), new THREE.Vector3(-0.0274, 1.6841, -0.0524)]),
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.0274, 1.6841, -0.0524),
+        new THREE.Vector3(-0.0506, 1.6944, -0.0538)
+    ])
 ]
 const mobileCameraLookAts = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.008, 1.5967, 0.24), new THREE.Vector3(0.218, 1.386, 0.149)]),
@@ -60,24 +69,25 @@ const mobileCameraLookAts = [
     ]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.0462, 1.5331, -0.0697), new THREE.Vector3(0.045, 1.521, -0.017)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.045, 1.521, -0.017), new THREE.Vector3(0.038, 1.6638, -0.017)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.6638, -0.017), new THREE.Vector3(-0.0304, 1.6836, -0.0529)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.6638, -0.017), new THREE.Vector3(-0.0304, 1.6836, -0.0529)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.0304, 1.6836, -0.0529), new THREE.Vector3(-0.1, 1.6531, -0.0548)])
 ]
 
 export default function Camera() {
     const scrollData = useScroll()
     const isMobile = useRef<boolean>(false)
     const cameraControlRef = useRef() as React.RefObject<CameraControls>
-    const { position, lookAt } = useControls('Camera', {
-        position: {
-            value: [-0.019500000000000028, 1.6841, -0.0524],
-            step: 0.0001
-        },
-        lookAt: {
-            value: [-0.09660000000000005, 1.673600000000001, -0.06269999999999987],
-            step: 0.0001
-        }
-    })
-    console.log(position, lookAt)
+    // const { position, lookAt } = useControls('Camera', {
+    //     position: {
+    //         value: [-0.0195, 1.6841, -0.0524],
+    //         step: 0.0001
+    //     },
+    //     lookAt: {
+    //         value: [-0.0966, 1.6736, -0.0627],
+    //         step: 0.0001
+    //     }
+    // })
+    // console.log(position, lookAt)
 
     const getNextCameraPosition = (index: number, isMobile: boolean, offset: number): THREE.Vector3 => {
         return isMobile ? mobileCameraPositions[index].getPoint(offset) : tabletCameraPositions[index].getPoint(offset)
@@ -107,7 +117,8 @@ export default function Camera() {
         const isInCabinetSection = scrollData.visible(12.5 / scrollPages, 4 / scrollPages)
         const isInFirstFloorToSecondFloorSection = scrollData.visible(16.5 / scrollPages, 0.5 / scrollPages)
         const isInSecondFloorSection = scrollData.visible(17 / scrollPages, 0.5 / scrollPages)
-        const isInComputerSection = scrollData.visible(17.5 / scrollPages, 4 / scrollPages)
+        const isInComputerSection = scrollData.visible(17.5 / scrollPages, 5.5 / scrollPages)
+        const isInLetterSection = scrollData.visible(23 / scrollPages, 4 / scrollPages)
 
         let nextCameraPosition
         let nextCameraLookAt
@@ -158,10 +169,16 @@ export default function Camera() {
                 break
 
             case isInComputerSection:
-            default:
                 const computerSectionOffset = scrollData.range(17.5 / scrollPages, 1 / scrollPages)
                 nextCameraPosition = getNextCameraPosition(7, isMobile.current, computerSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(7, isMobile.current, computerSectionOffset)
+                break
+
+            case isInLetterSection:
+            default:
+                const letterSectionOffset = scrollData.range(23 / scrollPages, 0.5 / scrollPages)
+                nextCameraPosition = getNextCameraPosition(8, isMobile.current, letterSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(8, isMobile.current, letterSectionOffset)
                 break
         }
 
