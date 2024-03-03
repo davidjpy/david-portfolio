@@ -52,7 +52,6 @@ export default function Experience() {
     return (
         <main className='fixed -z-10 h-screen w-screen overflow-hidden'>
             <Canvas
-                id='kkbk'
                 flat
                 // linear
                 // eventPrefix='offset'
