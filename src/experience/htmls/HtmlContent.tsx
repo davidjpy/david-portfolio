@@ -7,6 +7,7 @@ import SkillsSection from '@/src/experience/htmls/SkillsSection'
 import ReadsSection from '@/src/experience/htmls/ReadsSection'
 import LifeSection from '@/src/experience/htmls/LifeSection'
 import WorksSection from '@/src/experience/htmls/WorksSection'
+import TestimonySection from '@/src/experience/htmls/TestimonySection'
 import { scrollPages } from '@/src/utilities/constants'
 
 export default function HtmlContent() {
@@ -15,6 +16,7 @@ export default function HtmlContent() {
     const readsSectionRef = useRef<HTMLElement>(null!)
     const lifeSectionRef = useRef<HTMLElement>(null!)
     const workSectionRef = useRef<HTMLElement>(null!)
+    const testimonySectionRef = useRef<HTMLElement>(null!)
     const scrollData = useScroll()
 
     useFrame(() => {
@@ -23,6 +25,7 @@ export default function HtmlContent() {
         const isInReadingSection = scrollData.visible(9 / scrollPages, 4 / scrollPages)
         const isInLifeSection = scrollData.visible(13 / scrollPages, 4 / scrollPages)
         const isInWorkSection = scrollData.visible(19 / scrollPages, 4 / scrollPages)
+        const isInTestimonySection = scrollData.visible(23 / scrollPages, 4 / scrollPages)
 
         const width = aboutSectionRef.current?.clientWidth
 
@@ -45,6 +48,10 @@ export default function HtmlContent() {
 
             case isInWorkSection:
                 setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
+                break
+
+            case isInTestimonySection:
+                setHTMLSectionBorderRadius(testimonySectionRef.current, width, 'left')
                 break
 
             default:
@@ -79,6 +86,7 @@ export default function HtmlContent() {
             <ReadsSection readsSectionRef={readsSectionRef} />
             <LifeSection lifeSectionRef={lifeSectionRef} />
             <WorksSection workSectionRef={workSectionRef} />
+            <TestimonySection testimonySectionRef={testimonySectionRef} />
         </Html>
     )
 }
