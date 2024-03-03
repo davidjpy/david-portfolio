@@ -12,7 +12,7 @@ export default function WorksSection({ workSectionRef }: Props) {
             </header>
             <header className='header-wrapper'>
                 <div className='header-divider' />
-                <h1 className='text-lg font-bold text-secondary'>Sure. Here's my...</h1>
+                <h1 className='text-lg font-bold text-secondary'>Sure. Here's...</h1>
                 <h1 className='text-xl font-black text-secondary'>
                     My <span className='text-accent'> Works</span>
                 </h1>
@@ -129,6 +129,57 @@ export default function WorksSection({ workSectionRef }: Props) {
                                 I completed an extensive 91-hour program that offers to to advanced techniques of WebGL,
                                 Three.js, GLSL, and Blender. It expanded my horizon of 3D web graphics, enabling me to
                                 create more sophisticated and interactive online experiences.
+                            </p>
+                        </div>
+                    </li>
+                    <li className='project-list-item'>
+                        <img src='images/projects/defect_patent.webp' className='project-list-img' />
+                        <div className='pl-4'>
+                            <div className='flex items-center justify-between'>
+                                <h1 className='font-bold'>System and method for detecting surface defect of object</h1>
+                                <ul className='ml-2 flex gap-2'>
+                                    <li>
+                                        <a
+                                            href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
+                                            target='_blank'
+                                        >
+                                            <FaLink className='icon-link-md' />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p className='mt-2 text-secondary-light'>
+                                A short-term patent for an innovative system that utilizes a robotic arm equipped with a
+                                camera to capture detailed images of an object from various angles. The system then
+                                employs a sophisticated detection algorithm to meticulously analyze these images and
+                                pinpoint any defects present.
+                            </p>
+                        </div>
+                    </li>
+                    <li className='project-list-item'>
+                        <img src='images/projects/logistic_patent.webp' className='project-list-img' />
+                        <div className='pl-4'>
+                            <div className='flex justify-between'>
+                                <h1 className='font-bold'>
+                                    Method for detecting and predicting a bottleneck in a transportation process of a
+                                    logistics center
+                                </h1>
+                                <ul className='ml-2 flex gap-2'>
+                                    <li>
+                                        <a
+                                            href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=cn'
+                                            target='_blank'
+                                        >
+                                            <FaLink className='icon-link-md' />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p className='mt-2 text-secondary-light'>
+                                A short-term patent of a system designed to predict bottlenecks in cargo logistics at
+                                Hong Kong Airport. It harnesses the power of big data analytics by processing data
+                                gathered from sensors across the transport belts. The predictive model can proactively
+                                identify potential congestion points.
                             </p>
                         </div>
                     </li>
