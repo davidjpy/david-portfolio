@@ -2,8 +2,7 @@ import { useEffect, useRef, useState, useContext } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import { useSprings } from '@react-spring/three'
 import { animated, config } from '@react-spring/web'
-import { FaMoon } from 'react-icons/fa'
-import { HiSun } from 'react-icons/hi'
+import { FaMoon, FaSun } from 'react-icons/fa'
 
 import { AppContext } from '@/src/context/appContext'
 import { getInterpolatedValue } from '@/src/utilities/getInterpolatedValue'
@@ -25,7 +24,7 @@ const toDos = [
 
 const timeSymbols = ['☀️', '🌅', '🌙', '🌕']
 
-export default function ColorModeSlider() {
+export default function BrightnessSlider() {
     const htmlContainerRef = useRef<HTMLDivElement>(null)
     const [time, setTime] = useState<number[]>([0, 0, 0, 0, 0])
     const [toDoIndex, setTodoIndex] = useState<number>(0)
@@ -233,8 +232,8 @@ export default function ColorModeSlider() {
             </div> */}
 
             <div className='clock-blackground-sm col-span-4 row-span-1'>
-                <div className='flex h-full items-center justify-center gap-[8px]'>
-                    <FaMoon className='ml-[4px]' />
+                <div className='flex h-full items-center justify-between'>
+                    <FaMoon className='ml-[4px] w-[16px]' />
                     <input
                         type='range'
                         min={minBrightness}
@@ -245,7 +244,7 @@ export default function ColorModeSlider() {
                         className='w-[150px]'
                         aria-label='Brightness'
                     />
-                    <HiSun className='text-[24px]' />
+                    <FaSun className='mr-[4px] text-[20px]' />
                 </div>
             </div>
         </Html>
