@@ -37,7 +37,7 @@ export default function ColorModeSlider() {
     useEffect(() => {
         const handlePositionSlider = () => {
             if (htmlContainerRef.current) {
-                htmlContainerRef.current.style.left = `${window.innerWidth - 440}px`
+                htmlContainerRef.current.style.left = `${window.innerWidth - 430}px`
             }
         }
         handlePositionSlider()
@@ -169,7 +169,7 @@ export default function ColorModeSlider() {
                 return [0, 0]
             }}
             portal={{ current: scrollData.fixed }}
-            className='top-[32px] grid h-[100px] w-[400px] grid-cols-7 grid-rows-2 gap-[8px] rounded-[8px] bg-black/40 p-[12px] text-center text-white shadow-xl backdrop-blur-sm'
+            className='top-0 grid h-[100px] w-[400px] grid-cols-7 grid-rows-2 gap-[8px] rounded-b-[12px] bg-black/40 p-[8px] text-center text-white shadow-xl backdrop-blur-sm'
         >
             <div className='clock-blackground-md col-span-3 row-span-1 select-none'>
                 <label className='flex-center h-full'>
