@@ -20,12 +20,13 @@ export default function LighthouseScene({ oceanRef }: Props) {
             return (
                 <Sparkles
                     {...(props as any)}
-                    count={50}
+                    count={30}
                     speed={0.1}
                     scale={[1, 1, 1]}
-                    position={[0, 0.75, -0.15]}
+                    position={[0, 1.6, -0.1]}
                     color='#fff3a1'
                     opacity={0.7}
+                    renderOrder={100}
                 />
             )
         }),
