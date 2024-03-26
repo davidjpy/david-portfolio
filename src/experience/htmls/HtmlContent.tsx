@@ -1,14 +1,13 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Html, useScroll } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
 
 import AboutSection from '@/src/experience/htmls/AboutSection'
 import SkillsSection from '@/src/experience/htmls/SkillsSection'
 import ReadsSection from '@/src/experience/htmls/ReadsSection'
 import LifeSection from '@/src/experience/htmls/LifeSection'
 import WorksSection from '@/src/experience/htmls/WorksSection'
-import TestimonySection from '@/src/experience/htmls/TestimonySection'
-import { scrollPages, perfectPageHeight } from '@/src/utilities/constants'
+import AcknowledgementSection from '@/src/experience/htmls/AcknowledgementSection'
+import { perfectPageHeight } from '@/src/utilities/constants'
 
 export default function HtmlContent() {
     const aboutSectionRef = useRef<HTMLElement>(null!)
@@ -16,50 +15,23 @@ export default function HtmlContent() {
     const readsSectionRef = useRef<HTMLElement>(null!)
     const lifeSectionRef = useRef<HTMLElement>(null!)
     const workSectionRef = useRef<HTMLElement>(null!)
-    const testimonySectionRef = useRef<HTMLElement>(null!)
+    const acknowledgementSectionRef = useRef<HTMLElement>(null!)
     const scrollData = useScroll()
 
-    scrollData.el.addEventListener('scroll', () => console.log('scrolling'))
+    const aboutSectionTop = perfectPageHeight * 2
+    const skillsSectionTop = perfectPageHeight * 6
+    const readsSectionTop = perfectPageHeight * 10
+    const lifeSectionTop = perfectPageHeight * 14
+    const worksSectionTop = perfectPageHeight * 20
+    const acknowledgementSectionTop = perfectPageHeight * 24
 
-    // useFrame(() => {s
-    //     const isInAboutSection = scrollData.visible(1 / scrollPages, 4 / scrollPages)
-    //     const isInSkillsSection = scrollData.visible(5 / scrollPages, 4 / scrollPages)
-    //     const isInReadingSection = scrollData.visible(9 / scrollPages, 4 / scrollPages)
-    //     const isInLifeSection = scrollData.visible(13 / scrollPages, 4 / scrollPages)
-    //     const isInWorkSection = scrollData.visible(19 / scrollPages, 4 / scrollPages)
-    //     const isInTestimonySection = scrollData.visible(23 / scrollPages, 4 / scrollPages)
+    const isNumberInRange = (target: number, low: number, high: number): boolean => {
+        if (target >= low && target <= high) {
+            return true
+        }
 
-    //     const width = aboutSectionRef.current?.clientWidth
-
-    //     switch (true) {
-    //         case isInAboutSection:
-    //             setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
-    //             break
-
-    //         case isInSkillsSection:
-    //             setHTMLSectionBorderRadius(skillsSectionRef.current, width, 'left')
-    //             break
-
-    //         case isInReadingSection:
-    //             setHTMLSectionBorderRadius(readsSectionRef.current, width, 'right')
-    //             break
-
-    //         case isInLifeSection:
-    //             setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
-    //             break
-
-    //         case isInWorkSection:
-    //             setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
-    //             break
-
-    //         case isInTestimonySection:
-    //             setHTMLSectionBorderRadius(testimonySectionRef.current, width, 'left')
-    //             break
-
-    //         default:
-    //             break
-    //     }
-    // })
+        return false
+    }
 
     const setHTMLSectionBorderRadius = (element: HTMLElement, width: number, position: 'left' | 'right') => {
         const elementPosition = element.getBoundingClientRect()
@@ -75,6 +47,104 @@ export default function HtmlContent() {
         }
     }
 
+    useEffect(() => {
+        const handleScrollBorderAnimation = () => {
+            const scrollTop = scrollData.el.scrollTop
+
+            const isInAboutSection = isNumberInRange(
+                scrollTop,
+                aboutSectionTop - perfectPageHeight,
+                aboutSectionTop + 2 * perfectPageHeight
+            )
+            const isInSkillsSection = isNumberInRange(
+                scrollTop,
+                skillsSectionTop - perfectPageHeight,
+                skillsSectionTop + 2 * perfectPageHeight
+            )
+            const isInReadingSection = isNumberInRange(
+                scrollTop,
+                readsSectionTop - perfectPageHeight,
+                readsSectionTop + 2 * perfectPageHeight
+            )
+            const isInLifeSection = isNumberInRange(
+                scrollTop,
+                lifeSectionTop - perfectPageHeight,
+                lifeSectionTop + 2 * perfectPageHeight
+            )
+            const isInWorkSection = isNumberInRange(
+                scrollTop,
+                worksSectionTop - perfectPageHeight,
+                worksSectionTop + 2 * perfectPageHeight
+            )
+            const isInAcknowledgementSection = isNumberInRange(
+                scrollTop,
+                acknowledgementSectionTop - perfectPageHeight,
+                acknowledgementSectionTop + 2 * perfectPageHeight
+            )
+
+            const width = aboutSectionRef.current?.clientWidth
+
+            switch (true) {
+                case isInAboutSection:
+                    setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
+                    break
+
+                case isInSkillsSection:
+                    setHTMLSectionBorderRadius(skillsSectionRef.current, width, 'left')
+                    break
+
+                case isInReadingSection:
+                    setHTMLSectionBorderRadius(readsSectionRef.current, width, 'right')
+                    break
+
+                case isInLifeSection:
+                    setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
+                    break
+
+                case isInWorkSection:
+                    setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
+                    break
+
+                case isInAcknowledgementSection:
+                    setHTMLSectionBorderRadius(acknowledgementSectionRef.current, width, 'left')
+                    break
+
+                default:
+                    break
+            }
+        }
+        scrollData.el.addEventListener('scroll', handleScrollBorderAnimation)
+
+        return () => {
+            scrollData.el.removeEventListener('scroll', handleScrollBorderAnimation)
+        }
+    }, [])
+
+    useEffect(() => {
+        const handleResizeResetBorderRadius = () => {
+            const refs = [
+                aboutSectionRef,
+                skillsSectionRef,
+                readsSectionRef,
+                lifeSectionRef,
+                workSectionRef,
+                acknowledgementSectionRef
+            ]
+
+            for (const ref of refs) {
+                ref.current.style.borderTopRightRadius = '0px'
+                ref.current.style.borderBottomRightRadius = '0px'
+                ref.current.style.borderTopLeftRadius = '0px'
+                ref.current.style.borderBottomLeftRadius = '0px'
+            }
+        }
+        addEventListener('resize', handleResizeResetBorderRadius)
+
+        return () => {
+            removeEventListener('resize', handleResizeResetBorderRadius)
+        }
+    }, [])
+
     return (
         <Html
             wrapperClass='w-full'
@@ -83,12 +153,12 @@ export default function HtmlContent() {
             }}
             className='scroll-container'
         >
-            <AboutSection aboutSectionRef={aboutSectionRef} top={perfectPageHeight * 2} />
-            <SkillsSection skillsSectionRef={skillsSectionRef} top={perfectPageHeight * 6} />
-            <ReadsSection readsSectionRef={readsSectionRef} top={perfectPageHeight * 10} />
-            <LifeSection lifeSectionRef={lifeSectionRef} top={perfectPageHeight * 14} />
-            <WorksSection workSectionRef={workSectionRef} top={perfectPageHeight * 20} />
-            <TestimonySection testimonySectionRef={testimonySectionRef} top={perfectPageHeight * 24} />
+            <AboutSection aboutSectionRef={aboutSectionRef} top={aboutSectionTop} />
+            <SkillsSection skillsSectionRef={skillsSectionRef} top={skillsSectionTop} />
+            <ReadsSection readsSectionRef={readsSectionRef} top={readsSectionTop} />
+            <LifeSection lifeSectionRef={lifeSectionRef} top={lifeSectionTop} />
+            <WorksSection workSectionRef={workSectionRef} top={worksSectionTop} />
+            <AcknowledgementSection acknowledgementSectionRef={acknowledgementSectionRef} top={acknowledgementSectionTop} />
         </Html>
     )
 }

@@ -1,21 +1,21 @@
 import { FaGithub, FaLink, FaLinkedin } from 'react-icons/fa'
 
 interface Props {
-    testimonySectionRef: React.MutableRefObject<HTMLElement>
+    acknowledgementSectionRef: React.MutableRefObject<HTMLElement>
     top: number
 }
 
-export default function TestimonySection({ testimonySectionRef, top }: Props) {
+export default function AcknowledgementSection({ acknowledgementSectionRef, top }: Props) {
     return (
-        <section ref={testimonySectionRef} className={`scroll-text-box top-[${top}px]`}>
+        <section ref={acknowledgementSectionRef} className='scroll-text-box' style={{ top: top }}>
             <header>
-                <h1 className='header-bg-text'>Testimony</h1>
+                <h1 className='header-bg-text'>Acknowledgement</h1>
             </header>
             <header className='header-wrapper'>
                 <div className='header-divider' />
                 <h1 className='text-lg font-bold text-secondary'>Lastly. There's...</h1>
                 <h1 className='text-xl font-black text-secondary'>
-                    The <span className='text-accent'> Testimony</span>
+                    The <span className='text-accent'> Acknowledgement</span>
                 </h1>
             </header>
 
@@ -31,7 +31,7 @@ export default function TestimonySection({ testimonySectionRef, top }: Props) {
                         <div className='pl-4'>
                             <div className='flex justify-between'>
                                 <div className='flex items-center gap-4'>
-                                    <img src='images/testimony/fran.webp' className='testimony-list-img' />
+                                    <img src='images/acknowledgement/fran.webp' className='acknowledgement-list-img' />
                                     <div>
                                         <h1 className='font-bold'>Francesco Cursi</h1>
                                         <p className='text-secondary-light'>Sr. Research Engineer, Huawei</p>
