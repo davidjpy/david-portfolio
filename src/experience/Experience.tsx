@@ -14,19 +14,19 @@ import '@/experience/Experience.css'
 
 function Scene() {
     const oceanRef = useRef<unknown>(null)
-    const isMobile = useRef<boolean>(false)
     const camera = useThree((state) => state.camera) as THREE.PerspectiveCamera
 
     const perfectWindowWidth = 1920
+    const [isMobile, setIsMobile] = useState(false)
     const [pages, setPages] = useState(scrollPages * (perfectPageHeight / window.innerHeight))
 
     useEffect(() => {
         const handleResizeExperience = () => {
             if (window.innerWidth <= 968) {
-                isMobile.current = true
+                setIsMobile(true)
                 camera.fov = 80
             } else {
-                isMobile.current = false
+                setIsMobile(false)
                 camera.fov = getClampedValue((perfectWindowWidth - window.innerWidth) / 40 + 60, 60, 70)
             }
             setPages(scrollPages * (perfectPageHeight / window.innerHeight))
@@ -46,7 +46,7 @@ function Scene() {
             <BrightnessSlider />
             <HtmlContent />
             <LighthouseScene oceanRef={oceanRef} />
-            <Camera isMobile={isMobile.current} />
+            <Camera isMobile={isMobile} />
         </ScrollControls>
     )
 }
