@@ -7,7 +7,7 @@ interface Props {
 
 export default function WorksSection({ workSectionRef, top }: Props) {
     return (
-        <section ref={workSectionRef} className={`scroll-text-box right-0 top-[${top}px]`}>
+        <section ref={workSectionRef} className='scroll-text-box right-0' style={{ top: top }}>
             <header>
                 <h1 className='header-bg-text'>Works</h1>
             </header>

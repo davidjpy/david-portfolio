@@ -32,7 +32,7 @@ const bookReadingList = [
 
 export default function ReadsSection({ readsSectionRef, top }: Props) {
     return (
-        <section ref={readsSectionRef} className={`scroll-text-box right-0 top-[${top}px]`}>
+        <section ref={readsSectionRef} className='scroll-text-box right-0' style={{ top: top }}>
             <header>
                 <h1 className='header-bg-text'>Reading</h1>
             </header>

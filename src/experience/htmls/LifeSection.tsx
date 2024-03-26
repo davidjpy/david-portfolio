@@ -11,7 +11,7 @@ interface Props {
 
 export default function LifeSection({ lifeSectionRef, top }: Props) {
     return (
-        <section ref={lifeSectionRef} className={`scroll-text-box top-[${top}px]`}>
+        <section ref={lifeSectionRef} className='scroll-text-box' style={{ top: top }}>
             <header>
                 <h1 className='header-bg-text'>Life</h1>
             </header>

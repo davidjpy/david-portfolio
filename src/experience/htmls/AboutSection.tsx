@@ -48,7 +48,7 @@ export default function AboutSection({ aboutSectionRef, top }: Props) {
     }, [])
 
     return (
-        <section ref={aboutSectionRef} className={`scroll-text-box right-0 top-[${top}px]`}>
+        <section ref={aboutSectionRef} className='scroll-text-box right-0' style={{ top: top }}>
             <header>
                 <h1 className='header-bg-text'>About</h1>
             </header>

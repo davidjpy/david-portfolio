@@ -47,7 +47,7 @@ const otherSkills = [
 
 export default function SkillsSection({ skillsSectionRef, top }: Props) {
     return (
-        <section ref={skillsSectionRef} className={`scroll-text-box top-[${top}px]`}>
+        <section ref={skillsSectionRef} className='scroll-text-box' style={{ top: top }}>
             <header>
                 <h1 className='header-bg-text'>Skills</h1>
             </header>
