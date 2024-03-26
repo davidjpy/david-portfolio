@@ -2,11 +2,12 @@ import { FaGithub, FaLink, FaLinkedin } from 'react-icons/fa'
 
 interface Props {
     testimonySectionRef: React.MutableRefObject<HTMLElement>
+    top: number
 }
 
-export default function TestimonySection({ testimonySectionRef }: Props) {
+export default function TestimonySection({ testimonySectionRef, top }: Props) {
     return (
-        <section ref={testimonySectionRef} className='scroll-text-box left-0 top-[2400vh]'>
+        <section ref={testimonySectionRef} className={`scroll-text-box top-[${top}px]`}>
             <header>
                 <h1 className='header-bg-text'>Testimony</h1>
             </header>

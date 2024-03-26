@@ -32,7 +32,7 @@
     }
 
     .scroll-text-box {
-        @apply color-transition-slow absolute h-[200vh] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl;
+        @apply color-transition-slow absolute h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl;
     }
 
     .header-wrapper {

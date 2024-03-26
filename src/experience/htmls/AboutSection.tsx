@@ -3,11 +3,12 @@ import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa'
 
 interface Props {
     aboutSectionRef: React.MutableRefObject<HTMLElement>
+    top: number
 }
 
 const titles = ['Full-Stack Developer', 'Web Designer', '3D Modeler']
 
-export default function AboutSection({ aboutSectionRef }: Props) {
+export default function AboutSection({ aboutSectionRef, top }: Props) {
     const typingTextRef = useRef<HTMLSpanElement>(null)
 
     useEffect(() => {
@@ -47,7 +48,7 @@ export default function AboutSection({ aboutSectionRef }: Props) {
     }, [])
 
     return (
-        <section ref={aboutSectionRef} className='scroll-text-box right-0 top-[200vh]'>
+        <section ref={aboutSectionRef} className={`scroll-text-box right-0 top-[${top}px]`}>
             <header>
                 <h1 className='header-bg-text'>About</h1>
             </header>

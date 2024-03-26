@@ -1,5 +1,6 @@
 interface Props {
     readsSectionRef: React.MutableRefObject<HTMLElement>
+    top: number
 }
 
 const bookReadingList = [
@@ -29,9 +30,9 @@ const bookReadingList = [
     }
 ]
 
-export default function ReadsSection({ readsSectionRef }: Props) {
+export default function ReadsSection({ readsSectionRef, top }: Props) {
     return (
-        <section ref={readsSectionRef} className='scroll-text-box right-0 top-[1000vh]'>
+        <section ref={readsSectionRef} className={`scroll-text-box right-0 top-[${top}px]`}>
             <header>
                 <h1 className='header-bg-text'>Reading</h1>
             </header>

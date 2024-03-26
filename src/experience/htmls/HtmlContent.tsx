@@ -8,7 +8,7 @@ import ReadsSection from '@/src/experience/htmls/ReadsSection'
 import LifeSection from '@/src/experience/htmls/LifeSection'
 import WorksSection from '@/src/experience/htmls/WorksSection'
 import TestimonySection from '@/src/experience/htmls/TestimonySection'
-import { scrollPages } from '@/src/utilities/constants'
+import { scrollPages, perfectPageHeight } from '@/src/utilities/constants'
 
 export default function HtmlContent() {
     const aboutSectionRef = useRef<HTMLElement>(null!)
@@ -19,45 +19,47 @@ export default function HtmlContent() {
     const testimonySectionRef = useRef<HTMLElement>(null!)
     const scrollData = useScroll()
 
-    useFrame(() => {
-        const isInAboutSection = scrollData.visible(1 / scrollPages, 4 / scrollPages)
-        const isInSkillsSection = scrollData.visible(5 / scrollPages, 4 / scrollPages)
-        const isInReadingSection = scrollData.visible(9 / scrollPages, 4 / scrollPages)
-        const isInLifeSection = scrollData.visible(13 / scrollPages, 4 / scrollPages)
-        const isInWorkSection = scrollData.visible(19 / scrollPages, 4 / scrollPages)
-        const isInTestimonySection = scrollData.visible(23 / scrollPages, 4 / scrollPages)
+    scrollData.el.addEventListener('scroll', () => console.log('scrolling'))
 
-        const width = aboutSectionRef.current?.clientWidth
+    // useFrame(() => {s
+    //     const isInAboutSection = scrollData.visible(1 / scrollPages, 4 / scrollPages)
+    //     const isInSkillsSection = scrollData.visible(5 / scrollPages, 4 / scrollPages)
+    //     const isInReadingSection = scrollData.visible(9 / scrollPages, 4 / scrollPages)
+    //     const isInLifeSection = scrollData.visible(13 / scrollPages, 4 / scrollPages)
+    //     const isInWorkSection = scrollData.visible(19 / scrollPages, 4 / scrollPages)
+    //     const isInTestimonySection = scrollData.visible(23 / scrollPages, 4 / scrollPages)
 
-        switch (true) {
-            case isInAboutSection:
-                setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
-                break
+    //     const width = aboutSectionRef.current?.clientWidth
 
-            case isInSkillsSection:
-                setHTMLSectionBorderRadius(skillsSectionRef.current, width, 'left')
-                break
+    //     switch (true) {
+    //         case isInAboutSection:
+    //             setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
+    //             break
 
-            case isInReadingSection:
-                setHTMLSectionBorderRadius(readsSectionRef.current, width, 'right')
-                break
+    //         case isInSkillsSection:
+    //             setHTMLSectionBorderRadius(skillsSectionRef.current, width, 'left')
+    //             break
 
-            case isInLifeSection:
-                setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
-                break
+    //         case isInReadingSection:
+    //             setHTMLSectionBorderRadius(readsSectionRef.current, width, 'right')
+    //             break
 
-            case isInWorkSection:
-                setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
-                break
+    //         case isInLifeSection:
+    //             setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
+    //             break
 
-            case isInTestimonySection:
-                setHTMLSectionBorderRadius(testimonySectionRef.current, width, 'left')
-                break
+    //         case isInWorkSection:
+    //             setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
+    //             break
 
-            default:
-                break
-        }
-    })
+    //         case isInTestimonySection:
+    //             setHTMLSectionBorderRadius(testimonySectionRef.current, width, 'left')
+    //             break
+
+    //         default:
+    //             break
+    //     }
+    // })
 
     const setHTMLSectionBorderRadius = (element: HTMLElement, width: number, position: 'left' | 'right') => {
         const elementPosition = element.getBoundingClientRect()
@@ -81,12 +83,12 @@ export default function HtmlContent() {
             }}
             className='scroll-container'
         >
-            <AboutSection aboutSectionRef={aboutSectionRef} />
-            <SkillsSection skillsSectionRef={skillsSectionRef} />
-            <ReadsSection readsSectionRef={readsSectionRef} />
-            <LifeSection lifeSectionRef={lifeSectionRef} />
-            <WorksSection workSectionRef={workSectionRef} />
-            <TestimonySection testimonySectionRef={testimonySectionRef} />
+            <AboutSection aboutSectionRef={aboutSectionRef} top={perfectPageHeight * 2} />
+            <SkillsSection skillsSectionRef={skillsSectionRef} top={perfectPageHeight * 6} />
+            <ReadsSection readsSectionRef={readsSectionRef} top={perfectPageHeight * 10} />
+            <LifeSection lifeSectionRef={lifeSectionRef} top={perfectPageHeight * 14} />
+            <WorksSection workSectionRef={workSectionRef} top={perfectPageHeight * 20} />
+            <TestimonySection testimonySectionRef={testimonySectionRef} top={perfectPageHeight * 24} />
         </Html>
     )
 }

@@ -1,5 +1,4 @@
-import * as THREE from 'three'
-import { useEffect, useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { ScrollControls } from '@react-three/drei'
 
@@ -9,17 +8,19 @@ import BrightnessSlider from '@/src/experience/htmls/BrightnessSlider'
 import Camera from '@/src/experience/camera/Camera'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 
-import { cameraConfig, scrollPages } from '@/src/utilities/constants'
+import { cameraConfig, scrollPages, perfectPageHeight } from '@/src/utilities/constants'
 
 import '@/experience/Experience.css'
 
 function Scene() {
-    const camera = useThree((state) => state.camera) as THREE.PerspectiveCamera
-    const isMobile = useRef<boolean>(false)
     const oceanRef = useRef<unknown>(null)
+    const isMobile = useRef<boolean>(false)
+    const camera = useThree((state) => state.camera) as THREE.PerspectiveCamera
+
+    const perfectWindowWidth = 1920
+    const [pages, setPages] = useState(scrollPages * (perfectPageHeight / window.innerHeight))
 
     useEffect(() => {
-        const perfectWindowWidth = 1920
         const handleResizeExperience = () => {
             if (window.innerWidth <= 968) {
                 isMobile.current = true
@@ -28,8 +29,10 @@ function Scene() {
                 isMobile.current = false
                 camera.fov = getClampedValue((perfectWindowWidth - window.innerWidth) / 40 + 60, 60, 70)
             }
+            setPages(scrollPages * (perfectPageHeight / window.innerHeight))
             camera.updateProjectionMatrix()
         }
+
         handleResizeExperience()
         addEventListener('resize', handleResizeExperience)
 
@@ -39,12 +42,12 @@ function Scene() {
     }, [])
 
     return (
-        <>
+        <ScrollControls pages={pages} damping={0}>
             <BrightnessSlider />
             <HtmlContent />
             <LighthouseScene oceanRef={oceanRef} />
-            <Camera />
-        </>
+            <Camera isMobile={isMobile.current} />
+        </ScrollControls>
     )
 }
 
@@ -57,16 +60,9 @@ export default function Experience() {
                 // eventPrefix='offset'
                 // eventSource={document.getElementById('root') as HTMLElement}
                 dpr={[1, 1]}
-                camera={{
-                    fov: cameraConfig.fov,
-                    near: cameraConfig.near,
-                    far: cameraConfig.far,
-                    position: [0.046, 0.7857, 1.9249]
-                }}
+                camera={cameraConfig}
             >
-                <ScrollControls pages={scrollPages} damping={0}>
-                    <Scene />
-                </ScrollControls>
+                <Scene />
             </Canvas>
         </main>
     )

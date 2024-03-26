@@ -16,6 +16,7 @@ import { MdOutlinePhonelink } from 'react-icons/md'
 import { TbBrandThreejs } from 'react-icons/tb'
 interface Props {
     skillsSectionRef: React.MutableRefObject<HTMLElement>
+    top: number
 }
 
 const softwareSkills = [
@@ -44,9 +45,9 @@ const otherSkills = [
     { name: 'Japanese (In Progress)', icon: <h1 className='icon-text'>日</h1> }
 ]
 
-export default function SkillsSection({ skillsSectionRef }: Props) {
+export default function SkillsSection({ skillsSectionRef, top }: Props) {
     return (
-        <section ref={skillsSectionRef} className='scroll-text-box left-0 top-[600vh]'>
+        <section ref={skillsSectionRef} className={`scroll-text-box top-[${top}px]`}>
             <header>
                 <h1 className='header-bg-text'>Skills</h1>
             </header>

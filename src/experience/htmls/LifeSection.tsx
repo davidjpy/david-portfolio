@@ -6,11 +6,12 @@ import 'swiper/css/pagination'
 
 interface Props {
     lifeSectionRef: React.MutableRefObject<HTMLElement>
+    top: number
 }
 
-export default function LifeSection({ lifeSectionRef }: Props) {
+export default function LifeSection({ lifeSectionRef, top }: Props) {
     return (
-        <section ref={lifeSectionRef} className='scroll-text-box left-0 top-[1400vh]'>
+        <section ref={lifeSectionRef} className={`scroll-text-box top-[${top}px]`}>
             <header>
                 <h1 className='header-bg-text'>Life</h1>
             </header>

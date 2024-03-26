@@ -2,11 +2,12 @@ import { FaGithub, FaLink } from 'react-icons/fa'
 
 interface Props {
     workSectionRef: React.MutableRefObject<HTMLElement>
+    top: number
 }
 
-export default function WorksSection({ workSectionRef }: Props) {
+export default function WorksSection({ workSectionRef, top }: Props) {
     return (
-        <section ref={workSectionRef} className='scroll-text-box right-0 top-[2000vh]'>
+        <section ref={workSectionRef} className={`scroll-text-box right-0 top-[${top}px]`}>
             <header>
                 <h1 className='header-bg-text'>Works</h1>
             </header>
