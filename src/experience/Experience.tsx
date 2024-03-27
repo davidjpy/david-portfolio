@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-import { ScrollControls } from '@react-three/drei'
+import { ScrollControls, Loader } from '@react-three/drei'
 
 import LighthouseScene from '@/src/experience/scene/LighthouseScene'
 import HtmlContent from '@/src/experience/htmls/HtmlContent'
@@ -53,17 +53,27 @@ function Scene() {
 
 export default function Experience() {
     return (
-        <main className='fixed -z-10 h-screen w-screen overflow-hidden'>
+        <>
+            <Loader />
             <Canvas
                 flat
                 // linear
                 // eventPrefix='offset'
                 // eventSource={document.getElementById('root') as HTMLElement}
                 dpr={[1, 1]}
-                camera={cameraConfig}
+                camera={{
+                    far: cameraConfig.far,
+                    near: cameraConfig.near,
+                    fov: cameraConfig.fov,
+                    position: [0, 3, 5]
+                }}
+                style={{
+                    height: '100vh',
+                    overflow: 'hidden'
+                }}
             >
                 <Scene />
             </Canvas>
-        </main>
+        </>
     )
 }
