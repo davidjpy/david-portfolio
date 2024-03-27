@@ -239,7 +239,7 @@ export default function BrightnessSlider() {
                         type='range'
                         min={minBrightness}
                         max={maxBrightness}
-                        step={0.1}
+                        step={1}
                         value={brightness}
                         onChange={(e) => handleSetBrightness(Number(e.target.value))}
                         className='w-[150px]'
