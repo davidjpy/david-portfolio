@@ -2,12 +2,12 @@ import * as THREE from 'three'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { CameraControls, useScroll } from '@react-three/drei'
-import { useControls } from 'leva'
+// import { useControls } from 'leva'
 
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 import { cameraMouseFactor, scrollPages } from '@/src/utilities/constants'
 
-const tabletCameraPositions = [
+export const tabletCameraPositions = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.046, 1.9557, 1.9249), new THREE.Vector3(0.217, 1.4057, 0.24)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.217, 1.4057, 0.24), new THREE.Vector3(0.21, 1.5822, 0.1468)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.5822, 0.1468), new THREE.Vector3(-0.016, 1.5457, -0.073)]),
@@ -124,7 +124,6 @@ export default function Camera({ isMobile }: Props) {
         let nextCameraLookAt
 
         cameraControlRef.current!.disconnect()
-        cameraControlRef.current!.smoothTime = 0.3
 
         switch (true) {
             case isInCanvasSection:
@@ -197,5 +196,5 @@ export default function Camera({ isMobile }: Props) {
         )
     })
 
-    return <CameraControls ref={cameraControlRef} makeDefault />
+    return <CameraControls ref={cameraControlRef} makeDefault smoothTime={0.3} />
 }
