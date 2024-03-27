@@ -33,13 +33,13 @@ export default function BrightnessSlider() {
 
     const scrollData = useScroll()
 
-    useEffect(() => {
-        const handlePositionSlider = () => {
-            if (htmlContainerRef.current) {
-                htmlContainerRef.current.style.left = `${window.innerWidth - 430}px`
-            }
+    const handlePositionSlider = () => {
+        if (htmlContainerRef.current) {
+            htmlContainerRef.current.style.left = `${window.innerWidth - 440}px`
         }
-        handlePositionSlider()
+    }
+
+    useEffect(() => {
         window.addEventListener('resize', handlePositionSlider)
 
         return () => {
@@ -169,6 +169,7 @@ export default function BrightnessSlider() {
             }}
             portal={{ current: scrollData.fixed }}
             className='top-0 grid h-[100px] w-[400px] grid-cols-7 grid-rows-2 gap-[8px] rounded-b-[12px] bg-black/40 p-[8px] text-center text-white shadow-xl backdrop-blur-sm'
+            style={{ left: window.innerWidth - 440 }}
         >
             <div className='clock-blackground-md col-span-3 row-span-1 select-none'>
                 <label className='flex-center h-full'>
