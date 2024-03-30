@@ -6,7 +6,7 @@ export const cameraConfig = {
 
 export const cameraMouseFactor = 0.15
 
-export const scrollPages = 26
+export const scrollPages = 25
 
 export const perfectPageHeight = 1080
 
