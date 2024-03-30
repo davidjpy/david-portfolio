@@ -1,10 +1,11 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, Suspense } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-import { ScrollControls, Loader } from '@react-three/drei'
+import { Preload, ScrollControls } from '@react-three/drei'
 
 import LighthouseScene from '@/src/experience/scene/LighthouseScene'
 import HtmlContent from '@/src/experience/htmls/HtmlContent'
 import BrightnessSlider from '@/src/experience/htmls/BrightnessSlider'
+import LoadingScreen from '@/src/experience/scene/LoadingScreen'
 import Camera from '@/src/experience/camera/Camera'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 
@@ -43,10 +44,13 @@ function Scene() {
 
     return (
         <ScrollControls pages={pages} damping={0}>
-            <BrightnessSlider />
-            <HtmlContent />
-            <LighthouseScene oceanRef={oceanRef} />
-            <Camera isMobile={isMobile} />
+            <Suspense fallback={null}>
+                <Preload all />
+                <BrightnessSlider />
+                <HtmlContent />
+                <LighthouseScene oceanRef={oceanRef} />
+                <Camera isMobile={isMobile} />
+            </Suspense>
         </ScrollControls>
     )
 }
@@ -54,7 +58,6 @@ function Scene() {
 export default function Experience() {
     return (
         <>
-            <Loader />
             <Canvas
                 flat
                 // linear
@@ -69,11 +72,13 @@ export default function Experience() {
                 }}
                 style={{
                     height: '100vh',
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    position: 'fixed'
                 }}
             >
                 <Scene />
             </Canvas>
+            <LoadingScreen />
         </>
     )
 }
