@@ -32,7 +32,7 @@ export default function LifeSection({ lifeSectionRef, top }: Props) {
                 </header>
                 <p>
                     My life is simple yet joyful, you'll either find me sitting in front of the computer, losing myself
-                    in the latest gaming adventure or a pile of messy code, or exploring the hidden gems of the city. I
+                    in the latest gaming adventure or a pile of messy code, or exploring the hidden gems of a city. I
                     often find surprises and beauty in those untold places. I enjoy talking to strangers and meeting new
                     friends. I always get along with people regardless of their background, culture, and language.
                 </p>
