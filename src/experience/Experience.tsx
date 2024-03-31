@@ -43,15 +43,13 @@ function Scene() {
     }, [])
 
     return (
-        <Suspense fallback={null}>
-            <ScrollControls pages={pages} damping={0}>
-                <Preload all />
-                <BrightnessSlider />
-                <HtmlContent />
-                <LighthouseScene oceanRef={oceanRef} />
-                <Camera isMobile={isMobile} />
-            </ScrollControls>
-        </Suspense>
+        <ScrollControls pages={pages} damping={0}>
+            <Preload all />
+            <BrightnessSlider />
+            <HtmlContent />
+            <LighthouseScene oceanRef={oceanRef} />
+            <Camera isMobile={isMobile} />
+        </ScrollControls>
     )
 }
 
