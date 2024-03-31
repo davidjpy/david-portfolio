@@ -1,18 +1,27 @@
+import { useState } from 'react'
 import { useProgress } from '@react-three/drei'
 
 import LighthouseLoadingSvg from '@/assets/svgs/lighthouse_loading.svg'
 
 export default function LoadingScreen() {
-    const { active, progress } = useProgress()
+    const progress = useProgress((state) => state.progress)
+    const [isLoaded, setIsLoaded] = useState(false)
+
     return (
         <section
-            className='pointer-events-none fixed flex h-screen w-screen flex-col items-center justify-center bg-primary transition-opacity delay-[2000ms] duration-500 ease-linear'
-            style={{ opacity: active ? 1 : 0 }}
+            className='fixed flex h-screen w-screen flex-col items-center justify-center bg-primary transition-opacity duration-500 ease-linear'
+            style={{ opacity: isLoaded ? 0 : 1, pointerEvents: isLoaded ? 'none' : 'all' }}
         >
-            <object type='image/svg+xml' data={LighthouseLoadingSvg} className='w-[600px]' />
-            {/* <header>
-                <h1 className='text-xl font-extrabold text-secondary'>Loading {progress}%</h1>
-            </header> */}
+            <object type='image/svg+xml' data={LighthouseLoadingSvg} className='w-[400px]'>
+                <img src={LighthouseLoadingSvg} />
+            </object>
+            <div className='mt-4 text-lg font-extrabold text-secondary'>
+                {progress === 100 ? (
+                    <button onClick={() => setIsLoaded(true)}>Start</button>
+                ) : (
+                    <h1>Loading {progress}%</h1>
+                )}
+            </div>
         </section>
     )
 }
