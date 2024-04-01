@@ -22,7 +22,7 @@ const toDos = [
     { name: 'Bed Time', icon: '🛏️' }
 ]
 
-const timeSymbols = ['☀️', '🌅', '🌙', '🌕']
+const timeSymbols = ['🌕', '🌙']
 
 export default function BrightnessSlider() {
     const htmlContainerRef = useRef<HTMLDivElement>(null)
@@ -110,14 +110,10 @@ export default function BrightnessSlider() {
             setTodoIndex(10)
         }
 
-        if (hoursPositionInTwentyFourHourClock < 16) {
+        if (hoursPositionInTwentyFourHourClock < 18) {
             setTimeSymbolIndex(0)
-        } else if (hoursPositionInTwentyFourHourClock < 18) {
-            setTimeSymbolIndex(1)
-        } else if (hoursPositionInTwentyFourHourClock < 20) {
-            setTimeSymbolIndex(2)
         } else {
-            setTimeSymbolIndex(3)
+            setTimeSymbolIndex(1)
         }
 
         setTime([
@@ -145,7 +141,7 @@ export default function BrightnessSlider() {
     const [toDoSpring] = useSprings(
         1,
         () => ({
-            transform: `translateY(-${toDoIndex * 48}px)`,
+            transform: `translateY(-${toDoIndex * 56}px)`,
             config: config.stiff
         }),
         [toDoIndex]
@@ -205,7 +201,7 @@ export default function BrightnessSlider() {
             <div className='clock-blackground-sm col-span-1 row-span-1 overflow-hidden text-[16px]'>
                 <animated.ul style={timeSymbolSpring[0]}>
                     {timeSymbols.map((symbol, index) => (
-                        <li key={index} className='flex-center mb-[4px] h-[26px]'>
+                        <li key={index} className='flex-center h-[30px]'>
                             {symbol}
                         </li>
                     ))}
@@ -216,10 +212,10 @@ export default function BrightnessSlider() {
                 <header className='flex-center h-[28px] w-full rounded-[8px] bg-[#d6493fd2] text-[12px] shadow-lg'>
                     <h1>Timetable</h1>
                 </header>
-                <span className='block h-[48px] overflow-hidden'>
+                <span className='block h-[56px] overflow-hidden'>
                     <animated.ul style={toDoSpring[0]}>
                         {toDos.map((todo, index) => (
-                            <li key={index} className='flex-center h-[48px] text-[16px] font-black'>
+                            <li key={index} className='flex-center h-[56px] text-[16px] font-black'>
                                 <p>{todo.name}</p>
                                 <span className='ml-[4px]'>{todo.icon}</span>
                             </li>
@@ -227,10 +223,6 @@ export default function BrightnessSlider() {
                     </animated.ul>
                 </span>
             </div>
-
-            {/* <div className='flex-center col-span-3 row-span-1 overflow-hidden rounded-[8px] bg-[#dd4643d7]'>
-                <h1 className='text-[14px]'>Calendar</h1>
-            </div> */}
 
             <div className='clock-blackground-sm col-span-4 row-span-1'>
                 <div className='flex h-full items-center justify-between'>
