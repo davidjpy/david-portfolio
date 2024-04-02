@@ -3,6 +3,7 @@ import { Html, useScroll } from '@react-three/drei'
 import { useSprings } from '@react-spring/three'
 import { animated, config } from '@react-spring/web'
 import { FaMoon, FaSun } from 'react-icons/fa'
+import { IoSunny, IoMoon } from 'react-icons/io5'
 
 import { AppContext } from '@/src/context/appContext'
 import { getInterpolatedValue } from '@/src/utilities/getInterpolatedValue'
@@ -22,7 +23,7 @@ const toDos = [
     { name: 'Bed Time', icon: '🛏️' }
 ]
 
-const timeSymbols = ['🌕', '🌙']
+const timeSymbols = [<IoSunny size={22} />, <IoMoon size={18} />]
 
 export default function BrightnessSlider() {
     const htmlContainerRef = useRef<HTMLDivElement>(null)
