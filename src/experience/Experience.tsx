@@ -1,11 +1,10 @@
-import { useRef, useEffect, useState, Suspense } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-import { Preload, ScrollControls } from '@react-three/drei'
+import { ScrollControls } from '@react-three/drei'
 
 import LighthouseScene from '@/src/experience/scene/LighthouseScene'
 import HtmlContent from '@/src/experience/htmls/HtmlContent'
 import BrightnessSlider from '@/src/experience/htmls/BrightnessSlider'
-import LoadingScreen from '@/src/experience/scene/LoadingScreen'
 import Camera from '@/src/experience/camera/Camera'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 
@@ -44,10 +43,9 @@ function Scene() {
 
     return (
         <ScrollControls pages={pages} damping={0}>
-            <Preload all />
+            <LighthouseScene oceanRef={oceanRef} />
             <BrightnessSlider />
             <HtmlContent />
-            <LighthouseScene oceanRef={oceanRef} />
             <Camera isMobile={isMobile} />
         </ScrollControls>
     )
@@ -55,28 +53,25 @@ function Scene() {
 
 export default function Experience() {
     return (
-        <>
-            <Canvas
-                flat
-                // linear
-                // eventPrefix='offset'
-                // eventSource={document.getElementById('root') as HTMLElement}
-                dpr={[1, 1]}
-                camera={{
-                    far: cameraConfig.far,
-                    near: cameraConfig.near,
-                    fov: cameraConfig.fov,
-                    position: [0, 3, 5]
-                }}
-                style={{
-                    height: '100vh',
-                    overflow: 'hidden',
-                    position: 'fixed'
-                }}
-            >
-                <Scene />
-            </Canvas>
-            <LoadingScreen />
-        </>
+        <Canvas
+            flat
+            // linear
+            // eventPrefix='offset'
+            // eventSource={document.getElementById('root') as HTMLElement}
+            dpr={[1, 1]}
+            camera={{
+                far: cameraConfig.far,
+                near: cameraConfig.near,
+                fov: cameraConfig.fov,
+                position: [0, 3, 5]
+            }}
+            style={{
+                height: '100vh',
+                overflow: 'hidden',
+                position: 'fixed'
+            }}
+        >
+            <Scene />
+        </Canvas>
     )
 }
