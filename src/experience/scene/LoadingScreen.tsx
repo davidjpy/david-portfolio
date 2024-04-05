@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useContext } from 'react'
 import { useProgress } from '@react-three/drei'
 
+import { AppContext } from '@/src/context/appContext'
 import LighthouseLoadingSvg from '@/assets/svgs/lighthouse_loading.svg'
 
 export default function LoadingScreen() {
     const totalItems = 14
     const loadedItems = useProgress((state) => state.loaded)
     const isLoaded = loadedItems === totalItems
-
-    const [isStarted, setIsStarted] = useState(false)
+    const { isStarted, setIsStarted } = useContext(AppContext)
 
     return (
         <section

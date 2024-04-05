@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { useState } from 'react'
 
 import { AppContext } from '@/context/appContext'
 import { useTheme } from '@/src/hooks/useTheme'
@@ -6,6 +6,7 @@ import Experience from '@/experience/Experience'
 import LoadingScreen from '@/src/experience/scene/LoadingScreen'
 
 function App() {
+    const [isStarted, setIsStarted] = useState(false)
     const [brightness, handleSetBrightness, isLightMode] = useTheme()
 
     return (
@@ -14,12 +15,12 @@ function App() {
                 value={{
                     brightness: brightness,
                     handleSetBrightness: handleSetBrightness,
-                    isLightMode: isLightMode
+                    isLightMode: isLightMode,
+                    isStarted: isStarted,
+                    setIsStarted: setIsStarted
                 }}
             >
-                <Suspense fallback={null}>
-                    <Experience />
-                </Suspense>
+                <Experience />
                 <LoadingScreen />
             </AppContext.Provider>
         </main>

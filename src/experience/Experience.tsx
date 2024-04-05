@@ -1,7 +1,8 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useContext, Suspense } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { ScrollControls } from '@react-three/drei'
 
+import { AppContext } from '@/src/context/appContext'
 import LighthouseScene from '@/src/experience/scene/LighthouseScene'
 import HtmlContent from '@/src/experience/htmls/HtmlContent'
 import BrightnessSlider from '@/src/experience/htmls/BrightnessSlider'
@@ -15,6 +16,7 @@ import '@/experience/Experience.css'
 function Scene() {
     const oceanRef = useRef<unknown>(null)
     const camera = useThree((state) => state.camera) as THREE.PerspectiveCamera
+    const { isStarted } = useContext(AppContext)
 
     const perfectWindowWidth = 1920
     const [isMobile, setIsMobile] = useState(false)
@@ -43,10 +45,16 @@ function Scene() {
 
     return (
         <ScrollControls pages={pages} damping={0}>
-            <LighthouseScene oceanRef={oceanRef} />
-            <BrightnessSlider />
-            <HtmlContent />
-            <Camera isMobile={isMobile} />
+            {isStarted && (
+                <>
+                    <BrightnessSlider />
+                    <HtmlContent />
+                </>
+            )}
+            <Suspense fallback={null}>
+                <LighthouseScene oceanRef={oceanRef} />
+                <Camera isMobile={isMobile} />
+            </Suspense>
         </ScrollControls>
     )
 }
