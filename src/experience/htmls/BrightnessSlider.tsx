@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState, useContext } from 'react'
 import { Html, useScroll } from '@react-three/drei'
-import { useSprings } from '@react-spring/three'
-import { animated, config } from '@react-spring/web'
-import { FaMoon, FaSun } from 'react-icons/fa'
+import { animated, config, useSprings, useSpring } from '@react-spring/web'
 import { IoSunny, IoMoon } from 'react-icons/io5'
+import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 
 import { AppContext } from '@/src/context/appContext'
 import { getInterpolatedValue } from '@/src/utilities/getInterpolatedValue'
 import { latestHoursInMinutes, earliestHoursInMinutes, minBrightness, maxBrightness } from '@/src/utilities/constants'
+
+const containerHeight = 120
+const extraPaddingTop = 20
 
 const toDos = [
     { name: 'Get Coffee', icon: '☕' },
@@ -26,18 +28,22 @@ const toDos = [
 const timeSymbols = [<IoSunny size={22} />, <IoMoon size={18} />]
 
 export default function BrightnessSlider() {
+    const scrollData = useScroll()
     const htmlContainerRef = useRef<HTMLDivElement>(null)
     const [time, setTime] = useState<number[]>([0, 0, 0, 0, 0])
     const [toDoIndex, setTodoIndex] = useState<number>(0)
     const [timeSymbolIndex, setTimeSymbolIndex] = useState<number>(0)
+    const [shouldShowSlider, setShouldShowSlider] = useState<boolean>(false)
     const { brightness, handleSetBrightness } = useContext(AppContext)
-
-    const scrollData = useScroll()
 
     const handlePositionSlider = () => {
         if (htmlContainerRef.current) {
             htmlContainerRef.current.style.left = `${window.innerWidth - 440}px`
         }
+    }
+
+    const handleClickToggleSlider = () => {
+        setShouldShowSlider(!shouldShowSlider)
     }
 
     useEffect(() => {
@@ -48,22 +54,23 @@ export default function BrightnessSlider() {
         }
     }, [])
 
-    useEffect(() => {
-        const observer = new MutationObserver(function (mutations) {
-            mutations.forEach(() => {
-                scrollData.fixed.style.zIndex = '1'
-                scrollData.fixed.style.removeProperty('height')
-                scrollData.fixed.style.removeProperty('width')
-                scrollData.fixed.style.removeProperty('overflow')
-            })
-        })
 
-        observer.observe(scrollData.fixed, { attributes: true, attributeFilter: ['style'] })
+    // useEffect(() => {
+    //     const observer = new MutationObserver(function (mutations) {
+    //         mutations.forEach(() => {
+    //             scrollData.fixed.style.zIndex = '1'
+    //             scrollData.fixed.style.removeProperty('height')
+    //             scrollData.fixed.style.removeProperty('width')
+    //             scrollData.fixed.style.removeProperty('overflow')
+    //         })
+    //     })
 
-        return () => {
-            observer.disconnect()
-        }
-    }, [])
+    //     observer.observe(scrollData.fixed, { attributes: true, attributeFilter: ['style'] })
+
+    //     return () => {
+    //         observer.disconnect()
+    //     }
+    // }, [])
 
     useEffect(() => {
         const currentHoursInMinutes = getInterpolatedValue(
@@ -126,6 +133,14 @@ export default function BrightnessSlider() {
         ])
     }, [brightness])
 
+    useEffect(() => {
+        handleClickToggleSlider()
+        scrollData.fixed.style.removeProperty('height')
+        scrollData.fixed.style.removeProperty('width')
+        scrollData.fixed.style.removeProperty('overflow')
+        scrollData.fixed.style.zIndex = '1'
+    }, [])
+
     const isSingleDigit = (value: number | string): boolean => {
         return String(value).length === 1
     }
@@ -157,16 +172,29 @@ export default function BrightnessSlider() {
         [timeSymbolIndex]
     )
 
+    const AnimatedHtml = animated(Html)
+    const htmlSpring = useSpring({
+        transform: shouldShowSlider ? `translateY(-${extraPaddingTop}px)` : `translateY(-${containerHeight}px)`,
+        boxShadow: shouldShowSlider ? '' : 'none',
+        config: config.stiff
+    })
+
     return (
-        <Html
+        <AnimatedHtml
             as='section'
             ref={htmlContainerRef}
             calculatePosition={() => {
                 return [0, 0]
             }}
             portal={{ current: scrollData.fixed }}
-            className='top-0 grid h-[100px] w-[400px] grid-cols-7 grid-rows-2 gap-[8px] rounded-b-[12px] bg-black/40 p-[8px] text-center text-white shadow-xl backdrop-blur-sm'
-            style={{ left: window.innerWidth - 440 }}
+            zIndexRange={[100, 100]}
+
+            className='top-0 grid w-[400px] grid-cols-7 grid-rows-2 gap-[8px] rounded-b-[12px] bg-black/40 p-[8px] pt-[28px] text-center text-white shadow-xl backdrop-blur-sm'
+            style={{
+                left: window.innerWidth - 440,
+                height: containerHeight,
+                ...htmlSpring
+            }}
         >
             <div className='clock-blackground-md col-span-3 row-span-1 select-none'>
                 <label className='flex-center h-full'>
@@ -227,7 +255,7 @@ export default function BrightnessSlider() {
 
             <div className='clock-blackground-sm col-span-4 row-span-1'>
                 <div className='flex h-full items-center justify-between'>
-                    <FaMoon className='ml-[4px] w-[16px]' />
+                    <IoMoon size={18} className='ml-[4px]' />
                     <input
                         type='range'
                         min={minBrightness}
@@ -238,9 +266,28 @@ export default function BrightnessSlider() {
                         className='w-[150px]'
                         aria-label='Brightness'
                     />
-                    <FaSun className='mr-[4px] text-[20px]' />
+                    <IoSunny size={22} className='mr-[4px]' />
                 </div>
             </div>
-        </Html>
+
+            <span
+                onClick={handleClickToggleSlider}
+                className='absolute bottom-0 right-0 -translate-x-1/2 translate-y-full cursor-pointer rounded-b-[8px] bg-clock-element shadow-lg transition-colors hover:bg-black'
+            >
+                {shouldShowSlider ? (
+                    <IoIosArrowUp
+                        strokeWidth={16}
+                        preserveAspectRatio='none'
+                        className='ml-[6px] mr-[6px] h-[22px] w-[30px]'
+                    />
+                ) : (
+                    <IoIosArrowDown
+                        strokeWidth={16}
+                        preserveAspectRatio='none'
+                        className='ml-[6px] mr-[6px] h-[22px] w-[30px]'
+                    />
+                )}
+            </span>
+        </AnimatedHtml>
     )
 }
