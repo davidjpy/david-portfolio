@@ -44,13 +44,9 @@ function Scene() {
     }, [])
 
     return (
-        <ScrollControls pages={pages} damping={0}>
-            {isStarted && (
-                <>
-                    <BrightnessSlider />
-                    <HtmlContent />
-                </>
-            )}
+        <ScrollControls pages={1} damping={0}>
+            <BrightnessSlider />
+            <HtmlContent />
             <Suspense fallback={null}>
                 <LighthouseScene oceanRef={oceanRef} />
                 <Camera isMobile={isMobile} />

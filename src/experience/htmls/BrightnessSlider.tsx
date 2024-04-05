@@ -33,7 +33,7 @@ export default function BrightnessSlider() {
     const [time, setTime] = useState<number[]>([0, 0, 0, 0, 0])
     const [toDoIndex, setTodoIndex] = useState<number>(0)
     const [timeSymbolIndex, setTimeSymbolIndex] = useState<number>(0)
-    const [shouldShowSlider, setShouldShowSlider] = useState<boolean>(false)
+    const [shouldShowSlider, setShouldShowSlider] = useState<boolean>(true)
     const { brightness, handleSetBrightness } = useContext(AppContext)
 
     const handlePositionSlider = () => {
@@ -55,22 +55,22 @@ export default function BrightnessSlider() {
     }, [])
 
 
-    // useEffect(() => {
-    //     const observer = new MutationObserver(function (mutations) {
-    //         mutations.forEach(() => {
-    //             scrollData.fixed.style.zIndex = '1'
-    //             scrollData.fixed.style.removeProperty('height')
-    //             scrollData.fixed.style.removeProperty('width')
-    //             scrollData.fixed.style.removeProperty('overflow')
-    //         })
-    //     })
+    useEffect(() => {
+        const observer = new MutationObserver(function (mutations) {
+            mutations.forEach(() => {
+                scrollData.fixed.style.zIndex = '1'
+                scrollData.fixed.style.removeProperty('height')
+                scrollData.fixed.style.removeProperty('width')
+                scrollData.fixed.style.removeProperty('overflow')
+            })
+        })
 
-    //     observer.observe(scrollData.fixed, { attributes: true, attributeFilter: ['style'] })
+        observer.observe(scrollData.fixed, { attributes: true, attributeFilter: ['style'] })
 
-    //     return () => {
-    //         observer.disconnect()
-    //     }
-    // }, [])
+        return () => {
+            observer.disconnect()
+        }
+    }, [])
 
     useEffect(() => {
         const currentHoursInMinutes = getInterpolatedValue(
@@ -132,14 +132,6 @@ export default function BrightnessSlider() {
             Math.floor(hoursPositionInTwentyFourHourClock / 12)
         ])
     }, [brightness])
-
-    useEffect(() => {
-        handleClickToggleSlider()
-        scrollData.fixed.style.removeProperty('height')
-        scrollData.fixed.style.removeProperty('width')
-        scrollData.fixed.style.removeProperty('overflow')
-        scrollData.fixed.style.zIndex = '1'
-    }, [])
 
     const isSingleDigit = (value: number | string): boolean => {
         return String(value).length === 1
