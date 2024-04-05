@@ -32,10 +32,10 @@
     }
 
     .scroll-text-box {
-        @apply color-transition-slow absolute h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl transition-[border-radius] duration-100 ease-out;
+        @apply absolute h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl [transition:color_0.2s_linear,background-color_0.2s_linear,text-decoration-color_0.2s_linear,border-radius_0.1s_ease-out];
     }
 
-    .header-wrapper {
+    .header-wrapper { 
         @apply relative z-[10];
     }
 
@@ -44,7 +44,7 @@
     }
 
     .icon-link-md {
-        @apply color-transition-slow h-5 w-5 cursor-pointer text-secondary-bg hover:text-secondary;
+        @apply color-transition h-5 w-5 cursor-pointer text-secondary-bg hover:text-secondary;
     }
 
     .icon-link-lg {
@@ -52,15 +52,15 @@
     }
 
     .icon-svg {
-        @apply color-transition-slow inline h-10 w-10 text-secondary;
+        @apply color-transition inline h-10 w-10 text-secondary;
     }
 
     .icon-text {
-        @apply color-transition-slow inline-block h-10 w-10 text-[2.2rem] font-black text-secondary;
+        @apply color-transition inline-block h-10 w-10 text-[2.2rem] font-black text-secondary;
     }
 
     .header-bg-text {
-        @apply color-transition-slow pointer-events-none absolute left-[160px] top-[160px] z-[0] text-[250px] font-black text-primary-monochrome;
+        @apply color-transition pointer-events-none absolute left-[160px] top-[160px] z-[0] text-[250px] font-black text-primary-monochrome;
     }
 
     .clock-blackground-sm {
@@ -79,7 +79,7 @@
         @apply block h-[10px] overflow-hidden text-[10px] font-semibold leading-[10px];
     }
 
-    .color-transition-slow {
+    .color-transition {
         @apply transition-colors duration-200 ease-linear;
     }
 
