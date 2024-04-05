@@ -140,22 +140,25 @@ export default function HtmlContent() {
     }, [])
 
     return (
-        <Html
-            wrapperClass='w-full'
-            calculatePosition={() => {
-                return [0, 0]
-            }}
-            className='scroll-container'
-        >
-            <AboutSection aboutSectionRef={aboutSectionRef} top={aboutSectionTop} />
-            <SkillsSection skillsSectionRef={skillsSectionRef} top={skillsSectionTop} />
-            <ReadsSection readsSectionRef={readsSectionRef} top={readsSectionTop} />
-            <LifeSection lifeSectionRef={lifeSectionRef} top={lifeSectionTop} />
-            <WorksSection workSectionRef={workSectionRef} top={worksSectionTop} />
-            <AcknowledgementSection
-                acknowledgementSectionRef={acknowledgementSectionRef}
-                top={acknowledgementSectionTop}
-            />
-        </Html>
+        <>
+            <Html
+                wrapperClass='w-full'
+                calculatePosition={() => {
+                    return [0, 0]
+                }}
+                className='scroll-container'
+                zIndexRange={[0, 0]}
+            >
+                <AboutSection aboutSectionRef={aboutSectionRef} top={aboutSectionTop} />
+                <SkillsSection skillsSectionRef={skillsSectionRef} top={skillsSectionTop} />
+                <ReadsSection readsSectionRef={readsSectionRef} top={readsSectionTop} />
+                <LifeSection lifeSectionRef={lifeSectionRef} top={lifeSectionTop} />
+                <WorksSection workSectionRef={workSectionRef} top={worksSectionTop} />
+                <AcknowledgementSection
+                    acknowledgementSectionRef={acknowledgementSectionRef}
+                    top={acknowledgementSectionTop}
+                />
+            </Html>
+        </>
     )
 }
