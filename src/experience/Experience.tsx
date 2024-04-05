@@ -1,15 +1,14 @@
-import { useRef, useEffect, useState, useContext, Suspense } from 'react'
+import { useRef, useEffect, useState, Suspense } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { ScrollControls } from '@react-three/drei'
 
-import { AppContext } from '@/src/context/appContext'
 import LighthouseScene from '@/src/experience/scene/LighthouseScene'
 import HtmlContent from '@/src/experience/htmls/HtmlContent'
 import BrightnessSlider from '@/src/experience/htmls/BrightnessSlider'
 import Camera from '@/src/experience/camera/Camera'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 
-import { cameraConfig } from '@/src/utilities/constants'
+import { cameraConfig, scrollPages, perfectPageHeight } from '@/src/utilities/constants'
 
 import '@/experience/Experience.css'
 
@@ -19,7 +18,7 @@ function Scene() {
 
     const perfectWindowWidth = 1920
     const [isMobile, setIsMobile] = useState(false)
-
+    const [pages, setPages] = useState(scrollPages * (perfectPageHeight / window.innerHeight))
 
     useEffect(() => {
         const handleResizeExperience = () => {
@@ -30,6 +29,7 @@ function Scene() {
                 setIsMobile(false)
                 camera.fov = getClampedValue((perfectWindowWidth - window.innerWidth) / 40 + 60, 60, 70)
             }
+            setPages(scrollPages * (perfectPageHeight / window.innerHeight))
             camera.updateProjectionMatrix()
         }
 
@@ -42,7 +42,7 @@ function Scene() {
     }, [])
 
     return (
-        <ScrollControls damping={0}>
+        <ScrollControls pages={pages} damping={0}>
             <BrightnessSlider />
             <HtmlContent />
             <Suspense fallback={null}>
