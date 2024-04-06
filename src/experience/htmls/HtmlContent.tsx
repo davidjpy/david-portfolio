@@ -504,12 +504,14 @@ const acknowledgementSections = [
 ]
 
 export default function HtmlContent() {
+    const observerRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
     const skillsSectionRef = useRef<HTMLElement>(null!)
     const readsSectionRef = useRef<HTMLElement>(null!)
     const lifeSectionRef = useRef<HTMLElement>(null!)
     const workSectionRef = useRef<HTMLElement>(null!)
     const acknowledgementSectionRef = useRef<HTMLElement>(null!)
+    const typingTextWrapperRef = useRef<HTMLHeadingElement>(null)
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const scrollData = useScroll()
 
@@ -669,27 +671,60 @@ export default function HtmlContent() {
         }
     }, [])
 
-    // useEffect(() => {
-    //     const observer = new IntersectionObserver(
-    //         (a, b) => {
-    //             console.log(a[0])
-    //         },
-    //         {
-    //             root: scrollData.el,
-    //             rootMargin: '0px'
-    //         }
-    //     )
-    //     setTimeout(() => {
-    //         if (aboutSectionRef.current) {
-    //             console.log(scrollData.el)
-    //             observer.observe(aboutSectionRef.current)
-    //         }
-    //     }, 0)
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const entryName = entry.target.getAttribute('data-name')
+
+                        if (entryName === 'header') {
+                            entry.target.children.item(0)?.classList.add('translate-x-0')
+                            entry.target.children.item(0)?.classList.add('opacity-100')
+                            entry.target.children.item(0)?.classList.remove('translate-x-[40px]')
+                            entry.target.children.item(0)?.classList.remove('opacity-0')
+
+                            entry.target.children.item(1)?.classList.add('w-40')
+                            entry.target.children.item(1)?.classList.remove('w-0')
+
+                            entry.target.children.item(2)?.classList.add('translate-y-0')
+                            entry.target.children.item(2)?.classList.add('opacity-100')
+                            entry.target.children.item(2)?.classList.remove('translate-y-[20px]')
+                            entry.target.children.item(2)?.classList.remove('opacity-0')
+
+                            entry.target.children.item(3)?.classList.add('translate-y-0')
+                            entry.target.children.item(3)?.classList.add('opacity-100')
+                            entry.target.children.item(3)?.classList.remove('translate-y-[20px]')
+                            entry.target.children.item(3)?.classList.remove('opacity-0')
+                        }
+                    }
+                })
+            },
+            {
+                root: scrollData.el,
+                rootMargin: '0px',
+                threshold: 1
+            }
+        )
+
+        observerRef.current = observer
+
+        return () => {
+            observerRef.current?.disconnect()
+        }
+    }, [aboutSectionRef.current])
+
+    //     useEffect(() => {
+    //     if (headerRef.current) {
+    //         observerRef.current?.observe(headerRef.current)
+    //     }
 
     //     return () => {
-    //         observer.unobserve(aboutSectionRef.current)
+    //         if (headerRef.current) {
+    //             observerRef.current?.unobserve(headerRef.current)
+    //         }
     //     }
-    // }, [])
+    // }, [headerRef.current])
 
     return (
         <Html
@@ -711,8 +746,9 @@ export default function HtmlContent() {
                     </>
                 }
                 ref={aboutSectionRef}
+                observerRef={observerRef}
             >
-                <h1 className='text-lg font-bold text-secondary'>
+                <h1 ref={typingTextWrapperRef} className='text-lg font-bold text-secondary'>
                     A{' '}
                     <span
                         ref={typingTextRef}
@@ -754,6 +790,7 @@ export default function HtmlContent() {
                     </>
                 }
                 ref={skillsSectionRef}
+                observerRef={observerRef}
             >
                 {skillsSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>
@@ -773,6 +810,7 @@ export default function HtmlContent() {
                     </>
                 }
                 ref={readsSectionRef}
+                observerRef={observerRef}
             >
                 {readsSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>
@@ -792,6 +830,7 @@ export default function HtmlContent() {
                     </>
                 }
                 ref={lifeSectionRef}
+                observerRef={observerRef}
             >
                 {lifeSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>
@@ -811,6 +850,7 @@ export default function HtmlContent() {
                     </>
                 }
                 ref={workSectionRef}
+                observerRef={observerRef}
             >
                 {worksSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>
@@ -830,6 +870,7 @@ export default function HtmlContent() {
                     </>
                 }
                 ref={acknowledgementSectionRef}
+                observerRef={observerRef}
             >
                 {acknowledgementSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>

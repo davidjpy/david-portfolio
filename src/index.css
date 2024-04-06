@@ -32,15 +32,7 @@
     }
 
     .scroll-text-box {
-        @apply absolute -z-50 h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl [transition:color_0.2s_linear,background-color_0.2s_linear,text-decoration-color_0.2s_linear,border-radius_0.1s_ease-out];
-    }
-
-    .header-wrapper {
-        @apply relative z-[10];
-    }
-
-    .header-divider {
-        @apply mb-4 h-2 w-32 bg-accent;
+        @apply absolute -z-50 h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl [transition:color_0.2s_linear,background-color_0.2s_linear,border-radius_0.1s_ease-out];
     }
 
     .icon-link-md {
@@ -57,10 +49,6 @@
 
     .icon-text {
         @apply color-transition inline-block h-10 w-10 text-[2.2rem] font-black text-secondary;
-    }
-
-    .header-bg-text {
-        @apply color-transition pointer-events-none absolute left-[160px] top-[160px] -z-10 text-[250px] font-black text-primary-monochrome;
     }
 
     .clock-blackground-sm {
