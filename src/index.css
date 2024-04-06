@@ -32,10 +32,10 @@
     }
 
     .scroll-text-box {
-        @apply absolute h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl [transition:color_0.2s_linear,background-color_0.2s_linear,text-decoration-color_0.2s_linear,border-radius_0.1s_ease-out];
+        @apply absolute -z-50 h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl [transition:color_0.2s_linear,background-color_0.2s_linear,text-decoration-color_0.2s_linear,border-radius_0.1s_ease-out];
     }
 
-    .header-wrapper { 
+    .header-wrapper {
         @apply relative z-[10];
     }
 
@@ -60,7 +60,7 @@
     }
 
     .header-bg-text {
-        @apply color-transition pointer-events-none absolute left-[160px] top-[160px] z-[0] text-[250px] font-black text-primary-monochrome;
+        @apply color-transition pointer-events-none absolute left-[160px] top-[160px] -z-10 text-[250px] font-black text-primary-monochrome;
     }
 
     .clock-blackground-sm {
