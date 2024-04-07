@@ -504,7 +504,7 @@ const acknowledgementSections = [
 ]
 
 export default function HtmlContent() {
-    const observerRef = useRef<IntersectionObserver | null>(null)
+    const contentObserverRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
     const skillsSectionRef = useRef<HTMLElement>(null!)
     const readsSectionRef = useRef<HTMLElement>(null!)
@@ -513,6 +513,7 @@ export default function HtmlContent() {
     const acknowledgementSectionRef = useRef<HTMLElement>(null!)
     const typingTextWrapperRef = useRef<HTMLHeadingElement>(null)
     const typingTextRef = useRef<HTMLSpanElement>(null)
+    const contactListRef = useRef<HTMLUListElement>(null)
     const scrollData = useScroll()
 
     const aboutSectionTop = perfectPageHeight * 2
@@ -672,30 +673,45 @@ export default function HtmlContent() {
     }, [])
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
+        const contentObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         const entryName = entry.target.getAttribute('data-name')
 
-                        if (entryName === 'header') {
-                            entry.target.children.item(0)?.classList.add('translate-x-0')
-                            entry.target.children.item(0)?.classList.add('opacity-100')
-                            entry.target.children.item(0)?.classList.remove('translate-x-[40px]')
-                            entry.target.children.item(0)?.classList.remove('opacity-0')
+                        switch (entryName) {
+                            case 'header':
+                                entry.target.children.item(0)?.classList.add('translate-x-0')
+                                entry.target.children.item(0)?.classList.add('opacity-100')
+                                entry.target.children.item(0)?.classList.remove('translate-x-[40px]')
+                                entry.target.children.item(0)?.classList.remove('opacity-0')
 
-                            entry.target.children.item(1)?.classList.add('w-40')
-                            entry.target.children.item(1)?.classList.remove('w-0')
+                                entry.target.children.item(1)?.classList.add('w-40')
+                                entry.target.children.item(1)?.classList.remove('w-0')
 
-                            entry.target.children.item(2)?.classList.add('translate-y-0')
-                            entry.target.children.item(2)?.classList.add('opacity-100')
-                            entry.target.children.item(2)?.classList.remove('translate-y-[20px]')
-                            entry.target.children.item(2)?.classList.remove('opacity-0')
+                                entry.target.children.item(2)?.classList.add('revealed-content')
+                                entry.target.children.item(2)?.classList.remove('hidden-content')
 
-                            entry.target.children.item(3)?.classList.add('translate-y-0')
-                            entry.target.children.item(3)?.classList.add('opacity-100')
-                            entry.target.children.item(3)?.classList.remove('translate-y-[20px]')
-                            entry.target.children.item(3)?.classList.remove('opacity-0')
+                                entry.target.children.item(3)?.classList.add('revealed-content')
+                                entry.target.children.item(3)?.classList.remove('hidden-content')
+
+                                if (typingTextWrapperRef.current && contactListRef.current) {
+                                    typingTextWrapperRef.current.classList.add('revealed-content')
+                                    typingTextWrapperRef.current.classList.remove('hidden-content')
+
+                                    for (const child of contactListRef.current.children) {
+                                        child.classList.add('revealed-content')
+                                        child.classList.remove('hidden-content')
+                                    }
+                                }
+
+                                entry.target.nextElementSibling?.classList.add('revealed-content')
+                                entry.target.nextElementSibling?.classList.remove('hidden-content')
+
+                                break
+
+                            default:
+                                break
                         }
                     }
                 })
@@ -703,28 +719,28 @@ export default function HtmlContent() {
             {
                 root: scrollData.el,
                 rootMargin: '0px',
-                threshold: 1
+                threshold: 0.3
             }
         )
 
-        observerRef.current = observer
+        contentObserverRef.current = contentObserver
 
         return () => {
-            observerRef.current?.disconnect()
+            contentObserverRef.current?.disconnect()
         }
-    }, [aboutSectionRef.current])
+    }, [])
 
-    //     useEffect(() => {
-    //     if (headerRef.current) {
-    //         observerRef.current?.observe(headerRef.current)
-    //     }
+    useEffect(() => {
+        if (typingTextWrapperRef.current) {
+            contentObserverRef.current?.observe(typingTextWrapperRef.current)
+        }
 
-    //     return () => {
-    //         if (headerRef.current) {
-    //             observerRef.current?.unobserve(headerRef.current)
-    //         }
-    //     }
-    // }, [headerRef.current])
+        return () => {
+            if (typingTextWrapperRef.current) {
+                contentObserverRef.current?.unobserve(typingTextWrapperRef.current)
+            }
+        }
+    }, [typingTextWrapperRef.current])
 
     return (
         <Html
@@ -743,35 +759,38 @@ export default function HtmlContent() {
                 bottomTitle={
                     <>
                         Ho Chi Hang, <span className='text-accent'>David</span>
+                        <h1
+                            ref={typingTextWrapperRef}
+                            className='hidden-content text-lg font-bold text-secondary [transition:color_0.2s_linear,transform_0.6s_ease-out_0.8s,opacity_0.6s_ease-out_0.8s]'
+                        >
+                            A{' '}
+                            <span
+                                ref={typingTextRef}
+                                className='animate-typing border-r-2 border-accent text-lg font-semibold text-accent'
+                            ></span>
+                        </h1>
+                        <ul ref={contactListRef} className='mt-4 flex gap-4'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.6s_ease-out_0.8s,opacity_0.6s_ease-out_0.8s]'>
+                                <a href='https://github.com/davidjpy' target='_blank'>
+                                    <FaGithub className='icon-link-lg' />
+                                </a>
+                            </li>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.6s_ease-out_0.9s,opacity_0.6s_ease-out_0.85s]'>
+                                <a href='https://www.linkedin.com/in/davidho-web/' target='_blank'>
+                                    <FaLinkedin className='icon-link-lg' />
+                                </a>
+                            </li>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.6s_ease-out_1s,opacity_0.6s_ease-out_0.9s]'>
+                                <a href='https://www.instagram.com/___realdavid/' target='_blank'>
+                                    <FaInstagram strokeWidth={20} className='icon-link-lg' />
+                                </a>
+                            </li>
+                        </ul>
                     </>
                 }
+                contentObserverRef={contentObserverRef}
                 ref={aboutSectionRef}
-                observerRef={observerRef}
             >
-                <h1 ref={typingTextWrapperRef} className='text-lg font-bold text-secondary'>
-                    A{' '}
-                    <span
-                        ref={typingTextRef}
-                        className='animate-typing border-r-2 border-accent text-lg font-semibold text-accent'
-                    ></span>
-                </h1>
-                <ul className='mt-4 flex gap-4'>
-                    <li>
-                        <a href='https://github.com/davidjpy' target='_blank'>
-                            <FaGithub className='icon-link-lg' />
-                        </a>
-                    </li>
-                    <li>
-                        <a href='https://www.linkedin.com/in/davidho-web/' target='_blank'>
-                            <FaLinkedin className='icon-link-lg' />
-                        </a>
-                    </li>
-                    <li>
-                        <a href='https://www.instagram.com/___realdavid/' target='_blank'>
-                            <FaInstagram strokeWidth={20} className='icon-link-lg' />
-                        </a>
-                    </li>
-                </ul>
                 {aboutSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>
                         {section.children}
@@ -789,8 +808,8 @@ export default function HtmlContent() {
                         My <span className='text-accent'> Expertise</span>
                     </>
                 }
+                contentObserverRef={contentObserverRef}
                 ref={skillsSectionRef}
-                observerRef={observerRef}
             >
                 {skillsSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>
@@ -809,8 +828,8 @@ export default function HtmlContent() {
                         My <span className='text-accent'> Reads</span>
                     </>
                 }
+                contentObserverRef={contentObserverRef}
                 ref={readsSectionRef}
-                observerRef={observerRef}
             >
                 {readsSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>
@@ -829,8 +848,8 @@ export default function HtmlContent() {
                         My <span className='text-accent'> Life</span>
                     </>
                 }
+                contentObserverRef={contentObserverRef}
                 ref={lifeSectionRef}
-                observerRef={observerRef}
             >
                 {lifeSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>
@@ -849,8 +868,8 @@ export default function HtmlContent() {
                         My <span className='text-accent'> Works</span>
                     </>
                 }
+                contentObserverRef={contentObserverRef}
                 ref={workSectionRef}
-                observerRef={observerRef}
             >
                 {worksSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>
@@ -869,8 +888,8 @@ export default function HtmlContent() {
                         The <span className='text-accent'> Acknowledgement</span>
                     </>
                 }
+                contentObserverRef={contentObserverRef}
                 ref={acknowledgementSectionRef}
-                observerRef={observerRef}
             >
                 {acknowledgementSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title}>

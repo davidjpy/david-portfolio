@@ -71,6 +71,14 @@
         @apply transition-colors duration-200 ease-linear;
     }
 
+    .hidden-content {
+        @apply translate-y-[20px] opacity-0;
+    }
+
+    .revealed-content {
+        @apply translate-y-[0] opacity-100;
+    }
+
     .flex-center {
         @apply flex items-center justify-center;
     }
