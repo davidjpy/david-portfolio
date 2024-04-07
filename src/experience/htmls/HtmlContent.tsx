@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import { Html, useScroll } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
 import {
     FaGithub,
     FaLinkedin,
@@ -28,12 +27,6 @@ import 'swiper/css/pagination'
 
 import HtmlScrollContainer from '@/src/experience/htmls/HtmlScrollContainer'
 import HtmlSection from '@/src/experience/htmls/HtmlSection'
-// import AboutSection from '@/src/experience/htmls/AboutSection'
-// import SkillsSection from '@/src/experience/htmls/SkillsSection'
-// import ReadsSection from '@/src/experience/htmls/ReadsSection'
-// import LifeSection from '@/src/experience/htmls/LifeSection'
-// import WorksSection from '@/src/experience/htmls/WorksSection'
-// import AcknowledgementSection from '@/src/experience/htmls/AcknowledgementSection'
 import { perfectPageHeight } from '@/src/utilities/constants'
 
 const titles = ['Full-Stack Developer', 'Web Designer', '3D Modeler']
@@ -545,96 +538,23 @@ export default function HtmlContent() {
         }
     }
 
-    useFrame(() => {
-        const scrollTop = scrollData.el.scrollTop
+    const handleResizeResetBorderRadius = () => {
+        const refs = [
+            aboutSectionRef,
+            skillsSectionRef,
+            readsSectionRef,
+            lifeSectionRef,
+            workSectionRef,
+            acknowledgementSectionRef
+        ]
 
-        const isInAboutSection = isNumberInRange(
-            scrollTop,
-            aboutSectionTop - perfectPageHeight,
-            aboutSectionTop + 2 * perfectPageHeight
-        )
-        const isInSkillsSection = isNumberInRange(
-            scrollTop,
-            skillsSectionTop - perfectPageHeight,
-            skillsSectionTop + 2 * perfectPageHeight
-        )
-        const isInReadingSection = isNumberInRange(
-            scrollTop,
-            readsSectionTop - perfectPageHeight,
-            readsSectionTop + 2 * perfectPageHeight
-        )
-        const isInLifeSection = isNumberInRange(
-            scrollTop,
-            lifeSectionTop - perfectPageHeight,
-            lifeSectionTop + 2 * perfectPageHeight
-        )
-        const isInWorkSection = isNumberInRange(
-            scrollTop,
-            worksSectionTop - perfectPageHeight,
-            worksSectionTop + 2 * perfectPageHeight
-        )
-        const isInAcknowledgementSection = isNumberInRange(
-            scrollTop,
-            acknowledgementSectionTop - perfectPageHeight,
-            acknowledgementSectionTop + 2 * perfectPageHeight
-        )
-
-        const width = aboutSectionRef.current?.clientWidth
-
-        switch (true) {
-            case isInAboutSection:
-                setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
-                break
-
-            case isInSkillsSection:
-                setHTMLSectionBorderRadius(skillsSectionRef.current, width, 'left')
-                break
-
-            case isInReadingSection:
-                setHTMLSectionBorderRadius(readsSectionRef.current, width, 'right')
-                break
-
-            case isInLifeSection:
-                setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
-                break
-
-            case isInWorkSection:
-                setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
-                break
-
-            case isInAcknowledgementSection:
-                setHTMLSectionBorderRadius(acknowledgementSectionRef.current, width, 'left')
-                break
-
-            default:
-                break
+        for (const ref of refs) {
+            ref.current.style.borderTopRightRadius = '0px'
+            ref.current.style.borderBottomRightRadius = '0px'
+            ref.current.style.borderTopLeftRadius = '0px'
+            ref.current.style.borderBottomLeftRadius = '0px'
         }
-    })
-
-    useEffect(() => {
-        const handleResizeResetBorderRadius = () => {
-            const refs = [
-                aboutSectionRef,
-                skillsSectionRef,
-                readsSectionRef,
-                lifeSectionRef,
-                workSectionRef,
-                acknowledgementSectionRef
-            ]
-
-            for (const ref of refs) {
-                ref.current.style.borderTopRightRadius = '0px'
-                ref.current.style.borderBottomRightRadius = '0px'
-                ref.current.style.borderTopLeftRadius = '0px'
-                ref.current.style.borderBottomLeftRadius = '0px'
-            }
-        }
-        addEventListener('resize', handleResizeResetBorderRadius)
-
-        return () => {
-            removeEventListener('resize', handleResizeResetBorderRadius)
-        }
-    }, [])
+    }
 
     useEffect(() => {
         let currentWord = 0
@@ -719,7 +639,7 @@ export default function HtmlContent() {
             {
                 root: scrollData.el,
                 rootMargin: '0px',
-                threshold: 0.3
+                threshold: 0.4
             }
         )
 
@@ -741,6 +661,82 @@ export default function HtmlContent() {
             }
         }
     }, [typingTextWrapperRef.current])
+
+    useEffect(() => {
+        const handleScrollAnimation = () => {
+            const scrollTop = scrollData.el.scrollTop
+
+            const isInAboutSection = isNumberInRange(
+                scrollTop,
+                aboutSectionTop - perfectPageHeight - 300,
+                aboutSectionTop + 2 * perfectPageHeight + 300
+            )
+            const isInSkillsSection = isNumberInRange(
+                scrollTop,
+                skillsSectionTop - perfectPageHeight - 300,
+                skillsSectionTop + 2 * perfectPageHeight + 300
+            )
+            const isInReadingSection = isNumberInRange(
+                scrollTop,
+                readsSectionTop - perfectPageHeight - 300,
+                readsSectionTop + 2 * perfectPageHeight + 300
+            )
+            const isInLifeSection = isNumberInRange(
+                scrollTop,
+                lifeSectionTop - perfectPageHeight - 300,
+                lifeSectionTop + 2 * perfectPageHeight + 300
+            )
+            const isInWorkSection = isNumberInRange(
+                scrollTop,
+                worksSectionTop - perfectPageHeight - 300,
+                worksSectionTop + 2 * perfectPageHeight + 300
+            )
+            const isInAcknowledgementSection = isNumberInRange(
+                scrollTop,
+                acknowledgementSectionTop - perfectPageHeight - 300,
+                acknowledgementSectionTop + 2 * perfectPageHeight + 300
+            )
+
+            const width = aboutSectionRef.current?.clientWidth
+
+            switch (true) {
+                case isInAboutSection:
+                    setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
+                    break
+
+                case isInSkillsSection:
+                    setHTMLSectionBorderRadius(skillsSectionRef.current, width, 'left')
+                    break
+
+                case isInReadingSection:
+                    setHTMLSectionBorderRadius(readsSectionRef.current, width, 'right')
+                    break
+
+                case isInLifeSection:
+                    setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
+                    break
+
+                case isInWorkSection:
+                    setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
+                    break
+
+                case isInAcknowledgementSection:
+                    setHTMLSectionBorderRadius(acknowledgementSectionRef.current, width, 'left')
+                    break
+
+                default:
+                    handleResizeResetBorderRadius()
+                    break
+            }
+        }
+        scrollData.el.addEventListener('scroll', handleScrollAnimation)
+        window.addEventListener('resize', handleResizeResetBorderRadius)
+
+        return () => {
+            scrollData.el.removeEventListener('scroll', handleScrollAnimation)
+            window.removeEventListener('resize', handleResizeResetBorderRadius)
+        }
+    }, [])
 
     return (
         <Html
