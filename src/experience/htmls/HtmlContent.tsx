@@ -600,7 +600,7 @@ export default function HtmlContent() {
                         const entryName = entry.target.getAttribute('data-name')
 
                         switch (entryName) {
-                            case 'header':
+                            case 'ch':
                                 entry.target.children.item(0)?.classList.add('translate-x-0')
                                 entry.target.children.item(0)?.classList.add('opacity-100')
                                 entry.target.children.item(0)?.classList.remove('translate-x-[40px]')
@@ -615,21 +615,18 @@ export default function HtmlContent() {
                                 entry.target.children.item(3)?.classList.add('revealed-content')
                                 entry.target.children.item(3)?.classList.remove('hidden-content')
 
-                                if (typingTextWrapperRef.current && contactListRef.current) {
-                                    typingTextWrapperRef.current.classList.add('revealed-content')
-                                    typingTextWrapperRef.current.classList.remove('hidden-content')
-
+                                if (contactListRef.current) {
                                     for (const child of contactListRef.current.children) {
                                         child.classList.add('revealed-content')
                                         child.classList.remove('hidden-content')
                                     }
                                 }
-
-                                entry.target.nextElementSibling?.classList.add('revealed-content')
-                                entry.target.nextElementSibling?.classList.remove('hidden-content')
-
                                 break
 
+                            case 'se':
+                                entry.target.classList.add('revealed-content')
+                                entry.target.classList.remove('hidden-content')
+                                break
                             default:
                                 break
                         }
@@ -639,7 +636,7 @@ export default function HtmlContent() {
             {
                 root: scrollData.el,
                 rootMargin: '0px',
-                threshold: 0.4
+                threshold: 0.3
             }
         )
 
@@ -755,10 +752,7 @@ export default function HtmlContent() {
                 bottomTitle={
                     <>
                         Ho Chi Hang, <span className='text-accent'>David</span>
-                        <h1
-                            ref={typingTextWrapperRef}
-                            className='hidden-content text-lg font-bold text-secondary [transition:color_0.2s_linear,transform_0.6s_ease-out_0.8s,opacity_0.6s_ease-out_0.8s]'
-                        >
+                        <h1 ref={typingTextWrapperRef} className='text-lg font-bold text-secondary'>
                             A{' '}
                             <span
                                 ref={typingTextRef}
@@ -766,17 +760,17 @@ export default function HtmlContent() {
                             ></span>
                         </h1>
                         <ul ref={contactListRef} className='mt-4 flex gap-4'>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.6s_ease-out_0.8s,opacity_0.6s_ease-out_0.8s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'>
                                 <a href='https://github.com/davidjpy' target='_blank'>
                                     <FaGithub className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.6s_ease-out_0.9s,opacity_0.6s_ease-out_0.85s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
                                 <a href='https://www.linkedin.com/in/davidho-web/' target='_blank'>
                                     <FaLinkedin className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.6s_ease-out_1s,opacity_0.6s_ease-out_0.9s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
                                 <a href='https://www.instagram.com/___realdavid/' target='_blank'>
                                     <FaInstagram strokeWidth={20} className='icon-link-lg' />
                                 </a>
@@ -788,7 +782,7 @@ export default function HtmlContent() {
                 ref={aboutSectionRef}
             >
                 {aboutSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title}>
+                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
                         {section.children}
                     </HtmlSection>
                 ))}
@@ -808,7 +802,7 @@ export default function HtmlContent() {
                 ref={skillsSectionRef}
             >
                 {skillsSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title}>
+                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
                         {section.children}
                     </HtmlSection>
                 ))}
@@ -828,7 +822,7 @@ export default function HtmlContent() {
                 ref={readsSectionRef}
             >
                 {readsSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title}>
+                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
                         {section.children}
                     </HtmlSection>
                 ))}
@@ -848,7 +842,7 @@ export default function HtmlContent() {
                 ref={lifeSectionRef}
             >
                 {lifeSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title}>
+                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
                         {section.children}
                     </HtmlSection>
                 ))}
@@ -868,7 +862,7 @@ export default function HtmlContent() {
                 ref={workSectionRef}
             >
                 {worksSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title}>
+                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
                         {section.children}
                     </HtmlSection>
                 ))}
@@ -888,7 +882,7 @@ export default function HtmlContent() {
                 ref={acknowledgementSectionRef}
             >
                 {acknowledgementSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title}>
+                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
                         {section.children}
                     </HtmlSection>
                 ))}

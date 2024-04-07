@@ -12,19 +12,19 @@ interface Props extends React.ComponentProps<'section'> {
 
 const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
     ({ top, position, backgroundTitle, topTitle, bottomTitle, contentObserverRef, children, ...props }, ref) => {
-        const headerRef = useRef<HTMLHeadElement>(null)
+        const containerHeaderRef = useRef<HTMLHeadElement>(null)
 
         useEffect(() => {
-            if (headerRef.current) {
-                contentObserverRef.current?.observe(headerRef.current)
+            if (containerHeaderRef.current) {
+                contentObserverRef.current?.observe(containerHeaderRef.current)
             }
 
             return () => {
-                if (headerRef.current) {
-                    contentObserverRef.current?.unobserve(headerRef.current)
+                if (containerHeaderRef.current) {
+                    contentObserverRef.current?.unobserve(containerHeaderRef.current)
                 }
             }
-        }, [headerRef.current])
+        }, [containerHeaderRef.current])
 
         return (
             <section
@@ -37,21 +37,19 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                 ref={ref}
                 {...props}
             >
-                <header data-name='header' ref={headerRef} className='relative'>
-                    <h1 className='pointer-events-none absolute -top-[140px] left-[160px] -z-50 translate-x-[40px] text-[250px] font-black text-primary-monochrome opacity-0 [transition:color_0.2s_linear,transform_0.6s_ease-out,opacity_0.6s_ease-out]'>
+                <header data-name='ch' ref={containerHeaderRef} className='relative'>
+                    <h1 className='pointer-events-none absolute -top-[140px] left-[160px] -z-50 translate-x-[40px] text-[250px] font-black text-primary-monochrome opacity-0 [transition:color_0.2s_linear,transform_0.4s_ease-out,opacity_0.4s_ease-out]'>
                         {backgroundTitle}
                     </h1>
-                    <div className='header-divider mb-4 h-2 w-0 bg-accent transition-[width] duration-[0.6s] ease-out' />
-                    <h1 className='hidden-content text-lg font-bold text-secondary [transition:color_0.2s_linear,transform_0.6s_ease-out_0.6s,opacity_0.6s_ease-out_0.6s]'>
+                    <div className='header-divider mb-4 h-2 w-0 bg-accent transition-[width] duration-[0.4s] ease-out' />
+                    <h1 className='hidden-content text-lg font-bold text-secondary [transition:color_0.2s_linear,transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'>
                         {topTitle}
                     </h1>
-                    <div className='hidden-content text-xl font-black text-secondary [transition:color_0.2s_linear,transform_0.6s_ease-out_0.8s,opacity_0.6s_ease-out_0.8s]'>
+                    <div className='hidden-content text-xl font-black text-secondary [transition:color_0.2s_linear,transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'>
                         {bottomTitle}
                     </div>
                 </header>
-                <div className='hidden-content [transition:color_0.2s_linear,transform_0.6s_ease-out_1s,opacity_0.6s_ease-out_1s]'>
-                    {children}
-                </div>
+                {children}
             </section>
         )
     }
