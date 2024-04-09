@@ -58,28 +58,33 @@ const bookReadingList = [
     {
         title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
         author: 'Robert Cecil Martin',
+        source: 'images/reads/clean_code.webp',
         summary:
             'A valuable lessons on how to improve the readiablity and maintainability of the codebase via meaningful naming conventions, pure function design, centralized error handling, etc.'
     },
     {
         title: 'New FE Textbook Vol.1 IT Fundamentals',
         author: 'IPA, Japan',
+        source: 'images/reads/it_fundamentals.webp',
         summary:
             'The book gives a firm foundation in IT principles, which are necessary for my daily work. It touched on computer systems, software development, data structure and algorithms, database fundamentals, networking concepts, and security practices.'
     },
     {
         title: 'New FE Textbook Vol.2 IT Strategy & Management',
         author: 'IPA, Japan',
+        source: 'images/reads/it_strategy_and_management.webp',
         summary:
             'A sophisticated discussion on aligning IT with business objectives, project management & strategic innovation. This resource promises to improve the grasp of IT governance, risk management, and data-driven decision-making.'
     },
     {
         title: 'Trade Your Way to Financial Freedom',
         author: 'Van K. Tharp',
+        source: 'images/reads/trade.webp',
         summary:
             'The book provides insight with the system design and risk management, promotes iterative development and testing for reliability, and emphasizes on self-discipline on personal growth.'
     }
 ]
+
 const aboutSections = [
     {
         title: (
@@ -124,10 +129,15 @@ const skillsSections = [
         ),
         children: (
             <ul>
-                {softwareSkills.map((skill) => (
+                {softwareSkills.map((skill, index) => (
                     <li
                         key={skill.name}
-                        className='mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
+                        className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
+                        style={{
+                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                                index * 0.1
+                            }s,opacity 0.4s ease-out ${index * 0.1}s`
+                        }}
                     >
                         <span>{skill.icon}</span>
                         <p className='mt-2'>{skill.name}</p>
@@ -144,10 +154,15 @@ const skillsSections = [
         ),
         children: (
             <ul>
-                {otherSkills.map((skill) => (
+                {otherSkills.map((skill, index) => (
                     <li
                         key={skill.name}
-                        className='mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
+                        className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
+                        style={{
+                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                                index * 0.1
+                            }s, opacity 0.4s ease-out ${index * 0.1}s`
+                        }}
                     >
                         <span>{skill.icon}</span>
                         <p className='mt-2'>{skill.name}</p>
@@ -165,14 +180,32 @@ const readsSections = [
             </>
         ),
         children: (
-            <ul className='ml-5 mt-4 list-outside list-decimal'>
-                {bookReadingList.map((book) => (
-                    <li key={book.title} className='mb-4'>
-                        <h1 className='inline font-semibold'>
+            <ul className='mt-4'>
+                {bookReadingList.map((book, index) => (
+                    <li
+                        key={book.title}
+                        className='hidden-content section-list-item mb-4'
+                        style={{
+                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                                index * 0.2
+                            }s, opacity 0.4s ease-out ${index * 0.2}s`
+                        }}
+                    >
+                        <img src={book.source} className='reads-list-img' />
+                        <div className='pl-4'>
+                            <h1 className='font-bold'>
+                                {book.title}
+                                <span className='font-normal text-accent'> - {book.author}</span>
+                            </h1>
+
+                            <p className='mt-2 text-secondary-light'>{book.summary}</p>
+                        </div>
+
+                        {/* <h1 className='inline font-semibold'>
                             {book.title}
                             <span className='font-normal text-accent'> - {book.author}</span>
                         </h1>
-                        <p className='mt-2 text-secondary-light'>{book.summary}</p>
+                        <p className='mt-2 text-secondary-light'>{book.summary}</p> */}
                     </li>
                 ))}
             </ul>
@@ -285,7 +318,7 @@ const worksSections = [
         ),
         children: (
             <ul className='mt-6'>
-                <li className='project-list-item'>
+                <li className='section-list-item'>
                     <img src='images/projects/wildbear.webp' className='project-list-img' />
 
                     <div className='pl-4'>
@@ -311,7 +344,7 @@ const worksSections = [
                         </p>
                     </div>
                 </li>
-                <li className='project-list-item'>
+                <li className='section-list-item'>
                     <img src='images/projects/portfolio.webp' className='project-list-img' />
 
                     <div className='pl-4'>
@@ -349,7 +382,7 @@ const worksSections = [
         ),
         children: (
             <ul className='mt-6'>
-                <li className='project-list-item'>
+                <li className='section-list-item'>
                     <img src='images/projects/FE_exam_cert.webp' className='project-list-img' />
 
                     <div className='pl-4'>
@@ -371,7 +404,7 @@ const worksSections = [
                         </p>
                     </div>
                 </li>
-                <li className='project-list-item'>
+                <li className='section-list-item'>
                     <img src='images/projects/threejs_journey_cert.webp' className='project-list-img' />
                     <div className='pl-4'>
                         <div className='flex items-center justify-between'>
@@ -391,7 +424,7 @@ const worksSections = [
                         </p>
                     </div>
                 </li>
-                <li className='project-list-item'>
+                <li className='section-list-item'>
                     <img src='images/projects/defect_patent.webp' className='project-list-img' />
                     <div className='pl-4'>
                         <div className='flex items-center justify-between'>
@@ -415,7 +448,7 @@ const worksSections = [
                         </p>
                     </div>
                 </li>
-                <li className='project-list-item'>
+                <li className='section-list-item'>
                     <img src='images/projects/logistic_patent.webp' className='project-list-img' />
                     <div className='pl-4'>
                         <div className='flex justify-between'>
@@ -455,7 +488,7 @@ const acknowledgementSections = [
         ),
         children: (
             <ul className='mt-6'>
-                <li className='project-list-item'>
+                <li className='section-list-item'>
                     <div className='pl-4'>
                         <div className='flex justify-between'>
                             <div className='flex items-center gap-4'>
@@ -549,10 +582,12 @@ export default function HtmlContent() {
         ]
 
         for (const ref of refs) {
-            ref.current.style.borderTopRightRadius = '0px'
-            ref.current.style.borderBottomRightRadius = '0px'
-            ref.current.style.borderTopLeftRadius = '0px'
-            ref.current.style.borderBottomLeftRadius = '0px'
+            if (ref.current) {
+                ref.current.style.borderTopRightRadius = '0px'
+                ref.current.style.borderBottomRightRadius = '0px'
+                ref.current.style.borderTopLeftRadius = '0px'
+                ref.current.style.borderBottomLeftRadius = '0px'
+            }
         }
     }
 
@@ -626,6 +661,15 @@ export default function HtmlContent() {
                             case 'se':
                                 entry.target.classList.add('revealed-content')
                                 entry.target.classList.remove('hidden-content')
+
+                                if (entry.target.children.item(1)?.tagName === 'UL') {
+                                    console.log(entry.target.children)
+                                    for (const listItem of entry.target.children.item(1)?.children!) {
+                                        listItem.classList.add('revealed-content')
+                                        listItem.classList.remove('hidden-content')
+                                    }
+                                }
+
                                 break
                             default:
                                 break
@@ -636,7 +680,7 @@ export default function HtmlContent() {
             {
                 root: scrollData.el,
                 rootMargin: '0px',
-                threshold: 0.3
+                threshold: 0.5
             }
         )
 
@@ -752,7 +796,10 @@ export default function HtmlContent() {
                 bottomTitle={
                     <>
                         Ho Chi Hang, <span className='text-accent'>David</span>
-                        <h1 ref={typingTextWrapperRef} className='text-lg font-bold text-secondary'>
+                        <h1
+                            ref={typingTextWrapperRef}
+                            className='text-lg font-bold text-secondary [transition:color_0.2s_linear]'
+                        >
                             A{' '}
                             <span
                                 ref={typingTextRef}

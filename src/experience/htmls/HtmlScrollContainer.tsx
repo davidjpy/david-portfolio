@@ -32,7 +32,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                 className='scroll-text-box'
                 style={{
                     top: top,
-                    right: position === 'right' ? 0 : undefined
+                    right: position === 'right' ? 0 : undefined,
                 }}
                 ref={ref}
                 {...props}
