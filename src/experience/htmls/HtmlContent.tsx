@@ -200,12 +200,6 @@ const readsSections = [
 
                             <p className='mt-2 text-secondary-light'>{book.summary}</p>
                         </div>
-
-                        {/* <h1 className='inline font-semibold'>
-                            {book.title}
-                            <span className='font-normal text-accent'> - {book.author}</span>
-                        </h1>
-                        <p className='mt-2 text-secondary-light'>{book.summary}</p> */}
                     </li>
                 ))}
             </ul>
@@ -680,7 +674,7 @@ export default function HtmlContent() {
             {
                 root: scrollData.el,
                 rootMargin: '0px',
-                threshold: 0.5
+                threshold: 0.2
             }
         )
 
