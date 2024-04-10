@@ -6,32 +6,31 @@ interface Props extends Omit<React.ComponentProps<'section'>, 'title'> {
 }
 
 export default function HtmlSection({ title, children, contentObserverRef, ...props }: Props) {
-    const sectionHeader = useRef<HTMLElement>(null)
+    const sectionRef = useRef<HTMLElement>(null)
 
     useEffect(() => {
-        if (sectionHeader.current) {
-            contentObserverRef.current?.observe(sectionHeader.current)
+        if (sectionRef.current) {
+            contentObserverRef.current?.observe(sectionRef.current)
         }
 
         return () => {
-            if (sectionHeader.current) {
-                contentObserverRef.current?.unobserve(sectionHeader.current)
+            if (sectionRef.current) {
+                contentObserverRef.current?.unobserve(sectionRef.current)
             }
         }
-    }, [sectionHeader.current])
+    }, [sectionRef.current])
 
     return (
         <section
-            ref={sectionHeader}
+            ref={sectionRef}
             data-name='se'
             className='hidden-content mt-12 text-secondary [transition:color_0.2s_linear,transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'
             {...props}
         >
-            <header className='mb-2 flex items-center '>
+            <header className='mb-2 flex items-center font-bold'>
                 <span className='mr-2 h-1 w-4 bg-accent' />
-                <h1 className='font-bold'>{title}</h1>
+                <h1>{title}</h1>
             </header>
-
             {children}
         </section>
     )

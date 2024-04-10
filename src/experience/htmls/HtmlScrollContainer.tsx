@@ -37,7 +37,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                 ref={ref}
                 {...props}
             >
-                <header data-name='ch' ref={containerHeaderRef} className='relative'>
+                <header data-name='ch' ref={containerHeaderRef} className='relative  mb-12'>
                     <h1 className='pointer-events-none absolute -top-[140px] left-[160px] -z-50 translate-x-[40px] text-[250px] font-black text-primary-monochrome opacity-0 [transition:color_0.2s_linear,transform_0.4s_ease-out,opacity_0.4s_ease-out]'>
                         {backgroundTitle}
                     </h1>
