@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import {
     FaGithub,
@@ -56,7 +56,6 @@ const otherSkills = [
 ]
 const bookReadingList = [
     {
-        id: 'b1',
         title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
         // author: 'Robert Cecil Martin',
         source: 'images/reads/clean_code.webp',
@@ -64,7 +63,6 @@ const bookReadingList = [
             'A valuable lessons on how to improve the readiablity and maintainability of the codebase via meaningful naming conventions, pure function design, centralized error handling, etc.'
     },
     {
-        id: 'b2',
         title: 'New FE Textbook Vol.1 IT Fundamentals',
         // author: 'IPA, Japan',
         source: 'images/reads/it_fundamentals.webp',
@@ -72,7 +70,6 @@ const bookReadingList = [
             'The book gives a firm foundation in IT principles, which are necessary for my daily work. It touched on computer systems, software development, data structure and algorithms, database fundamentals, networking concepts, and security practices.'
     },
     {
-        id: 'b3',
         title: 'New FE Textbook Vol.2 IT Strategy & Management',
         // author: 'IPA, Japan',
         source: 'images/reads/it_strategy_and_management.webp',
@@ -80,7 +77,6 @@ const bookReadingList = [
             'A sophisticated discussion on aligning IT with business objectives, project management & strategic innovation. This resource promises to improve the grasp of IT governance, risk management, and data-driven decision-making.'
     },
     {
-        id: 'b4',
         title: 'Trade Your Way to Financial Freedom',
         // author: 'Van K. Tharp',
         source: 'images/reads/trade.webp',
@@ -101,7 +97,6 @@ export default function HtmlContent() {
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
     const scrollData = useScroll()
-    const [focusItem, setFocusItem] = useState<string>('')
 
     const aboutSectionTop = perfectPageHeight * 2
     const skillsSectionTop = perfectPageHeight * 6
@@ -649,12 +644,8 @@ export default function HtmlContent() {
                             case 'ch':
                                 entry.target.children.item(0)?.classList.replace('translate-x-[40px]', 'translate-x-0')
                                 entry.target.children.item(0)?.classList.replace('opacity-0', 'opacity-100')
-
                                 entry.target.children.item(1)?.classList.replace('w-0', 'w-40')
-
-                                
                                 entry.target.children.item(2)?.classList.replace('hidden-content', 'revealed-content')
-
                                 entry.target.children.item(3)?.classList.replace('hidden-content', 'revealed-content')
 
                                 if (contactListRef.current) {
@@ -672,24 +663,23 @@ export default function HtmlContent() {
                                 entry.target.classList.replace('hidden-content', 'revealed-content')
 
                                 if (entry.target.children.item(1)?.tagName === 'UL') {
-                                    const increment = 0.2
-                                    let delay = increment
+                                    // const increment = 0.2
+                                    // let delay = increment
                                     for (const listItem of entry.target.children.item(1)?.children!) {
-                                        const htmlListItem = listItem as HTMLElement
+                                        // const htmlListItem = listItem as HTMLElement
 
-                                        htmlListItem.addEventListener(
-                                            'transitionend',
-                                            function handleResetDelay(e: TransitionEvent) {
-                                                if (e.propertyName === 'opacity' || e.propertyName === 'transform') {
-                                                    htmlListItem.style.transition = `color 0.2s linear, background-color 0.2s linear, transform 0.2s linear, opacity 0.2s linear`
-                                                    htmlListItem.removeEventListener('transitionend', handleResetDelay)
-                                                }
-                                            }
-                                        )
-                                        htmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
+                                        // htmlListItem.addEventListener(
+                                        //     'transitionend',
+                                        //     function handleResetDelay(e: TransitionEvent) {
+                                        //         if (e.propertyName === 'opacity' || e.propertyName === 'transform') {
+                                        //             htmlListItem.style.transition = `color 0.2s linear, background-color 0.2s linear, transform 0.2s linear, opacity 0.2s linear`
+                                        //             htmlListItem.removeEventListener('transitionend', handleResetDelay)
+                                        //         }
+                                        //     }
+                                        // )
+                                        // htmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
                                         listItem.classList.replace('hidden-content', 'revealed-content')
-                                        delay += increment
-
+                                        // delay += increment
                                     }
                                 }
 
@@ -802,9 +792,6 @@ export default function HtmlContent() {
         }
     }, [])
 
-    const handleHoverListItem = (item: string) => {
-        setFocusItem(item)
-    }
 
     return (
         <Html
@@ -906,12 +893,12 @@ export default function HtmlContent() {
                     <ul className='mt-4'>
                         {bookReadingList.map((book, index) => (
                             <li
-                                onMouseEnter={() => handleHoverListItem(book.id)}
-                                onMouseLeave={() => handleHoverListItem('')}
-                                key={book.id}
+                                key={index}
                                 className='hidden-content section-list-item mb-4'
                                 style={{
-                                    opacity: focusItem && focusItem !== book.id ? 0.5 : undefined,
+                                    transition: `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${
+                                        (index + 1) * 0.2
+                                    }s,opacity 0.4s ease-out ${(index + 1) * 0.2}s`
                                 }}
                             >
                                 <img src={book.source} className='reads-list-img' />
