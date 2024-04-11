@@ -16,7 +16,7 @@ import {
     FaFigma,
     FaKeyboard,
     FaLink,
-    FaYoutube 
+    FaYoutube
 } from 'react-icons/fa'
 import { SiTypescript, SiTailwindcss, SiBlender } from 'react-icons/si'
 import { MdOutlinePhonelink } from 'react-icons/md'
@@ -70,7 +70,15 @@ const readingList = [
             </ul>
         ),
         summary:
-            'A valuable lessons on how to improve the readiablity and maintainability of the codebase via meaningful naming conventions, pure function design, centralized error handling, etc.'
+            'A valuable lessons on how to improve the readiablity, maintainability and extensibility of the codebase.',
+
+        keypoints: (
+            <ul className='mt-2'>
+                <li className='keypoint-list-item'>Naming Convention</li>
+                <li className='keypoint-list-item'>Pure Function</li>
+                <li className='keypoint-list-item'>Centralized Error Handling</li>
+            </ul>
+        )
     },
     {
         title: 'New FE Textbook Vol.1 IT Fundamentals',
@@ -128,7 +136,10 @@ const courseList = [
         links: (
             <ul className='ml-2 flex gap-2'>
                 <li>
-                    <a href='https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org' target='_blank'>
+                    <a
+                        href='https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org'
+                        target='_blank'
+                    >
                         <FaYoutube className='icon-link-md' />
                     </a>
                 </li>
@@ -184,6 +195,48 @@ const courseList = [
         ),
         summary:
             'A valuable lessons on how to improve the readiablity and maintainability of the codebase via meaningful naming conventions, pure function design, centralized error handling, etc.'
+    }
+]
+const acknowledgementList = [
+    {
+        name: 'Francesco Cursi',
+        title: 'Sr. Research Engineer, Huawei',
+        avatar: 'images/acknowledgement/fran.webp',
+        links: (
+            <ul className='ml-2 flex gap-2'>
+                <li>
+                    <a href='https://www.linkedin.com/in/francesco-c-a94568111/' target='_blank'>
+                        <FaLinkedin className='icon-link-md' />
+                    </a>
+                </li>
+                <li>
+                    <a href='https://github.com/cursi36' target='_blank'>
+                        <FaGithub className='icon-link-md' />
+                    </a>
+                </li>
+                <li>
+                    <a href='https://francescocursi.com/' target='_blank'>
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
+        summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
+    },
+    {
+        name: 'Adah Hu',
+        title: 'Head of Software Engineering, FLAIR',
+        avatar: 'images/acknowledgement/adah.webp',
+        links: (
+            <ul className='ml-2 flex gap-2'>
+                <li>
+                    <a href='https://www.linkedin.com/in/adah-h-a0854554/' target='_blank'>
+                        <FaLinkedin className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
+        summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
     }
 ]
 
@@ -514,55 +567,6 @@ const worksSections = [
                             Kong Airport. It harnesses the power of big data analytics by processing data gathered from
                             sensors across the transport belts. The predictive model can proactively identify potential
                             congestion points.
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        )
-    }
-]
-const acknowledgementSections = [
-    {
-        title: (
-            <>
-                My co-workers's <span className='text-accent'>comments</span>?
-            </>
-        ),
-        children: (
-            <ul>
-                <li className='section-list-item'>
-                    <div className='pl-4'>
-                        <div className='flex justify-between'>
-                            <div className='flex items-center gap-4'>
-                                <img src='images/acknowledgement/fran.webp' className='acknowledgement-list-img' />
-                                <div>
-                                    <h1 className='font-semibold'>Francesco Cursi</h1>
-                                    <p className='text-secondary-light'>Sr. Research Engineer, Huawei</p>
-                                </div>
-                            </div>
-                            <ul className='ml-2 flex gap-2'>
-                                <li>
-                                    <a href='https://www.linkedin.com/in/francesco-c-a94568111/' target='_blank'>
-                                        <FaLinkedin className='icon-link-md' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='https://github.com/cursi36' target='_blank'>
-                                        <FaGithub className='icon-link-md' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='https://francescocursi.com/' target='_blank'>
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p className='mt-4 text-secondary-light'>
-                            From my time working alongside David, he has demonstrated his remarkable ability to solve
-                            problems and adapt quickly to new subjects. It's all the more impressive given that he
-                            transitioned to this field from a completely different career. Any team would be lucky to
-                            have him.
                         </p>
                     </div>
                 </li>
@@ -905,7 +909,8 @@ export default function HtmlContent() {
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
-                top={studySectionTop}
+                top={0}
+                // top={studySectionTop}
                 position='right'
                 backgroundTitle='Study'
                 topTitle='Where Did You Get Those...'
@@ -941,9 +946,9 @@ export default function HtmlContent() {
                                     <div className='flex items-center justify-between'>
                                         <h1 className='font-medium'>{book.title}</h1>
                                         {book.links}
-
                                     </div>
                                     <p className='mt-2 text-sm text-secondary-light'>{book.summary}</p>
+                                    {book?.keypoints && book.keypoints}
                                 </div>
                             </li>
                         ))}
@@ -1038,11 +1043,34 @@ export default function HtmlContent() {
                 contentObserverRef={contentObserverRef}
                 ref={acknowledgementSectionRef}
             >
-                {acknowledgementSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
-                        {section.children}
-                    </HtmlSection>
-                ))}
+                <HtmlSection
+                    title={
+                        <>
+                            My co-workers's <span className='text-accent'>comments</span>?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <ul>
+                        {acknowledgementList.map((coworker, index) => (
+                            <li key={index} className='section-list-item'>
+                                <div className='pl-4'>
+                                    <div className='flex justify-between'>
+                                        <figure className='flex items-center gap-4'>
+                                            <img src={coworker.avatar} className='acknowledgement-list-img' />
+                                            <figcaption>
+                                                <h1 className='font-semibold'>{coworker.name}</h1>
+                                                <p className='text-secondary-light'>{coworker.title}</p>
+                                            </figcaption>
+                                        </figure>
+                                        <ul className='ml-2 flex gap-2'>{coworker.links}</ul>
+                                    </div>
+                                    <p className='mt-4 text-secondary-light'>{coworker.summary}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </HtmlSection>
             </HtmlScrollContainer>
         </Html>
     )
