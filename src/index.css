@@ -99,11 +99,15 @@
         @apply mb-4 flex rounded-[8px] bg-primary-monochrome p-4 shadow-md will-change-transform;
     }
 
-    .project-list-img {
-        @apply max-h-[70px] min-w-[100px] flex-shrink-0 rounded-[4px] object-cover shadow-lg;
+    .project-list-img-wrapper {
+        @apply flex-shrink-0 rounded-[4px] shadow-lg overflow-hidden h-fit;
     }
 
-    .reads-list-img {
+    .project-list-img {
+        @apply w-[100px] object-cover;
+    }
+
+    .book-list-img {
         @apply max-h-[70px] flex-shrink-0 rounded-[4px] object-cover shadow-lg;
     }
 
