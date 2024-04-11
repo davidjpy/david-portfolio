@@ -12,6 +12,7 @@
         --color-secondary-bg: 130 130 130;
         --color-secondary-light: 120 120 120;
         --color-accent: 246 92 53;
+        --color-accent-bg: 215 221 204;
         --color-clock-blackground: 0 0 0;
     }
 
@@ -22,6 +23,7 @@
         --color-secondary-bg: 151 137 136;
         --color-secondary-light: 197 179 178;
         --color-accent: 246 92 53;
+        --color-accent-bg: 49 57 75;
         --color-clock-blackground: 0 0 0;
     }
 }
@@ -32,7 +34,7 @@
     }
 
     .scroll-text-box {
-        @apply absolute -z-50 h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl [transition:background-color_0.2s_linear,border-radius_0.1s_ease-out];
+        @apply absolute -z-50 h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[100px] pr-[100px] pt-[300px] shadow-2xl [transition:background-color_0.2s_linear,color_0.2s_linear,border-radius_0.1s_ease-out];
     }
 
     .icon-link-md {
@@ -100,7 +102,7 @@
     }
 
     .project-list-img-wrapper {
-        @apply flex-shrink-0 rounded-[4px] shadow-lg overflow-hidden h-fit;
+        @apply h-fit flex-shrink-0 overflow-hidden rounded-[4px] shadow-lg;
     }
 
     .project-list-img {
@@ -113,6 +115,10 @@
 
     .acknowledgement-list-img {
         @apply h-[70px] w-[70px] rounded-full object-cover shadow-lg;
+    }
+
+    .keypoint-list-item {
+        @apply bg-accent-bg mr-2 inline-block rounded-[8px] pb-[4px] pl-[8px] pr-[8px] pt-[4px] text-sm text-secondary shadow;
     }
 }
 

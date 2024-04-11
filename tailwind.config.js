@@ -10,6 +10,7 @@ export default {
                 'secondary-bg': 'rgb(var(--color-secondary-bg) / <alpha-value>)',
                 'secondary-light': 'rgb(var(--color-secondary-light) / <alpha-value>)',
                 accent: 'rgb(var(--color-accent) / <alpha-value>)',
+                'accent-bg': 'rgb(var(--color-accent-bg) / <alpha-value>)',
                 'clock-element': 'rgb(var(--color-clock-blackground) / 0.2)',
                 black: 'rgb(80, 80, 80)'
             },
