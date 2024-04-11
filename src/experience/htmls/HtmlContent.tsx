@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, memo } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import {
     FaGithub,
@@ -70,10 +70,10 @@ const readingList = [
             </ul>
         ),
         summary:
-            'A valuable lessons on how to improve the readiablity, maintainability and extensibility of the codebase.',
+            'A valuable lesson on how to improve the readiablity, maintainability and extensibility of the codebase.',
 
         keypoints: (
-            <ul className='mt-2'>
+            <ul>
                 <li className='keypoint-list-item'>Naming Convention</li>
                 <li className='keypoint-list-item'>Pure Function</li>
                 <li className='keypoint-list-item'>Centralized Error Handling</li>
@@ -85,7 +85,7 @@ const readingList = [
         // author: 'IPA, Japan',
         source: 'images/study/it_fundamentals.webp',
         links: (
-            <ul className='ml-2 flex gap-2'>
+            <ul>
                 <li>
                     <a href='https://itpec.org/news/20220921_LMS.html' target='_blank'>
                         <FaLink className='icon-link-md' />
@@ -93,8 +93,17 @@ const readingList = [
                 </li>
             </ul>
         ),
-        summary:
-            'The book gives a firm foundation in IT principles, which are necessary for my daily work. It touched on computer systems, software development, data structure and algorithms, database fundamentals, networking concepts, and security practices.'
+        summary: 'The book gives a firm foundation in IT principles, which are necessary for my daily work.',
+        keypoints: (
+            <ul className='mt-2'>
+                <li className='keypoint-list-item'>Information Processing Systems</li>
+                <li className='keypoint-list-item'>Hardwware & Software</li>
+                <li className='keypoint-list-item'>Database</li>
+                <li className='keypoint-list-item'>Network</li>
+                <li className='keypoint-list-item'>Security</li>
+                <li className='keypoint-list-item'>DSA</li>
+            </ul>
+        )
     },
     {
         title: 'New FE Textbook Vol.2 IT Strategy & Management',
@@ -110,7 +119,14 @@ const readingList = [
             </ul>
         ),
         summary:
-            'A sophisticated discussion on aligning IT with business objectives, project management & strategic innovation. This resource promises to improve the grasp of IT governance, risk management, and data-driven decision-making.'
+            'A sophisticated discussion on aligning IT with business objectives, project management & strategic innovation.',
+        keypoints: (
+            <ul className='mt-2'>
+                <li className='keypoint-list-item'>SDLC Model</li>
+                <li className='keypoint-list-item'>Risk Management</li>
+                <li className='keypoint-list-item'>Data-Driven Decision-Making</li>
+            </ul>
+        )
     }
 ]
 const courseList = [
@@ -575,7 +591,7 @@ const worksSections = [
     }
 ]
 
-export default function HtmlContent() {
+const HtmlContent = memo(function HtmlContent() {
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
     const skillsSectionRef = useRef<HTMLElement>(null!)
@@ -703,23 +719,8 @@ export default function HtmlContent() {
                                 entry.target.classList.replace('hidden-content', 'revealed-content')
 
                                 if (entry.target.children.item(1)?.tagName === 'UL') {
-                                    // const increment = 0.2
-                                    // let delay = increment
                                     for (const listItem of entry.target.children.item(1)?.children!) {
-                                        // const htmlListItem = listItem as HTMLElement
-
-                                        // htmlListItem.addEventListener(
-                                        //     'transitionend',
-                                        //     function handleResetDelay(e: TransitionEvent) {
-                                        //         if (e.propertyName === 'opacity' || e.propertyName === 'transform') {
-                                        //             htmlListItem.style.transition = `color 0.2s linear, background-color 0.2s linear, transform 0.2s linear, opacity 0.2s linear`
-                                        //             htmlListItem.removeEventListener('transitionend', handleResetDelay)
-                                        //         }
-                                        //     }
-                                        // )
-                                        // htmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
                                         listItem.classList.replace('hidden-content', 'revealed-content')
-                                        // delay += increment
                                     }
                                 }
 
@@ -909,8 +910,7 @@ export default function HtmlContent() {
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
-                top={0}
-                // top={studySectionTop}
+                top={studySectionTop}
                 position='right'
                 backgroundTitle='Study'
                 topTitle='Where Did You Get Those...'
@@ -1074,4 +1074,6 @@ export default function HtmlContent() {
             </HtmlScrollContainer>
         </Html>
     )
-}
+})
+
+export default HtmlContent
