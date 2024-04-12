@@ -28,7 +28,15 @@ import 'swiper/css/pagination'
 
 import HtmlScrollContainer from '@/src/experience/htmls/HtmlScrollContainer'
 import HtmlSection from '@/src/experience/htmls/HtmlSection'
-import { perfectPageHeight } from '@/src/utilities/constants'
+import {
+    perfectPageHeight,
+    aboutSectionTop,
+    skillsSectionTop,
+    studySectionTop,
+    lifeSectionTop,
+    worksSectionTop,
+    acknowledgementSectionTop
+} from '@/src/utilities/constants'
 
 const titles = ['Full-Stack Developer', 'Web Designer', '3D Modeler']
 const softwareSkills = [
@@ -195,6 +203,73 @@ const courseList = [
                 <li className='keypoint-list-item'>Performance</li>
                 <li className='keypoint-list-item'>State Management</li>
                 <li className='keypoint-list-item'> Error Handling</li>
+            </ul>
+        )
+    }
+]
+const workList = [
+    {
+        title: 'WildBear Shop',
+        image: 'images/projects/wildbear.webp',
+        href: 'https://www.wildbear-shop.com/',
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li>
+                    <a href='https://github.com/davidjpy/wildbear' target='_blank'>
+                        <FaGithub className='icon-link-md' />
+                    </a>
+                </li>
+                <li>
+                    <a href='https://www.wildbear-shop.com/' target='_blank'>
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
+        summary: `A demo project featuring a React frontend and a Django backend with a PostgreSQL database. They're deployed on Netlify and AWS respectively.`,
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>Javascript</li>
+                <li className='keypoint-list-item'>React</li>
+                <li className='keypoint-list-item'>Redux</li>
+                <li className='keypoint-list-item'>Python</li>
+                <li className='keypoint-list-item'>Django</li>
+                <li className='keypoint-list-item'>PostgreSQL</li>
+                <li className='keypoint-list-item'>Netlify</li>
+                <li className='keypoint-list-item'>AWS</li>
+            </ul>
+        )
+    },
+    {
+        title: 'Lighthouse Portfolio',
+        image: 'images/projects/portfolio.webp',
+        href: 'https://www.wildbear-shop.com/',
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li>
+                    <a href='https://github.com/davidjpy/wildbear' target='_blank'>
+                        <FaGithub className='icon-link-md' />
+                    </a>
+                </li>
+                <li>
+                    <a href='https://www.wildbear-shop.com/' target='_blank'>
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
+        summary: `An innovative experience by integrating 3D visuals and interactive elements into web. It delivers a captivating interface that pushes the boundaries of traditional web design.`,
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>Typescript</li>
+                <li className='keypoint-list-item'>Three.js</li>
+                <li className='keypoint-list-item'>R3F</li>
+                <li className='keypoint-list-item'>GLSL</li>
+                <li className='keypoint-list-item'>Tailwind CSS </li>
+                <li className='keypoint-list-item'>Blender</li>
+                <li className='keypoint-list-item'>React Spring</li>
+                <li className='keypoint-list-item'>Adobe After Effects</li>
+                <li className='keypoint-list-item'>Lottie</li>
             </ul>
         )
     }
@@ -455,9 +530,8 @@ const worksSections = [
                             </ul>
                         </div>
                         <p className='mt-2 text-sm text-secondary-light'>
-                            A full-stack demo project featuring a React front-end and a Django-powered back-end with a
-                            PostgreSQL database. The project is deployed on Netlify for the client-side and AWS for
-                            server-side.
+                            A demo project featuring a React frontend and a Django backend with a PostgreSQL database,
+                            The project is deployed on Netlify for the client-side and AWS for server-side.
                         </p>
                     </div>
                 </li>
@@ -578,6 +652,7 @@ const worksSections = [
 ]
 
 const HtmlContent = memo(function HtmlContent() {
+    const [focusTitle, setFocusTitle] = useState<string>('')
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
     const skillsSectionRef = useRef<HTMLElement>(null!)
@@ -589,13 +664,6 @@ const HtmlContent = memo(function HtmlContent() {
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
     const scrollData = useScroll()
-
-    const aboutSectionTop = perfectPageHeight * 2
-    const skillsSectionTop = perfectPageHeight * 6
-    const studySectionTop = perfectPageHeight * 10
-    const lifeSectionTop = perfectPageHeight * 14
-    const worksSectionTop = perfectPageHeight * 20
-    const acknowledgementSectionTop = perfectPageHeight * 24
 
     const isNumberInRange = (target: number, low: number, high: number): boolean => {
         if (target >= low && target <= high) {
@@ -825,8 +893,6 @@ const HtmlContent = memo(function HtmlContent() {
         }
     }, [])
 
-    const [focusTitle, setFocusTitle] = useState<string>('')
-
     return (
         <Html
             wrapperClass='w-full'
@@ -904,8 +970,7 @@ const HtmlContent = memo(function HtmlContent() {
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
-                top={0}
-                // top={studySectionTop}
+                top={studySectionTop}
                 position='right'
                 backgroundTitle='Study'
                 topTitle='Where Did You Get Those...'
@@ -929,7 +994,7 @@ const HtmlContent = memo(function HtmlContent() {
                         {readingList.map((book, index) => (
                             <li
                                 key={index}
-                                className='hidden-content group'
+                                className='hidden-content'
                                 style={{
                                     transitionDelay: focusTitle && focusTitle !== book.title ? '0s' : undefined,
                                     opacity: focusTitle && focusTitle !== book.title ? 0.3 : undefined
@@ -937,15 +1002,15 @@ const HtmlContent = memo(function HtmlContent() {
                                 onMouseEnter={() => setFocusTitle(book.title)}
                                 onMouseLeave={() => setFocusTitle('')}
                             >
-                                <a className='section-list-item' target='_blank' href={book.href}>
+                                <a href={book.href} target='_blank' className='section-list-item'>
                                     <figure>
                                         <img src={book.image} className='book-list-img' />
                                     </figure>
                                     <div className='w-full pl-4'>
-                                        <div className='flex items-center justify-between'>
+                                        <header className='flex items-center justify-between'>
                                             <h1 className='section-list-title'>{book.title}</h1>
-                                            <span>{book.linkIcon}</span>
-                                        </div>
+                                            {book.linkIcon}
+                                        </header>
                                         <p className='section-list-summary'>{book.summary}</p>
                                         {book.keypoints}
                                     </div>
@@ -967,7 +1032,7 @@ const HtmlContent = memo(function HtmlContent() {
                         {courseList.map((course, index) => (
                             <li
                                 key={index}
-                                className='hidden-content group'
+                                className='hidden-content'
                                 style={{
                                     transitionDelay: focusTitle && focusTitle !== course.title ? '0s' : undefined,
                                     opacity: focusTitle && focusTitle !== course.title ? 0.3 : undefined
@@ -1027,11 +1092,48 @@ const HtmlContent = memo(function HtmlContent() {
                 contentObserverRef={contentObserverRef}
                 ref={workSectionRef}
             >
-                {worksSections.map((section, index) => (
+                <HtmlSection
+                    title={
+                        <>
+                            <span className='text-accent'>Projects</span> I have done?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <ul>
+                        {workList.map((work, index) => (
+                            <li
+                                key={index}
+                                className='hidden-content relative'
+                                style={{
+                                    transitionDelay: focusTitle && focusTitle !== work.title ? '0s' : undefined,
+                                    opacity: focusTitle && focusTitle !== work.title ? 0.3 : undefined
+                                }}
+                                onMouseEnter={() => setFocusTitle(work.title)}
+                                onMouseLeave={() => setFocusTitle('')}
+                            >
+                                <a href={work.href} className='section-list-item'>
+                                    <figure className='project-list-img-wrapper'>
+                                        <img src={work.image} className='project-list-img' />
+                                    </figure>
+                                    <div className='w-full pl-4'>
+                                        <header className='flex items-center justify-between'>
+                                            <h1 className='section-list-title'>{work.title}</h1>
+                                        </header>
+                                        <p className='section-list-summary'>{work.summary}</p>
+                                        {work.keypoints}
+                                    </div>
+                                </a>
+                                <div className='absolute right-4 top-4'>{work.linkIcons}</div>
+                            </li>
+                        ))}
+                    </ul>
+                </HtmlSection>
+                {/* {worksSections.map((section, index) => (
                     <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
                         {section.children}
                     </HtmlSection>
-                ))}
+                ))} */}
             </HtmlScrollContainer>
 
             <HtmlScrollContainer

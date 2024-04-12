@@ -4,7 +4,7 @@ import { ScrollControls } from '@react-three/drei'
 
 import LighthouseScene from '@/src/experience/scene/LighthouseScene'
 import HtmlContent from '@/src/experience/htmls/HtmlContent'
-import BrightnessSlider from '@/src/experience/htmls/BrightnessSlider'
+import ControlPanel from '@/src/experience/htmls/ControlPanel'
 import Camera from '@/src/experience/camera/Camera'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 
@@ -43,7 +43,7 @@ function Scene() {
 
     return (
         <ScrollControls pages={pages} damping={0}>
-            <BrightnessSlider />
+            <ControlPanel />
             <HtmlContent />
             <Suspense fallback={null}>
                 <LighthouseScene oceanRef={oceanRef} />
