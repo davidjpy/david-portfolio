@@ -98,7 +98,15 @@
     }
 
     .section-list-item {
-        @apply mb-4 flex rounded-[8px] bg-primary-monochrome p-4 shadow-md will-change-transform;
+        @apply mb-4 flex cursor-pointer rounded-[8px] bg-primary-monochrome p-4 shadow-md will-change-transform;
+    }
+
+    .section-list-title {
+        @apply font-medium;
+    }
+
+    .section-list-summary {
+        @apply mt-2 text-sm text-secondary-light;
     }
 
     .project-list-img-wrapper {

@@ -1,4 +1,4 @@
-import { useEffect, useRef, memo } from 'react'
+import { useEffect, useRef, memo, useState } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import {
     FaGithub,
@@ -58,17 +58,9 @@ const otherSkills = [
 const readingList = [
     {
         title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
-        // author: 'Robert Cecil Martin',
-        source: 'images/study/clean_code.webp',
-        links: (
-            <ul className='ml-2 flex gap-2'>
-                <li>
-                    <a href='https://github.com/jnguyen095/clean-code/tree/master' target='_blank'>
-                        <FaGithub className='icon-link-md' />
-                    </a>
-                </li>
-            </ul>
-        ),
+        image: 'images/study/clean_code.webp',
+        href: 'https://github.com/jnguyen095/clean-code/tree/master',
+        linkIcon: <FaGithub className='icon-link-md' />,
         summary:
             'A valuable lesson on how to improve the readiablity, maintainability and extensibility of the codebase.',
 
@@ -82,20 +74,12 @@ const readingList = [
     },
     {
         title: 'New FE Textbook Vol.1 IT Fundamentals',
-        // author: 'IPA, Japan',
-        source: 'images/study/it_fundamentals.webp',
-        links: (
-            <ul>
-                <li>
-                    <a href='https://itpec.org/news/20220921_LMS.html' target='_blank'>
-                        <FaLink className='icon-link-md' />
-                    </a>
-                </li>
-            </ul>
-        ),
+        image: 'images/study/it_fundamentals.webp',
+        href: 'https://itpec.org/news/20220921_LMS.html',
+        linkIcon: <FaLink className='icon-link-md' />,
         summary: 'The book gives a firm foundation in IT principles, which are necessary for my daily work.',
         keypoints: (
-            <ul className='mt-2'>
+            <ul>
                 <li className='keypoint-list-item'>Information Processing Systems</li>
                 <li className='keypoint-list-item'>Hardwware & Software</li>
                 <li className='keypoint-list-item'>Database</li>
@@ -107,21 +91,13 @@ const readingList = [
     },
     {
         title: 'New FE Textbook Vol.2 IT Strategy & Management',
-        // author: 'IPA, Japan',
-        source: 'images/study/it_strategy_and_management.webp',
-        links: (
-            <ul className='ml-2 flex gap-2'>
-                <li>
-                    <a href='https://itpec.org/news/20220921_LMS.html' target='_blank'>
-                        <FaLink className='icon-link-md' />
-                    </a>
-                </li>
-            </ul>
-        ),
+        image: 'images/study/it_strategy_and_management.webp',
+        href: 'https://itpec.org/news/20220921_LMS.html',
+        linkIcon: <FaLink className='icon-link-md' />,
         summary:
             'A sophisticated discussion on aligning IT with business objectives, project management & strategic innovation.',
         keypoints: (
-            <ul className='mt-2'>
+            <ul>
                 <li className='keypoint-list-item'>SDLC Model</li>
                 <li className='keypoint-list-item'>Risk Management</li>
                 <li className='keypoint-list-item'>Data-Driven Decision-Making</li>
@@ -133,84 +109,94 @@ const courseList = [
     {
         title: 'Three.js Journey',
         author: 'Robert Cecil Martin',
-        source: 'images/study/threejs_journey_cert.webp',
-        links: (
-            <ul className='ml-2 flex gap-2'>
-                <li>
-                    <a href='https://threejs-journey.com/' target='_blank'>
-                        <FaLink className='icon-link-md' />
-                    </a>
-                </li>
+        image: 'images/study/threejs_journey_cert.webp',
+        href: 'https://threejs-journey.com/',
+        linkIcon: <FaLink className='icon-link-md' />,
+        summary: `An extensive 91-hour program that expanded my horizon of 3D web graphics.`,
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>WebGL</li>
+                <li className='keypoint-list-item'>Three.js</li>
+                <li className='keypoint-list-item'>GLSL</li>
+                <li className='keypoint-list-item'>React Three Fiber</li>
+                <li className='keypoint-list-item'>Blender</li>
             </ul>
-        ),
-        summary: `I completed an extensive 91-hour program that offers to to advanced techniques of WebGL, Three.js, GLSL, and Blender. It expanded my horizon of 3D web graphics, enabling me to create more sophisticated and interactive online experiences.`
+        )
     },
     {
         title: 'Harvard CS50: Introduction to Computer Science',
         author: 'Robert Cecil Martin',
-        source: 'images/study/cs50.webp',
-        links: (
-            <ul className='ml-2 flex gap-2'>
-                <li>
-                    <a
-                        href='https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org'
-                        target='_blank'
-                    >
-                        <FaYoutube className='icon-link-md' />
-                    </a>
-                </li>
-            </ul>
-        ),
+        image: 'images/study/cs50.webp',
+        href: 'https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org',
+        linkIcon: <FaYoutube className='icon-link-md' />,
         summary:
-            'A valuable lessons on how to improve the readiablity and maintainability of the codebase via meaningful naming conventions, pure function design, centralized error handling, etc.'
+            'An in-depth dive into the fundamentals of computer science. Additionally, it helped me learn how to think programmatically.',
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>C</li>
+                <li className='keypoint-list-item'>Memory Allocation</li>
+                <li className='keypoint-list-item'>DSA</li>
+                <li className='keypoint-list-item'>Python</li>
+                <li className='keypoint-list-item'>Database</li>
+            </ul>
+        )
     },
     {
         title: 'MIT 6.006 Introduction to Algorithms',
         author: 'Robert Cecil Martin',
-        source: 'images/study/mit6.006.webp',
-        links: (
-            <ul className='ml-2 flex gap-2'>
-                <li>
-                    <a href='https://www.youtube.com/watch?v=HtSuA80QTyo&ab_channel=MITOpenCourseWare' target='_blank'>
-                        <FaYoutube className='icon-link-md' />
-                    </a>
-                </li>
+        image: 'images/study/mit6.006.webp',
+        href: 'https://www.youtube.com/watch?v=HtSuA80QTyo&ab_channel=MITOpenCourseWare',
+        linkIcon: <FaYoutube className='icon-link-md' />,
+        summary: 'An introduction to basic data structures and algorithmic approaches to programming problems.',
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>DSA</li>
+                <li className='keypoint-list-item'>Space & Time Complexity</li>
             </ul>
-        ),
-        summary:
-            'A valuable lessons on how to improve the readiablity and maintainability of the codebase via meaningful naming conventions, pure function design, centralized error handling, etc.'
+        )
     },
     {
         title: 'Stanford CS229: Machine Learning',
         author: 'Robert Cecil Martin',
-        source: 'images/study/cs229.webp',
-        links: (
-            <ul className='ml-2 flex gap-2'>
-                <li>
-                    <a href='https://www.youtube.com/watch?v=jGwO_UgTS7I&ab_channel=StanfordOnline' target='_blank'>
-                        <FaYoutube className='icon-link-md' />
-                    </a>
-                </li>
+        image: 'images/study/cs229.webp',
+        href: 'https://www.youtube.com/watch?v=jGwO_UgTS7I&ab_channel=StanfordOnline',
+        linkIcon: <FaYoutube className='icon-link-md' />,
+        summary: 'The principles of machine learning and pattern recognition are well-established by this course.',
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>Algebra</li>
+                <li className='keypoint-list-item'>Regression</li>
+                <li className='keypoint-list-item'>Gradient Descent</li>
+                <li className='keypoint-list-item'>CNN</li>
             </ul>
-        ),
-        summary:
-            'A valuable lessons on how to improve the readiablity and maintainability of the codebase via meaningful naming conventions, pure function design, centralized error handling, etc.'
+        )
     },
     {
         title: 'Bulletproof React',
         author: 'Robert Cecil Martin',
-        source: 'images/study/bulletproof_react.webp',
-        links: (
-            <ul className='ml-2 flex gap-2'>
-                <li>
-                    <a href='https://github.com/alan2207/bulletproof-react' target='_blank'>
-                        <FaGithub className='icon-link-md' />
-                    </a>
-                </li>
+        image: 'images/study/bulletproof_react.webp',
+        href: 'https://github.com/alan2207/bulletproof-react',
+        linkIcon: <FaGithub className='icon-link-md' />,
+        // links: (
+        //     <ul>
+        //         <li>
+        //             <a href='https://github.com/alan2207/bulletproof-react' target='_blank'>
+        //                 <FaGithub className='icon-link-md' />
+        //             </a>
+        //         </li>
+        //     </ul>
+        // ),
+        summary: 'A guide on industry best practices for React.',
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>Style</li>
+                <li className='keypoint-list-item'>Folder Structure</li>
+                <li className='keypoint-list-item'>Testing</li>
+                <li className='keypoint-list-item'>Performance</li>
+                <li className='keypoint-list-item'>State Management</li>
+                <li className='keypoint-list-item'> Error Handling</li>
             </ul>
-        ),
-        summary:
-            'A valuable lessons on how to improve the readiablity and maintainability of the codebase via meaningful naming conventions, pure function design, centralized error handling, etc.'
+        )
     }
 ]
 const acknowledgementList = [
@@ -719,8 +705,14 @@ const HtmlContent = memo(function HtmlContent() {
                                 entry.target.classList.replace('hidden-content', 'revealed-content')
 
                                 if (entry.target.children.item(1)?.tagName === 'UL') {
+                                    const increment = 0.2
+                                    let delay = increment
                                     for (const listItem of entry.target.children.item(1)?.children!) {
-                                        listItem.classList.replace('hidden-content', 'revealed-content')
+                                        const HtmlListItem = listItem as HTMLElement
+                                        HtmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
+                                        HtmlListItem.classList.replace('hidden-content', 'revealed-content')
+
+                                        delay += increment
                                     }
                                 }
 
@@ -833,6 +825,8 @@ const HtmlContent = memo(function HtmlContent() {
         }
     }, [])
 
+    const [focusTitle, setFocusTitle] = useState<string>('')
+
     return (
         <Html
             wrapperClass='w-full'
@@ -910,7 +904,8 @@ const HtmlContent = memo(function HtmlContent() {
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
-                top={studySectionTop}
+                top={0}
+                // top={studySectionTop}
                 position='right'
                 backgroundTitle='Study'
                 topTitle='Where Did You Get Those...'
@@ -934,22 +929,27 @@ const HtmlContent = memo(function HtmlContent() {
                         {readingList.map((book, index) => (
                             <li
                                 key={index}
-                                className='hidden-content section-list-item mb-4'
+                                className='hidden-content group'
                                 style={{
-                                    transition: `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${
-                                        (index + 1) * 0.2
-                                    }s,opacity 0.4s ease-out ${(index + 1) * 0.2}s`
+                                    transitionDelay: focusTitle && focusTitle !== book.title ? '0s' : undefined,
+                                    opacity: focusTitle && focusTitle !== book.title ? 0.3 : undefined
                                 }}
+                                onMouseEnter={() => setFocusTitle(book.title)}
+                                onMouseLeave={() => setFocusTitle('')}
                             >
-                                <img src={book.source} className='book-list-img' />
-                                <div className='pl-4'>
-                                    <div className='flex items-center justify-between'>
-                                        <h1 className='font-medium'>{book.title}</h1>
-                                        {book.links}
+                                <a className='section-list-item' target='_blank' href={book.href}>
+                                    <figure>
+                                        <img src={book.image} className='book-list-img' />
+                                    </figure>
+                                    <div className='w-full pl-4'>
+                                        <div className='flex items-center justify-between'>
+                                            <h1 className='section-list-title'>{book.title}</h1>
+                                            <span>{book.linkIcon}</span>
+                                        </div>
+                                        <p className='section-list-summary'>{book.summary}</p>
+                                        {book.keypoints}
                                     </div>
-                                    <p className='mt-2 text-sm text-secondary-light'>{book.summary}</p>
-                                    {book?.keypoints && book.keypoints}
-                                </div>
+                                </a>
                             </li>
                         ))}
                     </ul>
@@ -958,7 +958,7 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection
                     title={
                         <>
-                            Useful <span className='text-accent'>Courses</span> I would suggest?
+                            Useful <span className='text-accent'>Courses</span> I Have Taken?
                         </>
                     }
                     contentObserverRef={contentObserverRef}
@@ -967,23 +967,27 @@ const HtmlContent = memo(function HtmlContent() {
                         {courseList.map((course, index) => (
                             <li
                                 key={index}
-                                className='hidden-content section-list-item mb-4'
+                                className='hidden-content group'
                                 style={{
-                                    transition: `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${
-                                        (index + 1) * 0.2
-                                    }s,opacity 0.4s ease-out ${(index + 1) * 0.2}s`
+                                    transitionDelay: focusTitle && focusTitle !== course.title ? '0s' : undefined,
+                                    opacity: focusTitle && focusTitle !== course.title ? 0.3 : undefined
                                 }}
+                                onMouseEnter={() => setFocusTitle(course.title)}
+                                onMouseLeave={() => setFocusTitle('')}
                             >
-                                <figure className='project-list-img-wrapper'>
-                                    <img src={course.source} className='project-list-img' />
-                                </figure>
-                                <div className='pl-4'>
-                                    <div className='flex items-center justify-between'>
-                                        <h1 className='font-semibold'>{course.title}</h1>
-                                        {course.links}
+                                <a className='section-list-item' target='_blank' href={course.href}>
+                                    <figure className='project-list-img-wrapper'>
+                                        <img src={course.image} className='project-list-img' />
+                                    </figure>
+                                    <div className='w-full pl-4'>
+                                        <div className='flex items-center justify-between'>
+                                            <h1 className='section-list-title'>{course.title}</h1>
+                                            <span>{course.linkIcon}</span>
+                                        </div>
+                                        <p className='section-list-summary'>{course.summary}</p>
+                                        {course.keypoints}
                                     </div>
-                                    <p className='mt-2 text-sm text-secondary-light'>{course.summary}</p>
-                                </div>
+                                </a>
                             </li>
                         ))}
                     </ul>
