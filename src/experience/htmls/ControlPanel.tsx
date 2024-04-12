@@ -6,9 +6,20 @@ import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 
 import { AppContext } from '@/src/context/appContext'
 import { getInterpolatedValue } from '@/src/utilities/getInterpolatedValue'
-import { latestHoursInMinutes, earliestHoursInMinutes, minBrightness, maxBrightness } from '@/src/utilities/constants'
+import {
+    latestHoursInMinutes,
+    earliestHoursInMinutes,
+    minBrightness,
+    maxBrightness,
+    aboutSectionTop,
+    skillsSectionTop,
+    studySectionTop,
+    lifeSectionTop,
+    worksSectionTop,
+    acknowledgementSectionTop
+} from '@/src/utilities/constants'
 
-const containerHeight = 120
+const containerHeight = 150
 const extraPaddingTop = 20
 
 const toDos = [
@@ -25,9 +36,18 @@ const toDos = [
     { name: 'Bed Time', icon: '🛏️' }
 ]
 
-const timeSymbols = [<IoSunny size={22} />, <IoMoon size={18} />]
+const navTab = [
+    { name: 'About', top: aboutSectionTop },
+    { name: 'Skill', top: skillsSectionTop },
+    { name: 'Study', top: studySectionTop },
+    { name: 'Life', top: lifeSectionTop },
+    { name: 'Work', top: worksSectionTop },
+    { name: 'Ack', top: acknowledgementSectionTop }
+]
 
-export default function BrightnessSlider() {
+const timeSymbols = [<IoSunny size={20} />, <IoMoon size={18} />]
+
+export default function ControlPanel() {
     const scrollData = useScroll()
     const htmlContainerRef = useRef<HTMLDivElement>(null)
     const [time, setTime] = useState<number[]>([0, 0, 0, 0, 0])
@@ -53,7 +73,6 @@ export default function BrightnessSlider() {
             window.removeEventListener('resize', handlePositionSlider)
         }
     }, [])
-
 
     useEffect(() => {
         const observer = new MutationObserver(function (mutations) {
@@ -149,7 +168,7 @@ export default function BrightnessSlider() {
     const [toDoSpring] = useSprings(
         1,
         () => ({
-            transform: `translateY(-${toDoIndex * 56}px)`,
+            transform: `translateY(-${toDoIndex * 50}px)`,
             config: config.stiff
         }),
         [toDoIndex]
@@ -158,7 +177,7 @@ export default function BrightnessSlider() {
     const [timeSymbolSpring] = useSprings(
         1,
         () => ({
-            transform: `translateY(-${timeSymbolIndex * 30}px)`,
+            transform: `translateY(-${timeSymbolIndex * 26}px)`,
             config: config.stiff
         }),
         [timeSymbolIndex]
@@ -180,8 +199,7 @@ export default function BrightnessSlider() {
             }}
             portal={{ current: scrollData.fixed }}
             zIndexRange={[100, 100]}
-
-            className='top-0 grid w-[400px] grid-cols-7 grid-rows-2 gap-[8px] rounded-b-[12px] bg-black/40 p-[8px] pt-[28px] text-center text-white shadow-xl backdrop-blur-sm'
+            className='top-0 grid w-[400px] grid-cols-7 grid-rows-3 gap-[6px] rounded-b-[12px] bg-black/40 p-[8px] pt-[28px] text-center text-white shadow-xl backdrop-blur-sm'
             style={{
                 left: window.innerWidth - 440,
                 height: containerHeight,
@@ -222,7 +240,7 @@ export default function BrightnessSlider() {
             <div className='clock-blackground-sm col-span-1 row-span-1 overflow-hidden text-[16px]'>
                 <animated.ul style={timeSymbolSpring[0]}>
                     {timeSymbols.map((symbol, index) => (
-                        <li key={index} className='flex-center h-[30px]'>
+                        <li key={index} className='flex-center h-[26px]'>
                             {symbol}
                         </li>
                     ))}
@@ -230,13 +248,13 @@ export default function BrightnessSlider() {
             </div>
 
             <div className='clock-blackground-sm col-span-3 row-span-2 p-0'>
-                <header className='flex-center h-[28px] w-full rounded-[8px] bg-[#d6493fd2] text-[12px] shadow-lg'>
+                <header className='flex-center h-[24px] w-full rounded-t-[8px] bg-[#d6493fd2] text-[12px] shadow-lg'>
                     <h1>Timetable</h1>
                 </header>
-                <span className='block h-[56px] overflow-hidden'>
+                <span className='block h-[50px] overflow-hidden'>
                     <animated.ul style={toDoSpring[0]}>
                         {toDos.map((todo, index) => (
-                            <li key={index} className='flex-center h-[56px] text-[16px] font-black'>
+                            <li key={index} className='flex-center h-[50px] text-[16px] font-bold'>
                                 <p>{todo.name}</p>
                                 <span className='ml-[4px]'>{todo.icon}</span>
                             </li>
@@ -247,7 +265,7 @@ export default function BrightnessSlider() {
 
             <div className='clock-blackground-sm col-span-4 row-span-1'>
                 <div className='flex h-full items-center justify-between'>
-                    <IoMoon size={18} className='ml-[4px]' />
+                    <IoMoon size={16} className='ml-[4px]' />
                     <input
                         type='range'
                         min={minBrightness}
@@ -258,9 +276,21 @@ export default function BrightnessSlider() {
                         className='w-[150px]'
                         aria-label='Brightness'
                     />
-                    <IoSunny size={22} className='mr-[4px]' />
+                    <IoSunny size={20} className='mr-[4px]' />
                 </div>
             </div>
+
+            <ul className='clock-blackground-sm col-span-7 row-span-1 flex items-center justify-evenly rounded-full'>
+                {navTab.map((tab, index) => (
+                    <li
+                        key={index}
+                        className='tab-list-item'
+                        onClick={() => scrollData.el.scrollTo({ top: tab.top, behavior: 'smooth' })}
+                    >
+                        {tab.name}
+                    </li>
+                ))}
+            </ul>
 
             <span
                 onClick={handleClickToggleSlider}

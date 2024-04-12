@@ -6,9 +6,21 @@ export const cameraConfig = {
 
 export const cameraMouseFactor = 0.15
 
+export const perfectPageHeight = 1080
+
 export const scrollPages = 25
 
-export const perfectPageHeight = 1080
+export const aboutSectionTop = perfectPageHeight * 2
+
+export const skillsSectionTop = perfectPageHeight * 6
+
+export const studySectionTop = perfectPageHeight * 10
+
+export const lifeSectionTop = perfectPageHeight * 14
+
+export const worksSectionTop = perfectPageHeight * 20
+
+export const acknowledgementSectionTop = perfectPageHeight * 24
 
 export const maxBrightness = 100
 
