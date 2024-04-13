@@ -262,7 +262,7 @@ const workList = [
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>Typescript</li>
-                <li className='keypoint-list-item'>Three.js</li>
+                <li className='keypoint-list-item'>React</li>
                 <li className='keypoint-list-item'>R3F</li>
                 <li className='keypoint-list-item'>GLSL</li>
                 <li className='keypoint-list-item'>Tailwind CSS </li>
@@ -274,13 +274,91 @@ const workList = [
         )
     }
 ]
+const certificateList = [
+    {
+        title: 'System and method for detecting surface defect of object',
+        image: 'images/projects/defect_patent.webp',
+        href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en',
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li>
+                    <a
+                        href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
+                        target='_blank'
+                    >
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
+        summary: `A short-term patent of a system that utilizes a robotic arm equipped with a camera to capture images of an object from various angles. It employs a detection algorithm to pinpoint any defects present on the images.`,
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>Machine Learning</li>
+                <li className='keypoint-list-item'>CNN</li>
+                <li className='keypoint-list-item'>Robotics</li>
+                <li className='keypoint-list-item'>Python</li>
+                <li className='keypoint-list-item'>React</li>
+                <li className='keypoint-list-item'>ActiveMQ</li>
+            </ul>
+        )
+    },
+    {
+        title: `Method for detecting and predicting a bottleneck in a transportation process of a
+        logistics center`,
+        image: 'images/projects/logistic_patent.webp',
+        href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=cn',
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li>
+                    <a
+                        href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
+                        target='_blank'
+                    >
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
+        summary: `A short-term patent of a system for predicting bottlenecks in cargo logistics at Hong Kong Airport. We gathered data from sensors across the transport belts and created a predictive model can proactively identify potential congestion points.`,
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>IoT</li>
+                <li className='keypoint-list-item'>Big Data</li>
+                <li className='keypoint-list-item'>React</li>
+                <li className='keypoint-list-item'>Python</li>
+            </ul>
+        )
+    },
+    {
+        title: 'FE Exam Certificate',
+        image: 'images/projects/FE_exam_cert.webp',
+        href: 'https://itpec.org/about/itpec-common-exam.html',
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li>
+                    <a href='https://itpec.org/about/itpec-common-exam.html' target='_blank'>
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
+        summary: `I traveled to the Philippines for the Fundamental Information Technology Engineer Examination. It earned me the qualifications for the Engineering Visa in Japan.`,
+        keypoints: (
+            <ul>
+                <li className='keypoint-list-item'>Computer Science</li>
+            </ul>
+        )
+    }
+]
 const acknowledgementList = [
     {
         name: 'Francesco Cursi',
         title: 'Sr. Research Engineer, Huawei',
-        avatar: 'images/acknowledgement/fran.webp',
-        links: (
-            <ul className='ml-2 flex gap-2'>
+        image: 'images/acknowledgement/fran.webp',
+        href: 'https://francescocursi.com/',
+        linkIcons: (
+            <ul className='flex gap-2'>
                 <li>
                     <a href='https://www.linkedin.com/in/francesco-c-a94568111/' target='_blank'>
                         <FaLinkedin className='icon-link-md' />
@@ -303,9 +381,10 @@ const acknowledgementList = [
     {
         name: 'Adah Hu',
         title: 'Head of Software Engineering, FLAIR',
-        avatar: 'images/acknowledgement/adah.webp',
-        links: (
-            <ul className='ml-2 flex gap-2'>
+        image: 'images/acknowledgement/adah.webp',
+        href: 'https://www.linkedin.com/in/adah-h-a0854554/',
+        linkIcons: (
+            <ul className='flex gap-2'>
                 <li>
                     <a href='https://www.linkedin.com/in/adah-h-a0854554/' target='_blank'>
                         <FaLinkedin className='icon-link-md' />
@@ -316,6 +395,49 @@ const acknowledgementList = [
         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
     }
 ]
+
+// const acknowledgementList = [
+//     {
+//         name: 'Francesco Cursi',
+//         title: 'Sr. Research Engineer, Huawei',
+//         avatar: 'images/acknowledgement/fran.webp',
+//         links: (
+//             <ul className='ml-2 flex gap-2'>
+//                 <li>
+//                     <a href='https://www.linkedin.com/in/francesco-c-a94568111/' target='_blank'>
+//                         <FaLinkedin className='icon-link-md' />
+//                     </a>
+//                 </li>
+//                 <li>
+//                     <a href='https://github.com/cursi36' target='_blank'>
+//                         <FaGithub className='icon-link-md' />
+//                     </a>
+//                 </li>
+//                 <li>
+//                     <a href='https://francescocursi.com/' target='_blank'>
+//                         <FaLink className='icon-link-md' />
+//                     </a>
+//                 </li>
+//             </ul>
+//         ),
+//         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
+//     },
+//     {
+//         name: 'Adah Hu',
+//         title: 'Head of Software Engineering, FLAIR',
+//         avatar: 'images/acknowledgement/adah.webp',
+//         links: (
+//             <ul className='ml-2 flex gap-2'>
+//                 <li>
+//                     <a href='https://www.linkedin.com/in/adah-h-a0854554/' target='_blank'>
+//                         <FaLinkedin className='icon-link-md' />
+//                     </a>
+//                 </li>
+//             </ul>
+//         ),
+//         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
+//     }
+// ]
 
 const aboutSections = [
     {
@@ -773,8 +895,8 @@ const HtmlContent = memo(function HtmlContent() {
                                 entry.target.classList.replace('hidden-content', 'revealed-content')
 
                                 if (entry.target.children.item(1)?.tagName === 'UL') {
-                                    const increment = 0.2
-                                    let delay = increment
+                                    const increment = 0.1
+                                    let delay = 0.3
                                     for (const listItem of entry.target.children.item(1)?.children!) {
                                         const HtmlListItem = listItem as HTMLElement
                                         HtmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
@@ -985,7 +1107,7 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection
                     title={
                         <>
-                            Interesting <span className='text-accent'>Books</span> I Have Read?
+                            Interesting <span className='text-accent'>books</span> I have read?
                         </>
                     }
                     contentObserverRef={contentObserverRef}
@@ -1023,7 +1145,7 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection
                     title={
                         <>
-                            Useful <span className='text-accent'>Courses</span> I Have Taken?
+                            Useful <span className='text-accent'>courses</span> I have taken?
                         </>
                     }
                     contentObserverRef={contentObserverRef}
@@ -1112,7 +1234,7 @@ const HtmlContent = memo(function HtmlContent() {
                                 onMouseEnter={() => setFocusTitle(work.title)}
                                 onMouseLeave={() => setFocusTitle('')}
                             >
-                                <a href={work.href} className='section-list-item'>
+                                <a href={work.href} target='_blank' className='section-list-item'>
                                     <figure className='project-list-img-wrapper'>
                                         <img src={work.image} className='project-list-img' />
                                     </figure>
@@ -1129,11 +1251,43 @@ const HtmlContent = memo(function HtmlContent() {
                         ))}
                     </ul>
                 </HtmlSection>
-                {/* {worksSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
-                        {section.children}
-                    </HtmlSection>
-                ))} */}
+                <HtmlSection
+                    title={
+                        <>
+                            Random <span className='text-accent'>certificates</span> that might helps?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <ul>
+                        {certificateList.map((certificate, index) => (
+                            <li
+                                key={index}
+                                className='hidden-content relative'
+                                style={{
+                                    transitionDelay: focusTitle && focusTitle !== certificate.title ? '0s' : undefined,
+                                    opacity: focusTitle && focusTitle !== certificate.title ? 0.3 : undefined
+                                }}
+                                onMouseEnter={() => setFocusTitle(certificate.title)}
+                                onMouseLeave={() => setFocusTitle('')}
+                            >
+                                <a href={certificate.href} target='_blank' className='section-list-item'>
+                                    <figure className='project-list-img-wrapper'>
+                                        <img src={certificate.image} className='project-list-img' />
+                                    </figure>
+                                    <div className='w-full pl-4'>
+                                        <header className='flex items-center justify-between'>
+                                            <h1 className='section-list-title'>{certificate.title}</h1>
+                                        </header>
+                                        <p className='section-list-summary'>{certificate.summary}</p>
+                                        {certificate.keypoints}
+                                    </div>
+                                </a>
+                                <div className='absolute right-4 top-4'>{certificate.linkIcons}</div>
+                            </li>
+                        ))}
+                    </ul>
+                </HtmlSection>
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
@@ -1159,20 +1313,31 @@ const HtmlContent = memo(function HtmlContent() {
                 >
                     <ul>
                         {acknowledgementList.map((coworker, index) => (
-                            <li key={index} className='section-list-item'>
-                                <div className='pl-4'>
-                                    <div className='flex justify-between'>
-                                        <figure className='flex items-center gap-4'>
-                                            <img src={coworker.avatar} className='acknowledgement-list-img' />
-                                            <figcaption>
-                                                <h1 className='font-semibold'>{coworker.name}</h1>
-                                                <p className='text-secondary-light'>{coworker.title}</p>
-                                            </figcaption>
-                                        </figure>
-                                        <ul className='ml-2 flex gap-2'>{coworker.links}</ul>
+                            <li
+                                key={index}
+                                className='hidden-content relative'
+                                style={{
+                                    transitionDelay: focusTitle && focusTitle !== coworker.name ? '0s' : undefined,
+                                    opacity: focusTitle && focusTitle !== coworker.name ? 0.3 : undefined
+                                }}
+                                onMouseEnter={() => setFocusTitle(coworker.name)}
+                                onMouseLeave={() => setFocusTitle('')}
+                            >
+                                <a href={coworker.href} target='_blank' className='section-list-item'>
+                                    <div className='pl-4'>
+                                        <div className='flex justify-between'>
+                                            <figure className='flex items-center gap-4'>
+                                                <img src={coworker.image} className='acknowledgement-list-img' />
+                                                <figcaption>
+                                                    <h1 className='font-semibold'>{coworker.name}</h1>
+                                                    <p className='section-list-summary mt-0'>{coworker.title}</p>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                        <p className='section-list-summary mt-4'>{coworker.summary}</p>
                                     </div>
-                                    <p className='mt-4 text-secondary-light'>{coworker.summary}</p>
-                                </div>
+                                </a>
+                                <div className='absolute right-4 top-4'>{coworker.linkIcons}</div>
                             </li>
                         ))}
                     </ul>
