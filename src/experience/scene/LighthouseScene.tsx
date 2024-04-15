@@ -80,16 +80,6 @@ export default function LighthouseScene({ oceanRef }: Props) {
             />
             <AnimatedStars {...starsAnimationConfigs} radius={10} depth={5} count={1800} factor={0.8} fade speed={0} />
             <AnimatedSparkles {...sparklesAnimationConfigs} />
-            {/* <Html distanceFactor={2} center portal={{ current: scrollData.fixed }} position={[-0.44, 1, 0]}>
-                <h1 className='w-[260px] animate-dropIn select-none text-center text-xl font-extrabold text-secondary'>
-                    Wellcome to
-                </h1>
-            </Html>
-            <Html distanceFactor={2} center portal={{ current: scrollData.fixed }} position={[0.54, 0.8, 0]}>
-                <h1 className='w-[400px] animate-dropIn select-none text-center text-xl font-extrabold text-secondary'>
-                    <span className='text-accent'>David's</span> portfolio
-                </h1>
-            </Html> */}
         </group>
     )
 }

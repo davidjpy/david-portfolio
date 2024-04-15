@@ -15,7 +15,6 @@ export default {
                 black: 'rgb(80, 80, 80)'
             },
             animation: {
-                dropIn: 'dropIn 1s ease-out backwards',
                 typing: 'typing 0.85s step-end infinite'
             },
             keyframes: {
