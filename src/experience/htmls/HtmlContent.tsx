@@ -68,6 +68,7 @@ const readingList = [
         title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
         image: 'images/study/clean_code.webp',
         href: 'https://github.com/jnguyen095/clean-code/tree/master',
+        ariaLabel: 'Clean Code: A Handbook of Agile Software Craftsmanship (opens in a new tab)',
         linkIcon: <FaGithub className='icon-link-md' />,
         summary:
             'A valuable lesson on how to improve the readiablity, maintainability and extensibility of the codebase.',
@@ -84,6 +85,7 @@ const readingList = [
         title: 'New FE Textbook Vol.1 IT Fundamentals',
         image: 'images/study/it_fundamentals.webp',
         href: 'https://itpec.org/news/20220921_LMS.html',
+        ariaLabel: 'New FE Textbook Vol.1 IT Fundamentals (opens in a new tab)',
         linkIcon: <FaLink className='icon-link-md' />,
         summary: 'The book gives a firm foundation in IT principles, which are necessary for my daily work.',
         keypoints: (
@@ -101,6 +103,7 @@ const readingList = [
         title: 'New FE Textbook Vol.2 IT Strategy & Management',
         image: 'images/study/it_strategy_and_management.webp',
         href: 'https://itpec.org/news/20220921_LMS.html',
+        ariaLabel: 'New FE Textbook Vol.2 IT Strategy & Management (opens in a new tab)',
         linkIcon: <FaLink className='icon-link-md' />,
         summary:
             'A sophisticated discussion on aligning IT with business objectives, project management & strategic innovation.',
@@ -119,6 +122,7 @@ const courseList = [
         author: 'Robert Cecil Martin',
         image: 'images/study/threejs_journey_cert.webp',
         href: 'https://threejs-journey.com/',
+        ariaLabel: 'Three.js Journey (opens in a new tab)',
         linkIcon: <FaLink className='icon-link-md' />,
         summary: `An extensive 91-hour program that expanded my horizon of 3D web graphics.`,
         keypoints: (
@@ -136,6 +140,7 @@ const courseList = [
         author: 'Robert Cecil Martin',
         image: 'images/study/cs50.webp',
         href: 'https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org',
+        ariaLabel: 'Harvard CS50: Introduction to Computer Science (opens in a new tab)',
         linkIcon: <FaYoutube className='icon-link-md' />,
         summary:
             'An in-depth dive into the fundamentals of computer science. Additionally, it helped me learn how to think programmatically.',
@@ -154,6 +159,7 @@ const courseList = [
         author: 'Robert Cecil Martin',
         image: 'images/study/mit6.006.webp',
         href: 'https://www.youtube.com/watch?v=HtSuA80QTyo&ab_channel=MITOpenCourseWare',
+        ariaLabel: 'MIT 6.006 Introduction to Algorithms (opens in a new tab)',
         linkIcon: <FaYoutube className='icon-link-md' />,
         summary: 'An introduction to basic data structures and algorithmic approaches to programming problems.',
         keypoints: (
@@ -168,6 +174,7 @@ const courseList = [
         author: 'Robert Cecil Martin',
         image: 'images/study/cs229.webp',
         href: 'https://www.youtube.com/watch?v=jGwO_UgTS7I&ab_channel=StanfordOnline',
+        ariaLabel: 'Stanford CS229: Machine Learning (opens in a new tab)',
         linkIcon: <FaYoutube className='icon-link-md' />,
         summary: 'The principles of machine learning and pattern recognition are well-established by this course.',
         keypoints: (
@@ -184,16 +191,8 @@ const courseList = [
         author: 'Robert Cecil Martin',
         image: 'images/study/bulletproof_react.webp',
         href: 'https://github.com/alan2207/bulletproof-react',
+        ariaLabel: 'Bulletproof React (opens in a new tab)',
         linkIcon: <FaGithub className='icon-link-md' />,
-        // links: (
-        //     <ul>
-        //         <li>
-        //             <a href='https://github.com/alan2207/bulletproof-react' target='_blank'>
-        //                 <FaGithub className='icon-link-md' />
-        //             </a>
-        //         </li>
-        //     </ul>
-        // ),
         summary: 'A guide on industry best practices for React.',
         keypoints: (
             <ul>
@@ -212,15 +211,26 @@ const workList = [
         title: 'WildBear Shop',
         image: 'images/projects/wildbear.webp',
         href: 'https://www.wildbear-shop.com/',
+        ariaLabel: 'WildBear Shop (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
                 <li>
-                    <a href='https://github.com/davidjpy/wildbear' target='_blank'>
+                    <a
+                        href='https://github.com/davidjpy/wildbear'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='GitHub (opens in a new tab)'
+                    >
                         <FaGithub className='icon-link-md' />
                     </a>
                 </li>
                 <li>
-                    <a href='https://www.wildbear-shop.com/' target='_blank'>
+                    <a
+                        href='https://www.wildbear-shop.com/'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='WildBear Shop (opens in a new tab)'
+                    >
                         <FaLink className='icon-link-md' />
                     </a>
                 </li>
@@ -244,15 +254,26 @@ const workList = [
         title: 'Lighthouse Portfolio',
         image: 'images/projects/portfolio.webp',
         href: 'https://www.wildbear-shop.com/',
+        ariaLabel: 'Lighthouse Portfolio (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
                 <li>
-                    <a href='https://github.com/davidjpy/wildbear' target='_blank'>
+                    <a
+                        href='https://github.com/davidjpy/wildbear'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='GitHub (opens in a new tab)'
+                    >
                         <FaGithub className='icon-link-md' />
                     </a>
                 </li>
                 <li>
-                    <a href='https://www.wildbear-shop.com/' target='_blank'>
+                    <a
+                        href='https://www.wildbear-shop.com/'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Lighthouse Portfolio (opens in a new tab)'
+                    >
                         <FaLink className='icon-link-md' />
                     </a>
                 </li>
@@ -278,6 +299,7 @@ const certificateList = [
     {
         title: 'System and method for detecting surface defect of object',
         image: 'images/projects/defect_patent.webp',
+        ariaLabel: 'System and method for detecting surface defect of object (opens in a new tab)',
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en',
         linkIcons: (
             <ul className='flex gap-2'>
@@ -285,6 +307,8 @@ const certificateList = [
                     <a
                         href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
                         target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='System and method for detecting surface defect of object (opens in a new tab)'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -308,12 +332,17 @@ const certificateList = [
         logistics center`,
         image: 'images/projects/logistic_patent.webp',
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=cn',
+        ariaLabel:
+            'Method for detecting and predicting a bottleneck in a transportation process of a logistics center (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
                 <li>
                     <a
                         href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
                         target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Method for detecting and predicting a bottleneck in a transportation process of a
+                        logistics center (opens in a new tab)'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -334,10 +363,16 @@ const certificateList = [
         title: 'FE Exam Certificate',
         image: 'images/projects/FE_exam_cert.webp',
         href: 'https://itpec.org/about/itpec-common-exam.html',
+        ariaLabel: 'ITPEC Common Examination (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
                 <li>
-                    <a href='https://itpec.org/about/itpec-common-exam.html' target='_blank'>
+                    <a
+                        href='https://itpec.org/about/itpec-common-exam.html'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='ITPEC Common Examination (opens in a new tab)'
+                    >
                         <FaLink className='icon-link-md' />
                     </a>
                 </li>
@@ -357,20 +392,36 @@ const acknowledgementList = [
         title: 'Sr. Research Engineer, Huawei',
         image: 'images/acknowledgement/fran.webp',
         href: 'https://francescocursi.com/',
+        ariaLabel: 'Francesco Cursi (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
                 <li>
-                    <a href='https://www.linkedin.com/in/francesco-c-a94568111/' target='_blank'>
+                    <a
+                        href='https://www.linkedin.com/in/francesco-c-a94568111/'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Linkedin (opens in a new tab)'
+                    >
                         <FaLinkedin className='icon-link-md' />
                     </a>
                 </li>
                 <li>
-                    <a href='https://github.com/cursi36' target='_blank'>
+                    <a
+                        href='https://github.com/cursi36'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='GitHub (opens in a new tab)'
+                    >
                         <FaGithub className='icon-link-md' />
                     </a>
                 </li>
                 <li>
-                    <a href='https://francescocursi.com/' target='_blank'>
+                    <a
+                        href='https://francescocursi.com/'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Francesco Cursi (opens in a new tab)'
+                    >
                         <FaLink className='icon-link-md' />
                     </a>
                 </li>
@@ -383,10 +434,16 @@ const acknowledgementList = [
         title: 'Head of Software Engineering, FLAIR',
         image: 'images/acknowledgement/adah.webp',
         href: 'https://www.linkedin.com/in/adah-h-a0854554/',
+        ariaLabel: 'Adah Hu (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
                 <li>
-                    <a href='https://www.linkedin.com/in/adah-h-a0854554/' target='_blank'>
+                    <a
+                        href='https://www.linkedin.com/in/adah-h-a0854554/'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Linkedin (opens in a new tab)'
+                    >
                         <FaLinkedin className='icon-link-md' />
                     </a>
                 </li>
@@ -395,49 +452,6 @@ const acknowledgementList = [
         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
     }
 ]
-
-// const acknowledgementList = [
-//     {
-//         name: 'Francesco Cursi',
-//         title: 'Sr. Research Engineer, Huawei',
-//         avatar: 'images/acknowledgement/fran.webp',
-//         links: (
-//             <ul className='ml-2 flex gap-2'>
-//                 <li>
-//                     <a href='https://www.linkedin.com/in/francesco-c-a94568111/' target='_blank'>
-//                         <FaLinkedin className='icon-link-md' />
-//                     </a>
-//                 </li>
-//                 <li>
-//                     <a href='https://github.com/cursi36' target='_blank'>
-//                         <FaGithub className='icon-link-md' />
-//                     </a>
-//                 </li>
-//                 <li>
-//                     <a href='https://francescocursi.com/' target='_blank'>
-//                         <FaLink className='icon-link-md' />
-//                     </a>
-//                 </li>
-//             </ul>
-//         ),
-//         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
-//     },
-//     {
-//         name: 'Adah Hu',
-//         title: 'Head of Software Engineering, FLAIR',
-//         avatar: 'images/acknowledgement/adah.webp',
-//         links: (
-//             <ul className='ml-2 flex gap-2'>
-//                 <li>
-//                     <a href='https://www.linkedin.com/in/adah-h-a0854554/' target='_blank'>
-//                         <FaLinkedin className='icon-link-md' />
-//                     </a>
-//                 </li>
-//             </ul>
-//         ),
-//         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
-//     }
-// ]
 
 const aboutSections = [
     {
@@ -620,155 +634,6 @@ const lifeSections = [
                     </SwiperSlide>
                 </Swiper>
             </>
-        )
-    }
-]
-const worksSections = [
-    {
-        title: (
-            <>
-                <span className='text-accent'>Projects</span> I have done?
-            </>
-        ),
-        children: (
-            <ul>
-                <li className='section-list-item'>
-                    <img src='images/projects/wildbear.webp' className='project-list-img' />
-
-                    <div className='pl-4'>
-                        <div className='flex items-center justify-between'>
-                            <h1 className='font-semibold'>WildBear Shop</h1>
-                            <ul className='ml-2 flex gap-2'>
-                                <li>
-                                    <a href='https://github.com/davidjpy/wildbear' target='_blank'>
-                                        <FaGithub className='icon-link-md' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='https://www.wildbear-shop.com/' target='_blank'>
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            A demo project featuring a React frontend and a Django backend with a PostgreSQL database,
-                            The project is deployed on Netlify for the client-side and AWS for server-side.
-                        </p>
-                    </div>
-                </li>
-                <li className='section-list-item'>
-                    <img src='images/projects/portfolio.webp' className='project-list-img' />
-
-                    <div className='pl-4'>
-                        <div className='flex items-center justify-between'>
-                            <h1 className='font-semibold'>Lighthouse Portfolio</h1>
-                            <ul className='ml-2 flex gap-2'>
-                                {/* <li>
-                                    <a href='https://github.com/davidjpy/wildbear' target='_blank'>
-                                        <FaGithub className='icon-link-md' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='https://www.wildbear-shop.com/' target='_blank'>
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li> */}
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            Showcasing an innovative web experience by integrating 3D visuals and interactive elements
-                            into React. The 3D models and textures are crafted using Blender. Leveraging the power of
-                            Three.js, it delivers a captivating user interface that pushes the boundaries of traditional
-                            web design.
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        )
-    },
-    {
-        title: (
-            <>
-                Any interesting <span className='text-accent'>certificates</span>?
-            </>
-        ),
-        children: (
-            <ul>
-                <li className='section-list-item'>
-                    <img src='images/projects/FE_exam_cert.webp' className='project-list-img' />
-
-                    <div className='pl-4'>
-                        <div className='flex items-center justify-between'>
-                            <h1 className='font-semibold'>FE Exam Certificate</h1>
-                            <ul className='ml-2 flex gap-2'>
-                                <li>
-                                    <a href='https://itpec.org/about/itpec-common-exam.html' target='_blank'>
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            I traveled to the Philippines to participate in the Fundamental Information Technology
-                            Engineer Examination (FE). This exam broadened my IT knowledge base significantly,
-                            complementing my skills as a self-taught developer. It also earned me the qualifications
-                            necessary for the Engineering Visa in Japan.
-                        </p>
-                    </div>
-                </li>
-                <li className='section-list-item'>
-                    <img src='images/projects/defect_patent.webp' className='project-list-img' />
-                    <div className='pl-4'>
-                        <div className='flex items-center justify-between'>
-                            <h1 className='font-semibold'>System and method for detecting surface defect of object</h1>
-                            <ul className='ml-2 flex gap-2'>
-                                <li>
-                                    <a
-                                        href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
-                                        target='_blank'
-                                    >
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            A short-term patent for an innovative system that utilizes a robotic arm equipped with a
-                            camera to capture detailed images of an object from various angles. The system then employs
-                            a sophisticated detection algorithm to meticulously analyze these images and pinpoint any
-                            defects present.
-                        </p>
-                    </div>
-                </li>
-                <li className='section-list-item'>
-                    <img src='images/projects/logistic_patent.webp' className='project-list-img' />
-                    <div className='pl-4'>
-                        <div className='flex justify-between'>
-                            <h1 className='font-semibold'>
-                                Method for detecting and predicting a bottleneck in a transportation process of a
-                                logistics center
-                            </h1>
-                            <ul className='ml-2 flex gap-2'>
-                                <li>
-                                    <a
-                                        href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=cn'
-                                        target='_blank'
-                                    >
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            A short-term patent of a system designed to predict bottlenecks in cargo logistics at Hong
-                            Kong Airport. It harnesses the power of big data analytics by processing data gathered from
-                            sensors across the transport belts. The predictive model can proactively identify potential
-                            congestion points.
-                        </p>
-                    </div>
-                </li>
-            </ul>
         )
     }
 ]
@@ -1044,17 +909,32 @@ const HtmlContent = memo(function HtmlContent() {
                         </h1>
                         <ul ref={contactListRef} className='mt-4 flex gap-4'>
                             <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'>
-                                <a href='https://github.com/davidjpy' target='_blank'>
+                                <a
+                                    href='https://github.com/davidjpy'
+                                    target='_blank'
+                                    rel='noreferrer noopener'
+                                    aria-label='GitHub (opens in a new tab)'
+                                >
                                     <FaGithub className='icon-link-lg' />
                                 </a>
                             </li>
                             <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
-                                <a href='https://www.linkedin.com/in/davidho-web/' target='_blank'>
+                                <a
+                                    href='https://www.linkedin.com/in/davidho-web/'
+                                    target='_blank'
+                                    rel='noreferrer noopener'
+                                    aria-label='Linkedin (opens in a new tab)'
+                                >
                                     <FaLinkedin className='icon-link-lg' />
                                 </a>
                             </li>
                             <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
-                                <a href='https://www.instagram.com/___realdavid/' target='_blank'>
+                                <a
+                                    href='https://www.instagram.com/___realdavid/'
+                                    target='_blank'
+                                    rel='noreferrer noopener'
+                                    aria-label='Instagram (opens in a new tab)'
+                                >
                                     <FaInstagram strokeWidth={20} className='icon-link-lg' />
                                 </a>
                             </li>
@@ -1124,7 +1004,13 @@ const HtmlContent = memo(function HtmlContent() {
                                 onMouseEnter={() => setFocusTitle(book.title)}
                                 onMouseLeave={() => setFocusTitle('')}
                             >
-                                <a href={book.href} target='_blank' className='section-list-item'>
+                                <a
+                                    href={book.href}
+                                    target='_blank'
+                                    aria-label={book.ariaLabel}
+                                    rel='noreferrer noopener'
+                                    className='section-list-item'
+                                >
                                     <figure>
                                         <img src={book.image} className='book-list-img' />
                                     </figure>
@@ -1162,7 +1048,13 @@ const HtmlContent = memo(function HtmlContent() {
                                 onMouseEnter={() => setFocusTitle(course.title)}
                                 onMouseLeave={() => setFocusTitle('')}
                             >
-                                <a className='section-list-item' target='_blank' href={course.href}>
+                                <a
+                                    target='_blank'
+                                    href={course.href}
+                                    aria-label={course.ariaLabel}
+                                    rel='noreferrer noopener'
+                                    className='section-list-item'
+                                >
                                     <figure className='project-list-img-wrapper'>
                                         <img src={course.image} className='project-list-img' />
                                     </figure>
@@ -1234,12 +1126,18 @@ const HtmlContent = memo(function HtmlContent() {
                                 onMouseEnter={() => setFocusTitle(work.title)}
                                 onMouseLeave={() => setFocusTitle('')}
                             >
-                                <a href={work.href} target='_blank' className='section-list-item'>
+                                <a
+                                    href={work.href}
+                                    target='_blank'
+                                    rel='noreferrer noopener'
+                                    aria-label={work.ariaLabel}
+                                    className='section-list-item'
+                                >
                                     <figure className='project-list-img-wrapper'>
                                         <img src={work.image} className='project-list-img' />
                                     </figure>
                                     <div className='w-full pl-4'>
-                                        <header className='flex items-center justify-between'>
+                                        <header className='w-[90%]'>
                                             <h1 className='section-list-title'>{work.title}</h1>
                                         </header>
                                         <p className='section-list-summary'>{work.summary}</p>
@@ -1271,12 +1169,18 @@ const HtmlContent = memo(function HtmlContent() {
                                 onMouseEnter={() => setFocusTitle(certificate.title)}
                                 onMouseLeave={() => setFocusTitle('')}
                             >
-                                <a href={certificate.href} target='_blank' className='section-list-item'>
+                                <a
+                                    href={certificate.href}
+                                    target='_blank'
+                                    rel='noreferrer noopener'
+                                    aria-label={certificate.ariaLabel}
+                                    className='section-list-item'
+                                >
                                     <figure className='project-list-img-wrapper'>
                                         <img src={certificate.image} className='project-list-img' />
                                     </figure>
                                     <div className='w-full pl-4'>
-                                        <header className='flex items-center justify-between'>
+                                        <header className='w-[95%]'>
                                             <h1 className='section-list-title'>{certificate.title}</h1>
                                         </header>
                                         <p className='section-list-summary'>{certificate.summary}</p>
@@ -1323,7 +1227,13 @@ const HtmlContent = memo(function HtmlContent() {
                                 onMouseEnter={() => setFocusTitle(coworker.name)}
                                 onMouseLeave={() => setFocusTitle('')}
                             >
-                                <a href={coworker.href} target='_blank' className='section-list-item'>
+                                <a
+                                    href={coworker.href}
+                                    target='_blank'
+                                    aria-label={coworker.ariaLabel}
+                                    rel='noreferrer noopener'
+                                    className='section-list-item'
+                                >
                                     <div className='pl-4'>
                                         <div className='flex justify-between'>
                                             <figure className='flex items-center gap-4'>
