@@ -35,10 +35,19 @@ import {
     studySectionTop,
     lifeSectionTop,
     worksSectionTop,
-    acknowledgementSectionTop
+    testimonialsSectionTop
 } from '@/src/utilities/constants'
 
-const titles = ['Full-Stack Developer', 'Web Designer', '3D Modeler']
+const titles = [
+    'Full-Stack Developer',
+    'Web Designer',
+    '3D Modeler',
+    '2D Animator',
+    'Gamer',
+    'Dog Lover',
+    'Traveller',
+    'Normal Person'
+]
 const softwareSkills = [
     { name: 'Typescript', icon: <SiTypescript className='icon-svg' /> },
     { name: 'Python', icon: <FaPython className='icon-svg' /> },
@@ -209,7 +218,7 @@ const courseList = [
 const workList = [
     {
         title: 'WildBear Shop',
-        image: 'images/projects/wildbear.webp',
+        image: 'images/work/wildbear.webp',
         href: 'https://www.wildbear-shop.com/',
         ariaLabel: 'WildBear Shop (opens in a new tab)',
         linkIcons: (
@@ -252,7 +261,7 @@ const workList = [
     },
     {
         title: 'Lighthouse Portfolio',
-        image: 'images/projects/portfolio.webp',
+        image: 'images/work/portfolio.webp',
         href: 'https://www.wildbear-shop.com/',
         ariaLabel: 'Lighthouse Portfolio (opens in a new tab)',
         linkIcons: (
@@ -298,7 +307,7 @@ const workList = [
 const certificateList = [
     {
         title: 'System and method for detecting surface defect of object',
-        image: 'images/projects/defect_patent.webp',
+        image: 'images/work/defect_patent.webp',
         ariaLabel: 'System and method for detecting surface defect of object (opens in a new tab)',
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en',
         linkIcons: (
@@ -330,7 +339,7 @@ const certificateList = [
     {
         title: `Method for detecting and predicting a bottleneck in a transportation process of a
         logistics center`,
-        image: 'images/projects/logistic_patent.webp',
+        image: 'images/work/logistic_patent.webp',
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=cn',
         ariaLabel:
             'Method for detecting and predicting a bottleneck in a transportation process of a logistics center (opens in a new tab)',
@@ -361,7 +370,7 @@ const certificateList = [
     },
     {
         title: 'FE Exam Certificate',
-        image: 'images/projects/FE_exam_cert.webp',
+        image: 'images/work/FE_exam_cert.webp',
         href: 'https://itpec.org/about/itpec-common-exam.html',
         ariaLabel: 'ITPEC Common Examination (opens in a new tab)',
         linkIcons: (
@@ -378,19 +387,29 @@ const certificateList = [
                 </li>
             </ul>
         ),
-        summary: `I traveled to the Philippines for the Fundamental Information Technology Engineer Examination. It earned me the qualifications for the Engineering Visa in Japan.`,
-        keypoints: (
-            <ul>
-                <li className='keypoint-list-item'>Computer Science</li>
+        summary: `I traveled to the Philippines for the Fundamental Information Technology Engineer Examination. It earned me the qualifications for the Engineering Visa in Japan.`
+    },
+    {
+        title: "Time's Person of the Year 2006",
+        image: 'images/work/times_person_of_the_year.webp',
+        href: 'https://en.wikipedia.org/wiki/You_(Time_Person_of_the_Year)',
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li>
+                    <a href='https://en.wikipedia.org/wiki/You_(Time_Person_of_the_Year)' target='_blank'>
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
             </ul>
-        )
+        ),
+        summary: `I was the official choice for the Time's Person of the Year in 2006.`
     }
 ]
-const acknowledgementList = [
+const testimonialsList = [
     {
         name: 'Francesco Cursi',
         title: 'Sr. Research Engineer, Huawei',
-        image: 'images/acknowledgement/fran.webp',
+        image: 'images/testimonials/fran.webp',
         href: 'https://francescocursi.com/',
         ariaLabel: 'Francesco Cursi (opens in a new tab)',
         linkIcons: (
@@ -432,7 +451,7 @@ const acknowledgementList = [
     {
         name: 'Adah Hu',
         title: 'Head of Software Engineering, FLAIR',
-        image: 'images/acknowledgement/adah.webp',
+        image: 'images/testimonials/adah.webp',
         href: 'https://www.linkedin.com/in/adah-h-a0854554/',
         ariaLabel: 'Adah Hu (opens in a new tab)',
         linkIcons: (
@@ -502,9 +521,9 @@ const skillsSections = [
                         key={skill.name}
                         className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
                         style={{
-                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                            transition: `background-color 0.2s linear, transform 0.4s ease-in ${
                                 index * 0.1
-                            }s,opacity 0.4s ease-out ${index * 0.1}s`
+                            }s,opacity 0.4s ease-in ${index * 0.1}s`
                         }}
                     >
                         <span>{skill.icon}</span>
@@ -527,9 +546,9 @@ const skillsSections = [
                         key={skill.name}
                         className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
                         style={{
-                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                            transition: `background-color 0.2s linear, transform 0.4s ease-in ${
                                 index * 0.1
-                            }s, opacity 0.4s ease-out ${index * 0.1}s`
+                            }s, opacity 0.4s ease-in ${index * 0.1}s`
                         }}
                     >
                         <span>{skill.icon}</span>
@@ -646,7 +665,7 @@ const HtmlContent = memo(function HtmlContent() {
     const studySectionRef = useRef<HTMLElement>(null!)
     const lifeSectionRef = useRef<HTMLElement>(null!)
     const workSectionRef = useRef<HTMLElement>(null!)
-    const acknowledgementSectionRef = useRef<HTMLElement>(null!)
+    const testimonialsSectionRef = useRef<HTMLElement>(null!)
     const typingTextWrapperRef = useRef<HTMLHeadingElement>(null)
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
@@ -681,7 +700,7 @@ const HtmlContent = memo(function HtmlContent() {
             studySectionRef,
             lifeSectionRef,
             workSectionRef,
-            acknowledgementSectionRef
+            testimonialsSectionRef
         ]
 
         for (const ref of refs) {
@@ -764,7 +783,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     let delay = 0.3
                                     for (const listItem of entry.target.children.item(1)?.children!) {
                                         const HtmlListItem = listItem as HTMLElement
-                                        HtmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
+                                        HtmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-in ${delay}s,opacity 0.4s ease-in ${delay}s`
                                         HtmlListItem.classList.replace('hidden-content', 'revealed-content')
 
                                         delay += increment
@@ -833,10 +852,10 @@ const HtmlContent = memo(function HtmlContent() {
                 worksSectionTop - perfectPageHeight - 300,
                 worksSectionTop + 2 * perfectPageHeight + 300
             )
-            const isInAcknowledgementSection = isNumberInRange(
+            const isInTestimonialsSection = isNumberInRange(
                 scrollTop,
-                acknowledgementSectionTop - perfectPageHeight - 300,
-                acknowledgementSectionTop + 2 * perfectPageHeight + 300
+                testimonialsSectionTop - perfectPageHeight - 300,
+                testimonialsSectionTop + 2 * perfectPageHeight + 300
             )
 
             const width = aboutSectionRef.current?.clientWidth
@@ -862,8 +881,8 @@ const HtmlContent = memo(function HtmlContent() {
                     setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
                     break
 
-                case isInAcknowledgementSection:
-                    setHTMLSectionBorderRadius(acknowledgementSectionRef.current, width, 'left')
+                case isInTestimonialsSection:
+                    setHTMLSectionBorderRadius(testimonialsSectionRef.current, width, 'left')
                     break
 
                 default:
@@ -918,7 +937,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <FaGithub className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-in_0.45s,opacity_0.4s_ease-in_0.45s]'>
                                 <a
                                     href='https://www.linkedin.com/in/davidho-web/'
                                     target='_blank'
@@ -928,7 +947,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <FaLinkedin className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-in_0.55s,opacity_0.4s_ease-in_0.55s]'>
                                 <a
                                     href='https://www.instagram.com/___realdavid/'
                                     target='_blank'
@@ -1077,7 +1096,7 @@ const HtmlContent = memo(function HtmlContent() {
                 top={lifeSectionTop}
                 position='left'
                 backgroundTitle='Life'
-                topTitle='Good. More on...'
+                topTitle="I'm a very simple person..."
                 bottomTitle={
                     <>
                         My <span className='text-accent'> Life</span>
@@ -1097,7 +1116,7 @@ const HtmlContent = memo(function HtmlContent() {
                 top={worksSectionTop}
                 position='right'
                 backgroundTitle='Works'
-                topTitle="Sure. Here's..."
+                topTitle='I Enjoy Creating Stuffs...'
                 bottomTitle={
                     <>
                         My <span className='text-accent'> Works</span>
@@ -1195,17 +1214,17 @@ const HtmlContent = memo(function HtmlContent() {
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
-                top={acknowledgementSectionTop}
+                top={testimonialsSectionTop}
                 position='left'
-                backgroundTitle='Acknowledgement'
-                topTitle="Lastly. There's..."
+                backgroundTitle='Testimonials'
+                topTitle='Some Remarks By My Coworkers...'
                 bottomTitle={
                     <>
-                        The <span className='text-accent'> Acknowledgement</span>
+                        The <span className='text-accent'> Testimonials</span>
                     </>
                 }
                 contentObserverRef={contentObserverRef}
-                ref={acknowledgementSectionRef}
+                ref={testimonialsSectionRef}
             >
                 <HtmlSection
                     title={
@@ -1216,7 +1235,7 @@ const HtmlContent = memo(function HtmlContent() {
                     contentObserverRef={contentObserverRef}
                 >
                     <ul>
-                        {acknowledgementList.map((coworker, index) => (
+                        {testimonialsList.map((coworker, index) => (
                             <li
                                 key={index}
                                 className='hidden-content relative'
@@ -1237,7 +1256,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <div className='pl-4'>
                                         <div className='flex justify-between'>
                                             <figure className='flex items-center gap-4'>
-                                                <img src={coworker.image} className='acknowledgement-list-img' />
+                                                <img src={coworker.image} className='testimonials-list-img' />
                                                 <figcaption>
                                                     <h1 className='font-semibold'>{coworker.name}</h1>
                                                     <p className='section-list-summary mt-0'>{coworker.title}</p>

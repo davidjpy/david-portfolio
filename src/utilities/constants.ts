@@ -20,7 +20,7 @@ export const lifeSectionTop = perfectPageHeight * 14
 
 export const worksSectionTop = perfectPageHeight * 20
 
-export const acknowledgementSectionTop = perfectPageHeight * 24
+export const testimonialsSectionTop = perfectPageHeight * 24
 
 export const maxBrightness = 100
 
