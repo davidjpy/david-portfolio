@@ -402,7 +402,7 @@ const certificateList = [
                 </li>
             </ul>
         ),
-        summary: `I was the official choice for the Time's Person of the Year in 2006.`
+        summary: `In 2006, Time named me the official nominee for Person of the Year. I'm honored to receive such a distinction.`
     }
 ]
 const testimonialsList = [
@@ -521,9 +521,9 @@ const skillsSections = [
                         key={skill.name}
                         className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
                         style={{
-                            transition: `background-color 0.2s linear, transform 0.4s ease-in ${
+                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
                                 index * 0.1
-                            }s,opacity 0.4s ease-in ${index * 0.1}s`
+                            }s,opacity 0.4s ease-out ${index * 0.1}s`
                         }}
                     >
                         <span>{skill.icon}</span>
@@ -546,9 +546,9 @@ const skillsSections = [
                         key={skill.name}
                         className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
                         style={{
-                            transition: `background-color 0.2s linear, transform 0.4s ease-in ${
+                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
                                 index * 0.1
-                            }s, opacity 0.4s ease-in ${index * 0.1}s`
+                            }s, opacity 0.4s ease-out ${index * 0.1}s`
                         }}
                     >
                         <span>{skill.icon}</span>
@@ -669,6 +669,7 @@ const HtmlContent = memo(function HtmlContent() {
     const typingTextWrapperRef = useRef<HTMLHeadingElement>(null)
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
+    const windowHeightRef = useRef<number>(window.innerHeight)
     const scrollData = useScroll()
 
     const isNumberInRange = (target: number, low: number, high: number): boolean => {
@@ -693,7 +694,7 @@ const HtmlContent = memo(function HtmlContent() {
         }
     }
 
-    const handleResizeResetBorderRadius = () => {
+    const resetAllContainerBorderRadius = () => {
         const refs = [
             aboutSectionRef,
             skillsSectionRef,
@@ -783,7 +784,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     let delay = 0.3
                                     for (const listItem of entry.target.children.item(1)?.children!) {
                                         const HtmlListItem = listItem as HTMLElement
-                                        HtmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-in ${delay}s,opacity 0.4s ease-in ${delay}s`
+                                        HtmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
                                         HtmlListItem.classList.replace('hidden-content', 'revealed-content')
 
                                         delay += increment
@@ -886,10 +887,18 @@ const HtmlContent = memo(function HtmlContent() {
                     break
 
                 default:
-                    handleResizeResetBorderRadius()
+                    resetAllContainerBorderRadius()
                     break
             }
         }
+
+        const handleResizeResetBorderRadius = () => {
+            if (windowHeightRef.current !== window.innerHeight) {
+                resetAllContainerBorderRadius()
+                windowHeightRef.current = window.innerHeight
+            }
+        }
+
         scrollData.el.addEventListener('scroll', handleScrollAnimation)
         window.addEventListener('resize', handleResizeResetBorderRadius)
 
@@ -937,7 +946,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <FaGithub className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-in_0.45s,opacity_0.4s_ease-in_0.45s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
                                 <a
                                     href='https://www.linkedin.com/in/davidho-web/'
                                     target='_blank'
@@ -947,7 +956,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <FaLinkedin className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-in_0.55s,opacity_0.4s_ease-in_0.55s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
                                 <a
                                     href='https://www.instagram.com/___realdavid/'
                                     target='_blank'
