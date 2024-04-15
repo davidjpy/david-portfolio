@@ -16,7 +16,7 @@ import {
     studySectionTop,
     lifeSectionTop,
     worksSectionTop,
-    acknowledgementSectionTop
+    testimonialsSectionTop
 } from '@/src/utilities/constants'
 
 const containerHeight = 150
@@ -42,7 +42,7 @@ const navTab = [
     { name: 'Study', top: studySectionTop },
     { name: 'Life', top: lifeSectionTop },
     { name: 'Work', top: worksSectionTop },
-    { name: 'Ack', top: acknowledgementSectionTop }
+    { name: 'Ack', top: testimonialsSectionTop }
 ]
 
 const timeSymbols = [<IoSunny size={20} />, <IoMoon size={18} />]
@@ -263,24 +263,29 @@ export default function ControlPanel() {
                 </span>
             </div>
 
-            <div className='clock-blackground-sm col-span-4 row-span-1'>
-                <div className='flex h-full items-center justify-between'>
-                    <IoMoon size={16} className='ml-[4px]' />
-                    <input
-                        type='range'
-                        min={minBrightness}
-                        max={maxBrightness}
-                        step={1}
-                        value={brightness}
-                        onChange={(e) => handleSetBrightness(Number(e.target.value))}
-                        className='w-[150px]'
-                        aria-label='Brightness'
-                    />
-                    <IoSunny size={20} className='mr-[4px]' />
-                </div>
+            <div className='relative col-span-4 row-span-1 overflow-hidden rounded-full shadow-lg'>
+                <IoMoon size={16} className='pointer-events-none absolute left-[8px] top-1/2 -translate-y-1/2' />
+                <label
+                    htmlFor='brightnessSlider'
+                    className='pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm tracking-wide'
+                >
+                    Time Machine
+                </label>
+                <input
+                    type='range'
+                    id='brightnessSlider'
+                    min={minBrightness}
+                    max={maxBrightness}
+                    value={brightness}
+                    step={1}
+                    onChange={(e) => handleSetBrightness(Number(e.target.value))}
+                    className='brightness-slider'
+                    aria-label='Brightness Slider'
+                />
+                <IoSunny size={18} className='pointer-events-none absolute right-[8px] top-1/2 -translate-y-1/2' />
             </div>
 
-            <ul className='clock-blackground-sm col-span-7 row-span-1 flex items-center justify-evenly rounded-full'>
+            <ul className='clock-blackground-sm col-span-7 row-span-1 flex items-center justify-evenly rounded-[8px]'>
                 {navTab.map((tab, index) => (
                     <li
                         key={index}
