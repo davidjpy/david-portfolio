@@ -35,10 +35,10 @@ import {
     studySectionTop,
     lifeSectionTop,
     worksSectionTop,
-    acknowledgementSectionTop
+    testimonialsSectionTop
 } from '@/src/utilities/constants'
 
-const titles = ['Full-Stack Developer', 'Web Designer', '3D Modeler']
+const titles = ['Full-Stack Developer', 'Web Designer', '3D Modeler', '2D Animator', 'Gamer', 'Dog Lover', 'Traveller', 'Normal Person']
 const softwareSkills = [
     { name: 'Typescript', icon: <SiTypescript className='icon-svg' /> },
     { name: 'Python', icon: <FaPython className='icon-svg' /> },
@@ -210,7 +210,7 @@ const courseList = [
 const workList = [
     {
         title: 'WildBear Shop',
-        image: 'images/projects/wildbear.webp',
+        image: 'images/work/wildbear.webp',
         href: 'https://www.wildbear-shop.com/',
         linkIcons: (
             <ul className='flex gap-2'>
@@ -242,7 +242,7 @@ const workList = [
     },
     {
         title: 'Lighthouse Portfolio',
-        image: 'images/projects/portfolio.webp',
+        image: 'images/work/portfolio.webp',
         href: 'https://www.wildbear-shop.com/',
         linkIcons: (
             <ul className='flex gap-2'>
@@ -277,7 +277,7 @@ const workList = [
 const certificateList = [
     {
         title: 'System and method for detecting surface defect of object',
-        image: 'images/projects/defect_patent.webp',
+        image: 'images/work/defect_patent.webp',
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en',
         linkIcons: (
             <ul className='flex gap-2'>
@@ -306,7 +306,7 @@ const certificateList = [
     {
         title: `Method for detecting and predicting a bottleneck in a transportation process of a
         logistics center`,
-        image: 'images/projects/logistic_patent.webp',
+        image: 'images/work/logistic_patent.webp',
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=cn',
         linkIcons: (
             <ul className='flex gap-2'>
@@ -332,7 +332,7 @@ const certificateList = [
     },
     {
         title: 'FE Exam Certificate',
-        image: 'images/projects/FE_exam_cert.webp',
+        image: 'images/work/FE_exam_cert.webp',
         href: 'https://itpec.org/about/itpec-common-exam.html',
         linkIcons: (
             <ul className='flex gap-2'>
@@ -344,18 +344,28 @@ const certificateList = [
             </ul>
         ),
         summary: `I traveled to the Philippines for the Fundamental Information Technology Engineer Examination. It earned me the qualifications for the Engineering Visa in Japan.`,
-        keypoints: (
-            <ul>
-                <li className='keypoint-list-item'>Computer Science</li>
+    },
+    {
+        title: "Time's Person of the Year 2006",
+        image: 'images/work/times_person_of_the_year.webp',
+        href: 'https://en.wikipedia.org/wiki/You_(Time_Person_of_the_Year)',
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li>
+                    <a href='https://en.wikipedia.org/wiki/You_(Time_Person_of_the_Year)' target='_blank'>
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
             </ul>
-        )
-    }
+        ),
+        summary: `I was the official choice for the Time's Person of the Year in 2006.`,
+    },
 ]
-const acknowledgementList = [
+const testimonialsList = [
     {
         name: 'Francesco Cursi',
         title: 'Sr. Research Engineer, Huawei',
-        image: 'images/acknowledgement/fran.webp',
+        image: 'images/testimonials/fran.webp',
         href: 'https://francescocursi.com/',
         linkIcons: (
             <ul className='flex gap-2'>
@@ -381,7 +391,7 @@ const acknowledgementList = [
     {
         name: 'Adah Hu',
         title: 'Head of Software Engineering, FLAIR',
-        image: 'images/acknowledgement/adah.webp',
+        image: 'images/testimonials/adah.webp',
         href: 'https://www.linkedin.com/in/adah-h-a0854554/',
         linkIcons: (
             <ul className='flex gap-2'>
@@ -395,49 +405,6 @@ const acknowledgementList = [
         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
     }
 ]
-
-// const acknowledgementList = [
-//     {
-//         name: 'Francesco Cursi',
-//         title: 'Sr. Research Engineer, Huawei',
-//         avatar: 'images/acknowledgement/fran.webp',
-//         links: (
-//             <ul className='ml-2 flex gap-2'>
-//                 <li>
-//                     <a href='https://www.linkedin.com/in/francesco-c-a94568111/' target='_blank'>
-//                         <FaLinkedin className='icon-link-md' />
-//                     </a>
-//                 </li>
-//                 <li>
-//                     <a href='https://github.com/cursi36' target='_blank'>
-//                         <FaGithub className='icon-link-md' />
-//                     </a>
-//                 </li>
-//                 <li>
-//                     <a href='https://francescocursi.com/' target='_blank'>
-//                         <FaLink className='icon-link-md' />
-//                     </a>
-//                 </li>
-//             </ul>
-//         ),
-//         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
-//     },
-//     {
-//         name: 'Adah Hu',
-//         title: 'Head of Software Engineering, FLAIR',
-//         avatar: 'images/acknowledgement/adah.webp',
-//         links: (
-//             <ul className='ml-2 flex gap-2'>
-//                 <li>
-//                     <a href='https://www.linkedin.com/in/adah-h-a0854554/' target='_blank'>
-//                         <FaLinkedin className='icon-link-md' />
-//                     </a>
-//                 </li>
-//             </ul>
-//         ),
-//         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
-//     }
-// ]
 
 const aboutSections = [
     {
@@ -488,9 +455,9 @@ const skillsSections = [
                         key={skill.name}
                         className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
                         style={{
-                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                            transition: `background-color 0.2s linear, transform 0.4s ease-in ${
                                 index * 0.1
-                            }s,opacity 0.4s ease-out ${index * 0.1}s`
+                            }s,opacity 0.4s ease-in ${index * 0.1}s`
                         }}
                     >
                         <span>{skill.icon}</span>
@@ -513,9 +480,9 @@ const skillsSections = [
                         key={skill.name}
                         className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
                         style={{
-                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                            transition: `background-color 0.2s linear, transform 0.4s ease-in ${
                                 index * 0.1
-                            }s, opacity 0.4s ease-out ${index * 0.1}s`
+                            }s, opacity 0.4s ease-in ${index * 0.1}s`
                         }}
                     >
                         <span>{skill.icon}</span>
@@ -623,155 +590,6 @@ const lifeSections = [
         )
     }
 ]
-const worksSections = [
-    {
-        title: (
-            <>
-                <span className='text-accent'>Projects</span> I have done?
-            </>
-        ),
-        children: (
-            <ul>
-                <li className='section-list-item'>
-                    <img src='images/projects/wildbear.webp' className='project-list-img' />
-
-                    <div className='pl-4'>
-                        <div className='flex items-center justify-between'>
-                            <h1 className='font-semibold'>WildBear Shop</h1>
-                            <ul className='ml-2 flex gap-2'>
-                                <li>
-                                    <a href='https://github.com/davidjpy/wildbear' target='_blank'>
-                                        <FaGithub className='icon-link-md' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='https://www.wildbear-shop.com/' target='_blank'>
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            A demo project featuring a React frontend and a Django backend with a PostgreSQL database,
-                            The project is deployed on Netlify for the client-side and AWS for server-side.
-                        </p>
-                    </div>
-                </li>
-                <li className='section-list-item'>
-                    <img src='images/projects/portfolio.webp' className='project-list-img' />
-
-                    <div className='pl-4'>
-                        <div className='flex items-center justify-between'>
-                            <h1 className='font-semibold'>Lighthouse Portfolio</h1>
-                            <ul className='ml-2 flex gap-2'>
-                                {/* <li>
-                                    <a href='https://github.com/davidjpy/wildbear' target='_blank'>
-                                        <FaGithub className='icon-link-md' />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='https://www.wildbear-shop.com/' target='_blank'>
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li> */}
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            Showcasing an innovative web experience by integrating 3D visuals and interactive elements
-                            into React. The 3D models and textures are crafted using Blender. Leveraging the power of
-                            Three.js, it delivers a captivating user interface that pushes the boundaries of traditional
-                            web design.
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        )
-    },
-    {
-        title: (
-            <>
-                Any interesting <span className='text-accent'>certificates</span>?
-            </>
-        ),
-        children: (
-            <ul>
-                <li className='section-list-item'>
-                    <img src='images/projects/FE_exam_cert.webp' className='project-list-img' />
-
-                    <div className='pl-4'>
-                        <div className='flex items-center justify-between'>
-                            <h1 className='font-semibold'>FE Exam Certificate</h1>
-                            <ul className='ml-2 flex gap-2'>
-                                <li>
-                                    <a href='https://itpec.org/about/itpec-common-exam.html' target='_blank'>
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            I traveled to the Philippines to participate in the Fundamental Information Technology
-                            Engineer Examination (FE). This exam broadened my IT knowledge base significantly,
-                            complementing my skills as a self-taught developer. It also earned me the qualifications
-                            necessary for the Engineering Visa in Japan.
-                        </p>
-                    </div>
-                </li>
-                <li className='section-list-item'>
-                    <img src='images/projects/defect_patent.webp' className='project-list-img' />
-                    <div className='pl-4'>
-                        <div className='flex items-center justify-between'>
-                            <h1 className='font-semibold'>System and method for detecting surface defect of object</h1>
-                            <ul className='ml-2 flex gap-2'>
-                                <li>
-                                    <a
-                                        href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
-                                        target='_blank'
-                                    >
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            A short-term patent for an innovative system that utilizes a robotic arm equipped with a
-                            camera to capture detailed images of an object from various angles. The system then employs
-                            a sophisticated detection algorithm to meticulously analyze these images and pinpoint any
-                            defects present.
-                        </p>
-                    </div>
-                </li>
-                <li className='section-list-item'>
-                    <img src='images/projects/logistic_patent.webp' className='project-list-img' />
-                    <div className='pl-4'>
-                        <div className='flex justify-between'>
-                            <h1 className='font-semibold'>
-                                Method for detecting and predicting a bottleneck in a transportation process of a
-                                logistics center
-                            </h1>
-                            <ul className='ml-2 flex gap-2'>
-                                <li>
-                                    <a
-                                        href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=cn'
-                                        target='_blank'
-                                    >
-                                        <FaLink className='icon-link-md' />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <p className='mt-2 text-sm text-secondary-light'>
-                            A short-term patent of a system designed to predict bottlenecks in cargo logistics at Hong
-                            Kong Airport. It harnesses the power of big data analytics by processing data gathered from
-                            sensors across the transport belts. The predictive model can proactively identify potential
-                            congestion points.
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        )
-    }
-]
 
 const HtmlContent = memo(function HtmlContent() {
     const [focusTitle, setFocusTitle] = useState<string>('')
@@ -781,7 +599,7 @@ const HtmlContent = memo(function HtmlContent() {
     const studySectionRef = useRef<HTMLElement>(null!)
     const lifeSectionRef = useRef<HTMLElement>(null!)
     const workSectionRef = useRef<HTMLElement>(null!)
-    const acknowledgementSectionRef = useRef<HTMLElement>(null!)
+    const testimonialsSectionRef = useRef<HTMLElement>(null!)
     const typingTextWrapperRef = useRef<HTMLHeadingElement>(null)
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
@@ -816,7 +634,7 @@ const HtmlContent = memo(function HtmlContent() {
             studySectionRef,
             lifeSectionRef,
             workSectionRef,
-            acknowledgementSectionRef
+            testimonialsSectionRef
         ]
 
         for (const ref of refs) {
@@ -899,7 +717,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     let delay = 0.3
                                     for (const listItem of entry.target.children.item(1)?.children!) {
                                         const HtmlListItem = listItem as HTMLElement
-                                        HtmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
+                                        HtmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-in ${delay}s,opacity 0.4s ease-in ${delay}s`
                                         HtmlListItem.classList.replace('hidden-content', 'revealed-content')
 
                                         delay += increment
@@ -968,10 +786,10 @@ const HtmlContent = memo(function HtmlContent() {
                 worksSectionTop - perfectPageHeight - 300,
                 worksSectionTop + 2 * perfectPageHeight + 300
             )
-            const isInAcknowledgementSection = isNumberInRange(
+            const isInTestimonialsSection = isNumberInRange(
                 scrollTop,
-                acknowledgementSectionTop - perfectPageHeight - 300,
-                acknowledgementSectionTop + 2 * perfectPageHeight + 300
+                testimonialsSectionTop - perfectPageHeight - 300,
+                testimonialsSectionTop + 2 * perfectPageHeight + 300
             )
 
             const width = aboutSectionRef.current?.clientWidth
@@ -997,8 +815,8 @@ const HtmlContent = memo(function HtmlContent() {
                     setHTMLSectionBorderRadius(workSectionRef.current, width, 'right')
                     break
 
-                case isInAcknowledgementSection:
-                    setHTMLSectionBorderRadius(acknowledgementSectionRef.current, width, 'left')
+                case isInTestimonialsSection:
+                    setHTMLSectionBorderRadius(testimonialsSectionRef.current, width, 'left')
                     break
 
                 default:
@@ -1043,17 +861,17 @@ const HtmlContent = memo(function HtmlContent() {
                             ></span>
                         </h1>
                         <ul ref={contactListRef} className='mt-4 flex gap-4'>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-in_0.4s,opacity_0.4s_ease-in_0.4s]'>
                                 <a href='https://github.com/davidjpy' target='_blank'>
                                     <FaGithub className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-in_0.45s,opacity_0.4s_ease-in_0.45s]'>
                                 <a href='https://www.linkedin.com/in/davidho-web/' target='_blank'>
                                     <FaLinkedin className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
+                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-in_0.55s,opacity_0.4s_ease-in_0.55s]'>
                                 <a href='https://www.instagram.com/___realdavid/' target='_blank'>
                                     <FaInstagram strokeWidth={20} className='icon-link-lg' />
                                 </a>
@@ -1185,7 +1003,7 @@ const HtmlContent = memo(function HtmlContent() {
                 top={lifeSectionTop}
                 position='left'
                 backgroundTitle='Life'
-                topTitle='Good. More on...'
+                topTitle="I'm a very simple person..."
                 bottomTitle={
                     <>
                         My <span className='text-accent'> Life</span>
@@ -1205,7 +1023,7 @@ const HtmlContent = memo(function HtmlContent() {
                 top={worksSectionTop}
                 position='right'
                 backgroundTitle='Works'
-                topTitle="Sure. Here's..."
+                topTitle="I Enjoy Creating Stuffs..."
                 bottomTitle={
                     <>
                         My <span className='text-accent'> Works</span>
@@ -1291,17 +1109,17 @@ const HtmlContent = memo(function HtmlContent() {
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
-                top={acknowledgementSectionTop}
+                top={testimonialsSectionTop}
                 position='left'
-                backgroundTitle='Acknowledgement'
-                topTitle="Lastly. There's..."
+                backgroundTitle='Testimonials'
+                topTitle="Some Remarks By My Coworkers..."
                 bottomTitle={
                     <>
-                        The <span className='text-accent'> Acknowledgement</span>
+                        The <span className='text-accent'> Testimonials</span>
                     </>
                 }
                 contentObserverRef={contentObserverRef}
-                ref={acknowledgementSectionRef}
+                ref={testimonialsSectionRef}
             >
                 <HtmlSection
                     title={
@@ -1312,7 +1130,7 @@ const HtmlContent = memo(function HtmlContent() {
                     contentObserverRef={contentObserverRef}
                 >
                     <ul>
-                        {acknowledgementList.map((coworker, index) => (
+                        {testimonialsList.map((coworker, index) => (
                             <li
                                 key={index}
                                 className='hidden-content relative'
@@ -1327,7 +1145,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <div className='pl-4'>
                                         <div className='flex justify-between'>
                                             <figure className='flex items-center gap-4'>
-                                                <img src={coworker.image} className='acknowledgement-list-img' />
+                                                <img src={coworker.image} className='testimonials-list-img' />
                                                 <figcaption>
                                                     <h1 className='font-semibold'>{coworker.name}</h1>
                                                     <p className='section-list-summary mt-0'>{coworker.title}</p>
