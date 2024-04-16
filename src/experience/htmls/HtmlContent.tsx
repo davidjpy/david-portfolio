@@ -1113,99 +1113,64 @@ const HtmlContent = memo(function HtmlContent() {
                 contentObserverRef={contentObserverRef}
                 ref={lifeSectionRef}
             >
-                <HtmlSection
-                    title={
-                        <>
-                            My <span className='text-accent'>daily</span> life?
-                        </>
-                    }
-                    contentObserverRef={contentObserverRef}
-                >
-                    <p>
-                        My life is simple yet joyful, you'll either find me sitting in front of the computer, losing
-                        myself in the latest gaming adventure or a pile of messy code, or exploring the hidden gems of a
-                        city. I often find surprises and beauty in those untold places. I enjoy talking to strangers and
-                        meeting new friends. I always get along with people regardless of their background, culture, and
-                        language.
-                    </p>
-                    <Swiper
-                        slidesPerView={1}
-                        spaceBetween={16}
-                        loop={true}
-                        pagination={{ clickable: true }}
-                        modules={[Pagination]}
-                        className='mt-8 h-[700px] w-full rounded-[24px] p-[8px]'
-                    >
-                        <SwiperSlide className='img-gallery'>
-                            <figure className='group relative col-span-2 row-span-5 overflow-hidden rounded-[16px]'>
-                                <img src='images/life/japan_shine.webp' className='swipe-img col-span-2 row-span-5' />
-                                <figcaption className='img-layer'>
-                                    <h1>Shine hidden in the forest</h1>
-                                    <p>Kumamoto, Japan</p>
-                                </figcaption>
+                <HtmlSection contentObserverRef={contentObserverRef}>
+                    <div className='flex h-[420px]'>
+                        <div className='relative w-[395px] flex-shrink-0'>
+                            <figure className='absolute top-[190px] translate-x-36 rounded-[8px] bg-white p-[6px] shadow-lg'>
+                                <img
+                                    src='images/life/okinawa_sky.webp'
+                                    className='w-[250px] rounded-[8px] object-cover'
+                                />
                             </figure>
-                            <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
-                                <img src='images/life/japan_house.webp' className='swipe-img' />
-                                <figcaption className='img-layer'>
-                                    <h1>Japanese architecture</h1>
-                                    <p>Kurokawa Onsen Ryokan, Japan</p>
-                                </figcaption>
+                            <figure className='absolute rounded-[8px] bg-white p-[6px] shadow-lg'>
+                                <img
+                                    src='images/life/hk_island.webp'
+                                    className='w-[320px] rounded-[8px] object-cover'
+                                />
                             </figure>
-                            <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
-                                <img src='images/life/hk_island.webp' className='swipe-img' />
-                                <figcaption className='img-layer'>
-                                    <h1>Camping on the coast</h1>
-                                    <p>Po Toi Islands, Hong Kong</p>
-                                </figcaption>
+                        </div>
+
+                        <div className='ml-[56px]'>
+                            <header className='mb-4 flex items-center font-bold'>
+                                <span className='mr-2 h-1 w-4 bg-accent' />
+                                <h1>What aabout!</h1>
+                            </header>
+                            <p className='text-sm'>
+                                My life is simple yet joyful, you'll either find me sitting in front of the computer,
+                                losing myself in the latest gaming adventure or a pile of messy code, or exploring the
+                                hidden gems of a city. I often find surprises and beauty in those untold places. I enjoy
+                                talking to strangers and meeting new friends. I always get along with people regardless
+                                of their background, culture, and language.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className='flex'>
+                        <div className='ml-[56px]'>
+                            <header className='mb-4 flex items-center font-bold'>
+                                <span className='mr-2 h-1 w-4 bg-accent' />
+                                <h1>What aabout!</h1>
+                            </header>
+                            <p className='text-sm'>
+                                My life is simple yet joyful, you'll either find me sitting in front of the computer,
+                                losing myself in the latest gaming adventure or a pile of messy code, or exploring the
+                                hidden gems of a city. I often find surprises and beauty in those untold places. I enjoy
+                                talking to strangers and meeting new friends. I always get along with people regardless
+                                of their background, culture, and language.
+                            </p>
+                        </div>
+                        <div className='relative w-[395px] flex-shrink-0'>
+                            <figure className='absolute top-[220px] translate-x-[56px] rounded-[8px] bg-white p-[6px] shadow-lg'>
+                                <img
+                                    src='images/life/fire_dragon_dance.webp'
+                                    className='w-[240px] rounded-[8px] object-cover'
+                                />
                             </figure>
-                        </SwiperSlide>
-                        <SwiperSlide className='img-gallery'>
-                            <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
-                                <img src='images/life/taiwan_shine.webp' className='swipe-img' />
-                                <figcaption className='img-layer'>
-                                    <h1>Fancy oriental temple</h1>
-                                    <p>Kaohsiung, Taiwan</p>
-                                </figcaption>
+                            <figure className='absolute right-0 rounded-[8px] bg-white p-[6px] shadow-lg'>
+                                <img src='images/life/painting.webp' className='w-[220px] rounded-[8px] object-cover' />
                             </figure>
-                            <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
-                                <img src='images/life/painting.webp' className='swipe-img' />
-                                <figcaption className='img-layer'>
-                                    <h1>Fake artist</h1>
-                                    <p>Tsim Sha Tsui, Hong Kong</p>
-                                </figcaption>
-                            </figure>
-                            <figure className='group relative col-span-4 row-span-2 overflow-hidden rounded-[16px]'>
-                                <img src='images/life/love_bridge.webp' className='swipe-img' />
-                                <figcaption className='img-layer'>
-                                    <h1>Lover's bridge celebrating Coldplay's arrival</h1>
-                                    <p>Kaohsiung, Taiwan</p>
-                                </figcaption>
-                            </figure>
-                        </SwiperSlide>
-                        <SwiperSlide className='img-gallery'>
-                            <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
-                                <img src='images/life/fire_dragon_dance.webp' className='swipe-img' />
-                                <figcaption className='img-layer'>
-                                    <h1>Fire Dragon Dance</h1>
-                                    <p>Tai Hang, Hong Kong</p>
-                                </figcaption>
-                            </figure>
-                            <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
-                                <img src='images/life/coldplay.webp' className='swipe-img' />
-                                <figcaption className='img-layer'>
-                                    <h1>Coldplay: Music of the Spheres</h1>
-                                    <p>Kaohsiung, Taiwan</p>
-                                </figcaption>
-                            </figure>
-                            <figure className='group relative col-span-4 row-span-3 overflow-hidden rounded-[16px]'>
-                                <img src='images/life/okinawa_sky.webp' className='swipe-img' />
-                                <figcaption className='img-layer'>
-                                    <h1>Okinawa Churaumi Aquarium</h1>
-                                    <p>Okinawa, Japan</p>
-                                </figcaption>
-                            </figure>
-                        </SwiperSlide>
-                    </Swiper>
+                        </div>
+                    </div>
                 </HtmlSection>
             </HtmlScrollContainer>
 
