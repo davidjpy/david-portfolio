@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 interface Props extends Omit<React.ComponentProps<'section'>, 'title'> {
-    title: JSX.Element
+    title?: JSX.Element
     contentObserverRef: React.MutableRefObject<IntersectionObserver | null>
 }
 
@@ -27,10 +27,12 @@ export default function HtmlSection({ title, children, contentObserverRef, ...pr
             className='hidden-content mt-12 text-secondary [transition:color_0.2s_linear,transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'
             {...props}
         >
-            <header className='mb-4 flex items-center font-bold'>
-                <span className='mr-2 h-1 w-4 bg-accent' />
-                <h1>{title}</h1>
-            </header>
+            {title && (
+                <header className='mb-4 flex items-center font-bold'>
+                    <span className='mr-2 h-1 w-4 bg-accent' />
+                    <h1>{title}</h1>
+                </header>
+            )}
             {children}
         </section>
     )
