@@ -78,7 +78,20 @@ const readingList = [
         image: 'images/study/clean_code.webp',
         href: 'https://github.com/jnguyen095/clean-code/tree/master',
         ariaLabel: 'Clean Code: A Handbook of Agile Software Craftsmanship (opens in a new tab)',
-        linkIcon: <FaGithub className='icon-link-md' />,
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li className='focusable-li'>
+                    <a
+                        href='https://github.com/jnguyen095/clean-code/tree/master'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Clean Code: A Handbook of Agile Software Craftsmanship (opens in a new tab)'
+                    >
+                        <FaGithub className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
         summary:
             'A valuable lesson on how to improve the readiablity, maintainability and extensibility of the codebase.',
 
@@ -95,7 +108,20 @@ const readingList = [
         image: 'images/study/it_fundamentals.webp',
         href: 'https://itpec.org/news/20220921_LMS.html',
         ariaLabel: 'New FE Textbook Vol.1 IT Fundamentals (opens in a new tab)',
-        linkIcon: <FaLink className='icon-link-md' />,
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li className='focusable-li'>
+                    <a
+                        href='https://itpec.org/news/20220921_LMS.html'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='New FE Textbook Vol.1 IT Fundamentals (opens in a new tab)'
+                    >
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
         summary: 'The book gives a firm foundation in IT principles, which are necessary for my daily work.',
         keypoints: (
             <ul>
@@ -113,7 +139,20 @@ const readingList = [
         image: 'images/study/it_strategy_and_management.webp',
         href: 'https://itpec.org/news/20220921_LMS.html',
         ariaLabel: 'New FE Textbook Vol.2 IT Strategy & Management (opens in a new tab)',
-        linkIcon: <FaLink className='icon-link-md' />,
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li className='focusable-li'>
+                    <a
+                        href='https://itpec.org/news/20220921_LMS.html'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='New FE Textbook Vol.2 IT Strategy & Management (opens in a new tab)'
+                    >
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
         summary:
             'A sophisticated discussion on aligning IT with business objectives, project management & strategic innovation.',
         keypoints: (
@@ -132,7 +171,20 @@ const courseList = [
         image: 'images/study/threejs_journey_cert.webp',
         href: 'https://threejs-journey.com/',
         ariaLabel: 'Three.js Journey (opens in a new tab)',
-        linkIcon: <FaLink className='icon-link-md' />,
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li className='focusable-li'>
+                    <a
+                        href='https://threejs-journey.com/'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Three.js Journey (opens in a new tab)'
+                    >
+                        <FaLink className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
         summary: `An extensive 91-hour program that expanded my horizon of 3D web graphics.`,
         keypoints: (
             <ul>
@@ -150,7 +202,20 @@ const courseList = [
         image: 'images/study/cs50.webp',
         href: 'https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org',
         ariaLabel: 'Harvard CS50: Introduction to Computer Science (opens in a new tab)',
-        linkIcon: <FaYoutube className='icon-link-md' />,
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li className='focusable-li'>
+                    <a
+                        href='https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Harvard CS50: Introduction to Computer Science (opens in a new tab)'
+                    >
+                        <FaYoutube className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
         summary:
             'An in-depth dive into the fundamentals of computer science. Additionally, it helped me learn how to think programmatically.',
         keypoints: (
@@ -169,7 +234,20 @@ const courseList = [
         image: 'images/study/mit6.006.webp',
         href: 'https://www.youtube.com/watch?v=HtSuA80QTyo&ab_channel=MITOpenCourseWare',
         ariaLabel: 'MIT 6.006 Introduction to Algorithms (opens in a new tab)',
-        linkIcon: <FaYoutube className='icon-link-md' />,
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li className='focusable-li'>
+                    <a
+                        href='https://www.youtube.com/watch?v=HtSuA80QTyo&ab_channel=MITOpenCourseWare'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='MIT 6.006 Introduction to Algorithms (opens in a new tab)'
+                    >
+                        <FaYoutube className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
         summary: 'An introduction to basic data structures and algorithmic approaches to programming problems.',
         keypoints: (
             <ul>
@@ -184,7 +262,20 @@ const courseList = [
         image: 'images/study/cs229.webp',
         href: 'https://www.youtube.com/watch?v=jGwO_UgTS7I&ab_channel=StanfordOnline',
         ariaLabel: 'Stanford CS229: Machine Learning (opens in a new tab)',
-        linkIcon: <FaYoutube className='icon-link-md' />,
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li className='focusable-li'>
+                    <a
+                        href='https://www.youtube.com/watch?v=jGwO_UgTS7I&ab_channel=StanfordOnline'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Stanford CS229: Machine Learning (opens in a new tab)'
+                    >
+                        <FaYoutube className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
         summary: 'The principles of machine learning and pattern recognition are well-established by this course.',
         keypoints: (
             <ul>
@@ -201,7 +292,20 @@ const courseList = [
         image: 'images/study/bulletproof_react.webp',
         href: 'https://github.com/alan2207/bulletproof-react',
         ariaLabel: 'Bulletproof React (opens in a new tab)',
-        linkIcon: <FaGithub className='icon-link-md' />,
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li className='focusable-li'>
+                    <a
+                        href='https://github.com/alan2207/bulletproof-react'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Bulletproof React (opens in a new tab)'
+                    >
+                        <FaGithub className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
         summary: 'A guide on industry best practices for React.',
         keypoints: (
             <ul>
@@ -223,7 +327,7 @@ const workList = [
         ariaLabel: 'WildBear Shop (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://github.com/davidjpy/wildbear'
                         target='_blank'
@@ -233,7 +337,7 @@ const workList = [
                         <FaGithub className='icon-link-md' />
                     </a>
                 </li>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://www.wildbear-shop.com/'
                         target='_blank'
@@ -266,7 +370,7 @@ const workList = [
         ariaLabel: 'Lighthouse Portfolio (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://github.com/davidjpy/wildbear'
                         target='_blank'
@@ -276,7 +380,7 @@ const workList = [
                         <FaGithub className='icon-link-md' />
                     </a>
                 </li>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://www.wildbear-shop.com/'
                         target='_blank'
@@ -312,7 +416,7 @@ const certificateList = [
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
                         target='_blank'
@@ -340,14 +444,14 @@ const certificateList = [
         title: `Method for detecting and predicting a bottleneck in a transportation process of a
         logistics center`,
         image: 'images/work/logistic_patent.webp',
-        href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=cn',
+        href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en',
         ariaLabel:
             'Method for detecting and predicting a bottleneck in a transportation process of a logistics center (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li>
+                <li className='focusable-li'>
                     <a
-                        href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
+                        href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Method for detecting and predicting a bottleneck in a transportation process of a
@@ -375,7 +479,7 @@ const certificateList = [
         ariaLabel: 'ITPEC Common Examination (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://itpec.org/about/itpec-common-exam.html'
                         target='_blank'
@@ -393,10 +497,15 @@ const certificateList = [
         title: "Time's Person of the Year 2006",
         image: 'images/work/times_person_of_the_year.webp',
         href: 'https://en.wikipedia.org/wiki/You_(Time_Person_of_the_Year)',
+        ariaLabel: "Time's Person of the Year 2006 (opens in a new tab)",
         linkIcons: (
             <ul className='flex gap-2'>
-                <li>
-                    <a href='https://en.wikipedia.org/wiki/You_(Time_Person_of_the_Year)' target='_blank'>
+                <li className='focusable-li'>
+                    <a
+                        href='https://en.wikipedia.org/wiki/You_(Time_Person_of_the_Year)'
+                        target='_blank'
+                        aria-label="Time's Person of the Year 2006 (opens in a new tab)"
+                    >
                         <FaLink className='icon-link-md' />
                     </a>
                 </li>
@@ -414,7 +523,7 @@ const testimonialsList = [
         ariaLabel: 'Francesco Cursi (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://www.linkedin.com/in/francesco-c-a94568111/'
                         target='_blank'
@@ -424,7 +533,7 @@ const testimonialsList = [
                         <FaLinkedin className='icon-link-md' />
                     </a>
                 </li>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://github.com/cursi36'
                         target='_blank'
@@ -434,7 +543,7 @@ const testimonialsList = [
                         <FaGithub className='icon-link-md' />
                     </a>
                 </li>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://francescocursi.com/'
                         target='_blank'
@@ -456,7 +565,7 @@ const testimonialsList = [
         ariaLabel: 'Adah Hu (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li>
+                <li className='focusable-li'>
                     <a
                         href='https://www.linkedin.com/in/adah-h-a0854554/'
                         target='_blank'
@@ -469,191 +578,6 @@ const testimonialsList = [
             </ul>
         ),
         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
-    }
-]
-
-const aboutSections = [
-    {
-        title: (
-            <>
-                <span className='text-accent'>Who</span> am I?
-            </>
-        ),
-        children: (
-            <p>
-                I am an ambitious software engineer based in Hong Kong with over 2 years of professional experience in
-                transforming ideas from 0 to 100 and creating captivating digital experiences that embody elegance,
-                simplicity, and detail. In my full-time role as an application developer, I've successfully made several
-                significant improvements to products with over 2000 daily users while laying the groundwork for a
-                freelance career through targeted networking and skill-building. I am also committed to a long-life
-                journey of continuous growth to stay at the forefront of technology and personal development.
-            </p>
-        )
-    },
-    {
-        title: (
-            <>
-                How it <span className='text-accent'>started</span>?
-            </>
-        ),
-        children: (
-            <p>
-                I'm a self-taught software engineer fueled by a deep passion for the digital world. I began my career as
-                a building surveyor, a field steeped in rigid practices that often limited my creative spirit. Seeking a
-                change, I discovered the intriguing world of programming, a place where innovation thrives and creative
-                problem-solving is encouraged. This propelled me into a mountain of code, where I've found passion for
-                crafting web applications with stunning visuals and software that embrace efficiency.
-            </p>
-        )
-    }
-]
-const skillsSections = [
-    {
-        title: (
-            <>
-                What can I offer as a <span className='text-accent'>software developer</span>?
-            </>
-        ),
-        children: (
-            <ul>
-                {softwareSkills.map((skill, index) => (
-                    <li
-                        key={skill.name}
-                        className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
-                        style={{
-                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
-                                index * 0.1
-                            }s,opacity 0.4s ease-out ${index * 0.1}s`
-                        }}
-                    >
-                        <span>{skill.icon}</span>
-                        <p className='mt-2'>{skill.name}</p>
-                    </li>
-                ))}
-            </ul>
-        )
-    },
-    {
-        title: (
-            <>
-                What other <span className='text-accent'>skills</span> do I have?
-            </>
-        ),
-        children: (
-            <ul>
-                {otherSkills.map((skill, index) => (
-                    <li
-                        key={skill.name}
-                        className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
-                        style={{
-                            transition: `background-color 0.2s linear, transform 0.4s ease-out ${
-                                index * 0.1
-                            }s, opacity 0.4s ease-out ${index * 0.1}s`
-                        }}
-                    >
-                        <span>{skill.icon}</span>
-                        <p className='mt-2'>{skill.name}</p>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
-]
-const lifeSections = [
-    {
-        title: (
-            <>
-                My <span className='text-accent'>daily</span> life?
-            </>
-        ),
-        children: (
-            <>
-                <p>
-                    My life is simple yet joyful, you'll either find me sitting in front of the computer, losing myself
-                    in the latest gaming adventure or a pile of messy code, or exploring the hidden gems of a city. I
-                    often find surprises and beauty in those untold places. I enjoy talking to strangers and meeting new
-                    friends. I always get along with people regardless of their background, culture, and language.
-                </p>
-                <Swiper
-                    slidesPerView={1}
-                    spaceBetween={16}
-                    loop={true}
-                    pagination={{ clickable: true }}
-                    modules={[Pagination]}
-                    className='mt-8 h-[700px] w-full rounded-[24px] p-[8px]'
-                >
-                    <SwiperSlide className='img-gallery'>
-                        <figure className='group relative col-span-2 row-span-5 overflow-hidden rounded-[16px]'>
-                            <img src='images/life/japan_shine.webp' className='swipe-img col-span-2 row-span-5' />
-                            <figcaption className='img-layer'>
-                                <h1>Shine hidden in the forest</h1>
-                                <p>Kumamoto, Japan</p>
-                            </figcaption>
-                        </figure>
-                        <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
-                            <img src='images/life/japan_house.webp' className='swipe-img' />
-                            <figcaption className='img-layer'>
-                                <h1>Japanese architecture</h1>
-                                <p>Kurokawa Onsen Ryokan, Japan</p>
-                            </figcaption>
-                        </figure>
-                        <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
-                            <img src='images/life/hk_island.webp' className='swipe-img' />
-                            <figcaption className='img-layer'>
-                                <h1>Camping on the coast</h1>
-                                <p>Po Toi Islands, Hong Kong</p>
-                            </figcaption>
-                        </figure>
-                    </SwiperSlide>
-                    <SwiperSlide className='img-gallery'>
-                        <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
-                            <img src='images/life/taiwan_shine.webp' className='swipe-img' />
-                            <figcaption className='img-layer'>
-                                <h1>Fancy oriental temple</h1>
-                                <p>Kaohsiung, Taiwan</p>
-                            </figcaption>
-                        </figure>
-                        <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
-                            <img src='images/life/painting.webp' className='swipe-img' />
-                            <figcaption className='img-layer'>
-                                <h1>Fake artist</h1>
-                                <p>Tsim Sha Tsui, Hong Kong</p>
-                            </figcaption>
-                        </figure>
-                        <figure className='group relative col-span-4 row-span-2 overflow-hidden rounded-[16px]'>
-                            <img src='images/life/love_bridge.webp' className='swipe-img' />
-                            <figcaption className='img-layer'>
-                                <h1>Lover's bridge celebrating Coldplay's arrival</h1>
-                                <p>Kaohsiung, Taiwan</p>
-                            </figcaption>
-                        </figure>
-                    </SwiperSlide>
-                    <SwiperSlide className='img-gallery'>
-                        <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
-                            <img src='images/life/fire_dragon_dance.webp' className='swipe-img' />
-                            <figcaption className='img-layer'>
-                                <h1>Fire Dragon Dance</h1>
-                                <p>Tai Hang, Hong Kong</p>
-                            </figcaption>
-                        </figure>
-                        <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
-                            <img src='images/life/coldplay.webp' className='swipe-img' />
-                            <figcaption className='img-layer'>
-                                <h1>Coldplay: Music of the Spheres</h1>
-                                <p>Kaohsiung, Taiwan</p>
-                            </figcaption>
-                        </figure>
-                        <figure className='group relative col-span-4 row-span-3 overflow-hidden rounded-[16px]'>
-                            <img src='images/life/okinawa_sky.webp' className='swipe-img' />
-                            <figcaption className='img-layer'>
-                                <h1>Okinawa Churaumi Aquarium</h1>
-                                <p>Okinawa, Japan</p>
-                            </figcaption>
-                        </figure>
-                    </SwiperSlide>
-                </Swiper>
-            </>
-        )
     }
 ]
 
@@ -936,7 +860,7 @@ const HtmlContent = memo(function HtmlContent() {
                             ></span>
                         </h1>
                         <ul ref={contactListRef} className='mt-4 flex gap-4'>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'>
+                            <li className='hidden-content focusable-li [transition:color_0.2s_linear,transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'>
                                 <a
                                     href='https://github.com/davidjpy'
                                     target='_blank'
@@ -946,7 +870,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <FaGithub className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
+                            <li className='hidden-content focusable-li [transition:color_0.2s_linear,transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
                                 <a
                                     href='https://www.linkedin.com/in/davidho-web/'
                                     target='_blank'
@@ -956,7 +880,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <FaLinkedin className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content [transition:color_0.2s_linear,transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
+                            <li className='hidden-content focusable-li [transition:color_0.2s_linear,transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
                                 <a
                                     href='https://www.instagram.com/___realdavid/'
                                     target='_blank'
@@ -972,11 +896,41 @@ const HtmlContent = memo(function HtmlContent() {
                 contentObserverRef={contentObserverRef}
                 ref={aboutSectionRef}
             >
-                {aboutSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
-                        {section.children}
-                    </HtmlSection>
-                ))}
+                <HtmlSection
+                    title={
+                        <>
+                            <span className='text-accent'>Who</span> am I?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <p>
+                        I'm an ambitious software engineer based in Hong Kong with over 2 years of professional
+                        experience in transforming ideas from 0 to 100 and creating captivating digital experiences that
+                        embody elegance, simplicity, and detail. In my full-time role as an application developer, I've
+                        successfully made several significant improvements to products with over 2000 daily users while
+                        laying the groundwork for a freelance career through targeted networking and skill-building. I
+                        am also committed to a long-life journey of continuous growth to stay at the forefront of
+                        technology and personal development.
+                    </p>
+                </HtmlSection>
+                <HtmlSection
+                    title={
+                        <>
+                            How it <span className='text-accent'>started</span>?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <p>
+                        I'm a self-taught software engineer fueled by a deep passion for the digital world. I began my
+                        career as a building surveyor, a field steeped in rigid practices that often limited my creative
+                        spirit. Seeking a change, I discovered the intriguing world of programming, a place where
+                        innovation thrives and creative problem-solving is encouraged. This propelled me into a mountain
+                        of code, where I've found passion for crafting web applications with stunning visuals and
+                        software that embrace efficiency.
+                    </p>
+                </HtmlSection>
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
@@ -992,11 +946,56 @@ const HtmlContent = memo(function HtmlContent() {
                 contentObserverRef={contentObserverRef}
                 ref={skillsSectionRef}
             >
-                {skillsSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
-                        {section.children}
-                    </HtmlSection>
-                ))}
+                <HtmlSection
+                    title={
+                        <>
+                            What can I offer as a <span className='text-accent'>software developer</span>?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <ul>
+                        {softwareSkills.map((skill, index) => (
+                            <li
+                                key={skill.name}
+                                className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
+                                style={{
+                                    transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                                        index * 0.1
+                                    }s,opacity 0.4s ease-out ${index * 0.1}s`
+                                }}
+                            >
+                                <span>{skill.icon}</span>
+                                <p className='mt-2'>{skill.name}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </HtmlSection>
+                <HtmlSection
+                    title={
+                        <>
+                            What other <span className='text-accent'>skills</span> do I have?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <ul>
+                        {otherSkills.map((skill, index) => (
+                            <li
+                                key={skill.name}
+                                className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
+                                style={{
+                                    transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                                        index * 0.1
+                                    }s, opacity 0.4s ease-out ${index * 0.1}s`
+                                }}
+                            >
+                                <span>{skill.icon}</span>
+                                <p className='mt-2'>{skill.name}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </HtmlSection>
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
@@ -1043,14 +1042,14 @@ const HtmlContent = memo(function HtmlContent() {
                                         <img src={book.image} className='book-list-img' />
                                     </figure>
                                     <div className='w-full pl-4'>
-                                        <header className='flex items-center justify-between'>
+                                        <header className='w-[95%]'>
                                             <h1 className='section-list-title'>{book.title}</h1>
-                                            {book.linkIcon}
                                         </header>
                                         <p className='section-list-summary'>{book.summary}</p>
                                         {book.keypoints}
                                     </div>
                                 </a>
+                                <div className='icons-list-item'>{book.linkIcons}</div>
                             </li>
                         ))}
                     </ul>
@@ -1087,14 +1086,14 @@ const HtmlContent = memo(function HtmlContent() {
                                         <img src={course.image} className='project-list-img' />
                                     </figure>
                                     <div className='w-full pl-4'>
-                                        <div className='flex items-center justify-between'>
+                                        <header className='w-[95%]'>
                                             <h1 className='section-list-title'>{course.title}</h1>
-                                            <span>{course.linkIcon}</span>
-                                        </div>
+                                        </header>
                                         <p className='section-list-summary'>{course.summary}</p>
                                         {course.keypoints}
                                     </div>
                                 </a>
+                                <div className='icons-list-item'>{course.linkIcons}</div>
                             </li>
                         ))}
                     </ul>
@@ -1114,11 +1113,100 @@ const HtmlContent = memo(function HtmlContent() {
                 contentObserverRef={contentObserverRef}
                 ref={lifeSectionRef}
             >
-                {lifeSections.map((section, index) => (
-                    <HtmlSection key={index} title={section.title} contentObserverRef={contentObserverRef}>
-                        {section.children}
-                    </HtmlSection>
-                ))}
+                <HtmlSection
+                    title={
+                        <>
+                            My <span className='text-accent'>daily</span> life?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <p>
+                        My life is simple yet joyful, you'll either find me sitting in front of the computer, losing
+                        myself in the latest gaming adventure or a pile of messy code, or exploring the hidden gems of a
+                        city. I often find surprises and beauty in those untold places. I enjoy talking to strangers and
+                        meeting new friends. I always get along with people regardless of their background, culture, and
+                        language.
+                    </p>
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={16}
+                        loop={true}
+                        pagination={{ clickable: true }}
+                        modules={[Pagination]}
+                        className='mt-8 h-[700px] w-full rounded-[24px] p-[8px]'
+                    >
+                        <SwiperSlide className='img-gallery'>
+                            <figure className='group relative col-span-2 row-span-5 overflow-hidden rounded-[16px]'>
+                                <img src='images/life/japan_shine.webp' className='swipe-img col-span-2 row-span-5' />
+                                <figcaption className='img-layer'>
+                                    <h1>Shine hidden in the forest</h1>
+                                    <p>Kumamoto, Japan</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
+                                <img src='images/life/japan_house.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Japanese architecture</h1>
+                                    <p>Kurokawa Onsen Ryokan, Japan</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
+                                <img src='images/life/hk_island.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Camping on the coast</h1>
+                                    <p>Po Toi Islands, Hong Kong</p>
+                                </figcaption>
+                            </figure>
+                        </SwiperSlide>
+                        <SwiperSlide className='img-gallery'>
+                            <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
+                                <img src='images/life/taiwan_shine.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Fancy oriental temple</h1>
+                                    <p>Kaohsiung, Taiwan</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-2 row-span-3 overflow-hidden rounded-[16px]'>
+                                <img src='images/life/painting.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Fake artist</h1>
+                                    <p>Tsim Sha Tsui, Hong Kong</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-4 row-span-2 overflow-hidden rounded-[16px]'>
+                                <img src='images/life/love_bridge.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Lover's bridge celebrating Coldplay's arrival</h1>
+                                    <p>Kaohsiung, Taiwan</p>
+                                </figcaption>
+                            </figure>
+                        </SwiperSlide>
+                        <SwiperSlide className='img-gallery'>
+                            <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
+                                <img src='images/life/fire_dragon_dance.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Fire Dragon Dance</h1>
+                                    <p>Tai Hang, Hong Kong</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-2 row-span-2 overflow-hidden rounded-[16px]'>
+                                <img src='images/life/coldplay.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Coldplay: Music of the Spheres</h1>
+                                    <p>Kaohsiung, Taiwan</p>
+                                </figcaption>
+                            </figure>
+                            <figure className='group relative col-span-4 row-span-3 overflow-hidden rounded-[16px]'>
+                                <img src='images/life/okinawa_sky.webp' className='swipe-img' />
+                                <figcaption className='img-layer'>
+                                    <h1>Okinawa Churaumi Aquarium</h1>
+                                    <p>Okinawa, Japan</p>
+                                </figcaption>
+                            </figure>
+                        </SwiperSlide>
+                    </Swiper>
+                </HtmlSection>
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
@@ -1172,7 +1260,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         {work.keypoints}
                                     </div>
                                 </a>
-                                <div className='absolute right-4 top-4'>{work.linkIcons}</div>
+                                <div className='icons-list-item'>{work.linkIcons}</div>
                             </li>
                         ))}
                     </ul>
@@ -1215,7 +1303,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         {certificate.keypoints}
                                     </div>
                                 </a>
-                                <div className='absolute right-4 top-4'>{certificate.linkIcons}</div>
+                                <div className='icons-list-item'>{certificate.linkIcons}</div>
                             </li>
                         ))}
                     </ul>
@@ -1275,7 +1363,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         <p className='section-list-summary mt-4'>{coworker.summary}</p>
                                     </div>
                                 </a>
-                                <div className='absolute right-4 top-4'>{coworker.linkIcons}</div>
+                                <div className='icons-list-item'>{coworker.linkIcons}</div>
                             </li>
                         ))}
                     </ul>

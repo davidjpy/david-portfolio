@@ -263,7 +263,7 @@ export default function ControlPanel() {
                 </span>
             </div>
 
-            <div className='relative col-span-4 row-span-1 overflow-hidden rounded-full shadow-lg'>
+            <div className='relative col-span-4 row-span-1 rounded-full shadow-lg'>
                 <IoMoon size={16} className='pointer-events-none absolute left-[8px] top-1/2 -translate-y-1/2' />
                 <label
                     htmlFor='brightnessSlider'
@@ -287,17 +287,15 @@ export default function ControlPanel() {
 
             <ul className='clock-blackground-sm col-span-7 row-span-1 flex items-center justify-evenly rounded-[8px]'>
                 {navTab.map((tab, index) => (
-                    <li
-                        key={index}
-                        className='tab-list-item'
-                        onClick={() => scrollData.el.scrollTo({ top: tab.top, behavior: 'smooth' })}
-                    >
-                        {tab.name}
+                    <li key={index} className='tab-list-item'>
+                        <button onClick={() => scrollData.el.scrollTo({ top: tab.top, behavior: 'smooth' })}>
+                            {tab.name}
+                        </button>
                     </li>
                 ))}
             </ul>
 
-            <span
+            <button
                 onClick={handleClickToggleSlider}
                 className='absolute bottom-0 right-0 -translate-x-1/2 translate-y-full cursor-pointer rounded-b-[8px] bg-clock-element shadow-lg transition-colors hover:bg-black'
             >
@@ -314,7 +312,7 @@ export default function ControlPanel() {
                         className='ml-[6px] mr-[6px] h-[22px] w-[30px]'
                     />
                 )}
-            </span>
+            </button>
         </AnimatedHtml>
     )
 }

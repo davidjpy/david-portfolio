@@ -26,11 +26,23 @@
         --color-accent-bg: 49 57 75;
         --color-clock-blackground: 0 0 0;
     }
+
+    a,
+    button,
+    input {
+        @apply outline-purpose outline-2 outline-offset-2;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+        @apply outline;
+    }
 }
 
 @layer components {
     .brightness-slider {
-        @apply h-full w-full cursor-col-resize appearance-none overflow-hidden bg-clock-element;
+        @apply h-full w-full cursor-col-resize appearance-none overflow-hidden rounded-full bg-clock-element;
     }
 
     .brightness-slider::-webkit-slider-thumb {
@@ -143,6 +155,14 @@
 
     .keypoint-list-item {
         @apply mr-2 mt-2 inline-block rounded-[8px] bg-accent-bg pb-[4px] pl-[8px] pr-[8px] pt-[4px] text-sm text-secondary shadow;
+    }
+
+    .icons-list-item {
+        @apply absolute right-4 top-4;
+    }
+
+    .focusable-li {
+        @apply focus-within:outline-purpose focus-within:outline focus-within:outline-2 focus-within:outline-offset-2;
     }
 }
 

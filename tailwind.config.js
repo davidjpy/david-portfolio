@@ -12,7 +12,8 @@ export default {
                 accent: 'rgb(var(--color-accent) / <alpha-value>)',
                 'accent-bg': 'rgb(var(--color-accent-bg) / <alpha-value>)',
                 'clock-element': 'rgb(var(--color-clock-blackground) / 0.2)',
-                black: 'rgb(80, 80, 80)'
+                black: 'rgb(80, 80, 80)',
+                purpose: '#5613d1'
             },
             animation: {
                 typing: 'typing 0.85s step-end infinite'
