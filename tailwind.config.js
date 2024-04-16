@@ -13,7 +13,8 @@ export default {
                 'accent-bg': 'rgb(var(--color-accent-bg) / <alpha-value>)',
                 'clock-element': 'rgb(var(--color-clock-blackground) / 0.2)',
                 black: 'rgb(80, 80, 80)',
-                'focus-outline': 'rgb(var(--color-focus-outline) / <alpha-value>)',
+                white: 'rgb(245, 243, 240)',
+                'focus-outline': 'rgb(var(--color-focus-outline) / <alpha-value>)'
             },
             animation: {
                 typing: 'typing 0.85s step-end infinite'
