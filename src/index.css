@@ -14,6 +14,7 @@
         --color-accent: 246 92 53;
         --color-accent-bg: 215 221 204;
         --color-clock-blackground: 0 0 0;
+        --color-focus-outline: 86 19 209;
     }
 
     :root[theme='dark'] {
@@ -25,12 +26,13 @@
         --color-accent: 246 92 53;
         --color-accent-bg: 49 57 75;
         --color-clock-blackground: 0 0 0;
+        --color-focus-outline: 250 231 230;
     }
 
     a,
     button,
     input {
-        @apply outline-purpose outline-2 outline-offset-2;
+        @apply outline-focus-outline outline-2;
     }
 
     a:focus-visible,
@@ -162,7 +164,7 @@
     }
 
     .focusable-li {
-        @apply focus-within:outline-purpose focus-within:outline focus-within:outline-2 focus-within:outline-offset-2;
+        @apply focus-within:outline-focus-outline focus-within:outline focus-within:outline-2;
     }
 }
 
