@@ -10,10 +10,16 @@ import { cameraMouseFactor, scrollPages } from '@/src/utilities/constants'
 export const tabletCameraPositions = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.046, 1.9557, 1.9249), new THREE.Vector3(0.217, 1.4057, 0.24)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.217, 1.4057, 0.24), new THREE.Vector3(0.21, 1.5822, 0.1468)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.5822, 0.1468), new THREE.Vector3(-0.016, 1.5457, -0.073)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.016, 1.5457, -0.073), new THREE.Vector3(0.036, 1.538, -0.088)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.036, 1.538, -0.088), new THREE.Vector3(0.036, 1.54, -0.057)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.036, 1.54, -0.057), new THREE.Vector3(0.21, 1.5822, 0.1468)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.5822, 0.1468), new THREE.Vector3(-0.0182, 1.5376, -0.036)]),
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.0182, 1.5376, -0.036),
+        new THREE.Vector3(0.0483, 1.5443, -0.0785)
+    ]),
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(0.0483, 1.5443, -0.0785),
+        new THREE.Vector3(-0.0233, 1.5423, -0.0756)
+    ]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.0233, 1.5423, -0.0756), new THREE.Vector3(0.21, 1.5822, 0.1468)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.5822, 0.1468), new THREE.Vector3(0.21, 1.7116, 0.1468)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.7116, 0.1468), new THREE.Vector3(-0.0195, 1.6841, -0.0524)]),
     new THREE.CatmullRomCurve3([
@@ -21,30 +27,32 @@ export const tabletCameraPositions = [
         new THREE.Vector3(-0.0506, 1.6944, -0.0538)
     ])
 ]
+
 const tabletCameraLookAts = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.008, 1.5967, 0.24), new THREE.Vector3(0.398, 1.348, 0)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.398, 1.348, 0), new THREE.Vector3(0.038, 1.521, -0.017)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.521, -0.017), new THREE.Vector3(-0.0835, 1.5328, -0.138)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.0835, 1.5328, -0.138), new THREE.Vector3(-0.04, 1.529, -0.121)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.04, 1.529, -0.121), new THREE.Vector3(0.045, 1.534, -0.088)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.045, 1.534, -0.088), new THREE.Vector3(0.038, 1.521, -0.017)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.521, -0.017), new THREE.Vector3(-0.0702, 1.5195, -0.0938)]),
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.0702, 1.5195, -0.0938),
+        new THREE.Vector3(0.0667, 1.544, -0.1492)
+    ]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.0667, 1.544, -0.1492), new THREE.Vector3(0.0169, 1.5338, -0.1211)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.0169, 1.5338, -0.1211), new THREE.Vector3(0.038, 1.521, -0.017)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.521, -0.017), new THREE.Vector3(0.038, 1.6638, -0.017)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.6638, -0.017), new THREE.Vector3(-0.0966, 1.6736, -0.0627)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(-0.0966, 1.6736, -0.0627), new THREE.Vector3(-0.1, 1.6531, -0.0548)])
 ]
+
 const mobileCameraPositions = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.046, 1.9557, 1.9249), new THREE.Vector3(0.165, 1.4007, 0.219)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.165, 1.4007, 0.219), new THREE.Vector3(0.234, 1.5822, 0.1528)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.234, 1.5822, 0.1528), new THREE.Vector3(-0.0116, 1.5381, -0.0911)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.234, 1.5822, 0.1528), new THREE.Vector3(-0.0101, 1.5261, -0.0795)]),
     new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-0.0116, 1.5381, -0.0911),
-        new THREE.Vector3(-0.0034, 1.5418, -0.0486)
+        new THREE.Vector3(-0.0101, 1.5261, -0.0795),
+        new THREE.Vector3(0.0164, 1.5443, -0.102)
     ]),
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-0.0034, 1.5418, -0.0486),
-        new THREE.Vector3(0.0364, 1.5326, -0.0582)
-    ]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.0364, 1.5326, -0.0582), new THREE.Vector3(0.234, 1.5822, 0.1528)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.0164, 1.5443, -0.102), new THREE.Vector3(0.0182, 1.5432, -0.0498)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.0182, 1.5432, -0.0498), new THREE.Vector3(0.234, 1.5822, 0.1528)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.234, 1.5822, 0.1528), new THREE.Vector3(0.21, 1.7116, 0.1468)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.7116, 0.1468), new THREE.Vector3(-0.0274, 1.6841, -0.0524)]),
     new THREE.CatmullRomCurve3([
@@ -55,16 +63,10 @@ const mobileCameraPositions = [
 const mobileCameraLookAts = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.008, 1.5967, 0.24), new THREE.Vector3(0.218, 1.386, 0.149)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.218, 1.386, 0.149), new THREE.Vector3(0.045, 1.521, -0.017)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.045, 1.521, -0.017), new THREE.Vector3(-0.0397, 1.5328, -0.138)]),
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-0.0397, 1.5328, -0.138),
-        new THREE.Vector3(-0.0373, 1.5389, -0.0636)
-    ]),
-    new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-0.0373, 1.5389, -0.0636),
-        new THREE.Vector3(0.0462, 1.5331, -0.0697)
-    ]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(0.0462, 1.5331, -0.0697), new THREE.Vector3(0.045, 1.521, -0.017)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.045, 1.521, -0.017), new THREE.Vector3(-0.0385, 1.52, -0.1268)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.0385, 1.52, -0.1268), new THREE.Vector3(0.0219, 1.544, -0.1779)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.0219, 1.544, -0.1779), new THREE.Vector3(0.0662, 1.5396, -0.1031)]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(0.0662, 1.5396, -0.1031), new THREE.Vector3(0.045, 1.521, -0.017)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.045, 1.521, -0.017), new THREE.Vector3(0.038, 1.6638, -0.017)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.038, 1.6638, -0.017), new THREE.Vector3(-0.0304, 1.6836, -0.0529)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(-0.0304, 1.6836, -0.0529), new THREE.Vector3(-0.1, 1.6531, -0.0548)])
@@ -79,11 +81,11 @@ export default function Camera({ isMobile }: Props) {
     const cameraControlRef = useRef() as React.RefObject<CameraControls>
     // const { position, lookAt } = useControls('Camera', {
     //     position: {
-    //         value: [-0.0195, 1.6841, -0.0524],
+    //         value: [0.0364, 1.5326, -0.0582],
     //         step: 0.0001
     //     },
     //     lookAt: {
-    //         value: [-0.0966, 1.6736, -0.0627],
+    //         value: [0.0462, 1.5331, -0.0697],
     //         step: 0.0001
     //     }
     // })

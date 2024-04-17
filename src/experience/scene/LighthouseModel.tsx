@@ -61,23 +61,33 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     const wallMaterialRef = useRef<THREE.MeshBasicMaterial>(null!)
     const scrollData = useScroll()
     const { nodes } = useGLTF('models/lighthouse.glb') as GLTFResult
-    const [
-        davidArtTexture,
-        davidPhotoTexture,
-        displacementTexture
-    ] = useTexture([
+    const [davidArtTexture, davidPhotoTexture, displacementTexture] = useTexture([
         'models/david_art.webp',
         'models/david_photo.webp',
         'models/water_displacement_map.jpg'
     ])
 
+    // const [
+    //     lighthouseTexture
+    //     firstFloorTexture01,
+    //     firstFloorTexture02,
+    //     secondFloorTexture01,
+    //     secondFloorTexture02
+    // ] = useKTX2([
+    //     'models/lighthouse_bake.ktx2'
+    //     'models/firstFloor01_bake.ktx2',
+    //     'models/firstFloor02_bake.ktx2',
+    //     'models/secondFloor01_bake.ktx2',
+    //     'models/secondFloor02_bake.ktx2'
+    // ])
+
     const [lighthouseTexture, firstFloorTexture01, firstFloorTexture02, secondFloorTexture01, secondFloorTexture02] =
-        useKTX2([
-            'models/lighthouse_bake.ktx2',
-            'models/firstFloor01_bake.ktx2',
-            'models/firstFloor02_bake.ktx2',
-            'models/secondFloor01_bake.ktx2',
-            'models/secondFloor02_bake.ktx2'
+        useTexture([
+            'models/house.webp',
+            'models/1st_1.webp',
+            'models/1st_2.webp',
+            'models/2nd_1.webp',
+            'models/2nd_2.webp'
         ])
 
     lighthouseTexture.flipY = false
@@ -135,8 +145,8 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
                 name='globe'
                 geometry={nodes.globe.geometry}
                 material={nodes.globe.material}
-                position={[0.083, 5.031, 0.049]}
-                rotation={[0, 0.439, 0]}
+                position={[-0.364, 5.079, 0.319]}
+                rotation={[-Math.PI, 1.44, -Math.PI]}
             >
                 <meshBasicMaterial map={firstFloorTexture01} />
             </mesh>
