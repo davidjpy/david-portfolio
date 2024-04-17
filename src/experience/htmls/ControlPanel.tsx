@@ -285,15 +285,17 @@ export default function ControlPanel() {
                 <IoSunny size={18} className='pointer-events-none absolute right-[8px] top-1/2 -translate-y-1/2' />
             </div>
 
-            <ul className='clock-blackground-sm col-span-7 row-span-1 flex items-center justify-evenly rounded-[8px]'>
+            <nav className='clock-blackground-sm col-span-7 row-span-1 flex items-center justify-evenly rounded-[8px]'>
                 {navTab.map((tab, index) => (
-                    <li key={index} className='tab-list-item'>
-                        <button onClick={() => scrollData.el.scrollTo({ top: tab.top, behavior: 'smooth' })}>
-                            {tab.name}
-                        </button>
-                    </li>
+                    <button
+                        key={index}
+                        onClick={() => scrollData.el.scrollTo({ top: tab.top, behavior: 'smooth' })}
+                        className='tab-list-item'
+                    >
+                        {tab.name}
+                    </button>
                 ))}
-            </ul>
+            </nav>
 
             <button
                 onClick={handleClickToggleSlider}
