@@ -21,10 +21,6 @@ import {
 import { SiTypescript, SiTailwindcss, SiBlender } from 'react-icons/si'
 import { MdOutlinePhonelink } from 'react-icons/md'
 import { TbBrandThreejs } from 'react-icons/tb'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/pagination'
 
 import HtmlScrollContainer from '@/src/experience/htmls/HtmlScrollContainer'
 import HtmlSection from '@/src/experience/htmls/HtmlSection'
@@ -47,6 +43,13 @@ const titles = [
     'Dog Lover',
     'Traveller',
     'Normal Person'
+]
+const funFacts = [
+    'I love Japanese culture',
+    'I love dogs, golden retriever particularly',
+    'Reaching the summit of Mount Everest is my lifelong goal',
+    "I'm obsessed with what else is hiding in the vast universe",
+    'I love playing quality RPGs'
 ]
 const softwareSkills = [
     { name: 'Typescript', icon: <SiTypescript className='icon-svg' /> },
@@ -1114,61 +1117,82 @@ const HtmlContent = memo(function HtmlContent() {
                 ref={lifeSectionRef}
             >
                 <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex h-[420px]'>
-                        <div className='relative w-[395px] flex-shrink-0'>
-                            <figure className='absolute top-[190px] translate-x-36 rounded-[8px] bg-white p-[6px] shadow-lg'>
-                                <img
-                                    src='images/life/okinawa_sky.webp'
-                                    className='w-[250px] rounded-[8px] object-cover'
-                                />
+                    <div className='flex gap-[56px]'>
+                        <div className='relative h-[380px] w-[440px] flex-shrink-0'>
+                            <figure className='p-[4px] bg-white absolute bottom-0 right-0 rounded-[8px] shadow-lg'>
+                                <img src='images/life/okinawa_sky.webp' className='w-[270px] object-cover rounded-[8px]' />
                             </figure>
-                            <figure className='absolute rounded-[8px] bg-white p-[6px] shadow-lg'>
-                                <img
-                                    src='images/life/hk_island.webp'
-                                    className='w-[320px] rounded-[8px] object-cover'
-                                />
+                            <figure className='p-[4px] bg-white absolute rounded-[8px] shadow-lg'>
+                                <img src='images/life/hk_island.webp' className='w-[340px] object-cover rounded-[8px]' />
                             </figure>
                         </div>
 
-                        <div className='ml-[56px]'>
+                        <div className='mt-4'>
                             <header className='mb-4 flex items-center font-bold'>
                                 <span className='mr-2 h-1 w-4 bg-accent' />
-                                <h1>What aabout!</h1>
+                                <h1>
+                                    My daily <span className='text-accent'>life</span>
+                                </h1>
                             </header>
-                            <p className='text-sm'>
+                            <p>
                                 My life is simple yet joyful, you'll either find me sitting in front of the computer,
-                                losing myself in the latest gaming adventure or a pile of messy code, or exploring the
-                                hidden gems of a city. I often find surprises and beauty in those untold places. I enjoy
-                                talking to strangers and meeting new friends. I always get along with people regardless
-                                of their background, culture, and language.
+                                losing myself in a gaming adventure or a pile of messy code, or exploring the hidden
+                                gems of a city. I often find surprises and beauty in those untold places.
                             </p>
                         </div>
                     </div>
-
-                    <div className='flex'>
-                        <div className='ml-[56px]'>
+                </HtmlSection>
+                <HtmlSection contentObserverRef={contentObserverRef}>
+                    <div className='flex h-[448px] gap-[56px]'>
+                        <div className='ml-4 mt-20'>
                             <header className='mb-4 flex items-center font-bold'>
                                 <span className='mr-2 h-1 w-4 bg-accent' />
-                                <h1>What aabout!</h1>
+                                <h1>
+                                    I'm sometime <span className='text-accent'>spontaneous</span>
+                                </h1>
                             </header>
-                            <p className='text-sm'>
-                                My life is simple yet joyful, you'll either find me sitting in front of the computer,
-                                losing myself in the latest gaming adventure or a pile of messy code, or exploring the
-                                hidden gems of a city. I often find surprises and beauty in those untold places. I enjoy
-                                talking to strangers and meeting new friends. I always get along with people regardless
-                                of their background, culture, and language.
+                            <p>
+                                Every now and then, I love stepping out to explore different events or dive into new
+                                experiences purely for the joy of it. I believe that a dash of spontaneity and a
+                                sprinkle of randomness can refresh your mindset and illuminate your life.
                             </p>
                         </div>
-                        <div className='relative w-[395px] flex-shrink-0'>
-                            <figure className='absolute top-[220px] translate-x-[56px] rounded-[8px] bg-white p-[6px] shadow-lg'>
-                                <img
-                                    src='images/life/fire_dragon_dance.webp'
-                                    className='w-[240px] rounded-[8px] object-cover'
-                                />
+
+                        <div className='relative h-[520px] w-[360px] flex-shrink-0 -translate-y-[72px]'>
+                            <figure className='p-[4px] bg-white absolute bottom-0 rounded-[8px] shadow-lg'>
+                                <img src='images/life/fire_dragon_dance.webp' className='w-[240px] object-cover rounded-[8px]' />
                             </figure>
-                            <figure className='absolute right-0 rounded-[8px] bg-white p-[6px] shadow-lg'>
-                                <img src='images/life/painting.webp' className='w-[220px] rounded-[8px] object-cover' />
+                            <figure className='p-[4px] bg-white absolute right-0 rounded-[8px] shadow-lg'>
+                                <img src='images/life/painting.webp' className='w-[220px] object-cover rounded-[8px]' />
                             </figure>
+                        </div>
+                    </div>
+                </HtmlSection>
+                <HtmlSection contentObserverRef={contentObserverRef}>
+                    <div className='flex gap-[56px]'>
+                        <div className='relative h-[380px] w-[420px] flex-shrink-0 -translate-y-[60px]'>
+                            <figure className='p-[4px] bg-white absolute bottom-0 right-0 rounded-[8px]  shadow-lg'>
+                                <img src='images/life/japan_house.webp' className='w-[300px] object-cover rounded-[8px]' />
+                            </figure>
+                            <figure className='p-[4px] bg-white absolute rounded-[8px] shadow-lg'>
+                                <img src='images/life/husky.webp' className='w-[320px] object-cover rounded-[8px]' />
+                            </figure>
+                        </div>
+
+                        <div className='mt-8'>
+                            <header className='mb-4 flex items-center font-bold'>
+                                <span className='mr-2 h-1 w-4 bg-accent' />
+                                <h1>
+                                    Fun <span className='text-accent'>facts</span> about me
+                                </h1>
+                            </header>
+                            <ul className='ml-[18px] list-decimal'>
+                                {funFacts.map((fact, index) => (
+                                    <li key={index} className='mb-2'>
+                                        {fact}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </HtmlSection>
