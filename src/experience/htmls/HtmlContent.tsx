@@ -79,6 +79,7 @@ const readingList = [
     {
         title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
         image: 'images/study/clean_code.webp',
+        alt: 'Clean Code: A Handbook of Agile Software Craftsmanship book cover',
         href: 'https://github.com/jnguyen095/clean-code/tree/master',
         ariaLabel: 'Clean Code: A Handbook of Agile Software Craftsmanship (opens in a new tab)',
         linkIcons: (
@@ -109,6 +110,7 @@ const readingList = [
     {
         title: 'New FE Textbook Vol.1 IT Fundamentals',
         image: 'images/study/it_fundamentals.webp',
+        alt: 'New FE Textbook Vol.1 IT Fundamentals book cover',
         href: 'https://itpec.org/news/20220921_LMS.html',
         ariaLabel: 'New FE Textbook Vol.1 IT Fundamentals (opens in a new tab)',
         linkIcons: (
@@ -140,6 +142,7 @@ const readingList = [
     {
         title: 'New FE Textbook Vol.2 IT Strategy & Management',
         image: 'images/study/it_strategy_and_management.webp',
+        alt: 'New FE Textbook Vol.2 IT Strategy & Management book cover',
         href: 'https://itpec.org/news/20220921_LMS.html',
         ariaLabel: 'New FE Textbook Vol.2 IT Strategy & Management (opens in a new tab)',
         linkIcons: (
@@ -172,6 +175,7 @@ const courseList = [
         title: 'Three.js Journey',
         author: 'Robert Cecil Martin',
         image: 'images/study/threejs_journey_cert.webp',
+        alt: 'Three.js Journey certificate of completion',
         href: 'https://threejs-journey.com/',
         ariaLabel: 'Three.js Journey (opens in a new tab)',
         linkIcons: (
@@ -203,6 +207,7 @@ const courseList = [
         title: 'Harvard CS50: Introduction to Computer Science',
         author: 'Robert Cecil Martin',
         image: 'images/study/cs50.webp',
+        alt: 'Harvard CS50: Introduction to Computer Science youtube preview',
         href: 'https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org',
         ariaLabel: 'Harvard CS50: Introduction to Computer Science (opens in a new tab)',
         linkIcons: (
@@ -235,6 +240,7 @@ const courseList = [
         title: 'MIT 6.006 Introduction to Algorithms',
         author: 'Robert Cecil Martin',
         image: 'images/study/mit6.006.webp',
+        alt: 'MIT 6.006 Introduction to Algorithms youtube preview',
         href: 'https://www.youtube.com/watch?v=HtSuA80QTyo&ab_channel=MITOpenCourseWare',
         ariaLabel: 'MIT 6.006 Introduction to Algorithms (opens in a new tab)',
         linkIcons: (
@@ -263,6 +269,7 @@ const courseList = [
         title: 'Stanford CS229: Machine Learning',
         author: 'Robert Cecil Martin',
         image: 'images/study/cs229.webp',
+        alt: 'Stanford CS229: Machine Learning youtube preview',
         href: 'https://www.youtube.com/watch?v=jGwO_UgTS7I&ab_channel=StanfordOnline',
         ariaLabel: 'Stanford CS229: Machine Learning (opens in a new tab)',
         linkIcons: (
@@ -293,6 +300,7 @@ const courseList = [
         title: 'Bulletproof React',
         author: 'Robert Cecil Martin',
         image: 'images/study/bulletproof_react.webp',
+        alt: 'Bulletproof React github preview',
         href: 'https://github.com/alan2207/bulletproof-react',
         ariaLabel: 'Bulletproof React (opens in a new tab)',
         linkIcons: (
@@ -326,6 +334,7 @@ const workList = [
     {
         title: 'WildBear Shop',
         image: 'images/work/wildbear.webp',
+        alt: 'WildBear Shop hero section',
         href: 'https://www.wildbear-shop.com/',
         ariaLabel: 'WildBear Shop (opens in a new tab)',
         linkIcons: (
@@ -369,6 +378,7 @@ const workList = [
     {
         title: 'Lighthouse Portfolio',
         image: 'images/work/portfolio.webp',
+        alt: 'Lighthouse Portfolio hero section',
         href: 'https://www.wildbear-shop.com/',
         ariaLabel: 'Lighthouse Portfolio (opens in a new tab)',
         linkIcons: (
@@ -415,6 +425,7 @@ const certificateList = [
     {
         title: 'System and method for detecting surface defect of object',
         image: 'images/work/defect_patent.webp',
+        alt: 'System and method for detecting surface defect of object preview',
         ariaLabel: 'System and method for detecting surface defect of object (opens in a new tab)',
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en',
         linkIcons: (
@@ -447,6 +458,7 @@ const certificateList = [
         title: `Method for detecting and predicting a bottleneck in a transportation process of a
         logistics center`,
         image: 'images/work/logistic_patent.webp',
+        alt: 'Method for detecting and predicting a bottleneck in a transportation process of a logistics center preview',
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en',
         ariaLabel:
             'Method for detecting and predicting a bottleneck in a transportation process of a logistics center (opens in a new tab)',
@@ -478,6 +490,7 @@ const certificateList = [
     {
         title: 'FE Exam Certificate',
         image: 'images/work/FE_exam_cert.webp',
+        alt: 'FE Exam Certificate',
         href: 'https://itpec.org/about/itpec-common-exam.html',
         ariaLabel: 'ITPEC Common Examination (opens in a new tab)',
         linkIcons: (
@@ -499,6 +512,7 @@ const certificateList = [
     {
         title: "Time's Person of the Year 2006",
         image: 'images/work/times_person_of_the_year.webp',
+        alt: "Time's Person of the Year 2006 preview",
         href: 'https://en.wikipedia.org/wiki/You_(Time_Person_of_the_Year)',
         ariaLabel: "Time's Person of the Year 2006 (opens in a new tab)",
         linkIcons: (
@@ -522,6 +536,7 @@ const testimonialsList = [
         name: 'Francesco Cursi',
         title: 'Sr. Research Engineer, Huawei',
         image: 'images/testimonials/fran.webp',
+        alt: "Francesco Cursi's avatar",
         href: 'https://francescocursi.com/',
         ariaLabel: 'Francesco Cursi (opens in a new tab)',
         linkIcons: (
@@ -564,6 +579,7 @@ const testimonialsList = [
         name: 'Adah Hu',
         title: 'Head of Software Engineering, FLAIR',
         image: 'images/testimonials/adah.webp',
+        alt: "Adah Hu's avatar",
         href: 'https://www.linkedin.com/in/adah-h-a0854554/',
         ariaLabel: 'Adah Hu (opens in a new tab)',
         linkIcons: (
@@ -1042,7 +1058,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     className='section-list-item'
                                 >
                                     <figure>
-                                        <img src={book.image} className='book-list-img' />
+                                        <img loading='lazy' alt={book.alt} src={book.image} className='book-list-img' />
                                     </figure>
                                     <div className='w-full pl-4'>
                                         <header className='w-[95%]'>
@@ -1086,7 +1102,12 @@ const HtmlContent = memo(function HtmlContent() {
                                     className='section-list-item'
                                 >
                                     <figure className='project-list-img-wrapper'>
-                                        <img src={course.image} className='project-list-img' />
+                                        <img
+                                            loading='lazy'
+                                            alt={course.alt}
+                                            src={course.image}
+                                            className='project-list-img'
+                                        />
                                     </figure>
                                     <div className='w-full pl-4'>
                                         <header className='w-[95%]'>
@@ -1119,11 +1140,21 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection contentObserverRef={contentObserverRef}>
                     <div className='flex gap-[56px]'>
                         <div className='relative h-[380px] w-[440px] flex-shrink-0'>
-                            <figure className='p-[4px] bg-white absolute bottom-0 right-0 rounded-[8px] shadow-lg'>
-                                <img src='images/life/okinawa_sky.webp' className='w-[270px] object-cover rounded-[8px]' />
+                            <figure className='absolute bottom-0 right-0 rounded-[8px] bg-white p-[4px] shadow-lg'>
+                                <img
+                                    alt='Okinawa beach horizon'
+                                    loading='lazy'
+                                    src='images/life/okinawa_sky.webp'
+                                    className='w-[270px] rounded-[8px] object-cover'
+                                />
                             </figure>
-                            <figure className='p-[4px] bg-white absolute rounded-[8px] shadow-lg'>
-                                <img src='images/life/hk_island.webp' className='w-[340px] object-cover rounded-[8px]' />
+                            <figure className='absolute rounded-[8px] bg-white p-[4px] shadow-lg'>
+                                <img
+                                    alt='Overlooking the ocean on Po Toi Island'
+                                    loading='lazy'
+                                    src='images/life/hk_island.webp'
+                                    className='w-[340px] rounded-[8px] object-cover'
+                                />
                             </figure>
                         </div>
 
@@ -1159,11 +1190,21 @@ const HtmlContent = memo(function HtmlContent() {
                         </div>
 
                         <div className='relative h-[520px] w-[360px] flex-shrink-0 -translate-y-[72px]'>
-                            <figure className='p-[4px] bg-white absolute bottom-0 rounded-[8px] shadow-lg'>
-                                <img src='images/life/fire_dragon_dance.webp' className='w-[240px] object-cover rounded-[8px]' />
+                            <figure className='absolute bottom-0 rounded-[8px] bg-white p-[4px] shadow-lg'>
+                                <img
+                                    alt='Lightbox signage of the fire dragon dance'
+                                    loading='lazy'
+                                    src='images/life/fire_dragon_dance.webp'
+                                    className='w-[240px] rounded-[8px] object-cover'
+                                />
                             </figure>
-                            <figure className='p-[4px] bg-white absolute right-0 rounded-[8px] shadow-lg'>
-                                <img src='images/life/painting.webp' className='w-[220px] object-cover rounded-[8px]' />
+                            <figure className='absolute right-0 rounded-[8px] bg-white p-[4px] shadow-lg'>
+                                <img
+                                    alt='David painting a golden retriever on a canvas'
+                                    loading='lazy'
+                                    src='images/life/painting.webp'
+                                    className='w-[220px] rounded-[8px] object-cover'
+                                />
                             </figure>
                         </div>
                     </div>
@@ -1171,11 +1212,21 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection contentObserverRef={contentObserverRef}>
                     <div className='flex gap-[56px]'>
                         <div className='relative h-[380px] w-[420px] flex-shrink-0 -translate-y-[60px]'>
-                            <figure className='p-[4px] bg-white absolute bottom-0 right-0 rounded-[8px]  shadow-lg'>
-                                <img src='images/life/japan_house.webp' className='w-[300px] object-cover rounded-[8px]' />
+                            <figure className='absolute bottom-0 right-0 rounded-[8px] bg-white p-[4px]  shadow-lg'>
+                                <img
+                                    alt='Traditional japanese houses'
+                                    loading='lazy'
+                                    src='images/life/japan_house.webp'
+                                    className='w-[300px] rounded-[8px] object-cover'
+                                />
                             </figure>
-                            <figure className='p-[4px] bg-white absolute rounded-[8px] shadow-lg'>
-                                <img src='images/life/husky.webp' className='w-[320px] object-cover rounded-[8px]' />
+                            <figure className='absolute rounded-[8px] bg-white p-[4px] shadow-lg'>
+                                <img
+                                    alt='A husky sitting in front of David'
+                                    loading='lazy'
+                                    src='images/life/husky.webp'
+                                    className='w-[320px] rounded-[8px] object-cover'
+                                />
                             </figure>
                         </div>
 
@@ -1239,7 +1290,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     className='section-list-item'
                                 >
                                     <figure className='project-list-img-wrapper'>
-                                        <img src={work.image} className='project-list-img' />
+                                        <img alt={work.alt} loading='lazy' src={work.image} className='project-list-img' />
                                     </figure>
                                     <div className='w-full pl-4'>
                                         <header className='w-[90%]'>
@@ -1282,7 +1333,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     className='section-list-item'
                                 >
                                     <figure className='project-list-img-wrapper'>
-                                        <img src={certificate.image} className='project-list-img' />
+                                        <img alt={certificate.alt} loading='lazy' src={certificate.image} className='project-list-img' />
                                     </figure>
                                     <div className='w-full pl-4'>
                                         <header className='w-[95%]'>
@@ -1342,7 +1393,12 @@ const HtmlContent = memo(function HtmlContent() {
                                     <div className='pl-4'>
                                         <div className='flex justify-between'>
                                             <figure className='flex items-center gap-4'>
-                                                <img src={coworker.image} className='testimonials-list-img' />
+                                                <img
+                                                    alt={coworker.alt}
+                                                    loading='lazy'
+                                                    src={coworker.image}
+                                                    className='testimonials-list-img'
+                                                />
                                                 <figcaption>
                                                     <h1 className='font-semibold'>{coworker.name}</h1>
                                                     <p className='section-list-summary mt-0'>{coworker.title}</p>
