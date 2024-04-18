@@ -38,9 +38,9 @@ const toDos = [
 
 const navTab = [
     { name: 'About', top: aboutSectionTop },
+    { name: 'Life', top: lifeSectionTop },
     { name: 'Skill', top: skillsSectionTop },
     { name: 'Study', top: studySectionTop },
-    { name: 'Life', top: lifeSectionTop },
     { name: 'Work', top: worksSectionTop },
     { name: 'Ack', top: testimonialsSectionTop }
 ]

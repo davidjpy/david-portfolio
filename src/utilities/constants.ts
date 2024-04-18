@@ -12,11 +12,11 @@ export const scrollPages = 25
 
 export const aboutSectionTop = perfectPageHeight * 2
 
-export const skillsSectionTop = perfectPageHeight * 6
+export const lifeSectionTop = perfectPageHeight * 6
 
-export const studySectionTop = perfectPageHeight * 10
+export const skillsSectionTop = perfectPageHeight * 10
 
-export const lifeSectionTop = perfectPageHeight * 14
+export const studySectionTop = perfectPageHeight * 14
 
 export const worksSectionTop = perfectPageHeight * 20
 

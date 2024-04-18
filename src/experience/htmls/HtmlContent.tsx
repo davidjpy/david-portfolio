@@ -604,9 +604,9 @@ const HtmlContent = memo(function HtmlContent() {
     const [focusTitle, setFocusTitle] = useState<string>('')
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
+    const lifeSectionRef = useRef<HTMLElement>(null!)
     const skillsSectionRef = useRef<HTMLElement>(null!)
     const studySectionRef = useRef<HTMLElement>(null!)
-    const lifeSectionRef = useRef<HTMLElement>(null!)
     const workSectionRef = useRef<HTMLElement>(null!)
     const testimonialsSectionRef = useRef<HTMLElement>(null!)
     const typingTextWrapperRef = useRef<HTMLHeadingElement>(null)
@@ -640,9 +640,9 @@ const HtmlContent = memo(function HtmlContent() {
     const resetAllContainerBorderRadius = () => {
         const refs = [
             aboutSectionRef,
+            lifeSectionRef,
             skillsSectionRef,
             studySectionRef,
-            lifeSectionRef,
             workSectionRef,
             testimonialsSectionRef
         ]
@@ -776,6 +776,11 @@ const HtmlContent = memo(function HtmlContent() {
                 aboutSectionTop - perfectPageHeight - 300,
                 aboutSectionTop + 2 * perfectPageHeight + 300
             )
+            const isInLifeSection = isNumberInRange(
+                scrollTop,
+                lifeSectionTop - perfectPageHeight - 300,
+                lifeSectionTop + 2 * perfectPageHeight + 300
+            )
             const isInSkillsSection = isNumberInRange(
                 scrollTop,
                 skillsSectionTop - perfectPageHeight - 300,
@@ -785,11 +790,6 @@ const HtmlContent = memo(function HtmlContent() {
                 scrollTop,
                 studySectionTop - perfectPageHeight - 300,
                 studySectionTop + 2 * perfectPageHeight + 300
-            )
-            const isInLifeSection = isNumberInRange(
-                scrollTop,
-                lifeSectionTop - perfectPageHeight - 300,
-                lifeSectionTop + 2 * perfectPageHeight + 300
             )
             const isInWorkSection = isNumberInRange(
                 scrollTop,
@@ -809,16 +809,16 @@ const HtmlContent = memo(function HtmlContent() {
                     setHTMLSectionBorderRadius(aboutSectionRef.current, width, 'right')
                     break
 
+                case isInLifeSection:
+                    setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
+                    break
+
                 case isInSkillsSection:
-                    setHTMLSectionBorderRadius(skillsSectionRef.current, width, 'left')
+                    setHTMLSectionBorderRadius(skillsSectionRef.current, width, 'right')
                     break
 
                 case isInReadingSection:
-                    setHTMLSectionBorderRadius(studySectionRef.current, width, 'right')
-                    break
-
-                case isInLifeSection:
-                    setHTMLSectionBorderRadius(lifeSectionRef.current, width, 'left')
+                    setHTMLSectionBorderRadius(studySectionRef.current, width, 'left')
                     break
 
                 case isInWorkSection:
@@ -953,178 +953,6 @@ const HtmlContent = memo(function HtmlContent() {
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
-                top={skillsSectionTop}
-                position='left'
-                backgroundTitle='Skills'
-                topTitle='Cool. How about...'
-                bottomTitle={
-                    <>
-                        My <span className='text-accent'> Expertise</span>
-                    </>
-                }
-                contentObserverRef={contentObserverRef}
-                ref={skillsSectionRef}
-            >
-                <HtmlSection
-                    title={
-                        <>
-                            What can I offer as a <span className='text-accent'>software developer</span>?
-                        </>
-                    }
-                    contentObserverRef={contentObserverRef}
-                >
-                    <ul>
-                        {softwareSkills.map((skill, index) => (
-                            <li
-                                key={skill.name}
-                                className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
-                                style={{
-                                    transition: `background-color 0.2s linear, transform 0.4s ease-out ${
-                                        index * 0.1
-                                    }s,opacity 0.4s ease-out ${index * 0.1}s`
-                                }}
-                            >
-                                <span>{skill.icon}</span>
-                                <p className='mt-2'>{skill.name}</p>
-                            </li>
-                        ))}
-                    </ul>
-                </HtmlSection>
-                <HtmlSection
-                    title={
-                        <>
-                            What other <span className='text-accent'>skills</span> do I have?
-                        </>
-                    }
-                    contentObserverRef={contentObserverRef}
-                >
-                    <ul>
-                        {otherSkills.map((skill, index) => (
-                            <li
-                                key={skill.name}
-                                className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
-                                style={{
-                                    transition: `background-color 0.2s linear, transform 0.4s ease-out ${
-                                        index * 0.1
-                                    }s, opacity 0.4s ease-out ${index * 0.1}s`
-                                }}
-                            >
-                                <span>{skill.icon}</span>
-                                <p className='mt-2'>{skill.name}</p>
-                            </li>
-                        ))}
-                    </ul>
-                </HtmlSection>
-            </HtmlScrollContainer>
-
-            <HtmlScrollContainer
-                top={studySectionTop}
-                position='right'
-                backgroundTitle='Study'
-                topTitle='Where Did You Get Those...'
-                bottomTitle={
-                    <>
-                        My <span className='text-accent'> Study</span>
-                    </>
-                }
-                contentObserverRef={contentObserverRef}
-                ref={studySectionRef}
-            >
-                <HtmlSection
-                    title={
-                        <>
-                            Interesting <span className='text-accent'>books</span> I have read?
-                        </>
-                    }
-                    contentObserverRef={contentObserverRef}
-                >
-                    <ul>
-                        {readingList.map((book, index) => (
-                            <li
-                                key={index}
-                                className='hidden-content'
-                                style={{
-                                    transitionDelay: focusTitle && focusTitle !== book.title ? '0s' : undefined,
-                                    opacity: focusTitle && focusTitle !== book.title ? 0.3 : undefined
-                                }}
-                                onMouseEnter={() => setFocusTitle(book.title)}
-                                onMouseLeave={() => setFocusTitle('')}
-                            >
-                                <a
-                                    href={book.href}
-                                    target='_blank'
-                                    aria-label={book.ariaLabel}
-                                    rel='noreferrer noopener'
-                                    className='section-list-item'
-                                >
-                                    <figure>
-                                        <img loading='lazy' alt={book.alt} src={book.image} className='book-list-img' />
-                                    </figure>
-                                    <div className='w-full pl-4'>
-                                        <header className='w-[95%]'>
-                                            <h1 className='section-list-title'>{book.title}</h1>
-                                        </header>
-                                        <p className='section-list-summary'>{book.summary}</p>
-                                        {book.keypoints}
-                                    </div>
-                                </a>
-                                <div className='icons-list-item'>{book.linkIcons}</div>
-                            </li>
-                        ))}
-                    </ul>
-                </HtmlSection>
-
-                <HtmlSection
-                    title={
-                        <>
-                            Useful <span className='text-accent'>courses</span> I have taken?
-                        </>
-                    }
-                    contentObserverRef={contentObserverRef}
-                >
-                    <ul>
-                        {courseList.map((course, index) => (
-                            <li
-                                key={index}
-                                className='hidden-content'
-                                style={{
-                                    transitionDelay: focusTitle && focusTitle !== course.title ? '0s' : undefined,
-                                    opacity: focusTitle && focusTitle !== course.title ? 0.3 : undefined
-                                }}
-                                onMouseEnter={() => setFocusTitle(course.title)}
-                                onMouseLeave={() => setFocusTitle('')}
-                            >
-                                <a
-                                    target='_blank'
-                                    href={course.href}
-                                    aria-label={course.ariaLabel}
-                                    rel='noreferrer noopener'
-                                    className='section-list-item'
-                                >
-                                    <figure className='project-list-img-wrapper'>
-                                        <img
-                                            loading='lazy'
-                                            alt={course.alt}
-                                            src={course.image}
-                                            className='project-list-img'
-                                        />
-                                    </figure>
-                                    <div className='w-full pl-4'>
-                                        <header className='w-[95%]'>
-                                            <h1 className='section-list-title'>{course.title}</h1>
-                                        </header>
-                                        <p className='section-list-summary'>{course.summary}</p>
-                                        {course.keypoints}
-                                    </div>
-                                </a>
-                                <div className='icons-list-item'>{course.linkIcons}</div>
-                            </li>
-                        ))}
-                    </ul>
-                </HtmlSection>
-            </HtmlScrollContainer>
-
-            <HtmlScrollContainer
                 top={lifeSectionTop}
                 position='left'
                 backgroundTitle='Life'
@@ -1250,6 +1078,178 @@ const HtmlContent = memo(function HtmlContent() {
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
+                top={skillsSectionTop}
+                position='right'
+                backgroundTitle='Skills'
+                topTitle='Cool. How about...'
+                bottomTitle={
+                    <>
+                        My <span className='text-accent'> Expertise</span>
+                    </>
+                }
+                contentObserverRef={contentObserverRef}
+                ref={skillsSectionRef}
+            >
+                <HtmlSection
+                    title={
+                        <>
+                            What can I offer as a <span className='text-accent'>software developer</span>?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <ul>
+                        {softwareSkills.map((skill, index) => (
+                            <li
+                                key={skill.name}
+                                className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
+                                style={{
+                                    transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                                        index * 0.1
+                                    }s,opacity 0.4s ease-out ${index * 0.1}s`
+                                }}
+                            >
+                                <span>{skill.icon}</span>
+                                <p className='mt-2'>{skill.name}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </HtmlSection>
+                <HtmlSection
+                    title={
+                        <>
+                            What other <span className='text-accent'>skills</span> do I have?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <ul>
+                        {otherSkills.map((skill, index) => (
+                            <li
+                                key={skill.name}
+                                className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
+                                style={{
+                                    transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                                        index * 0.1
+                                    }s, opacity 0.4s ease-out ${index * 0.1}s`
+                                }}
+                            >
+                                <span>{skill.icon}</span>
+                                <p className='mt-2'>{skill.name}</p>
+                            </li>
+                        ))}
+                    </ul>
+                </HtmlSection>
+            </HtmlScrollContainer>
+
+            <HtmlScrollContainer
+                top={studySectionTop}
+                position='left'
+                backgroundTitle='Study'
+                topTitle='Where Did You Get Those...'
+                bottomTitle={
+                    <>
+                        My <span className='text-accent'> Study</span>
+                    </>
+                }
+                contentObserverRef={contentObserverRef}
+                ref={studySectionRef}
+            >
+                <HtmlSection
+                    title={
+                        <>
+                            Interesting <span className='text-accent'>books</span> I have read?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <ul>
+                        {readingList.map((book, index) => (
+                            <li
+                                key={index}
+                                className='hidden-content'
+                                style={{
+                                    transitionDelay: focusTitle && focusTitle !== book.title ? '0s' : undefined,
+                                    opacity: focusTitle && focusTitle !== book.title ? 0.3 : undefined
+                                }}
+                                onMouseEnter={() => setFocusTitle(book.title)}
+                                onMouseLeave={() => setFocusTitle('')}
+                            >
+                                <a
+                                    href={book.href}
+                                    target='_blank'
+                                    aria-label={book.ariaLabel}
+                                    rel='noreferrer noopener'
+                                    className='section-list-item'
+                                >
+                                    <figure>
+                                        <img loading='lazy' alt={book.alt} src={book.image} className='book-list-img' />
+                                    </figure>
+                                    <div className='w-full pl-4'>
+                                        <header className='w-[95%]'>
+                                            <h1 className='section-list-title'>{book.title}</h1>
+                                        </header>
+                                        <p className='section-list-summary'>{book.summary}</p>
+                                        {book.keypoints}
+                                    </div>
+                                </a>
+                                <div className='icons-list-item'>{book.linkIcons}</div>
+                            </li>
+                        ))}
+                    </ul>
+                </HtmlSection>
+
+                <HtmlSection
+                    title={
+                        <>
+                            Useful <span className='text-accent'>courses</span> I have taken?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <ul>
+                        {courseList.map((course, index) => (
+                            <li
+                                key={index}
+                                className='hidden-content'
+                                style={{
+                                    transitionDelay: focusTitle && focusTitle !== course.title ? '0s' : undefined,
+                                    opacity: focusTitle && focusTitle !== course.title ? 0.3 : undefined
+                                }}
+                                onMouseEnter={() => setFocusTitle(course.title)}
+                                onMouseLeave={() => setFocusTitle('')}
+                            >
+                                <a
+                                    target='_blank'
+                                    href={course.href}
+                                    aria-label={course.ariaLabel}
+                                    rel='noreferrer noopener'
+                                    className='section-list-item'
+                                >
+                                    <figure className='project-list-img-wrapper'>
+                                        <img
+                                            loading='lazy'
+                                            alt={course.alt}
+                                            src={course.image}
+                                            className='project-list-img'
+                                        />
+                                    </figure>
+                                    <div className='w-full pl-4'>
+                                        <header className='w-[95%]'>
+                                            <h1 className='section-list-title'>{course.title}</h1>
+                                        </header>
+                                        <p className='section-list-summary'>{course.summary}</p>
+                                        {course.keypoints}
+                                    </div>
+                                </a>
+                                <div className='icons-list-item'>{course.linkIcons}</div>
+                            </li>
+                        ))}
+                    </ul>
+                </HtmlSection>
+            </HtmlScrollContainer>
+
+            <HtmlScrollContainer
                 top={worksSectionTop}
                 position='right'
                 backgroundTitle='Works'
@@ -1290,7 +1290,12 @@ const HtmlContent = memo(function HtmlContent() {
                                     className='section-list-item'
                                 >
                                     <figure className='project-list-img-wrapper'>
-                                        <img alt={work.alt} loading='lazy' src={work.image} className='project-list-img' />
+                                        <img
+                                            alt={work.alt}
+                                            loading='lazy'
+                                            src={work.image}
+                                            className='project-list-img'
+                                        />
                                     </figure>
                                     <div className='w-full pl-4'>
                                         <header className='w-[90%]'>
@@ -1333,7 +1338,12 @@ const HtmlContent = memo(function HtmlContent() {
                                     className='section-list-item'
                                 >
                                     <figure className='project-list-img-wrapper'>
-                                        <img alt={certificate.alt} loading='lazy' src={certificate.image} className='project-list-img' />
+                                        <img
+                                            alt={certificate.alt}
+                                            loading='lazy'
+                                            src={certificate.image}
+                                            className='project-list-img'
+                                        />
                                     </figure>
                                     <div className='w-full pl-4'>
                                         <header className='w-[95%]'>

@@ -114,9 +114,9 @@ export default function Camera({ isMobile }: Props) {
     useFrame(({ pointer }) => {
         const isInCanvasSection = scrollData.visible(0, 4 / scrollPages)
         const isInFirstFloorSection = scrollData.visible(4 / scrollPages, 0.5 / scrollPages)
-        const isInSkillBoardSection = scrollData.visible(4.5 / scrollPages, 4 / scrollPages)
-        const isInBookShelfSection = scrollData.visible(8.5 / scrollPages, 4 / scrollPages)
-        const isInCabinetSection = scrollData.visible(12.5 / scrollPages, 4 / scrollPages)
+        const isInCabinetSection = scrollData.visible(4.5 / scrollPages, 4 / scrollPages)
+        const isInSkillBoardSection = scrollData.visible(8.5 / scrollPages, 4 / scrollPages)
+        const isInBookShelfSection = scrollData.visible(12.5 / scrollPages, 4 / scrollPages)
         const isInFirstFloorToSecondFloorSection = scrollData.visible(16.5 / scrollPages, 0.5 / scrollPages)
         const isInSecondFloorSection = scrollData.visible(17 / scrollPages, 0.5 / scrollPages)
         const isInComputerSection = scrollData.visible(17.5 / scrollPages, 5.5 / scrollPages)
@@ -140,19 +140,19 @@ export default function Camera({ isMobile }: Props) {
                 nextCameraLookAt = getNextCameraLookAt(1, isMobile, firstFloorSectionOffset)
                 break
 
-            case isInSkillBoardSection:
+            case isInCabinetSection:
                 const skillBoardSectionOffset = scrollData.range(4.5 / scrollPages, 0.5 / scrollPages)
                 nextCameraPosition = getNextCameraPosition(2, isMobile, skillBoardSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(2, isMobile, skillBoardSectionOffset)
                 break
 
-            case isInBookShelfSection:
+            case isInSkillBoardSection:
                 const bookShelfSectionOffset = scrollData.range(8.5 / scrollPages, 0.5 / scrollPages)
                 nextCameraPosition = getNextCameraPosition(3, isMobile, bookShelfSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(3, isMobile, bookShelfSectionOffset)
                 break
 
-            case isInCabinetSection:
+            case isInBookShelfSection:
                 const cabinetSectionOffset = scrollData.range(12.5 / scrollPages, 0.5 / scrollPages)
                 nextCameraPosition = getNextCameraPosition(4, isMobile, cabinetSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(4, isMobile, cabinetSectionOffset)
