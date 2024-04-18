@@ -83,11 +83,11 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
 
     const [lighthouseTexture, firstFloorTexture01, firstFloorTexture02, secondFloorTexture01, secondFloorTexture02] =
         useTexture([
-            'models/house.webp',
-            'models/1st_1.webp',
-            'models/1st_2.webp',
-            'models/2nd_1.webp',
-            'models/2nd_2.webp'
+            'models/lighthouse_bake.webp',
+            'models/first_floor_01.webp',
+            'models/first_floor_02.webp',
+            'models/second_floor_01.webp',
+            'models/second_floor_02.webp'
         ])
 
     lighthouseTexture.flipY = false
