@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { useContext, useRef } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
-import { useGLTF, useTexture, shaderMaterial, useScroll, useKTX2 } from '@react-three/drei'
+import { useGLTF, useTexture, shaderMaterial, useScroll } from '@react-three/drei'
 
 import { AppContext } from '@/src/context/appContext'
 import canvasVertexShader from '@/shaders/canvas/canvasVertexShader.glsl'
@@ -66,20 +66,6 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
         'models/david_photo.webp',
         'models/water_displacement_map.jpg'
     ])
-
-    // const [
-    //     lighthouseTexture
-    //     firstFloorTexture01,
-    //     firstFloorTexture02,
-    //     secondFloorTexture01,
-    //     secondFloorTexture02
-    // ] = useKTX2([
-    //     'models/lighthouse_bake.ktx2'
-    //     'models/firstFloor01_bake.ktx2',
-    //     'models/firstFloor02_bake.ktx2',
-    //     'models/secondFloor01_bake.ktx2',
-    //     'models/secondFloor02_bake.ktx2'
-    // ])
 
     const [lighthouseTexture, firstFloorTexture01, firstFloorTexture02, secondFloorTexture01, secondFloorTexture02] =
         useTexture([
