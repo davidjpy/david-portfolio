@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { CameraControls, useScroll } from '@react-three/drei'
-import { useControls } from 'leva'
+// import { useControls } from 'leva'
 
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 import { cameraMouseFactor, scrollPages } from '@/src/utilities/constants'
@@ -83,17 +83,17 @@ interface Props {
 export default function Camera({ isMobile }: Props) {
     const scrollData = useScroll()
     const cameraControlRef = useRef() as React.RefObject<CameraControls>
-    const { position, lookAt } = useControls('Camera', {
-        position: {
-            value: [-0.0506, 1.6944, -0.0538],
-            step: 0.0001
-        },
-        lookAt: {
-            value: [-0.1, 1.6531, -0.0548],
-            step: 0.0001
-        }
-    })
-    console.log(position, lookAt)
+    // const { position, lookAt } = useControls('Camera', {
+    //     position: {
+    //         value: [-0.0506, 1.6944, -0.0538],
+    //         step: 0.0001
+    //     },
+    //     lookAt: {
+    //         value: [-0.1, 1.6531, -0.0548],
+    //         step: 0.0001
+    //     }
+    // })
+    // console.log(position, lookAt)
 
     const getNextCameraPosition = (index: number, isMobile: boolean, offset: number): THREE.Vector3 => {
         return isMobile ? mobileCameraPositions[index].getPoint(offset) : tabletCameraPositions[index].getPoint(offset)
@@ -123,8 +123,8 @@ export default function Camera({ isMobile }: Props) {
         const isInBookShelfSection = scrollData.visible(12.5 / scrollPages, 4 / scrollPages)
         const isInFirstFloorToSecondFloorSection = scrollData.visible(16.5 / scrollPages, 0.5 / scrollPages)
         const isInSecondFloorSection = scrollData.visible(17 / scrollPages, 0.5 / scrollPages)
-        const isInComputerSection = scrollData.visible(17.5 / scrollPages, 4.5 / scrollPages)
-        const isInLetterSection = scrollData.visible(22 / scrollPages, 4 / scrollPages)
+        const isInComputerSection = scrollData.visible(17.5 / scrollPages, 4 / scrollPages)
+        const isInLetterSection = scrollData.visible(21.5 / scrollPages, 4 / scrollPages)
         console.log(isInComputerSection, isInLetterSection)
         let nextCameraPosition
         let nextCameraLookAt
@@ -182,7 +182,7 @@ export default function Camera({ isMobile }: Props) {
 
             case isInLetterSection:
             default:
-                const letterSectionOffset = scrollData.range(22 / scrollPages, 0.5 / scrollPages)
+                const letterSectionOffset = scrollData.range(21.5 / scrollPages, 0.5 / scrollPages)
                 nextCameraPosition = getNextCameraPosition(8, isMobile, letterSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(8, isMobile, letterSectionOffset)
                 break

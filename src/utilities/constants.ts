@@ -4,7 +4,7 @@ export const cameraConfig = {
     far: 40
 }
 
-export const cameraMouseFactor = 0.15
+export const cameraMouseFactor = 0.1
 
 export const perfectPageHeight = 1080
 
@@ -18,9 +18,9 @@ export const skillsSectionTop = perfectPageHeight * 10
 
 export const studySectionTop = perfectPageHeight * 14
 
-export const worksSectionTop = perfectPageHeight * 20
+export const worksSectionTop = perfectPageHeight * 19
 
-export const testimonialsSectionTop = perfectPageHeight * 24
+export const testimonialsSectionTop = perfectPageHeight * 23
 
 export const maxBrightness = 100
 
