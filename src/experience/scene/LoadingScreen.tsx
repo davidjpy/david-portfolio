@@ -5,7 +5,7 @@ import { AppContext } from '@/src/context/appContext'
 import LighthouseLoadingSvg from '@/assets/svgs/lighthouse_loading.svg'
 
 export default function LoadingScreen() {
-    const totalItems = 14
+    const totalItems = 12
     const loadedItems = useProgress((state) => state.loaded)
     const isLoaded = loadedItems === totalItems
     const { isStarted, setIsStarted } = useContext(AppContext)
