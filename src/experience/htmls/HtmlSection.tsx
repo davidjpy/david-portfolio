@@ -24,7 +24,7 @@ export default function HtmlSection({ title, children, contentObserverRef, ...pr
         <section
             ref={sectionRef}
             data-name='se'
-            className='hidden-content mt-12 text-secondary [transition:color_0.2s_linear,transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'
+            className='hidden-content mt-12 text-secondary [transition:transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'
             {...props}
         >
             {title && (

@@ -64,7 +64,7 @@
     }
 
     .scroll-text-box {
-        @apply absolute -z-50 h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:background-color_0.2s_linear,color_0.2s_linear,border-radius_0.1s_ease-out];
+        @apply absolute -z-50 h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out];
     }
 
     .icon-link-md {

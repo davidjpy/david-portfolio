@@ -727,7 +727,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     let delay = 0.3
                                     for (const listItem of entry.target.children.item(1)?.children!) {
                                         const HtmlListItem = listItem as HTMLElement
-                                        HtmlListItem.style.transition = `color 0.2s linear,background-color 0.2s linear,transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
+                                        HtmlListItem.style.transition = `transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
                                         HtmlListItem.classList.replace('hidden-content', 'revealed-content')
 
                                         delay += increment
@@ -868,10 +868,7 @@ const HtmlContent = memo(function HtmlContent() {
                 bottomTitle={
                     <>
                         Ho Chi Hang, <span className='text-accent'>David</span>
-                        <h1
-                            ref={typingTextWrapperRef}
-                            className='text-lg font-bold text-secondary [transition:color_0.2s_linear]'
-                        >
+                        <h1 ref={typingTextWrapperRef} className='text-lg font-bold text-secondary'>
                             A{' '}
                             <span
                                 ref={typingTextRef}
@@ -879,7 +876,7 @@ const HtmlContent = memo(function HtmlContent() {
                             ></span>
                         </h1>
                         <ul ref={contactListRef} className='mt-4 flex gap-4'>
-                            <li className='hidden-content focusable-li [transition:color_0.2s_linear,transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'>
+                            <li className='hidden-content focusable-li [transition:transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'>
                                 <a
                                     href='https://github.com/davidjpy'
                                     target='_blank'
@@ -889,7 +886,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <FaGithub className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content focusable-li [transition:color_0.2s_linear,transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
+                            <li className='hidden-content focusable-li [transition:transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
                                 <a
                                     href='https://www.linkedin.com/in/davidho-web/'
                                     target='_blank'
@@ -899,7 +896,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <FaLinkedin className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content focusable-li [transition:color_0.2s_linear,transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
+                            <li className='hidden-content focusable-li [transition:transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
                                 <a
                                     href='https://www.instagram.com/___realdavid/'
                                     target='_blank'
@@ -1104,9 +1101,9 @@ const HtmlContent = memo(function HtmlContent() {
                                 key={skill.name}
                                 className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
                                 style={{
-                                    transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                                    transition: `transform 0.4s ease-out ${index * 0.1}s,opacity 0.4s ease-out ${
                                         index * 0.1
-                                    }s,opacity 0.4s ease-out ${index * 0.1}s`
+                                    }s`
                                 }}
                             >
                                 <span>{skill.icon}</span>
@@ -1129,9 +1126,9 @@ const HtmlContent = memo(function HtmlContent() {
                                 key={skill.name}
                                 className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
                                 style={{
-                                    transition: `background-color 0.2s linear, transform 0.4s ease-out ${
+                                    transition: `transform 0.4s ease-out ${index * 0.1}s, opacity 0.4s ease-out ${
                                         index * 0.1
-                                    }s, opacity 0.4s ease-out ${index * 0.1}s`
+                                    }s`
                                 }}
                             >
                                 <span>{skill.icon}</span>

@@ -38,14 +38,14 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                 {...props}
             >
                 <header data-name='ch' ref={containerHeaderRef} className='relative  mb-12'>
-                    <h1 className='pointer-events-none absolute -top-[140px] left-[160px] -z-50 translate-x-[40px] text-[250px] font-black text-primary-monochrome opacity-0 [transition:color_0.2s_linear,transform_0.4s_ease-out,opacity_0.4s_ease-out]'>
+                    <h1 className='pointer-events-none absolute -top-[140px] left-[160px] -z-50 translate-x-[40px] text-[250px] font-black text-primary-monochrome opacity-0 [transition:transform_0.4s_ease-out,opacity_0.4s_ease-out]'>
                         {backgroundTitle}
                     </h1>
                     <div className='header-divider mb-4 h-2 w-0 bg-accent transition-[width] duration-[0.4s] ease-out' />
-                    <h1 className='hidden-content text-lg font-bold text-secondary [transition:color_0.2s_linear,transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'>
+                    <h1 className='hidden-content text-lg font-bold text-secondary [transition:transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'>
                         {topTitle}
                     </h1>
-                    <div className='hidden-content text-xl font-black text-secondary [transition:color_0.2s_linear,transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'>
+                    <div className='hidden-content text-xl font-black text-secondary [transition:transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'>
                         {bottomTitle}
                     </div>
                 </header>
