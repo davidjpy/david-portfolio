@@ -6,7 +6,7 @@ import Experience from '@/experience/Experience'
 import LoadingScreen from '@/src/experience/scene/LoadingScreen'
 
 function App() {
-    const [isStarted, setIsStarted] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     const [brightness, handleSetBrightness, isLightMode] = useTheme()
 
     return (
@@ -16,8 +16,8 @@ function App() {
                     brightness: brightness,
                     handleSetBrightness: handleSetBrightness,
                     isLightMode: isLightMode,
-                    isStarted: isStarted,
-                    setIsStarted: setIsStarted
+                    isLoading: isLoading,
+                    setIsLoading: setIsLoading
                 }}
             >
                 <Experience />
