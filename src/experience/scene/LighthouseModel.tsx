@@ -61,20 +61,25 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     const wallMaterialRef = useRef<THREE.MeshBasicMaterial>(null!)
     const scrollData = useScroll()
     const { nodes } = useGLTF('models/lighthouse.glb') as GLTFResult
-    const [davidArtTexture, davidPhotoTexture, displacementTexture] = useTexture([
+    const [
+        davidArtTexture,
+        davidPhotoTexture,
+        displacementTexture,
+        lighthouseTexture,
+        firstFloorTexture01,
+        firstFloorTexture02,
+        secondFloorTexture01,
+        secondFloorTexture02
+    ] = useTexture([
         'models/david_art.webp',
         'models/david_photo.webp',
-        'models/water_displacement_map.jpg'
+        'models/water_displacement_map.jpg',
+        'models/lighthouse_bake.webp',
+        'models/first_floor_01.webp',
+        'models/first_floor_02.webp',
+        'models/second_floor_01.webp',
+        'models/second_floor_02.webp'
     ])
-
-    const [lighthouseTexture, firstFloorTexture01, firstFloorTexture02, secondFloorTexture01, secondFloorTexture02] =
-        useTexture([
-            'models/lighthouse_bake.webp',
-            'models/first_floor_01.webp',
-            'models/first_floor_02.webp',
-            'models/second_floor_01.webp',
-            'models/second_floor_02.webp'
-        ])
 
     lighthouseTexture.flipY = false
     firstFloorTexture01.flipY = false
@@ -195,3 +200,11 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
 }
 
 useGLTF.preload('models/lighthouse.glb')
+useTexture.preload('models/david_art.webp')
+useTexture.preload('models/david_photo.webp')
+useTexture.preload('models/water_displacement_map.jpg')
+useTexture.preload('models/lighthouse_bake.webp')
+useTexture.preload('models/first_floor_01.webp')
+useTexture.preload('models/first_floor_02.webp')
+useTexture.preload('models/second_floor_01.webp')
+useTexture.preload('models/second_floor_02.webp')
