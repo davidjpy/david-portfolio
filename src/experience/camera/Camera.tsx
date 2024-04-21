@@ -125,7 +125,7 @@ export default function Camera({ isMobile }: Props) {
         const isInSecondFloorSection = scrollData.visible(17 / scrollPages, 0.5 / scrollPages)
         const isInComputerSection = scrollData.visible(17.5 / scrollPages, 4 / scrollPages)
         const isInLetterSection = scrollData.visible(21.5 / scrollPages, 4 / scrollPages)
-        console.log(isInComputerSection, isInLetterSection)
+
         let nextCameraPosition
         let nextCameraLookAt
 
