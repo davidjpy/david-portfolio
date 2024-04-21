@@ -1,4 +1,4 @@
-import { useEffect, useRef, memo, useState } from 'react'
+import { useEffect, useRef, memo, useState, useContext } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import {
     FaGithub,
@@ -22,6 +22,7 @@ import { SiTypescript, SiTailwindcss, SiBlender } from 'react-icons/si'
 import { MdOutlinePhonelink } from 'react-icons/md'
 import { TbBrandThreejs } from 'react-icons/tb'
 
+import { AppContext } from '@/src/context/appContext'
 import HtmlScrollContainer from '@/src/experience/htmls/HtmlScrollContainer'
 import HtmlSection from '@/src/experience/htmls/HtmlSection'
 import {
@@ -602,6 +603,7 @@ const testimonialsList = [
 
 const HtmlContent = memo(function HtmlContent() {
     const [focusTitle, setFocusTitle] = useState<string>('')
+    const { isMobile } = useContext(AppContext)
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
     const lifeSectionRef = useRef<HTMLElement>(null!)
@@ -863,16 +865,17 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={aboutSectionTop}
                 position='right'
+                isMobile={isMobile}
                 backgroundTitle='About'
                 topTitle="Hello. I'm"
                 bottomTitle={
                     <>
                         Ho Chi Hang, <span className='text-accent'>David</span>
-                        <h1 ref={typingTextWrapperRef} className='text-lg font-bold text-secondary'>
+                        <h1 ref={typingTextWrapperRef} className='text-xl font-bold text-secondary sm:text-2xl'>
                             A{' '}
                             <span
                                 ref={typingTextRef}
-                                className='animate-typing border-r-2 border-accent text-lg font-semibold text-accent'
+                                className='animate-typing border-r-2 border-accent text-xl font-semibold text-accent sm:text-2xl'
                             ></span>
                         </h1>
                         <ul ref={contactListRef} className='mt-4 flex gap-4'>
@@ -952,6 +955,7 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={lifeSectionTop}
                 position='left'
+                isMobile={isMobile}
                 backgroundTitle='Life'
                 topTitle="I'm a very simple person..."
                 bottomTitle={
@@ -1077,6 +1081,7 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={skillsSectionTop}
                 position='right'
+                isMobile={isMobile}
                 backgroundTitle='Skills'
                 topTitle='Cool. How about...'
                 bottomTitle={
@@ -1142,6 +1147,7 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={studySectionTop}
                 position='left'
+                isMobile={isMobile}
                 backgroundTitle='Study'
                 topTitle='Where Did You Get Those...'
                 bottomTitle={
@@ -1249,6 +1255,7 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={worksSectionTop}
                 position='right'
+                isMobile={isMobile}
                 backgroundTitle='Works'
                 topTitle='I Enjoy Creating Stuffs...'
                 bottomTitle={
@@ -1360,6 +1367,7 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={testimonialsSectionTop}
                 position='left'
+                isMobile={isMobile}
                 backgroundTitle='Testimonials'
                 topTitle='Some Remarks By My Coworkers...'
                 bottomTitle={

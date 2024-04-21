@@ -31,8 +31,11 @@ export default {
             },
             fontSize: {
                 sm: '0.875rem',
-                lg: '1.618rem',
-                xl: '2.618rem'
+                base: '1rem',
+                xl: '1.3rem',
+                '2xl': '1.618rem',
+                '3xl': '2.103rem',
+                '4xl': '2.618rem'
             },
             fontFamily: {
                 inter: ['Inter']

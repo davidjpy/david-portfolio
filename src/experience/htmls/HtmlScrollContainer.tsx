@@ -6,12 +6,16 @@ interface Props extends React.ComponentProps<'section'> {
     backgroundTitle: string
     topTitle: string
     bottomTitle: JSX.Element
+    isMobile: boolean
     contentObserverRef: React.MutableRefObject<IntersectionObserver | null>
     children: React.ReactNode
 }
 
 const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
-    ({ top, position, backgroundTitle, topTitle, bottomTitle, contentObserverRef, children, ...props }, ref) => {
+    (
+        { top, position, backgroundTitle, topTitle, bottomTitle, isMobile, contentObserverRef, children, ...props },
+        ref
+    ) => {
         const containerHeaderRef = useRef<HTMLHeadElement>(null)
 
         useEffect(() => {
@@ -32,7 +36,8 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                 className='scroll-text-box'
                 style={{
                     top: top,
-                    right: position === 'right' ? 0 : undefined
+                    right: position === 'right' ? 0 : undefined,
+                    width: isMobile ? '100%' : '50%'
                 }}
                 ref={ref}
                 {...props}
@@ -42,10 +47,10 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                         {backgroundTitle}
                     </h1>
                     <div className='header-divider mb-4 h-2 w-0 bg-accent transition-[width] duration-[0.4s] ease-out' />
-                    <h1 className='hidden-content text-lg font-bold text-secondary [transition:transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'>
+                    <h1 className='hidden-content text-xl font-bold text-secondary [transition:transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s] sm:text-2xl'>
                         {topTitle}
                     </h1>
-                    <div className='hidden-content text-xl font-black text-secondary [transition:transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s]'>
+                    <div className='hidden-content text-3xl font-black text-secondary [transition:transform_0.4s_ease-out_0.2s,opacity_0.4s_ease-out_0.2s] sm:text-4xl'>
                         {bottomTitle}
                     </div>
                 </header>
