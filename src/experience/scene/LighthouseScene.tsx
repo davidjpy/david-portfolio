@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react'
+import { Suspense, useCallback, useContext, useLayoutEffect } from 'react'
 import { Sky, Stars, Sparkles } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
 
@@ -11,8 +11,19 @@ interface Props {
     oceanRef: React.MutableRefObject<unknown>
 }
 
+function LoadingHandler({ setIsLoading }: { setIsLoading: React.Dispatch<React.SetStateAction<boolean>> }) {
+    useLayoutEffect(() => {
+        setIsLoading(true)
+
+        return () => {
+            setIsLoading(false)
+        }
+    }, [])
+    return null
+}
+
 export default function LighthouseScene({ oceanRef }: Props) {
-    const { brightness, isLightMode } = useContext(AppContext)
+    const { brightness, isLightMode, setIsLoading } = useContext(AppContext)
     const AnimatedSky = animated(Sky)
     const AnimatedStars = animated(Stars)
     const AnimatedSparkles = useCallback(
@@ -69,8 +80,10 @@ export default function LighthouseScene({ oceanRef }: Props) {
 
     return (
         <group name='lighthouseScene'>
-            <LighthouseModel />
-            <Ocean oceanRef={oceanRef} />
+            <Suspense fallback={<LoadingHandler setIsLoading={setIsLoading} />}>
+                <LighthouseModel />
+                <Ocean oceanRef={oceanRef} />
+            </Suspense>
             <AnimatedSky
                 {...skyAnimationConfigs}
                 material-uniforms-sunPosition-value-z={-600}
