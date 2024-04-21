@@ -6,6 +6,8 @@ export interface AppContextState {
     isLightMode: boolean
     isLoading: boolean
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    isMobile: boolean
+    setIsMobile: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const AppContext = createContext<AppContextState>({
@@ -13,5 +15,7 @@ export const AppContext = createContext<AppContextState>({
     handleSetBrightness: () => {},
     isLightMode: true,
     isLoading: true,
-    setIsLoading: () => {}
+    setIsLoading: () => {},
+    isMobile: false,
+    setIsMobile: () => {}
 })

@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useContext } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { ScrollControls } from '@react-three/drei'
 
@@ -11,21 +11,19 @@ import { getClampedValue } from '@/src/utilities/getClampedValue'
 import { cameraConfig, scrollPages, perfectPageHeight } from '@/src/utilities/constants'
 
 import '@/experience/Experience.css'
+import { AppContext } from '../context/appContext'
 
 function Scene() {
     const oceanRef = useRef<unknown>(null)
     const camera = useThree((state) => state.camera) as THREE.PerspectiveCamera
 
     const perfectWindowWidth = 1920
-    const [isMobile, setIsMobile] = useState(false)
+    const { isMobile, setIsMobile } = useContext(AppContext)
     const [pages, setPages] = useState(scrollPages * (perfectPageHeight / window.innerHeight))
 
     useEffect(() => {
         const handleResizeExperience = () => {
-            if (
-                window.innerWidth <= 968
-                // || window.innerWidth / window.innerHeight < 1.2
-            ) {
+            if (window.innerWidth <= 968 || window.innerWidth / window.innerHeight < 1.2) {
                 setIsMobile(true)
                 camera.fov = 80
             } else {

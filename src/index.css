@@ -5,6 +5,12 @@
 @tailwind utilities;
 
 @layer base {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
     :root {
         --color-primary: 255 248 231;
         --color-primary-monochrome: 245 239 224;
@@ -64,7 +70,7 @@
     }
 
     .scroll-text-box {
-        @apply absolute -z-50 h-[2160px] w-[50%] overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out];
+        @apply absolute -z-50 h-[2160px] overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out];
     }
 
     .icon-link-md {
@@ -180,20 +186,8 @@
     }
 }
 
-@media (max-width: 968px) {
-    .scroll-text-box {
-        @apply w-full;
-    }
-}
-
-/* @media (max-width: 768px) {
+/* @media (max-width: 968px) {
     .scroll-text-box {
         @apply w-full;
     }
 } */
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
