@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, Suspense } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { ScrollControls } from '@react-three/drei'
 
@@ -48,10 +48,8 @@ function Scene() {
         <ScrollControls pages={pages} damping={0}>
             <ControlPanel />
             <HtmlContent />
-            <Suspense fallback={null}>
-                <LighthouseScene oceanRef={oceanRef} />
-                <Camera isMobile={isMobile} />
-            </Suspense>
+            <LighthouseScene oceanRef={oceanRef} />
+            <Camera isMobile={isMobile} />
         </ScrollControls>
     )
 }
