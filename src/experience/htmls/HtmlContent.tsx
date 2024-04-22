@@ -967,27 +967,27 @@ const HtmlContent = memo(function HtmlContent() {
                 ref={lifeSectionRef}
             >
                 <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex gap-[56px]'>
-                        <div className='relative h-[380px] w-[440px] flex-shrink-0'>
-                            <figure className='absolute bottom-0 right-0 rounded-[8px] bg-white p-[4px] shadow-lg'>
+                    <div className='flex gap-[56px] max-3xl:gap-[44px]'>
+                        <div className='max-3xl:w-[340px] max-3xl:h-[300px] relative h-[380px] w-[440px] flex-shrink-0'>
+                            <figure className='absolute bottom-0 right-0 w-[61%] shadow-2xl'>
                                 <img
                                     alt='Okinawa beach horizon'
                                     loading='lazy'
                                     src='images/life/okinawa_sky.webp'
-                                    className='w-[270px] rounded-[8px] object-cover'
+                                    className='object-cover'
                                 />
                             </figure>
-                            <figure className='absolute rounded-[8px] bg-white p-[4px] shadow-lg'>
+                            <figure className='absolute w-[77%] shadow-2xl'>
                                 <img
                                     alt='Overlooking the ocean on Po Toi Island'
                                     loading='lazy'
                                     src='images/life/hk_island.webp'
-                                    className='w-[340px] rounded-[8px] object-cover'
+                                    className='object-cover'
                                 />
                             </figure>
                         </div>
 
-                        <div className='mt-4'>
+                        <div className='mt-4 max-3xl:mt-0'>
                             <header className='mb-4 flex items-center font-bold'>
                                 <span className='mr-2 h-1 w-4 bg-accent' />
                                 <h1>
@@ -1003,7 +1003,7 @@ const HtmlContent = memo(function HtmlContent() {
                     </div>
                 </HtmlSection>
                 <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex h-[448px] gap-[56px]'>
+                    <div className='flex h-[448px] gap-[56px] max-3xl:gap-[44px]'>
                         <div className='ml-4 mt-20'>
                             <header className='mb-4 flex items-center font-bold'>
                                 <span className='mr-2 h-1 w-4 bg-accent' />
@@ -1017,49 +1017,48 @@ const HtmlContent = memo(function HtmlContent() {
                                 sprinkle of randomness can refresh your mindset and illuminate your life.
                             </p>
                         </div>
-
-                        <div className='relative h-[520px] w-[360px] flex-shrink-0 -translate-y-[72px]'>
-                            <figure className='absolute bottom-0 rounded-[8px] bg-white p-[4px] shadow-lg'>
+                        <div className='max-3xl:w-[300px] max-3xl:h-[400px] max-3xl:-translate-y-0 relative h-[520px] w-[360px] flex-shrink-0 -translate-y-[72px]'>
+                            <figure className='absolute bottom-0 w-[67%] shadow-2xl'>
                                 <img
                                     alt='Lightbox signage of the fire dragon dance'
                                     loading='lazy'
                                     src='images/life/fire_dragon_dance.webp'
-                                    className='w-[240px] rounded-[8px] object-cover'
+                                    className='object-cover'
                                 />
                             </figure>
-                            <figure className='absolute right-0 rounded-[8px] bg-white p-[4px] shadow-lg'>
+                            <figure className='absolute right-0 w-[61%] shadow-2xl'>
                                 <img
                                     alt='David painting a golden retriever on a canvas'
                                     loading='lazy'
                                     src='images/life/painting.webp'
-                                    className='w-[220px] rounded-[8px] object-cover'
+                                    className='object-cover'
                                 />
                             </figure>
                         </div>
                     </div>
                 </HtmlSection>
                 <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex gap-[56px]'>
-                        <div className='relative h-[380px] w-[420px] flex-shrink-0 -translate-y-[60px]'>
-                            <figure className='absolute bottom-0 right-0 rounded-[8px] bg-white p-[4px]  shadow-lg'>
+                    <div className='flex gap-[56px] max-3xl:gap-[44px]'>
+                        <div className='max-3xl:w-[340px] max-3xl:h-[300px] relative h-[380px] w-[420px] flex-shrink-0 -translate-y-[60px] max-3xl:-translate-y-0'>
+                            <figure className='absolute bottom-0 right-0 w-[71%] shadow-2xl'>
                                 <img
                                     alt='Traditional japanese houses'
                                     loading='lazy'
                                     src='images/life/japan_house.webp'
-                                    className='w-[300px] rounded-[8px] object-cover'
+                                    className='object-cover'
                                 />
                             </figure>
-                            <figure className='absolute rounded-[8px] bg-white p-[4px] shadow-lg'>
+                            <figure className='absolute w-[76%] shadow-2xl'>
                                 <img
                                     alt='A husky sitting in front of David'
                                     loading='lazy'
                                     src='images/life/husky.webp'
-                                    className='w-[320px] rounded-[8px] object-cover'
+                                    className='object-cover'
                                 />
                             </figure>
                         </div>
 
-                        <div className='mt-8'>
+                        <div className='mt-8 max-3xl:mt-0'>
                             <header className='mb-4 flex items-center font-bold'>
                                 <span className='mr-2 h-1 w-4 bg-accent' />
                                 <h1>

@@ -39,8 +39,11 @@ export default {
             },
             fontFamily: {
                 inter: ['Inter']
+            },
+            screens: {
+                '3xl': '1920px'
             }
-        }
+        },
     },
     plugins: []
 }
