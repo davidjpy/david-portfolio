@@ -24,15 +24,15 @@
     }
 
     :root[theme='dark'] {
-        --color-primary: 86 66 61;
-        --color-primary-monochrome: 97 76 70;
-        --color-secondary: 250 231 230;
+        --color-primary: 66 52 48;
+        --color-primary-monochrome: 78 62 57;
+        --color-secondary: 228 210 209;
         --color-secondary-bg: 151 137 136;
         --color-secondary-light: 197 179 178;
         --color-accent: 246 92 53;
         --color-accent-bg: 49 57 75;
         --color-clock-blackground: 0 0 0;
-        --color-focus-outline: 250 231 230;
+        --color-focus-outline: 228 210 209;
     }
 
     a,
@@ -70,7 +70,7 @@
     }
 
     .scroll-text-box {
-        @apply absolute -z-50 h-[2160px] overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out];
+        @apply absolute -z-50 h-[2160px] overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-2xl:pl-[40px] max-2xl:pr-[40px];
     }
 
     .icon-link-md {
@@ -162,7 +162,7 @@
     }
 
     .keypoint-list-item {
-        @apply mr-2 mt-2 inline-block rounded-[8px] bg-accent-bg pb-[4px] pl-[8px] pr-[8px] pt-[4px] text-sm text-secondary shadow;
+        @apply mr-2 mt-2 inline-block rounded-[8px] bg-accent-bg pb-[4px] pl-[8px] pr-[8px] pt-[4px] text-sm text-secondary shadow font-medium;
     }
 
     .icons-list-item {
@@ -173,21 +173,3 @@
         @apply focus-within:outline focus-within:outline-2 focus-within:outline-focus-outline;
     }
 }
-
-@media (max-width: 1536px) {
-    .scroll-text-box {
-        @apply pl-[40px] pr-[40px];
-    }
-}
-
-@media (max-width: 1280px) {
-    .scroll-text-box {
-        @apply pl-[20px] pr-[20px];
-    }
-}
-
-/* @media (max-width: 968px) {
-    .scroll-text-box {
-        @apply w-full;
-    }
-} */
