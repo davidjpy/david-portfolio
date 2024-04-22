@@ -46,11 +46,11 @@ const titles = [
     'Normal Person'
 ]
 const funFacts = [
-    'I love Japanese culture',
-    'I love dogs, golden retriever particularly',
-    'Reaching the summit of Mount Everest is my lifelong goal',
-    "I'm obsessed with what else is hiding in the vast universe",
-    'I love playing quality RPGs'
+    'I love Japan',
+    'I love golden retriever',
+    "I'm obsessed with the universe",
+    'I love playing quality RPGs',
+    'I like building stuffs'
 ]
 const softwareSkills = [
     { name: 'Typescript', icon: <SiTypescript className='icon-svg' /> },
@@ -966,10 +966,78 @@ const HtmlContent = memo(function HtmlContent() {
                 contentObserverRef={contentObserverRef}
                 ref={lifeSectionRef}
             >
-                <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex gap-[56px] max-3xl:gap-[44px]'>
-                        <div className='max-3xl:w-[340px] max-3xl:h-[300px] relative h-[380px] w-[440px] flex-shrink-0'>
-                            <figure className='absolute bottom-0 right-0 w-[61%] shadow-2xl'>
+                <HtmlSection
+                    title={
+                        <>
+                            My daily <span className='text-accent'>life</span>
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <p>
+                        My life is simple yet joyful, you'll either find me sitting in front of the computer, losing
+                        myself in a gaming adventure or a pile of messy code, or exploring the hidden gems of a city. I
+                        often find surprises and beauty in those untold places.
+                    </p>
+                </HtmlSection>
+
+                <HtmlSection
+                    title={
+                        <>
+                            I'm sometime <span className='text-accent'>spontaneous</span>
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <p>
+                        Every now and then, I love stepping out to explore different events or dive into new experiences
+                        purely for the joy of it. I believe that a dash of spontaneity and a sprinkle of randomness can
+                        refresh your mindset and illuminate your life.
+                    </p>
+                    <div className='section-list-item mt-6 grid h-[760px] w-full grid-cols-11 grid-rows-6 gap-[18px]'>
+                        <img
+                            alt='Overlooking the ocean on Po Toi Island'
+                            loading='lazy'
+                            src='images/life/hk_island.webp'
+                            className='col-span-7 row-span-2 h-full w-full rounded-[16px] object-cover'
+                        />
+                        <img
+                            alt='Overlooking the ocean on Po Toi Island'
+                            loading='lazy'
+                            src='images/life/husky.webp'
+                            className='col-span-4 row-span-2 h-full w-full rounded-[16px] object-cover'
+                        />
+                        <img
+                            alt='Overlooking the ocean on Po Toi Island'
+                            loading='lazy'
+                            src='images/life/painting.webp'
+                            className='col-span-4 row-span-4 h-full w-full rounded-[16px] object-cover'
+                        />
+                        <img
+                            alt='Overlooking the ocean on Po Toi Island'
+                            loading='lazy'
+                            src='images/life/okinawa_sky.webp'
+                            className='col-span-7 row-span-2 h-full w-full rounded-[16px] object-cover'
+                        />
+                        <img
+                            alt='Overlooking the ocean on Po Toi Island'
+                            loading='lazy'
+                            src='images/life/fire_dragon_dance.webp'
+                            className='col-span-3 row-span-2 h-full w-full rounded-[16px] object-cover'
+                        />
+                        <img
+                            alt='Overlooking the ocean on Po Toi Island'
+                            loading='lazy'
+                            src='images/life/japan_house.webp'
+                            className='col-span-4 row-span-2 h-full w-full rounded-[16px] object-cover'
+                        />
+                    </div>
+                </HtmlSection>
+
+                {/* <HtmlSection contentObserverRef={contentObserverRef}>
+                    <div className='flex gap-[48px]'>
+                        <div className='relative h-[340px] w-[400px] flex-shrink-0'>
+                            <figure className='absolute bottom-0 right-0 w-[61%] overflow-hidden rounded-[8px] shadow-2xl'>
                                 <img
                                     alt='Okinawa beach horizon'
                                     loading='lazy'
@@ -977,7 +1045,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     className='object-cover'
                                 />
                             </figure>
-                            <figure className='absolute w-[77%] shadow-2xl'>
+                            <figure className='absolute w-[77%] overflow-hidden rounded-[8px] shadow-2xl'>
                                 <img
                                     alt='Overlooking the ocean on Po Toi Island'
                                     loading='lazy'
@@ -987,7 +1055,7 @@ const HtmlContent = memo(function HtmlContent() {
                             </figure>
                         </div>
 
-                        <div className='mt-4 max-3xl:mt-0'>
+                        <div className='mt-8'>
                             <header className='mb-4 flex items-center font-bold'>
                                 <span className='mr-2 h-1 w-4 bg-accent' />
                                 <h1>
@@ -1002,9 +1070,10 @@ const HtmlContent = memo(function HtmlContent() {
                         </div>
                     </div>
                 </HtmlSection>
+
                 <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex h-[448px] gap-[56px] max-3xl:gap-[44px]'>
-                        <div className='ml-4 mt-20'>
+                    <div className='flex gap-[48px]'>
+                        <div className='mt-24'>
                             <header className='mb-4 flex items-center font-bold'>
                                 <span className='mr-2 h-1 w-4 bg-accent' />
                                 <h1>
@@ -1017,8 +1086,8 @@ const HtmlContent = memo(function HtmlContent() {
                                 sprinkle of randomness can refresh your mindset and illuminate your life.
                             </p>
                         </div>
-                        <div className='max-3xl:w-[300px] max-3xl:h-[400px] max-3xl:-translate-y-0 relative h-[520px] w-[360px] flex-shrink-0 -translate-y-[72px]'>
-                            <figure className='absolute bottom-0 w-[67%] shadow-2xl'>
+                        <div className='relative h-[400px] w-[300px] flex-shrink-0'>
+                            <figure className='absolute bottom-0 w-[67%] overflow-hidden rounded-[8px] shadow-2xl'>
                                 <img
                                     alt='Lightbox signage of the fire dragon dance'
                                     loading='lazy'
@@ -1026,7 +1095,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     className='object-cover'
                                 />
                             </figure>
-                            <figure className='absolute right-0 w-[61%] shadow-2xl'>
+                            <figure className='absolute right-0 w-[61%] overflow-hidden rounded-[8px] shadow-2xl'>
                                 <img
                                     alt='David painting a golden retriever on a canvas'
                                     loading='lazy'
@@ -1037,10 +1106,11 @@ const HtmlContent = memo(function HtmlContent() {
                         </div>
                     </div>
                 </HtmlSection>
+
                 <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex gap-[56px] max-3xl:gap-[44px]'>
-                        <div className='max-3xl:w-[340px] max-3xl:h-[300px] relative h-[380px] w-[420px] flex-shrink-0 -translate-y-[60px] max-3xl:-translate-y-0'>
-                            <figure className='absolute bottom-0 right-0 w-[71%] shadow-2xl'>
+                    <div className='flex gap-[48px]'>
+                        <div className='relative h-[340px] w-[400px] flex-shrink-0'>
+                            <figure className='absolute bottom-0 right-0 w-[71%] overflow-hidden rounded-[8px] shadow-2xl'>
                                 <img
                                     alt='Traditional japanese houses'
                                     loading='lazy'
@@ -1048,7 +1118,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     className='object-cover'
                                 />
                             </figure>
-                            <figure className='absolute w-[76%] shadow-2xl'>
+                            <figure className='absolute w-[76%] overflow-hidden rounded-[8px] shadow-2xl'>
                                 <img
                                     alt='A husky sitting in front of David'
                                     loading='lazy'
@@ -1058,7 +1128,7 @@ const HtmlContent = memo(function HtmlContent() {
                             </figure>
                         </div>
 
-                        <div className='mt-8 max-3xl:mt-0'>
+                        <div className='mt-8'>
                             <header className='mb-4 flex items-center font-bold'>
                                 <span className='mr-2 h-1 w-4 bg-accent' />
                                 <h1>
@@ -1074,7 +1144,7 @@ const HtmlContent = memo(function HtmlContent() {
                             </ul>
                         </div>
                     </div>
-                </HtmlSection>
+                </HtmlSection> */}
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
