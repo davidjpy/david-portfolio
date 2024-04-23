@@ -70,7 +70,7 @@
     }
 
     .scroll-text-box {
-        @apply absolute -z-50 h-[2160px] overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-2xl:pl-[40px] max-2xl:pr-[40px];
+        @apply max-mobile:w-full absolute -z-50 h-[2160px] w-1/2 overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[20px] max-xl:pr-[20px];
     }
 
     .icon-link-md {
@@ -121,16 +121,20 @@
         @apply flex items-center justify-center;
     }
 
-    .img-gallery {
-        @apply grid grid-cols-4 grid-rows-5 gap-[16px] rounded-[16px] bg-white p-[16px] shadow-[1px_1px_8px_1px_rgba(0,0,0,0.2)];
+    .life-list-img-wrapper {
+        @apply relative overflow-hidden rounded-[4px];
     }
 
-    .swipe-img {
-        @apply h-full w-full rounded-[16px] object-cover;
+    .life-list-img {
+        @apply h-full w-full object-cover transition-all duration-700 ease-in-out;
     }
 
-    .img-layer {
-        @apply absolute left-0 top-0 flex h-full w-full -translate-y-full flex-col items-center justify-center rounded-[16px] bg-[rgba(0,0,0,0.6)] text-white transition-transform duration-1000 ease-out group-hover:translate-y-0;
+    .life-list-img-mask {
+        @apply pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 opacity-0 outline outline-[2px] outline-white transition-all duration-700;
+    }
+
+    .life-list-img-caption {
+        @apply pointer-events-none absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-[30%] text-center text-white opacity-0 transition-all duration-700 ease-in-out;
     }
 
     .section-list-item {
@@ -162,7 +166,7 @@
     }
 
     .keypoint-list-item {
-        @apply mr-2 mt-2 inline-block rounded-[8px] bg-accent-bg pb-[4px] pl-[8px] pr-[8px] pt-[4px] text-sm text-secondary shadow font-medium;
+        @apply mr-2 mt-2 inline-block rounded-[8px] bg-accent-bg pb-[4px] pl-[8px] pr-[8px] pt-[4px] text-sm font-medium text-secondary shadow;
     }
 
     .icons-list-item {
