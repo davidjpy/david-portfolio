@@ -23,7 +23,7 @@ function Scene() {
 
     useEffect(() => {
         const handleResizeExperience = () => {
-            if (window.innerWidth <= 968 || window.innerWidth / window.innerHeight < 1.2) {
+            if (window.innerWidth <= 968) {
                 setIsMobile(true)
                 camera.fov = 80
             } else {
