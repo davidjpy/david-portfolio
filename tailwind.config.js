@@ -41,7 +41,13 @@ export default {
                 inter: ['Inter']
             },
             screens: {
-                '3xl': '1664px'
+                mobile: '968px'
+            },
+            gridTemplateRows: {
+                12: 'repeat(12, minmax(0, 1fr))'
+            },
+            gridRow: {
+                'span-7': 'span 7 / span 7'
             }
         }
     },

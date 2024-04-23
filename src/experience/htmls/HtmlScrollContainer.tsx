@@ -6,16 +6,12 @@ interface Props extends React.ComponentProps<'section'> {
     backgroundTitle: string
     topTitle: string
     bottomTitle: JSX.Element
-    isMobile: boolean
     contentObserverRef: React.MutableRefObject<IntersectionObserver | null>
     children: React.ReactNode
 }
 
 const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
-    (
-        { top, position, backgroundTitle, topTitle, bottomTitle, isMobile, contentObserverRef, children, ...props },
-        ref
-    ) => {
+    ({ top, position, backgroundTitle, topTitle, bottomTitle, contentObserverRef, children, ...props }, ref) => {
         const containerHeaderRef = useRef<HTMLHeadElement>(null)
 
         useEffect(() => {
@@ -36,8 +32,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                 className='scroll-text-box'
                 style={{
                     top: top,
-                    right: position === 'right' ? 0 : undefined,
-                    width: isMobile ? '100%' : '50%'
+                    right: position === 'right' ? 0 : undefined
                 }}
                 ref={ref}
                 {...props}

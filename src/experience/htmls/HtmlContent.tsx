@@ -1,4 +1,4 @@
-import { useEffect, useRef, memo, useState, useContext } from 'react'
+import { useEffect, useRef, memo, useState } from 'react'
 import { Html, useScroll } from '@react-three/drei'
 import {
     FaGithub,
@@ -22,9 +22,9 @@ import { SiTypescript, SiTailwindcss, SiBlender } from 'react-icons/si'
 import { MdOutlinePhonelink } from 'react-icons/md'
 import { TbBrandThreejs } from 'react-icons/tb'
 
-import { AppContext } from '@/src/context/appContext'
 import HtmlScrollContainer from '@/src/experience/htmls/HtmlScrollContainer'
 import HtmlSection from '@/src/experience/htmls/HtmlSection'
+import PhotoMasonry from '@/src/experience/htmls/PhotoMasonry'
 import {
     perfectPageHeight,
     aboutSectionTop,
@@ -44,13 +44,6 @@ const titles = [
     'Dog Lover',
     'Traveller',
     'Normal Person'
-]
-const funFacts = [
-    'I love Japan',
-    'I love golden retriever',
-    "I'm obsessed with the universe",
-    'I love playing quality RPGs',
-    'I like building stuffs'
 ]
 const softwareSkills = [
     { name: 'Typescript', icon: <SiTypescript className='icon-svg' /> },
@@ -603,15 +596,14 @@ const testimonialsList = [
 
 const HtmlContent = memo(function HtmlContent() {
     const [focusTitle, setFocusTitle] = useState<string>('')
-    const { isMobile } = useContext(AppContext)
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
+    const willChangePropObserverRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
     const lifeSectionRef = useRef<HTMLElement>(null!)
     const skillsSectionRef = useRef<HTMLElement>(null!)
     const studySectionRef = useRef<HTMLElement>(null!)
     const workSectionRef = useRef<HTMLElement>(null!)
     const testimonialsSectionRef = useRef<HTMLElement>(null!)
-    const typingTextWrapperRef = useRef<HTMLHeadingElement>(null)
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
     const windowHeightRef = useRef<number>(window.innerHeight)
@@ -704,6 +696,10 @@ const HtmlContent = memo(function HtmlContent() {
 
                         switch (entryName) {
                             case 'ch':
+                                if (entry.target.children.item(3)?.classList.contains('revealed-content')) {
+                                    break
+                                }
+
                                 entry.target.children.item(0)?.classList.replace('translate-x-[40px]', 'translate-x-0')
                                 entry.target.children.item(0)?.classList.replace('opacity-0', 'opacity-100')
                                 entry.target.children.item(1)?.classList.replace('w-0', 'w-40')
@@ -721,7 +717,6 @@ const HtmlContent = memo(function HtmlContent() {
                                 if (entry.target.classList.contains('revealed-content')) {
                                     break
                                 }
-
                                 entry.target.classList.replace('hidden-content', 'revealed-content')
 
                                 if (entry.target.children.item(1)?.tagName === 'UL') {
@@ -735,7 +730,6 @@ const HtmlContent = memo(function HtmlContent() {
                                         delay += increment
                                     }
                                 }
-
                                 break
                             default:
                                 break
@@ -750,24 +744,50 @@ const HtmlContent = memo(function HtmlContent() {
             }
         )
 
+        const willChangePropObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const entryName = entry.target.getAttribute('data-name')
+                    if (entry.isIntersecting) {
+                        if (entryName === 'pl') {
+                            const photoGalleryList = entry.target.children
+                            for (const figure of photoGalleryList) {
+                                const htmlImg = figure.children.item(0)!
+                                const htmlCaption = figure.children.item(2)!
+
+                                htmlImg.classList.add('will-change-transform')
+                                htmlCaption.classList.add('will-change-transform')
+                            }
+                        }
+                    } else {
+                        if (entryName === 'pl') {
+                            const photoGalleryList = entry.target.children
+                            for (const figure of photoGalleryList) {
+                                const htmlImg = figure.children.item(0)!
+                                const htmlCaption = figure.children.item(2)!
+
+                                htmlImg.classList.remove('will-change-transform')
+                                htmlCaption.classList.remove('will-change-transform')
+                            }
+                        }
+                    }
+                })
+            },
+            {
+                root: scrollData.el,
+                rootMargin: '0px',
+                threshold: 0
+            }
+        )
+
         contentObserverRef.current = contentObserver
+        willChangePropObserverRef.current = willChangePropObserver
 
         return () => {
+            willChangePropObserverRef.current?.disconnect()
             contentObserverRef.current?.disconnect()
         }
     }, [])
-
-    useEffect(() => {
-        if (typingTextWrapperRef.current) {
-            contentObserverRef.current?.observe(typingTextWrapperRef.current)
-        }
-
-        return () => {
-            if (typingTextWrapperRef.current) {
-                contentObserverRef.current?.unobserve(typingTextWrapperRef.current)
-            }
-        }
-    }, [typingTextWrapperRef.current])
 
     useEffect(() => {
         const handleScrollAnimation = () => {
@@ -865,13 +885,12 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={aboutSectionTop}
                 position='right'
-                isMobile={isMobile}
                 backgroundTitle='About'
                 topTitle="Hello. I'm"
                 bottomTitle={
                     <>
                         Ho Chi Hang, <span className='text-accent'>David</span>
-                        <h1 ref={typingTextWrapperRef} className='text-xl font-bold text-secondary sm:text-2xl'>
+                        <h1 className='text-xl font-bold text-secondary sm:text-2xl'>
                             A{' '}
                             <span
                                 ref={typingTextRef}
@@ -955,7 +974,6 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={lifeSectionTop}
                 position='left'
-                isMobile={isMobile}
                 backgroundTitle='Life'
                 topTitle="I'm a very simple person..."
                 bottomTitle={
@@ -969,7 +987,8 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection
                     title={
                         <>
-                            My daily <span className='text-accent'>life</span>
+                            <span className='text-accent'>Simple</span> and sometime
+                            <span className='text-accent'>spontaneous</span>
                         </>
                     }
                     contentObserverRef={contentObserverRef}
@@ -977,180 +996,18 @@ const HtmlContent = memo(function HtmlContent() {
                     <p>
                         My life is simple yet joyful, you'll either find me sitting in front of the computer, losing
                         myself in a gaming adventure or a pile of messy code, or exploring the hidden gems of a city. I
-                        often find surprises and beauty in those untold places.
+                        often find surprises and beauty in those untold places. Every now and then, I love stepping out
+                        to explore different events or dive into new experiences purely for the joy of it. I believe
+                        that a dash of spontaneity and a sprinkle of randomness can refresh your mindset and illuminate
+                        your life.
                     </p>
+                    <PhotoMasonry willChangePropObserverRef={willChangePropObserverRef} />
                 </HtmlSection>
-
-                <HtmlSection
-                    title={
-                        <>
-                            I'm sometime <span className='text-accent'>spontaneous</span>
-                        </>
-                    }
-                    contentObserverRef={contentObserverRef}
-                >
-                    <p>
-                        Every now and then, I love stepping out to explore different events or dive into new experiences
-                        purely for the joy of it. I believe that a dash of spontaneity and a sprinkle of randomness can
-                        refresh your mindset and illuminate your life.
-                    </p>
-                    <div className='section-list-item mt-6 grid h-[760px] w-full grid-cols-11 grid-rows-6 gap-[18px]'>
-                        <img
-                            alt='Overlooking the ocean on Po Toi Island'
-                            loading='lazy'
-                            src='images/life/hk_island.webp'
-                            className='col-span-7 row-span-2 h-full w-full rounded-[16px] object-cover'
-                        />
-                        <img
-                            alt='Overlooking the ocean on Po Toi Island'
-                            loading='lazy'
-                            src='images/life/husky.webp'
-                            className='col-span-4 row-span-2 h-full w-full rounded-[16px] object-cover'
-                        />
-                        <img
-                            alt='Overlooking the ocean on Po Toi Island'
-                            loading='lazy'
-                            src='images/life/painting.webp'
-                            className='col-span-4 row-span-4 h-full w-full rounded-[16px] object-cover'
-                        />
-                        <img
-                            alt='Overlooking the ocean on Po Toi Island'
-                            loading='lazy'
-                            src='images/life/okinawa_sky.webp'
-                            className='col-span-7 row-span-2 h-full w-full rounded-[16px] object-cover'
-                        />
-                        <img
-                            alt='Overlooking the ocean on Po Toi Island'
-                            loading='lazy'
-                            src='images/life/fire_dragon_dance.webp'
-                            className='col-span-3 row-span-2 h-full w-full rounded-[16px] object-cover'
-                        />
-                        <img
-                            alt='Overlooking the ocean on Po Toi Island'
-                            loading='lazy'
-                            src='images/life/japan_house.webp'
-                            className='col-span-4 row-span-2 h-full w-full rounded-[16px] object-cover'
-                        />
-                    </div>
-                </HtmlSection>
-
-                {/* <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex gap-[48px]'>
-                        <div className='relative h-[340px] w-[400px] flex-shrink-0'>
-                            <figure className='absolute bottom-0 right-0 w-[61%] overflow-hidden rounded-[8px] shadow-2xl'>
-                                <img
-                                    alt='Okinawa beach horizon'
-                                    loading='lazy'
-                                    src='images/life/okinawa_sky.webp'
-                                    className='object-cover'
-                                />
-                            </figure>
-                            <figure className='absolute w-[77%] overflow-hidden rounded-[8px] shadow-2xl'>
-                                <img
-                                    alt='Overlooking the ocean on Po Toi Island'
-                                    loading='lazy'
-                                    src='images/life/hk_island.webp'
-                                    className='object-cover'
-                                />
-                            </figure>
-                        </div>
-
-                        <div className='mt-8'>
-                            <header className='mb-4 flex items-center font-bold'>
-                                <span className='mr-2 h-1 w-4 bg-accent' />
-                                <h1>
-                                    My daily <span className='text-accent'>life</span>
-                                </h1>
-                            </header>
-                            <p>
-                                My life is simple yet joyful, you'll either find me sitting in front of the computer,
-                                losing myself in a gaming adventure or a pile of messy code, or exploring the hidden
-                                gems of a city. I often find surprises and beauty in those untold places.
-                            </p>
-                        </div>
-                    </div>
-                </HtmlSection>
-
-                <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex gap-[48px]'>
-                        <div className='mt-24'>
-                            <header className='mb-4 flex items-center font-bold'>
-                                <span className='mr-2 h-1 w-4 bg-accent' />
-                                <h1>
-                                    I'm sometime <span className='text-accent'>spontaneous</span>
-                                </h1>
-                            </header>
-                            <p>
-                                Every now and then, I love stepping out to explore different events or dive into new
-                                experiences purely for the joy of it. I believe that a dash of spontaneity and a
-                                sprinkle of randomness can refresh your mindset and illuminate your life.
-                            </p>
-                        </div>
-                        <div className='relative h-[400px] w-[300px] flex-shrink-0'>
-                            <figure className='absolute bottom-0 w-[67%] overflow-hidden rounded-[8px] shadow-2xl'>
-                                <img
-                                    alt='Lightbox signage of the fire dragon dance'
-                                    loading='lazy'
-                                    src='images/life/fire_dragon_dance.webp'
-                                    className='object-cover'
-                                />
-                            </figure>
-                            <figure className='absolute right-0 w-[61%] overflow-hidden rounded-[8px] shadow-2xl'>
-                                <img
-                                    alt='David painting a golden retriever on a canvas'
-                                    loading='lazy'
-                                    src='images/life/painting.webp'
-                                    className='object-cover'
-                                />
-                            </figure>
-                        </div>
-                    </div>
-                </HtmlSection>
-
-                <HtmlSection contentObserverRef={contentObserverRef}>
-                    <div className='flex gap-[48px]'>
-                        <div className='relative h-[340px] w-[400px] flex-shrink-0'>
-                            <figure className='absolute bottom-0 right-0 w-[71%] overflow-hidden rounded-[8px] shadow-2xl'>
-                                <img
-                                    alt='Traditional japanese houses'
-                                    loading='lazy'
-                                    src='images/life/japan_house.webp'
-                                    className='object-cover'
-                                />
-                            </figure>
-                            <figure className='absolute w-[76%] overflow-hidden rounded-[8px] shadow-2xl'>
-                                <img
-                                    alt='A husky sitting in front of David'
-                                    loading='lazy'
-                                    src='images/life/husky.webp'
-                                    className='object-cover'
-                                />
-                            </figure>
-                        </div>
-
-                        <div className='mt-8'>
-                            <header className='mb-4 flex items-center font-bold'>
-                                <span className='mr-2 h-1 w-4 bg-accent' />
-                                <h1>
-                                    Fun <span className='text-accent'>facts</span> about me
-                                </h1>
-                            </header>
-                            <ul className='ml-[18px] list-decimal'>
-                                {funFacts.map((fact, index) => (
-                                    <li key={index} className='mb-2'>
-                                        {fact}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </HtmlSection> */}
             </HtmlScrollContainer>
 
             <HtmlScrollContainer
                 top={skillsSectionTop}
                 position='right'
-                isMobile={isMobile}
                 backgroundTitle='Skills'
                 topTitle='Cool. How about...'
                 bottomTitle={
@@ -1216,7 +1073,6 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={studySectionTop}
                 position='left'
-                isMobile={isMobile}
                 backgroundTitle='Study'
                 topTitle='Where Did You Get Those...'
                 bottomTitle={
@@ -1324,7 +1180,6 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={worksSectionTop}
                 position='right'
-                isMobile={isMobile}
                 backgroundTitle='Works'
                 topTitle='I Enjoy Creating Stuffs...'
                 bottomTitle={
@@ -1436,7 +1291,6 @@ const HtmlContent = memo(function HtmlContent() {
             <HtmlScrollContainer
                 top={testimonialsSectionTop}
                 position='left'
-                isMobile={isMobile}
                 backgroundTitle='Testimonials'
                 topTitle='Some Remarks By My Coworkers...'
                 bottomTitle={
