@@ -744,47 +744,47 @@ const HtmlContent = memo(function HtmlContent() {
             }
         )
 
-        const willChangePropObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    const entryName = entry.target.getAttribute('data-name')
-                    if (entry.isIntersecting) {
-                        if (entryName === 'pl') {
-                            const photoGalleryList = entry.target.children
-                            for (const figure of photoGalleryList) {
-                                const htmlImg = figure.children.item(0)!
-                                const htmlCaption = figure.children.item(2)!
+        // const willChangePropObserver = new IntersectionObserver(
+        //     (entries) => {
+        //         entries.forEach((entry) => {
+        //             const entryName = entry.target.getAttribute('data-name')
+        //             if (entry.isIntersecting) {
+        //                 if (entryName === 'pl') {
+        //                     const photoGalleryList = entry.target.children
+        //                     for (const figure of photoGalleryList) {
+        //                         const htmlImg = figure.children.item(0)!
+        //                         const htmlCaption = figure.children.item(2)!
 
-                                htmlImg.classList.add('will-change-transform')
-                                htmlCaption.classList.add('will-change-transform')
-                            }
-                        }
-                    } else {
-                        if (entryName === 'pl') {
-                            const photoGalleryList = entry.target.children
-                            for (const figure of photoGalleryList) {
-                                const htmlImg = figure.children.item(0)!
-                                const htmlCaption = figure.children.item(2)!
+        //                         htmlImg.classList.add('will-change-transform')
+        //                         htmlCaption.classList.add('will-change-transform')
+        //                     }
+        //                 }
+        //             } else {
+        //                 if (entryName === 'pl') {
+        //                     const photoGalleryList = entry.target.children
+        //                     for (const figure of photoGalleryList) {
+        //                         const htmlImg = figure.children.item(0)!
+        //                         const htmlCaption = figure.children.item(2)!
 
-                                htmlImg.classList.remove('will-change-transform')
-                                htmlCaption.classList.remove('will-change-transform')
-                            }
-                        }
-                    }
-                })
-            },
-            {
-                root: scrollData.el,
-                rootMargin: '0px',
-                threshold: 0
-            }
-        )
+        //                         htmlImg.classList.remove('will-change-transform')
+        //                         htmlCaption.classList.remove('will-change-transform')
+        //                     }
+        //                 }
+        //             }
+        //         })
+        //     },
+        //     {
+        //         root: scrollData.el,
+        //         rootMargin: '0px',
+        //         threshold: 0
+        //     }
+        // )
 
         contentObserverRef.current = contentObserver
-        willChangePropObserverRef.current = willChangePropObserver
+        // willChangePropObserverRef.current = willChangePropObserver
 
         return () => {
-            willChangePropObserverRef.current?.disconnect()
+            // willChangePropObserverRef.current?.disconnect()
             contentObserverRef.current?.disconnect()
         }
     }, [])

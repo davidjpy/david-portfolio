@@ -70,7 +70,7 @@
     }
 
     .scroll-text-box {
-        @apply max-mobile:w-full absolute -z-50 h-[2160px] w-1/2 overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[20px] max-xl:pr-[20px];
+        @apply absolute -z-50 h-[2160px] w-1/2 overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[20px] max-xl:pr-[20px] max-mobile:w-full;
     }
 
     .icon-link-md {
@@ -126,7 +126,7 @@
     }
 
     .life-list-img {
-        @apply h-full w-full object-cover transition-all duration-700 ease-in-out;
+        @apply h-full w-full scale-[1.01] object-cover transition-all duration-700 ease-in-out;
     }
 
     .life-list-img-mask {
@@ -134,7 +134,7 @@
     }
 
     .life-list-img-caption {
-        @apply pointer-events-none absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-[30%] text-center text-white opacity-0 transition-all duration-700 ease-in-out;
+        @apply pointer-events-none absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-[30%] scale-[1.01] text-center text-white opacity-0 transition-all duration-700 ease-in-out;
     }
 
     .section-list-item {
