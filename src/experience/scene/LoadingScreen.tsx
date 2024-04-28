@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react'
+import Lottie from 'lottie-react'
 
 import { AppContext } from '@/src/context/appContext'
-import LighthouseLoadingSvg from '@/assets/svgs/lighthouse_loading.svg'
+import animation from './lighthouse.json'
 
 export default function LoadingScreen() {
     const { isLoading } = useContext(AppContext)
@@ -12,14 +13,10 @@ export default function LoadingScreen() {
             className='fixed flex h-screen w-screen flex-col items-center justify-center bg-primary transition-opacity duration-500 ease-linear'
             style={{ opacity: isStarted ? 0 : 1, pointerEvents: isStarted ? 'none' : 'all' }}
         >
-            {isLoading ? (
-                <figure className='h-[200px]'></figure>
-            ) : (
-                <figure className='h-[200px]'>
-                    <object type='image/svg+xml' data={LighthouseLoadingSvg} className='w-[400px]'>
-                        <img src={LighthouseLoadingSvg} />
-                    </object>
-                </figure>
+            {!isLoading && (
+                <div className='h-[120px]'>
+                    <Lottie animationData={animation} loop={false} className='h-full w-full' />
+                </div>
             )}
 
             <div className='mt-4 text-lg font-extrabold text-secondary'>
