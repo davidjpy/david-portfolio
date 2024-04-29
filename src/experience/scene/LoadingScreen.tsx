@@ -1,8 +1,8 @@
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import Lottie from 'lottie-react'
 
 import { AppContext } from '@/src/context/appContext'
-import animation from './lighthouse.json'
+import animation from '@/assets/svgs/lighthouse.json'
 
 import type { LottieRefCurrentProps } from 'lottie-react'
 
@@ -15,6 +15,11 @@ export default function LoadingScreen() {
         if (lottieRef.current) {
             lottieRef.current.goToAndPlay(4600, false)
         }
+    }
+
+    const handleClickStartExperience = () => {
+        lottieRef.current?.destroy()
+        setIsStarted(true)
     }
 
     return (
@@ -35,7 +40,7 @@ export default function LoadingScreen() {
             )}
 
             <div className='mt-4 text-lg font-extrabold text-secondary'>
-                {isLoading ? <h1>Loading</h1> : <button onClick={() => setIsStarted(true)}>Start</button>}
+                {isLoading ? <h1>Loading</h1> : <button onClick={handleClickStartExperience}>Start</button>}
             </div>
         </section>
     )
