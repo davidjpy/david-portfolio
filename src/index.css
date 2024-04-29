@@ -126,11 +126,15 @@
     }
 
     .life-list-img {
-        @apply h-full w-full scale-[1.01] object-cover transition-all duration-700 ease-in-out;
+        @apply h-full w-full scale-[1.01] object-cover transition-transform duration-700 ease-in-out;
     }
 
-    .life-list-img-mask {
-        @apply pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 opacity-0 outline outline-[2px] outline-white transition-all duration-700;
+    .life-list-img-mask-bg {
+        @apply absolute left-0 top-0 h-full w-full bg-[#000000a2] opacity-0 transition-opacity duration-700 ease-in-out;
+    }
+
+    .life-list-img-mask-frame {
+        @apply pointer-events-none absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 opacity-0 outline outline-[2px] outline-white [transition:height_0.7s_ease-in-out,width_0.7s_ease-in-out,opacity_0.7s_ease-in-out];
     }
 
     .life-list-img-caption {

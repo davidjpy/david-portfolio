@@ -4,6 +4,27 @@ interface Props {
     willChangePropObserverRef: React.MutableRefObject<IntersectionObserver | null>
 }
 
+interface AnimatedPhotoProps {
+    src: string
+    alt: string
+    title: string
+    description: string
+}
+
+function AnimatedPhoto({ src, alt, title, description }: AnimatedPhotoProps) {
+    return (
+        <>
+            <img alt={alt} loading='lazy' src={src} className='life-list-img group-hover:scale-105' />
+            <span className='life-list-img-mask-bg group-hover:opacity-100'></span>
+            <span className='life-list-img-mask-frame group-hover:h-[75%] group-hover:w-[75%] group-hover:opacity-100 group-hover:backdrop-blur-[2px]' />
+            <figcaption className='life-list-img-caption group-hover:-translate-y-1/2 group-hover:opacity-100'>
+                <h1 className='font-medium'>{title}</h1>
+                <p className='text-sm'>{description}</p>
+            </figcaption>
+        </>
+    )
+}
+
 export default function PhotoMasonry({ willChangePropObserverRef }: Props) {
     const photoGalleryRef = useRef<HTMLDivElement>(null)
 
@@ -26,95 +47,60 @@ export default function PhotoMasonry({ willChangePropObserverRef }: Props) {
             ref={photoGalleryRef}
         >
             <figure className='life-list-img-wrapper group col-span-1 row-span-6'>
-                <img
-                    alt='David is painting a golden retriever on canvas'
-                    loading='lazy'
+                <AnimatedPhoto
                     src='images/life/painting.webp'
-                    className='life-list-img hover:scale-105 hover:brightness-50'
+                    alt='David is painting a golden retriever on canvas'
+                    title='Hong Kong'
+                    description='Art Workshop'
                 />
-                <span className='life-list-img-mask group-hover:h-[75%] group-hover:w-[75%] group-hover:opacity-100 group-hover:backdrop-blur-[2px]'></span>
-                <figcaption className='life-list-img-caption group-hover:-translate-y-1/2 group-hover:opacity-100'>
-                    <h1 className='font-medium'>Hong Kong</h1>
-                    <p className='text-sm'>Art Workshop</p>
-                </figcaption>
             </figure>
             <figure className='life-list-img-wrapper group col-span-1 row-span-3'>
-                <img
-                    alt='Overlooking the South China Sea from Po Toi Island'
-                    loading='lazy'
+                <AnimatedPhoto
                     src='images/life/hk_island.webp'
-                    className='life-list-img hover:scale-105 hover:brightness-50'
+                    alt='Overlooking the South China Sea from Po Toi Island'
+                    title='Hong Kong'
+                    description='Po Toi Island'
                 />
-                <span className='life-list-img-mask group-hover:h-[75%] group-hover:w-[75%] group-hover:opacity-100 group-hover:backdrop-blur-[2px]'></span>
-                <figcaption className='life-list-img-caption group-hover:-translate-y-1/2 group-hover:opacity-100'>
-                    <h1 className='font-medium'>Hong Kong</h1>
-                    <p className='text-sm'>Po Toi Island</p>
-                </figcaption>
             </figure>
             <figure className='life-list-img-wrapper group col-span-1 row-span-5'>
-                <img
-                    alt='A splashy red lightbox depicting the Fire Dragon Dance '
-                    loading='lazy'
+                <AnimatedPhoto
                     src='images/life/fire_dragon_dance.webp'
-                    className='life-list-img hover:scale-105 hover:brightness-50'
+                    alt='A splashy red lightbox depicting the Fire Dragon Dance'
+                    title='Hong Kong'
+                    description='Fire Dragon Dance'
                 />
-                <span className='life-list-img-mask group-hover:h-[75%] group-hover:w-[75%] group-hover:opacity-100 group-hover:backdrop-blur-[2px]'></span>
-                <figcaption className='life-list-img-caption group-hover:-translate-y-1/2 group-hover:opacity-100'>
-                    <h1 className='font-medium'>Hong Kong</h1>
-                    <p className='text-sm'>Fire Dragon Dance</p>
-                </figcaption>
             </figure>
             <figure className='life-list-img-wrapper group row-span-6'>
-                <img
-                    alt='A high tower with a Chinese dragon twining around it'
-                    loading='lazy'
+                <AnimatedPhoto
                     src='images/life/thailand_dragon_tower.webp'
-                    className='life-list-img hover:scale-105 hover:brightness-50'
+                    alt='A high tower with a Chinese dragon twining around it'
+                    title='Bangkok'
+                    description='Dragon Tower'
                 />
-                <span className='life-list-img-mask group-hover:h-[75%] group-hover:w-[75%] group-hover:opacity-100 group-hover:backdrop-blur-[2px]'></span>
-                <figcaption className='life-list-img-caption group-hover:-translate-y-1/2 group-hover:opacity-100'>
-                    <h1 className='font-medium'>Bangkok</h1>
-                    <p className='text-sm'>Dragon Tower</p>
-                </figcaption>
             </figure>
             <figure className='life-list-img-wrapper group col-span-1 row-span-7'>
-                <img
-                    alt='A stone road leading into a forest'
-                    loading='lazy'
+                <AnimatedPhoto
                     src='images/life/kumamoto_forest.webp'
-                    className='life-list-img hover:scale-105 hover:brightness-50'
+                    alt='A stone road leading into a forest'
+                    title='Kumamoto'
+                    description='Forest'
                 />
-                <span className='life-list-img-mask group-hover:h-[75%] group-hover:w-[75%] group-hover:opacity-100 group-hover:backdrop-blur-[2px]'></span>
-                <figcaption className='life-list-img-caption group-hover:-translate-y-1/2 group-hover:opacity-100'>
-                    <h1 className='font-medium'>Kumamoto</h1>
-                    <p className='text-sm'>Forest</p>
-                </figcaption>
             </figure>
             <figure className='life-list-img-wrapper group col-span-1 row-span-6'>
-                <img
-                    alt='A massive graffiti artwork depicting a robot on a tall building'
-                    loading='lazy'
+                <AnimatedPhoto
                     src='images/life/taiwan_graffiti.webp'
-                    className='life-list-img hover:scale-105 hover:brightness-50'
+                    alt='A massive graffiti artwork depicting a robot on a tall building'
+                    title='Taipei'
+                    description='Graffiti'
                 />
-                <span className='life-list-img-mask group-hover:h-[75%] group-hover:w-[75%] group-hover:opacity-100 group-hover:backdrop-blur-[2px]'></span>
-                <figcaption className='life-list-img-caption group-hover:-translate-y-1/2 group-hover:opacity-100'>
-                    <h1 className='font-medium'>Taipei</h1>
-                    <p className='text-sm'>Graffiti</p>
-                </figcaption>
             </figure>
             <figure className='life-list-img-wrapper group col-span-1 row-span-3'>
-                <img
-                    alt='A block of traditional japanese architecture'
-                    loading='lazy'
+                <AnimatedPhoto
                     src='images/life/japan_house.webp'
-                    className='life-list-img hover:scale-105 hover:brightness-50'
+                    alt='A block of traditional japanese architecture'
+                    title='Kyoto'
+                    description='Houses'
                 />
-                <span className='life-list-img-mask group-hover:h-[75%] group-hover:w-[75%] group-hover:opacity-100 group-hover:backdrop-blur-[2px]'></span>
-                <figcaption className='life-list-img-caption group-hover:-translate-y-1/2 group-hover:opacity-100'>
-                    <h1 className='font-medium'>Kyoto</h1>
-                    <p className='text-sm'>Houses</p>
-                </figcaption>
             </figure>
         </div>
     )
