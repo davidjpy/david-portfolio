@@ -24,24 +24,27 @@ export default function LoadingScreen() {
 
     return (
         <section
-            className='fixed flex h-screen w-screen flex-col items-center justify-center bg-primary transition-opacity duration-500 ease-linear'
+            className='fixed flex h-screen w-screen flex-col items-center justify-center bg-[#FFF8E7] transition-opacity duration-500 ease-linear'
             style={{ opacity: isStarted ? 0 : 1, pointerEvents: isStarted ? 'none' : 'all' }}
         >
-            {!isLoading && (
-                <div className='h-[650px]'>
-                    <Lottie
-                        lottieRef={lottieRef}
-                        animationData={animation}
-                        loop={false}
-                        onComplete={handleLoopAnimation}
-                        className='h-full w-full'
-                    />
+            {isLoading ? (
+                <h1 className='text-4xl font-extrabold text-secondary'>
+                    Sailing To the <span className='text-accent'>Lighthouse</span>...
+                </h1>
+            ) : (
+                <div className='text-center'>
+                    <span>
+                        <Lottie
+                            lottieRef={lottieRef}
+                            animationData={animation}
+                            loop={false}
+                            onComplete={handleLoopAnimation}
+                            className='w-[600px]'
+                        />
+                    </span>
+                    <button className='mt-8'>Start</button>
                 </div>
             )}
-
-            <div className='mt-4 text-lg font-extrabold text-secondary'>
-                {isLoading ? <h1>Loading</h1> : <button onClick={handleClickStartExperience}>Start</button>}
-            </div>
         </section>
     )
 }
