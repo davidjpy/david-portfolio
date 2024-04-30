@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useContext, useRef } from 'react'
 import Lottie from 'lottie-react'
 
 import { AppContext } from '@/src/context/appContext'
@@ -7,8 +7,7 @@ import animation from '@/assets/svgs/lighthouse.json'
 import type { LottieRefCurrentProps } from 'lottie-react'
 
 export default function LoadingScreen() {
-    const { isLoading } = useContext(AppContext)
-    const [isStarted, setIsStarted] = useState(false)
+    const { isLoading, isStarted, setIsStarted } = useContext(AppContext)
     const lottieRef = useRef<LottieRefCurrentProps | null>(null)
 
     const handleLoopAnimation = () => {
@@ -24,7 +23,7 @@ export default function LoadingScreen() {
 
     return (
         <section
-            className='fixed flex h-screen w-screen flex-col items-center justify-center bg-[#FFF8E7] transition-opacity duration-500 ease-linear'
+            className='fixed flex h-screen w-screen flex-col items-center justify-center bg-[#FFF8E7] transition-opacity duration-500 ease-in'
             style={{ opacity: isStarted ? 0 : 1, pointerEvents: isStarted ? 'none' : 'all' }}
         >
             {isLoading ? (
@@ -42,7 +41,11 @@ export default function LoadingScreen() {
                             className='w-[600px]'
                         />
                     </span>
-                    <button className='mt-8'>Start</button>
+                    {!isStarted && (
+                        <button onClick={handleClickStartExperience} className='mt-8'>
+                            Start
+                        </button>
+                    )}
                 </div>
             )}
         </section>

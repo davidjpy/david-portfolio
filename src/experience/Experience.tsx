@@ -53,6 +53,8 @@ function Scene() {
 }
 
 export default function Experience() {
+    const { isStarted } = useContext(AppContext)
+
     return (
         <Canvas
             flat
@@ -69,7 +71,9 @@ export default function Experience() {
             style={{
                 height: '100vh',
                 overflow: 'hidden',
-                position: 'fixed'
+                position: 'fixed',
+                opacity: isStarted ? 100 : 0,
+                transition: 'opacity 0.5s ease-out',
             }}
         >
             <Scene />

@@ -7,6 +7,7 @@ import LoadingScreen from '@/src/experience/scene/LoadingScreen'
 
 function App() {
     const [isLoading, setIsLoading] = useState(true)
+    const [isStarted, setIsStarted] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
     const [brightness, handleSetBrightness, isLightMode] = useTheme()
 
@@ -19,6 +20,8 @@ function App() {
                     isLightMode: isLightMode,
                     isLoading: isLoading,
                     setIsLoading: setIsLoading,
+                    isStarted: isStarted,
+                    setIsStarted: setIsStarted,
                     isMobile: isMobile,
                     setIsMobile: setIsMobile
                 }}
