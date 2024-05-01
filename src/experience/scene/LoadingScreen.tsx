@@ -1,9 +1,10 @@
-import { useContext, useEffect, useLayoutEffect, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import Lottie from 'lottie-react'
 
 import { AppContext } from '@/src/context/appContext'
 import lighthouseAnimation from '@/assets/svgs/lighthouse.json'
-import boatWheelAnimation from '@/assets/svgs/boat_wheel.json'
+import dockAnimation from '@/assets/svgs/dock.json'
+import wheelAnimation from '@/assets/svgs/boat_wheel.json'
 
 import type { LottieRefCurrentProps } from 'lottie-react'
 
@@ -11,8 +12,10 @@ export default function LoadingScreen() {
     const { isLoading, isStarted, setIsStarted } = useContext(AppContext)
     const lighthouseLottieRef = useRef<LottieRefCurrentProps | null>(null)
     const boatWheelLottieRef = useRef<LottieRefCurrentProps | null>(null)
+    const dockLottieRef = useRef<LottieRefCurrentProps | null>(null)
+    const startButtonRef = useRef<HTMLButtonElement | null>(null)
 
-    const handleLoopAnimation = () => {
+    const handleLoopLighthouseAnimation = () => {
         if (lighthouseLottieRef.current) {
             lighthouseLottieRef.current.playSegments([460, 900], true)
         }
@@ -21,9 +24,16 @@ export default function LoadingScreen() {
     const handleClickStartExperience = () => {
         lighthouseLottieRef.current?.playSegments([900, 2000], true)
 
+        if (startButtonRef.current) {
+            startButtonRef.current.style.opacity = '0'
+            startButtonRef.current.style.transform = 'translate(-50%, -70%)'
+        }
+
         setTimeout(() => {
             lighthouseLottieRef.current?.pause()
             lighthouseLottieRef.current?.destroy()
+            dockLottieRef.current?.destroy()
+            boatWheelLottieRef.current?.destroy()
             setIsStarted(true)
         }, 200)
     }
@@ -38,7 +48,7 @@ export default function LoadingScreen() {
                     Sailing To the <span className='text-accent'>Lighthouse</span>...
                 </h1>
             ) : (
-                <div className='text-center'>
+                <div className='relative text-center'>
                     <span>
                         <Lottie
                             lottieRef={lighthouseLottieRef}
@@ -46,27 +56,37 @@ export default function LoadingScreen() {
                             initialSegment={[0, 900]}
                             autoPlay={false}
                             loop={false}
-                            onComplete={handleLoopAnimation}
+                            onComplete={handleLoopLighthouseAnimation}
                             className='w-[600px]'
                         />
                     </span>
                     <button
+                        ref={startButtonRef}
                         onClick={handleClickStartExperience}
-                        className='m-auto flex items-center gap-[8px] rounded-full border-[1px] border-[#505050] pb-[8px] pl-[20px] pr-[20px] pt-[8px] font-medium text-[#505050]'
+                        onMouseEnter={() => {
+                            boatWheelLottieRef.current?.play()
+                        }}
+                        onMouseLeave={() => {
+                            boatWheelLottieRef.current?.pause()
+                        }}
+                        className='absolute left-1/2 flex -translate-x-1/2 -translate-y-[10%] items-center rounded-[12px] pb-[8px] pl-[12px] pr-[12px] pt-[8px] [transition:opacity.2s_ease-out,transform_0.2s_ease-out,box-shadow_0.2s_ease-in-out,background-color_0.2s_ease-in-out] hover:bg-[#ffffff96] hover:shadow-md'
                     >
-                        Start Journey
-                        {!isStarted && (
-                            <span>
-                                <Lottie
-                                    lottieRef={boatWheelLottieRef}
-                                    animationData={boatWheelAnimation}
-                                    autoPlay={false}
-                                    loop={false}
-                                    initialSegment={[0, 100]}
-                                    className='h-[40px]'
-                                />
-                            </span>
-                        )}
+                        <Lottie
+                            lottieRef={dockLottieRef}
+                            animationData={dockAnimation}
+                            autoPlay={false}
+                            loop={false}
+                            initialSegment={[0, 570]}
+                            className='mr-[8px] w-[70px]'
+                        />
+                        <Lottie
+                            lottieRef={boatWheelLottieRef}
+                            animationData={wheelAnimation}
+                            autoPlay={true}
+                            loop={true}
+                            className='wheel w-[50px]'
+                            onDOMLoaded={() => boatWheelLottieRef.current?.pause()}
+                        />
                     </button>
                 </div>
             )}

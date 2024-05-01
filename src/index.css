@@ -181,3 +181,18 @@
         @apply focus-within:outline focus-within:outline-2 focus-within:outline-focus-outline;
     }
 }
+
+.wheel {
+    animation-name: scaleUp;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-duration: 0.2s;
+    animation-delay: 5.7s;
+    scale: 0;
+}
+
+@keyframes scaleUp {
+    100% {
+        scale: 1;
+    }
+}
