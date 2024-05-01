@@ -20,10 +20,6 @@ export default {
                 typing: 'typing 0.85s step-end infinite'
             },
             keyframes: {
-                dropIn: {
-                    '0%': { transform: 'translateY(-100%)', opacity: 0 },
-                    '100%': { transform: 'translate(0)', opacity: 1 }
-                },
                 typing: {
                     '0%': { 'border-color': 'transparent' },
                     '50%': { 'border-color': 'rgb(var(--color-accent) / <alpha-value>)' }
