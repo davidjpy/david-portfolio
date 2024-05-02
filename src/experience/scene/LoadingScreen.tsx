@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useRef } from 'react'
 import Lottie from 'lottie-react'
 
 import { AppContext } from '@/src/context/appContext'
@@ -69,7 +69,7 @@ export default function LoadingScreen() {
                         onMouseLeave={() => {
                             boatWheelLottieRef.current?.pause()
                         }}
-                        className='absolute left-1/2 flex -translate-x-1/2 -translate-y-[10%] items-center rounded-[12px] pb-[8px] pl-[12px] pr-[12px] pt-[8px] [transition:opacity.2s_ease-out,transform_0.2s_ease-out,box-shadow_0.2s_ease-in-out,background-color_0.2s_ease-in-out] hover:bg-[#f7ebd188] hover:shadow-md'
+                        className='pointer-events-none absolute left-1/2 flex -translate-x-1/2 -translate-y-[10%] items-center rounded-[12px] pb-[8px] pl-[12px] pr-[12px] pt-[8px] [transition:opacity.2s_ease-out,transform_0.2s_ease-out,box-shadow_0.2s_ease-in-out,background-color_0.2s_ease-in-out] hover:bg-[#f7ebd188] hover:shadow-md'
                     >
                         <Lottie
                             lottieRef={dockLottieRef}
@@ -77,6 +77,11 @@ export default function LoadingScreen() {
                             autoPlay={false}
                             loop={false}
                             initialSegment={[0, 570]}
+                            onComplete={() => {
+                                if (startButtonRef.current) {
+                                    startButtonRef.current.style.pointerEvents = 'auto'
+                                }
+                            }}
                             className='mr-[8px] w-[70px]'
                         />
                         <Lottie

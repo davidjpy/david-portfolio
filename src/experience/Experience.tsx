@@ -18,7 +18,7 @@ function Scene() {
     const camera = useThree((state) => state.camera) as THREE.PerspectiveCamera
 
     const perfectWindowWidth = 1920
-    const { isMobile, setIsMobile } = useContext(AppContext)
+    const { isMobile, setIsMobile, isStarted } = useContext(AppContext)
     const [pages, setPages] = useState(scrollPages * (perfectPageHeight / window.innerHeight))
 
     useEffect(() => {
@@ -44,8 +44,12 @@ function Scene() {
 
     return (
         <ScrollControls pages={pages} damping={0}>
-            <ControlPanel />
-            <HtmlContent />
+            {isStarted && (
+                <>
+                    <ControlPanel />
+                    <HtmlContent />
+                </>
+            )}
             <LighthouseScene oceanRef={oceanRef} />
             <Camera isMobile={isMobile} />
         </ScrollControls>
@@ -73,7 +77,7 @@ export default function Experience() {
                 overflow: 'hidden',
                 position: 'fixed',
                 opacity: isStarted ? 100 : 0,
-                transition: 'opacity 0.5s ease-out',
+                transition: 'opacity 0.5s ease-out'
             }}
         >
             <Scene />
