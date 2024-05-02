@@ -12,7 +12,7 @@ function App() {
     const [brightness, handleSetBrightness, isLightMode] = useTheme()
 
     return (
-        <main className='font-inter'>
+        <main>
             <AppContext.Provider
                 value={{
                     brightness: brightness,
