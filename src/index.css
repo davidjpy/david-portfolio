@@ -144,7 +144,7 @@
     }
 
     .section-list-item {
-        @apply mb-4 flex rounded-[8px] bg-primary-monochrome p-4 shadow-md will-change-transform;
+        @apply mb-4 flex rounded-[8px] bg-primary-monochrome p-4 shadow-md;
     }
 
     .section-list-title {
@@ -155,12 +155,8 @@
         @apply mt-2 text-sm text-secondary-light;
     }
 
-    .project-list-img-wrapper {
-        @apply h-fit flex-shrink-0 overflow-hidden rounded-[4px] shadow-lg;
-    }
-
     .project-list-img {
-        @apply w-[100px] object-cover;
+        @apply w-[100px] rounded-[4px] object-cover shadow-lg;
     }
 
     .book-list-img {

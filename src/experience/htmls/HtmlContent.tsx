@@ -595,7 +595,6 @@ const testimonialsList = [
 ]
 
 const HtmlContent = memo(function HtmlContent() {
-    const [focusTitle, setFocusTitle] = useState<string>('')
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
     const willChangePropObserverRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
@@ -607,6 +606,12 @@ const HtmlContent = memo(function HtmlContent() {
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
     const windowHeightRef = useRef<number>(window.innerHeight)
+    const [focusBook, setFocusBook] = useState<string>('')
+    const [focusCourse, setFocusCourse] = useState<string>('')
+    const [focusWork, setFocusWork] = useState<string>('')
+    const [focusCert, setFocusCert] = useState<string>('')
+    const [focusAck, setFocusAck] = useState<string>('')
+
     const scrollData = useScroll()
 
     const isNumberInRange = (target: number, low: number, high: number): boolean => {
@@ -720,11 +725,12 @@ const HtmlContent = memo(function HtmlContent() {
                                 entry.target.classList.replace('hidden-content', 'revealed-content')
 
                                 if (entry.target.children.item(1)?.tagName === 'UL') {
-                                    const increment = 0.1
-                                    let delay = 0.3
+                                    const increment = 0.15
+                                    let delay = 0.5
                                     for (const listItem of entry.target.children.item(1)?.children!) {
                                         const HtmlListItem = listItem as HTMLElement
-                                        HtmlListItem.style.transition = `transform 0.4s ease-out ${delay}s,opacity 0.4s ease-out ${delay}s`
+
+                                        HtmlListItem.style.transition = `transform 0.6s ease-out ${delay}s, opacity 0.6s ease-out ${delay}s, filter 0.4s ease-out`
                                         HtmlListItem.classList.replace('hidden-content', 'revealed-content')
 
                                         delay += increment
@@ -740,51 +746,13 @@ const HtmlContent = memo(function HtmlContent() {
             {
                 root: scrollData.el,
                 rootMargin: '0px',
-                threshold: 0.15
+                threshold: 0.1
             }
         )
 
-        // const willChangePropObserver = new IntersectionObserver(
-        //     (entries) => {
-        //         entries.forEach((entry) => {
-        //             const entryName = entry.target.getAttribute('data-name')
-        //             if (entry.isIntersecting) {
-        //                 if (entryName === 'pl') {
-        //                     const photoGalleryList = entry.target.children
-        //                     for (const figure of photoGalleryList) {
-        //                         const htmlImg = figure.children.item(0)!
-        //                         const htmlCaption = figure.children.item(2)!
-
-        //                         htmlImg.classList.add('will-change-transform')
-        //                         htmlCaption.classList.add('will-change-transform')
-        //                     }
-        //                 }
-        //             } else {
-        //                 if (entryName === 'pl') {
-        //                     const photoGalleryList = entry.target.children
-        //                     for (const figure of photoGalleryList) {
-        //                         const htmlImg = figure.children.item(0)!
-        //                         const htmlCaption = figure.children.item(2)!
-
-        //                         htmlImg.classList.remove('will-change-transform')
-        //                         htmlCaption.classList.remove('will-change-transform')
-        //                     }
-        //                 }
-        //             }
-        //         })
-        //     },
-        //     {
-        //         root: scrollData.el,
-        //         rootMargin: '0px',
-        //         threshold: 0
-        //     }
-        // )
-
         contentObserverRef.current = contentObserver
-        // willChangePropObserverRef.current = willChangePropObserver
 
         return () => {
-            // willChangePropObserverRef.current?.disconnect()
             contentObserverRef.current?.disconnect()
         }
     }, [])
@@ -1097,11 +1065,10 @@ const HtmlContent = memo(function HtmlContent() {
                                 key={index}
                                 className='hidden-content'
                                 style={{
-                                    transitionDelay: focusTitle && focusTitle !== book.title ? '0s' : undefined,
-                                    opacity: focusTitle && focusTitle !== book.title ? 0.3 : undefined
+                                    filter: focusBook && focusBook !== book.title ? 'opacity(40%)' : undefined
                                 }}
-                                onMouseEnter={() => setFocusTitle(book.title)}
-                                onMouseLeave={() => setFocusTitle('')}
+                                onMouseEnter={() => setFocusBook(book.title)}
+                                onMouseLeave={() => setFocusBook('')}
                             >
                                 <a
                                     href={book.href}
@@ -1141,11 +1108,10 @@ const HtmlContent = memo(function HtmlContent() {
                                 key={index}
                                 className='hidden-content'
                                 style={{
-                                    transitionDelay: focusTitle && focusTitle !== course.title ? '0s' : undefined,
-                                    opacity: focusTitle && focusTitle !== course.title ? 0.3 : undefined
+                                    filter: focusCourse && focusCourse !== course.title ? 'opacity(40%)' : undefined
                                 }}
-                                onMouseEnter={() => setFocusTitle(course.title)}
-                                onMouseLeave={() => setFocusTitle('')}
+                                onMouseEnter={() => setFocusCourse(course.title)}
+                                onMouseLeave={() => setFocusCourse('')}
                             >
                                 <a
                                     target='_blank'
@@ -1154,7 +1120,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     rel='noreferrer noopener'
                                     className='section-list-item'
                                 >
-                                    <figure className='project-list-img-wrapper'>
+                                    <figure>
                                         <img
                                             loading='lazy'
                                             alt={course.alt}
@@ -1204,11 +1170,10 @@ const HtmlContent = memo(function HtmlContent() {
                                 key={index}
                                 className='hidden-content relative'
                                 style={{
-                                    transitionDelay: focusTitle && focusTitle !== work.title ? '0s' : undefined,
-                                    opacity: focusTitle && focusTitle !== work.title ? 0.3 : undefined
+                                    filter: focusWork && focusWork !== work.title ? 'opacity(40%)' : undefined
                                 }}
-                                onMouseEnter={() => setFocusTitle(work.title)}
-                                onMouseLeave={() => setFocusTitle('')}
+                                onMouseEnter={() => setFocusWork(work.title)}
+                                onMouseLeave={() => setFocusWork('')}
                             >
                                 <a
                                     href={work.href}
@@ -1217,7 +1182,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     aria-label={work.ariaLabel}
                                     className='section-list-item'
                                 >
-                                    <figure className='project-list-img-wrapper'>
+                                    <figure>
                                         <img
                                             alt={work.alt}
                                             loading='lazy'
@@ -1252,11 +1217,10 @@ const HtmlContent = memo(function HtmlContent() {
                                 key={index}
                                 className='hidden-content relative'
                                 style={{
-                                    transitionDelay: focusTitle && focusTitle !== certificate.title ? '0s' : undefined,
-                                    opacity: focusTitle && focusTitle !== certificate.title ? 0.3 : undefined
+                                    filter: focusCert && focusCert !== certificate.title ? 'opacity(40%)' : undefined
                                 }}
-                                onMouseEnter={() => setFocusTitle(certificate.title)}
-                                onMouseLeave={() => setFocusTitle('')}
+                                onMouseEnter={() => setFocusCert(certificate.title)}
+                                onMouseLeave={() => setFocusCert('')}
                             >
                                 <a
                                     href={certificate.href}
@@ -1265,7 +1229,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     aria-label={certificate.ariaLabel}
                                     className='section-list-item'
                                 >
-                                    <figure className='project-list-img-wrapper'>
+                                    <figure>
                                         <img
                                             alt={certificate.alt}
                                             loading='lazy'
@@ -1315,11 +1279,10 @@ const HtmlContent = memo(function HtmlContent() {
                                 key={index}
                                 className='hidden-content relative'
                                 style={{
-                                    transitionDelay: focusTitle && focusTitle !== coworker.name ? '0s' : undefined,
-                                    opacity: focusTitle && focusTitle !== coworker.name ? 0.3 : undefined
+                                    filter: focusAck && focusAck !== coworker.name ? 'opacity(40%)' : undefined
                                 }}
-                                onMouseEnter={() => setFocusTitle(coworker.name)}
-                                onMouseLeave={() => setFocusTitle('')}
+                                onMouseEnter={() => setFocusAck(coworker.name)}
+                                onMouseLeave={() => setFocusAck('')}
                             >
                                 <a
                                     href={coworker.href}
