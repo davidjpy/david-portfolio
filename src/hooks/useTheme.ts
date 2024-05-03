@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { dayTimeThreshold } from '@/utilities/constants'
 
 export const useTheme = (): [number, (level: number) => void, boolean] => {
@@ -27,10 +27,6 @@ export const useTheme = (): [number, (level: number) => void, boolean] => {
     useEffect(() => {
         handleSetupTheme()
     }, [isLightMode])
-
-    // useLayoutEffect(() => {
-    //     handleSetupTheme()
-    // }, [brightness])
 
     return [brightness, handleSetBrightness, isLightMode]
 }
