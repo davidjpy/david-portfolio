@@ -90,7 +90,7 @@ export default function LoadingScreen() {
                             autoPlay={true}
                             loop={true}
                             className='wheel w-[50px]'
-                            onDOMLoaded={() => boatWheelLottieRef.current?.pause()}
+                            onDOMLoaded={() => boatWheelLottieRef.current?.stop()}
                         />
                     </button>
                 </div>
