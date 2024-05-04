@@ -1,4 +1,5 @@
 import { useEffect, useRef, memo, useState } from 'react'
+import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import { Html, useScroll } from '@react-three/drei'
 import {
     FaGithub,
@@ -19,7 +20,7 @@ import {
     FaYoutube
 } from 'react-icons/fa'
 import { SiTypescript, SiTailwindcss, SiBlender } from 'react-icons/si'
-import { MdOutlinePhonelink } from 'react-icons/md'
+import { MdOutlinePhonelink, MdReplay } from 'react-icons/md'
 import { TbBrandThreejs } from 'react-icons/tb'
 
 import HtmlScrollContainer from '@/src/experience/htmls/HtmlScrollContainer'
@@ -34,6 +35,7 @@ import {
     worksSectionTop,
     testimonialsSectionTop
 } from '@/src/utilities/constants'
+import webDesignAnimation from '@/assets/svgs/web_design.json'
 
 const titles = [
     'Full-Stack Developer',
@@ -611,6 +613,7 @@ const HtmlContent = memo(function HtmlContent() {
     const [focusWork, setFocusWork] = useState<string>('')
     const [focusCert, setFocusCert] = useState<string>('')
     const [focusAck, setFocusAck] = useState<string>('')
+    const webDesignLottieRef = useRef<LottieRefCurrentProps | null>(null)
 
     const scrollData = useScroll()
 
@@ -732,6 +735,15 @@ const HtmlContent = memo(function HtmlContent() {
 
                                         HtmlListItem.style.transition = `transform 0.6s ease-out ${delay}s, opacity 0.6s ease-out ${delay}s, filter 0.4s ease-out`
                                         HtmlListItem.classList.replace('hidden-content', 'revealed-content')
+
+                                        if (HtmlListItem.getAttribute('data-name') === 'design') {
+                                            setTimeout(
+                                                () => {
+                                                    webDesignLottieRef.current?.play()
+                                                },
+                                                delay * 100 + 800
+                                            )
+                                        }
 
                                         delay += increment
                                     }
@@ -955,7 +967,7 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection
                     title={
                         <>
-                            <span className='text-accent'>Simple</span> and sometime
+                            <span className='text-accent'>Simple</span> and sometime{' '}
                             <span className='text-accent'>spontaneous</span>
                         </>
                     }
@@ -995,20 +1007,43 @@ const HtmlContent = memo(function HtmlContent() {
                     contentObserverRef={contentObserverRef}
                 >
                     <ul>
-                        {softwareSkills.map((skill, index) => (
-                            <li
-                                key={skill.name}
-                                className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
-                                style={{
-                                    transition: `transform 0.4s ease-out ${index * 0.1}s,opacity 0.4s ease-out ${
-                                        index * 0.1
-                                    }s`
-                                }}
-                            >
-                                <span>{skill.icon}</span>
-                                <p className='mt-2'>{skill.name}</p>
-                            </li>
-                        ))}
+                        <li data-name='design' className='hidden-content section-list-item'>
+                            <div className='relative w-full'>
+                                <figure>
+                                    <Lottie
+                                        lottieRef={webDesignLottieRef}
+                                        animationData={webDesignAnimation}
+                                        autoPlay={false}
+                                        loop={false}
+                                        onDOMLoaded={() => {
+                                            webDesignLottieRef.current?.stop()
+                                        }}
+                                        className='m-auto w-[400px]'
+                                    />
+                                </figure>
+                                <header className='mb-[8px] mt-[8px]'>
+                                    <h1 className='text-center text-xl font-black text-accent'>Web Design</h1>
+                                </header>
+                                <p className='text-center text-secondary-light'>
+                                    I love creating pixel-perfect, visually appealing, and accessible experiences.
+                                </p>
+                                <ul className='text-center'>
+                                    <li className='keypoint-list-item'>Figma</li>
+                                    <li className='keypoint-list-item'>Blender</li>
+                                    <li className='keypoint-list-item'>Svgator</li>
+                                    <li className='keypoint-list-item'>Svg Animation</li>
+                                    <li className='keypoint-list-item'>Stable Diffusion</li>
+                                </ul>
+
+                                <button className='absolute right-0 top-0'>
+                                    <MdReplay
+                                        onClick={() => webDesignLottieRef.current?.goToAndPlay(0)}
+                                        size={24}
+                                        className='icon-link-md'
+                                    />
+                                </button>
+                            </div>
+                        </li>
                     </ul>
                 </HtmlSection>
                 <HtmlSection
