@@ -9,9 +9,9 @@ import Camera from '@/src/experience/camera/Camera'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 
 import { cameraConfig, scrollPages, perfectPageHeight } from '@/src/utilities/constants'
+import { AppContext } from '@/src/context/appContext'
 
 import '@/experience/Experience.css'
-import { AppContext } from '../context/appContext'
 
 function Scene() {
     const oceanRef = useRef<unknown>(null)
