@@ -78,22 +78,23 @@ export default function ControlPanel() {
     scrollData.fixed.style.removeProperty('height')
     scrollData.fixed.style.removeProperty('width')
     scrollData.fixed.style.removeProperty('overflow')
-    // useEffect(() => {
-    //     const observer = new MutationObserver(function (mutations) {
-    //         mutations.forEach(() => {
-    //             scrollData.fixed.style.zIndex = '1'
-    //             scrollData.fixed.style.removeProperty('height')
-    //             scrollData.fixed.style.removeProperty('width')
-    //             scrollData.fixed.style.removeProperty('overflow')
-    //         })
-    //     })
 
-    //     observer.observe(scrollData.fixed, { attributes: true, attributeFilter: ['style'] })
+    useEffect(() => {
+        const observer = new MutationObserver(function (mutations) {
+            mutations.forEach(() => {
+                scrollData.fixed.style.zIndex = '1'
+                scrollData.fixed.style.removeProperty('height')
+                scrollData.fixed.style.removeProperty('width')
+                scrollData.fixed.style.removeProperty('overflow')
+            })
+        })
 
-    //     return () => {
-    //         observer.disconnect()
-    //     }
-    // }, [])
+        observer.observe(scrollData.fixed, { attributes: true, attributeFilter: ['style'] })
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [])
 
     useEffect(() => {
         const currentHoursInMinutes = getInterpolatedValue(
