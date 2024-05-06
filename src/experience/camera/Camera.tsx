@@ -80,6 +80,17 @@ const mobileCameraLookAts = [
 const contentPageHeight = perfectPageHeight * 4
 const shortScrollDistance = perfectPageHeight * 0.5
 const longScrollDistance = perfectPageHeight * 1
+const firstFloorSectionHeight = perfectPageHeight * 0.5
+const firstFloorSectionTopEnd = contentPageHeight + firstFloorSectionHeight
+const cabinetSectionTopEnd = firstFloorSectionTopEnd + contentPageHeight
+const skillBoardSectionTopEnd = cabinetSectionTopEnd + contentPageHeight
+const bookShelfSectionTopEnd = skillBoardSectionTopEnd + contentPageHeight
+const firstFloorToSecondFloorSectionHeight = perfectPageHeight * 0.5
+const firstFloorToSecondFloorSectionTopEnd = bookShelfSectionTopEnd + firstFloorToSecondFloorSectionHeight
+const secondFloorSectionHeight = perfectPageHeight * 0.5
+const secondFloorSectionTopEnd = firstFloorToSecondFloorSectionTopEnd + secondFloorSectionHeight
+const computerSectionTopEnd = secondFloorSectionTopEnd + contentPageHeight
+const letterSectionTopEnd = computerSectionTopEnd + contentPageHeight
 
 interface Props {
     isMobile: boolean
@@ -123,32 +134,13 @@ export default function Camera({ isMobile }: Props) {
         const scrollTop = document.documentElement.scrollTop
 
         const isInCanvasSection = scrollTop <= contentPageHeight
-
-        const firstFloorSectionHeight = perfectPageHeight * 0.5
-        const firstFloorSectionTopEnd = contentPageHeight + firstFloorSectionHeight
         const isInFirstFloorSection = scrollTop <= firstFloorSectionTopEnd
-
-        const cabinetSectionTopEnd = firstFloorSectionTopEnd + contentPageHeight
         const isInCabinetSection = scrollTop <= cabinetSectionTopEnd
-
-        const skillBoardSectionTopEnd = cabinetSectionTopEnd + contentPageHeight
         const isInSkillBoardSection = scrollTop <= skillBoardSectionTopEnd
-
-        const bookShelfSectionTopEnd = skillBoardSectionTopEnd + contentPageHeight
         const isInBookShelfSection = scrollTop <= bookShelfSectionTopEnd
-
-        const firstFloorToSecondFloorSectionHeight = perfectPageHeight * 0.5
-        const firstFloorToSecondFloorSectionTopEnd = bookShelfSectionTopEnd + firstFloorToSecondFloorSectionHeight
-        const isInFirstFloorToSecondFloorSection = scrollTop <= perfectPageHeight * 17
-
-        const secondFloorSectionHeight = perfectPageHeight * 0.5
-        const secondFloorSectionTopEnd = firstFloorToSecondFloorSectionTopEnd + secondFloorSectionHeight
+        const isInFirstFloorToSecondFloorSection = scrollTop <= firstFloorToSecondFloorSectionTopEnd
         const isInSecondFloorSection = scrollTop <= secondFloorSectionTopEnd
-
-        const computerSectionTopEnd = secondFloorSectionTopEnd + contentPageHeight
         const isInComputerSection = scrollTop <= computerSectionTopEnd
-
-        const letterSectionTopEnd = computerSectionTopEnd + contentPageHeight
         const isInLetterSection = scrollTop <= letterSectionTopEnd
 
         let nextCameraPosition
@@ -227,7 +219,6 @@ export default function Camera({ isMobile }: Props) {
                     firstFloorToSecondFloorSectionTopEnd,
                     firstFloorToSecondFloorSectionTopEnd + shortScrollDistance
                 )
-                // const secondFloorSectionOffset = scrollData.range(17 / scrollPages, 0.5 / scrollPages)
                 nextCameraPosition = getNextCameraPosition(6, isMobile, secondFloorSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(6, isMobile, secondFloorSectionOffset)
                 break
