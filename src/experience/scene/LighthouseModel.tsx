@@ -1,12 +1,12 @@
 import * as THREE from 'three'
 import { useContext, useRef } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
-import { useGLTF, useTexture, shaderMaterial, useScroll } from '@react-three/drei'
+import { useGLTF, useTexture, shaderMaterial } from '@react-three/drei'
 
 import { AppContext } from '@/src/context/appContext'
 import canvasVertexShader from '@/shaders/canvas/canvasVertexShader.glsl'
 import canvasFragmentShader from '@/shaders/canvas/canvasFragmentShader.glsl'
-import { scrollPages } from '@/src/utilities/constants'
+import { perfectPageHeight } from '@/src/utilities/constants'
 
 import type { GLTF } from 'three-stdlib'
 import type { Object3DNode } from '@react-three/fiber'
@@ -59,7 +59,6 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     const { isLightMode } = useContext(AppContext)
     const canvasPhotosRef = useRef(null!)
     const wallMaterialRef = useRef<THREE.MeshBasicMaterial>(null!)
-    const scrollData = useScroll()
     const { nodes } = useGLTF('models/lighthouse.glb') as GLTFResult
     const [
         davidArtTexture,
@@ -97,7 +96,8 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
         ;(canvasPhotosRef as React.MutableRefObject<CanvasPhotosUniforms>).current.uDisplacementFactor =
             dampedDisplacementFactor
 
-        const isInInterior = scrollData.visible(4 / scrollPages, 1)
+        const scrollTop = document.documentElement.scrollTop
+        const isInInterior = scrollTop >= perfectPageHeight * 4
         const dampedWallOpacity = THREE.MathUtils.damp(wallMaterialRef.current.opacity, isInInterior ? 0 : 1, 5, delta)
         wallMaterialRef.current.opacity = dampedWallOpacity
     })

@@ -8,8 +8,6 @@ export const cameraMouseFactor = 0.1
 
 export const perfectPageHeight = 1080
 
-export const scrollPages = 25
-
 export const aboutSectionTop = perfectPageHeight * 2
 
 export const lifeSectionTop = perfectPageHeight * 6

@@ -1,14 +1,10 @@
-import { useRef, useEffect, useState, useContext } from 'react'
+import { useRef, useEffect, useContext } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
-import { ScrollControls } from '@react-three/drei'
 
 import LighthouseScene from '@/src/experience/scene/LighthouseScene'
-import HtmlContent from '@/src/experience/htmls/HtmlContent'
-import ControlPanel from '@/src/experience/htmls/ControlPanel'
 import Camera from '@/src/experience/camera/Camera'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
-
-import { cameraConfig, scrollPages, perfectPageHeight } from '@/src/utilities/constants'
+import { cameraConfig } from '@/src/utilities/constants'
 import { AppContext } from '@/src/context/appContext'
 
 import '@/experience/Experience.css'
@@ -18,8 +14,7 @@ function Scene() {
     const camera = useThree((state) => state.camera) as THREE.PerspectiveCamera
 
     const perfectWindowWidth = 1920
-    const { isMobile, setIsMobile, isStarted } = useContext(AppContext)
-    const [pages, setPages] = useState(scrollPages * (perfectPageHeight / window.innerHeight))
+    const { isMobile, setIsMobile } = useContext(AppContext)
 
     useEffect(() => {
         const handleResizeExperience = () => {
@@ -30,7 +25,6 @@ function Scene() {
                 setIsMobile(false)
                 camera.fov = getClampedValue((perfectWindowWidth - window.innerWidth) / 40 + 60, 60, 70)
             }
-            setPages(scrollPages * (perfectPageHeight / window.innerHeight))
             camera.updateProjectionMatrix()
         }
 
@@ -43,16 +37,10 @@ function Scene() {
     }, [])
 
     return (
-        <ScrollControls pages={pages} damping={0}>
-            {isStarted && (
-                <>
-                    <ControlPanel />
-                    <HtmlContent />
-                </>
-            )}
+        <>
             <LighthouseScene oceanRef={oceanRef} />
             <Camera isMobile={isMobile} />
-        </ScrollControls>
+        </>
     )
 }
 
@@ -63,8 +51,8 @@ export default function Experience() {
         <Canvas
             flat
             // linear
-            // eventPrefix='offset'
-            // eventSource={document.getElementById('root') as HTMLElement}
+            eventPrefix='client'
+            eventSource={document.getElementById('root') as HTMLElement}
             dpr={[1, 1]}
             camera={{
                 far: cameraConfig.far,

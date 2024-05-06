@@ -1,11 +1,12 @@
 import * as THREE from 'three'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { CameraControls, useScroll } from '@react-three/drei'
+import { CameraControls } from '@react-three/drei'
 // import { useControls } from 'leva'
 
+import { getInterpolatedValue } from '@/src/utilities/getInterpolatedValue'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
-import { cameraMouseFactor, scrollPages } from '@/src/utilities/constants'
+import { cameraMouseFactor, perfectPageHeight } from '@/src/utilities/constants'
 
 export const tabletCameraPositions = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.046, 1.9557, 1.9249), new THREE.Vector3(0.217, 1.4057, 0.24)]),
@@ -76,12 +77,15 @@ const mobileCameraLookAts = [
     ])
 ]
 
+const contentPageHeight = perfectPageHeight * 4
+const shortScrollDistance = perfectPageHeight * 0.5
+const longScrollDistance = perfectPageHeight * 1
+
 interface Props {
     isMobile: boolean
 }
 
 export default function Camera({ isMobile }: Props) {
-    const scrollData = useScroll()
     const cameraControlRef = useRef() as React.RefObject<CameraControls>
     // const { position, lookAt } = useControls('Camera', {
     //     position: {
@@ -116,15 +120,36 @@ export default function Camera({ isMobile }: Props) {
     // })
 
     useFrame(({ pointer }) => {
-        const isInCanvasSection = scrollData.visible(0, 4 / scrollPages)
-        const isInFirstFloorSection = scrollData.visible(4 / scrollPages, 0.5 / scrollPages)
-        const isInCabinetSection = scrollData.visible(4.5 / scrollPages, 4 / scrollPages)
-        const isInSkillBoardSection = scrollData.visible(8.5 / scrollPages, 4 / scrollPages)
-        const isInBookShelfSection = scrollData.visible(12.5 / scrollPages, 4 / scrollPages)
-        const isInFirstFloorToSecondFloorSection = scrollData.visible(16.5 / scrollPages, 0.5 / scrollPages)
-        const isInSecondFloorSection = scrollData.visible(17 / scrollPages, 0.5 / scrollPages)
-        const isInComputerSection = scrollData.visible(17.5 / scrollPages, 4 / scrollPages)
-        const isInLetterSection = scrollData.visible(21.5 / scrollPages, 4 / scrollPages)
+        const scrollTop = document.documentElement.scrollTop
+
+        const isInCanvasSection = scrollTop <= contentPageHeight
+
+        const firstFloorSectionHeight = perfectPageHeight * 0.5
+        const firstFloorSectionTopEnd = contentPageHeight + firstFloorSectionHeight
+        const isInFirstFloorSection = scrollTop <= firstFloorSectionTopEnd
+
+        const cabinetSectionTopEnd = firstFloorSectionTopEnd + contentPageHeight
+        const isInCabinetSection = scrollTop <= cabinetSectionTopEnd
+
+        const skillBoardSectionTopEnd = cabinetSectionTopEnd + contentPageHeight
+        const isInSkillBoardSection = scrollTop <= skillBoardSectionTopEnd
+
+        const bookShelfSectionTopEnd = skillBoardSectionTopEnd + contentPageHeight
+        const isInBookShelfSection = scrollTop <= bookShelfSectionTopEnd
+
+        const firstFloorToSecondFloorSectionHeight = perfectPageHeight * 0.5
+        const firstFloorToSecondFloorSectionTopEnd = bookShelfSectionTopEnd + firstFloorToSecondFloorSectionHeight
+        const isInFirstFloorToSecondFloorSection = scrollTop <= perfectPageHeight * 17
+
+        const secondFloorSectionHeight = perfectPageHeight * 0.5
+        const secondFloorSectionTopEnd = firstFloorToSecondFloorSectionTopEnd + secondFloorSectionHeight
+        const isInSecondFloorSection = scrollTop <= secondFloorSectionTopEnd
+
+        const computerSectionTopEnd = secondFloorSectionTopEnd + contentPageHeight
+        const isInComputerSection = scrollTop <= computerSectionTopEnd
+
+        const letterSectionTopEnd = computerSectionTopEnd + contentPageHeight
+        const isInLetterSection = scrollTop <= letterSectionTopEnd
 
         let nextCameraPosition
         let nextCameraLookAt
@@ -133,56 +158,99 @@ export default function Camera({ isMobile }: Props) {
 
         switch (true) {
             case isInCanvasSection:
-                const canvasSectionOffset = scrollData.range(0, 1 / scrollPages)
+                const canvasSectionOffset = Math.min(scrollTop / longScrollDistance, 1)
                 nextCameraPosition = getNextCameraPosition(0, isMobile, canvasSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(0, isMobile, canvasSectionOffset)
                 break
 
             case isInFirstFloorSection:
-                const firstFloorSectionOffset = scrollData.range(4 / scrollPages, 0.5 / scrollPages)
+                const firstFloorSectionOffset = getInterpolatedValue(
+                    [0, 1],
+                    scrollTop,
+                    contentPageHeight,
+                    contentPageHeight + shortScrollDistance
+                )
+
                 nextCameraPosition = getNextCameraPosition(1, isMobile, firstFloorSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(1, isMobile, firstFloorSectionOffset)
                 break
 
             case isInCabinetSection:
-                const skillBoardSectionOffset = scrollData.range(4.5 / scrollPages, 0.5 / scrollPages)
-                nextCameraPosition = getNextCameraPosition(2, isMobile, skillBoardSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(2, isMobile, skillBoardSectionOffset)
+                const cabinetSectionOffset = getInterpolatedValue(
+                    [0, 1],
+                    scrollTop,
+                    firstFloorSectionTopEnd,
+                    firstFloorSectionTopEnd + shortScrollDistance
+                )
+
+                nextCameraPosition = getNextCameraPosition(2, isMobile, cabinetSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(2, isMobile, cabinetSectionOffset)
                 break
 
             case isInSkillBoardSection:
-                const bookShelfSectionOffset = scrollData.range(8.5 / scrollPages, 0.5 / scrollPages)
-                nextCameraPosition = getNextCameraPosition(3, isMobile, bookShelfSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(3, isMobile, bookShelfSectionOffset)
+                const skillBoardSectionOffset = getInterpolatedValue(
+                    [0, 1],
+                    scrollTop,
+                    cabinetSectionTopEnd,
+                    cabinetSectionTopEnd + shortScrollDistance
+                )
+                nextCameraPosition = getNextCameraPosition(3, isMobile, skillBoardSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(3, isMobile, skillBoardSectionOffset)
                 break
 
             case isInBookShelfSection:
-                const cabinetSectionOffset = scrollData.range(12.5 / scrollPages, 0.5 / scrollPages)
-                nextCameraPosition = getNextCameraPosition(4, isMobile, cabinetSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(4, isMobile, cabinetSectionOffset)
+                const bookShelfSectionOffset = getInterpolatedValue(
+                    [0, 1],
+                    scrollTop,
+                    cabinetSectionTopEnd,
+                    cabinetSectionTopEnd + shortScrollDistance
+                )
+                nextCameraPosition = getNextCameraPosition(4, isMobile, bookShelfSectionOffset)
+                nextCameraLookAt = getNextCameraLookAt(4, isMobile, bookShelfSectionOffset)
                 break
 
             case isInFirstFloorToSecondFloorSection:
-                const firstFloorToSecondFloorSectionOffset = scrollData.range(16.5 / scrollPages, 0.5 / scrollPages)
+                const firstFloorToSecondFloorSectionOffset = getInterpolatedValue(
+                    [0, 1],
+                    scrollTop,
+                    bookShelfSectionTopEnd,
+                    bookShelfSectionTopEnd + shortScrollDistance
+                )
                 nextCameraPosition = getNextCameraPosition(5, isMobile, firstFloorToSecondFloorSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(5, isMobile, firstFloorToSecondFloorSectionOffset)
                 break
 
             case isInSecondFloorSection:
-                const secondFloorSectionOffset = scrollData.range(17 / scrollPages, 0.5 / scrollPages)
+                const secondFloorSectionOffset = getInterpolatedValue(
+                    [0, 1],
+                    scrollTop,
+                    firstFloorToSecondFloorSectionTopEnd,
+                    firstFloorToSecondFloorSectionTopEnd + shortScrollDistance
+                )
+                // const secondFloorSectionOffset = scrollData.range(17 / scrollPages, 0.5 / scrollPages)
                 nextCameraPosition = getNextCameraPosition(6, isMobile, secondFloorSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(6, isMobile, secondFloorSectionOffset)
                 break
 
             case isInComputerSection:
-                const computerSectionOffset = scrollData.range(17.5 / scrollPages, 1 / scrollPages)
+                const computerSectionOffset = getInterpolatedValue(
+                    [0, 1],
+                    scrollTop,
+                    firstFloorToSecondFloorSectionTopEnd,
+                    firstFloorToSecondFloorSectionTopEnd + longScrollDistance
+                )
                 nextCameraPosition = getNextCameraPosition(7, isMobile, computerSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(7, isMobile, computerSectionOffset)
                 break
 
             case isInLetterSection:
             default:
-                const letterSectionOffset = scrollData.range(21.5 / scrollPages, 0.5 / scrollPages)
+                const letterSectionOffset = getInterpolatedValue(
+                    [0, 1],
+                    scrollTop,
+                    computerSectionTopEnd,
+                    computerSectionTopEnd + shortScrollDistance
+                )
                 nextCameraPosition = getNextCameraPosition(8, isMobile, letterSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(8, isMobile, letterSectionOffset)
                 break
@@ -190,10 +258,12 @@ export default function Camera({ isMobile }: Props) {
 
         const cameraDistance = cameraControlRef.current!.camera.position.distanceTo(nextCameraLookAt)
         const clampedDistanceFactor = getClampedValue(Math.pow(cameraDistance, 3), 0.02, 1.5)
+        const pointerX = getClampedValue(pointer.x, -1, 1)
+        const pointerY = getClampedValue(pointer.y, -1, 1)
 
         cameraControlRef.current!.setLookAt(
-            nextCameraPosition.x + pointer.x * cameraMouseFactor * clampedDistanceFactor,
-            nextCameraPosition.y + pointer.y * cameraMouseFactor * clampedDistanceFactor,
+            nextCameraPosition.x + pointerX * cameraMouseFactor * clampedDistanceFactor,
+            nextCameraPosition.y + pointerY * cameraMouseFactor * clampedDistanceFactor,
             nextCameraPosition.z,
             nextCameraLookAt.x,
             nextCameraLookAt.y,
@@ -202,5 +272,5 @@ export default function Camera({ isMobile }: Props) {
         )
     })
 
-    return <CameraControls ref={cameraControlRef} makeDefault smoothTime={0.3} />
+    return <CameraControls ref={cameraControlRef} smoothTime={0.3} />
 }

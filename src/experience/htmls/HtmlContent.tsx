@@ -1,6 +1,5 @@
 import { useEffect, useRef, memo, useState } from 'react'
 import Lottie, { LottieRefCurrentProps } from 'lottie-react'
-import { Html, useScroll } from '@react-three/drei'
 import {
     FaGithub,
     FaLinkedin,
@@ -595,7 +594,6 @@ const testimonialsList = [
         summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
     }
 ]
-
 const HtmlContent = memo(function HtmlContent() {
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
     const willChangePropObserverRef = useRef<IntersectionObserver | null>(null)
@@ -607,15 +605,12 @@ const HtmlContent = memo(function HtmlContent() {
     const testimonialsSectionRef = useRef<HTMLElement>(null!)
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
-    const windowHeightRef = useRef<number>(window.innerHeight)
     const [focusBook, setFocusBook] = useState<string>('')
     const [focusCourse, setFocusCourse] = useState<string>('')
     const [focusWork, setFocusWork] = useState<string>('')
     const [focusCert, setFocusCert] = useState<string>('')
     const [focusAck, setFocusAck] = useState<string>('')
     const webDesignLottieRef = useRef<LottieRefCurrentProps | null>(null)
-
-    const scrollData = useScroll()
 
     const isNumberInRange = (target: number, low: number, high: number): boolean => {
         if (target >= low && target <= high) {
@@ -756,7 +751,6 @@ const HtmlContent = memo(function HtmlContent() {
                 })
             },
             {
-                root: scrollData.el,
                 rootMargin: '0px',
                 threshold: 0.1
             }
@@ -771,7 +765,7 @@ const HtmlContent = memo(function HtmlContent() {
 
     useEffect(() => {
         const handleScrollAnimation = () => {
-            const scrollTop = scrollData.el.scrollTop
+            const scrollTop = document.documentElement.scrollTop
 
             const isInAboutSection = isNumberInRange(
                 scrollTop,
@@ -837,30 +831,19 @@ const HtmlContent = memo(function HtmlContent() {
             }
         }
 
-        const handleResizeResetBorderRadius = () => {
-            if (windowHeightRef.current !== window.innerHeight) {
-                resetAllContainerBorderRadius()
-                windowHeightRef.current = window.innerHeight
-            }
-        }
-
-        scrollData.el.addEventListener('scroll', handleScrollAnimation)
-        window.addEventListener('resize', handleResizeResetBorderRadius)
+        window.addEventListener('scroll', handleScrollAnimation)
 
         return () => {
-            scrollData.el.removeEventListener('scroll', handleScrollAnimation)
-            window.removeEventListener('resize', handleResizeResetBorderRadius)
+            window.removeEventListener('scroll', handleScrollAnimation)
         }
     }, [])
 
     return (
-        <Html
-            wrapperClass='w-full'
-            calculatePosition={() => {
-                return [0, 0]
+        <div
+            className='absolute z-40 w-full'
+            style={{
+                height: perfectPageHeight * 25
             }}
-            className='scroll-container'
-            zIndexRange={[0, 0]}
         >
             <HtmlScrollContainer
                 top={aboutSectionTop}
@@ -1350,7 +1333,7 @@ const HtmlContent = memo(function HtmlContent() {
                     </ul>
                 </HtmlSection>
             </HtmlScrollContainer>
-        </Html>
+        </div>
     )
 })
 

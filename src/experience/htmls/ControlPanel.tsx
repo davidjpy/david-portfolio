@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, useContext } from 'react'
-import { Html, useScroll } from '@react-three/drei'
 import { animated, config, useSprings, useSpring } from '@react-spring/web'
 import { IoSunny, IoMoon } from 'react-icons/io5'
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
@@ -48,7 +47,6 @@ const navTab = [
 const timeSymbols = [<IoSunny size={20} />, <IoMoon size={18} />]
 
 export default function ControlPanel() {
-    const scrollData = useScroll()
     const htmlContainerRef = useRef<HTMLDivElement>(null)
     const [time, setTime] = useState<number[]>([0, 0, 0, 0, 0])
     const [toDoIndex, setTodoIndex] = useState<number>(0)
@@ -71,28 +69,6 @@ export default function ControlPanel() {
 
         return () => {
             window.removeEventListener('resize', handlePositionSlider)
-        }
-    }, [])
-
-    scrollData.fixed.style.zIndex = '1'
-    scrollData.fixed.style.removeProperty('height')
-    scrollData.fixed.style.removeProperty('width')
-    scrollData.fixed.style.removeProperty('overflow')
-
-    useEffect(() => {
-        const observer = new MutationObserver(function (mutations) {
-            mutations.forEach(() => {
-                scrollData.fixed.style.zIndex = '1'
-                scrollData.fixed.style.removeProperty('height')
-                scrollData.fixed.style.removeProperty('width')
-                scrollData.fixed.style.removeProperty('overflow')
-            })
-        })
-
-        observer.observe(scrollData.fixed, { attributes: true, attributeFilter: ['style'] })
-
-        return () => {
-            observer.disconnect()
         }
     }, [])
 
@@ -188,7 +164,6 @@ export default function ControlPanel() {
         [timeSymbolIndex]
     )
 
-    const AnimatedHtml = animated(Html)
     const htmlSpring = useSpring({
         transform: shouldShowSlider ? `translateY(-${extraPaddingTop}px)` : `translateY(-${containerHeight}px)`,
         boxShadow: shouldShowSlider ? '' : 'none',
@@ -196,15 +171,9 @@ export default function ControlPanel() {
     })
 
     return (
-        <AnimatedHtml
-            as='section'
+        <animated.section
             ref={htmlContainerRef}
-            calculatePosition={() => {
-                return [0, 0]
-            }}
-            portal={{ current: scrollData.fixed }}
-            zIndexRange={[100, 100]}
-            className='top-0 grid w-[400px] grid-cols-7 grid-rows-3 gap-[6px] rounded-b-[12px] bg-black/40 p-[8px] pt-[28px] text-center text-white shadow-xl backdrop-blur-sm'
+            className='fixed top-0 z-50 grid w-[400px] grid-cols-7 grid-rows-3 gap-[6px] rounded-b-[12px] bg-black/40 p-[8px] pt-[28px] text-center text-white shadow-xl backdrop-blur-sm'
             style={{
                 left: window.innerWidth - 440,
                 height: containerHeight,
@@ -294,7 +263,7 @@ export default function ControlPanel() {
                 {navTab.map((tab, index) => (
                     <button
                         key={index}
-                        onClick={() => scrollData.el.scrollTo({ top: tab.top, behavior: 'smooth' })}
+                        onClick={() => document.documentElement.scrollTo({ top: tab.top, behavior: 'smooth' })}
                         className='tab-list-item'
                     >
                         {tab.name}
@@ -320,6 +289,6 @@ export default function ControlPanel() {
                     />
                 )}
             </button>
-        </AnimatedHtml>
+        </animated.section>
     )
 }
