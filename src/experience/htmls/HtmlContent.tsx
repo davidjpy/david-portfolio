@@ -35,6 +35,7 @@ import {
     testimonialsSectionTop
 } from '@/src/utilities/constants'
 import webDesignAnimation from '@/assets/svgs/web_design.json'
+import softwareAnimation from '@/assets/svgs/software_skill.json'
 
 const titles = [
     'Full-Stack Developer',
@@ -611,6 +612,7 @@ const HtmlContent = memo(function HtmlContent() {
     const [focusCert, setFocusCert] = useState<string>('')
     const [focusAck, setFocusAck] = useState<string>('')
     const webDesignLottieRef = useRef<LottieRefCurrentProps | null>(null)
+    const softwareLottieRef = useRef<LottieRefCurrentProps | null>(null)
 
     const isNumberInRange = (target: number, low: number, high: number): boolean => {
         if (target >= low && target <= high) {
@@ -735,6 +737,13 @@ const HtmlContent = memo(function HtmlContent() {
                                             setTimeout(
                                                 () => {
                                                     webDesignLottieRef.current?.play()
+                                                },
+                                                delay * 100 + 800
+                                            )
+                                        } else if (HtmlListItem.getAttribute('data-name') === 'software') {
+                                            setTimeout(
+                                                () => {
+                                                    softwareLottieRef.current?.play()
                                                 },
                                                 delay * 100 + 800
                                             )
@@ -1021,6 +1030,49 @@ const HtmlContent = memo(function HtmlContent() {
                                 <button className='absolute right-0 top-0'>
                                     <MdReplay
                                         onClick={() => webDesignLottieRef.current?.goToAndPlay(0)}
+                                        size={24}
+                                        className='icon-link-md'
+                                    />
+                                </button>
+                            </div>
+                        </li>
+                        <li data-name='software' className='hidden-content section-list-item'>
+                            <div className='relative w-full'>
+                                <figure>
+                                    <Lottie
+                                        lottieRef={softwareLottieRef}
+                                        animationData={softwareAnimation}
+                                        autoPlay={false}
+                                        loop={false}
+                                        onComplete={() => {
+                                            console.log('sda')
+                                            softwareLottieRef.current?.playSegments([320, 400], false)
+                                        }}
+                                        onDOMLoaded={() => {
+                                            softwareLottieRef.current?.stop()
+                                        }}
+                                        className='m-auto w-[400px]'
+                                    />
+                                </figure>
+                                <header className='mb-[8px] mt-[8px]'>
+                                    <h1 className='text-center text-xl font-black text-accent'>Web Design</h1>
+                                </header>
+                                <p className='text-center text-secondary-light'>
+                                    I love creating pixel-perfect, visually appealing, and accessible experiences.
+                                </p>
+                                <ul className='text-center'>
+                                    <li className='keypoint-list-item'>Figma</li>
+                                    <li className='keypoint-list-item'>Blender</li>
+                                    <li className='keypoint-list-item'>Svgator</li>
+                                    <li className='keypoint-list-item'>Svg Animation</li>
+                                    <li className='keypoint-list-item'>Stable Diffusion</li>
+                                </ul>
+
+                                <button className='absolute right-0 top-0'>
+                                    <MdReplay
+                                        onClick={() => {
+                                            softwareLottieRef.current?.playSegments([0, 320], true)
+                                        }}
                                         size={24}
                                         className='icon-link-md'
                                     />
