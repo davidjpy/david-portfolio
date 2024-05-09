@@ -7,8 +7,6 @@ import { getClampedValue } from '@/src/utilities/getClampedValue'
 import { cameraConfig } from '@/src/utilities/constants'
 import { AppContext } from '@/src/context/appContext'
 
-import '@/experience/Experience.css'
-
 function Scene() {
     const oceanRef = useRef<unknown>(null)
     const camera = useThree((state) => state.camera) as THREE.PerspectiveCamera
@@ -65,7 +63,8 @@ export default function Experience() {
                 overflow: 'hidden',
                 position: 'fixed',
                 opacity: isStarted ? 100 : 0,
-                transition: 'opacity 0.5s ease-out'
+                transition: 'opacity 0.5s ease-out',
+                width: '100vw'
             }}
         >
             <Scene />
