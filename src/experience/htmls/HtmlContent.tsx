@@ -745,7 +745,7 @@ const HtmlContent = memo(function HtmlContent() {
                                                 () => {
                                                     softwareLottieRef.current?.play()
                                                 },
-                                                delay * 100 + 800
+                                                delay * 100 + 1000
                                             )
                                         }
 
@@ -993,7 +993,7 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection
                     title={
                         <>
-                            What can I offer as a <span className='text-accent'>software developer</span>?
+                            What can I offer as a <span className='text-accent'>developer</span>?
                         </>
                     }
                     contentObserverRef={contentObserverRef}
@@ -1025,6 +1025,8 @@ const HtmlContent = memo(function HtmlContent() {
                                     <li className='keypoint-list-item'>Svgator</li>
                                     <li className='keypoint-list-item'>Svg Animation</li>
                                     <li className='keypoint-list-item'>Stable Diffusion</li>
+                                    <li className='keypoint-list-item'>Responsiveness</li>
+                                    <li className='keypoint-list-item'>Acessibility</li>
                                 </ul>
 
                                 <button className='absolute right-0 top-0'>
@@ -1045,7 +1047,6 @@ const HtmlContent = memo(function HtmlContent() {
                                         autoPlay={false}
                                         loop={false}
                                         onComplete={() => {
-                                            console.log('sda')
                                             softwareLottieRef.current?.playSegments([320, 400], false)
                                         }}
                                         onDOMLoaded={() => {
@@ -1055,17 +1056,23 @@ const HtmlContent = memo(function HtmlContent() {
                                     />
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
-                                    <h1 className='text-center text-xl font-black text-accent'>Web Design</h1>
+                                    <h1 className='text-center text-xl font-black text-accent'>
+                                        Full-Stack Development
+                                    </h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
-                                    I love creating pixel-perfect, visually appealing, and accessible experiences.
+                                    I enjoy coding and the process of building things from scratch.
                                 </p>
                                 <ul className='text-center'>
-                                    <li className='keypoint-list-item'>Figma</li>
-                                    <li className='keypoint-list-item'>Blender</li>
-                                    <li className='keypoint-list-item'>Svgator</li>
-                                    <li className='keypoint-list-item'>Svg Animation</li>
-                                    <li className='keypoint-list-item'>Stable Diffusion</li>
+                                    <li className='keypoint-list-item'>Typescript</li>
+                                    <li className='keypoint-list-item'>Python</li>
+                                    <li className='keypoint-list-item'>React</li>
+                                    <li className='keypoint-list-item'>Vue</li>
+                                    <li className='keypoint-list-item'>ThreeJS</li>
+                                    <li className='keypoint-list-item'>Node</li>
+                                    <li className='keypoint-list-item'>Tailwind CSS</li>
+                                    <li className='keypoint-list-item'>Docker</li>
+                                    <li className='keypoint-list-item'>Git</li>
                                 </ul>
 
                                 <button className='absolute right-0 top-0'>
