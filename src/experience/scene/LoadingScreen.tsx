@@ -68,7 +68,7 @@ export default function LoadingScreen() {
                         onMouseLeave={() => {
                             boatWheelLottieRef.current?.pause()
                         }}
-                        className='pointer-events-none absolute left-1/2 flex -translate-x-1/2 -translate-y-[30%] items-center rounded-[12px] pb-[8px] pl-[12px] pr-[12px] pt-[8px] [transition:opacity.2s_ease-out,transform_0.2s_ease-out,background-color_0.2s_ease-in-out] hover:bg-[#f5e4c188]'
+                        className='pointer-events-none absolute left-1/2 flex -translate-x-1/2 -translate-y-[30%] items-center rounded-[12px] pb-[8px] pl-[12px] pr-[12px] pt-[8px] hover:bg-[#dfbf913f] [transition:background-color_0.2s_ease-out]'
                     >
                         <Lottie
                             lottieRef={dockLottieRef}
@@ -81,14 +81,14 @@ export default function LoadingScreen() {
                                     startButtonRef.current.style.pointerEvents = 'auto'
                                 }
                             }}
-                            className='mr-[8px] w-[70px]'
+                            className='mr-[8px] w-[55px]'
                         />
                         <Lottie
                             lottieRef={boatWheelLottieRef}
                             animationData={wheelAnimation}
                             autoPlay={true}
                             loop={true}
-                            className='wheel w-[50px]'
+                            className='wheel w-[40px]'
                             onDOMLoaded={() => boatWheelLottieRef.current?.stop()}
                         />
                     </button>
