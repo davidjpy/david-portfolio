@@ -36,6 +36,7 @@ import {
 } from '@/src/utilities/constants'
 import webDesignAnimation from '@/assets/svgs/web_design.json'
 import softwareAnimation from '@/assets/svgs/software_skill.json'
+import otherSkillAnimation from '@/assets/svgs/other_skill.json'
 
 const titles = [
     'Full-Stack Developer',
@@ -613,6 +614,7 @@ const HtmlContent = memo(function HtmlContent() {
     const [focusAck, setFocusAck] = useState<string>('')
     const webDesignLottieRef = useRef<LottieRefCurrentProps | null>(null)
     const softwareLottieRef = useRef<LottieRefCurrentProps | null>(null)
+    const otherLottieRef = useRef<LottieRefCurrentProps | null>(null)
 
     const isNumberInRange = (target: number, low: number, high: number): boolean => {
         if (target >= low && target <= high) {
@@ -746,6 +748,13 @@ const HtmlContent = memo(function HtmlContent() {
                                                     softwareLottieRef.current?.play()
                                                 },
                                                 delay * 100 + 1000
+                                            )
+                                        } else if (HtmlListItem.getAttribute('data-name') === 'other') {
+                                            setTimeout(
+                                                () => {
+                                                    otherLottieRef.current?.play()
+                                                },
+                                                delay * 100 + 1200
                                             )
                                         }
 
@@ -1086,31 +1095,49 @@ const HtmlContent = memo(function HtmlContent() {
                                 </button>
                             </div>
                         </li>
-                    </ul>
-                </HtmlSection>
-                <HtmlSection
-                    title={
-                        <>
-                            What other <span className='text-accent'>skills</span> do I have?
-                        </>
-                    }
-                    contentObserverRef={contentObserverRef}
-                >
-                    <ul>
-                        {otherSkills.map((skill, index) => (
-                            <li
-                                key={skill.name}
-                                className='hidden-content mr-6 mt-6 inline-block rounded-md bg-primary-monochrome pb-4 pl-6 pr-6 pt-4 text-center'
-                                style={{
-                                    transition: `transform 0.4s ease-out ${index * 0.1}s, opacity 0.4s ease-out ${
-                                        index * 0.1
-                                    }s`
-                                }}
-                            >
-                                <span>{skill.icon}</span>
-                                <p className='mt-2'>{skill.name}</p>
-                            </li>
-                        ))}
+                        <li data-name='other' className='hidden-content section-list-item'>
+                            <div className='relative w-full'>
+                                <figure>
+                                    <Lottie
+                                        lottieRef={otherLottieRef}
+                                        animationData={otherSkillAnimation}
+                                        autoPlay={false}
+                                        loop={false}
+                                        onComplete={() => {
+                                            otherLottieRef.current?.playSegments([100, 700], false)
+                                        }}
+                                        onDOMLoaded={() => {
+                                            otherLottieRef.current?.stop()
+                                        }}
+                                        className='m-auto w-[400px]'
+                                    />
+                                </figure>
+                                <header className='mb-[8px] mt-[8px]'>
+                                    <h1 className='text-center text-xl font-black text-accent'>Soft Skills</h1>
+                                </header>
+                                <p className='text-center text-secondary-light'>
+                                    I value continuous personal growth outside of the workplace.
+                                </p>
+                                <ul className='text-center'>
+                                    <li className='keypoint-list-item'>English</li>
+                                    <li className='keypoint-list-item'>Cantonese</li>
+                                    <li className='keypoint-list-item'>Mandarin</li>
+                                    <li className='keypoint-list-item'>Japanese</li>
+                                    <li className='keypoint-list-item'>Strong Adaptability</li>
+                                    <li className='keypoint-list-item'>Easy To Work With</li>
+                                </ul>
+
+                                <button className='absolute right-0 top-0'>
+                                    <MdReplay
+                                        onClick={() => {
+                                            otherLottieRef.current?.playSegments([0, 100], true)
+                                        }}
+                                        size={24}
+                                        className='icon-link-md'
+                                    />
+                                </button>
+                            </div>
+                        </li>
                     </ul>
                 </HtmlSection>
             </HtmlScrollContainer>
