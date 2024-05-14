@@ -1,6 +1,6 @@
 export const cameraConfig = {
     fov: 45,
-    near: 0.01,
+    near: 0.007,
     far: 40
 }
 
@@ -19,6 +19,8 @@ export const studySectionTop = perfectPageHeight * 14
 export const worksSectionTop = perfectPageHeight * 19
 
 export const testimonialsSectionTop = perfectPageHeight * 23
+
+export const memorialSectionTop = perfectPageHeight * 27
 
 export const maxBrightness = 100
 

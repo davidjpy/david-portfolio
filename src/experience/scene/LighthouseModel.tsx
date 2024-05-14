@@ -1,12 +1,13 @@
 import * as THREE from 'three'
 import { useContext, useRef } from 'react'
 import { extend, useFrame } from '@react-three/fiber'
-import { useGLTF, useTexture, shaderMaterial } from '@react-three/drei'
+import { useGLTF, useTexture, shaderMaterial, Decal } from '@react-three/drei'
 
 import { AppContext } from '@/src/context/appContext'
 import canvasVertexShader from '@/shaders/canvas/canvasVertexShader.glsl'
 import canvasFragmentShader from '@/shaders/canvas/canvasFragmentShader.glsl'
 import { perfectPageHeight } from '@/src/utilities/constants'
+// import { useControls } from 'leva'
 
 import type { GLTF } from 'three-stdlib'
 import type { Object3DNode } from '@react-three/fiber'
@@ -56,6 +57,23 @@ type GLTFResult = GLTF & {
 }
 
 export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
+    // const { position, scale, rotation } = useControls('photo', {
+    //     position: {
+    //         value: [-0.0149, 5.7865, 0.3479],
+    //         step: 0.001
+    //     },
+    //     rotation: {
+    //         value: [0.1865, 3.259, 0.024],
+    //         step: 0.001
+    //     },
+    //     scale: {
+    //         value: [0.024, 0.034, 1],
+    //         step: 0.001
+    //     }
+    // })
+
+    // console.log(position, rotation, scale)
+
     const { isLightMode } = useContext(AppContext)
     const canvasPhotosRef = useRef(null!)
     const wallMaterialRef = useRef<THREE.MeshBasicMaterial>(null!)
@@ -68,7 +86,8 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
         firstFloorTexture01,
         firstFloorTexture02,
         secondFloorTexture01,
-        secondFloorTexture02
+        secondFloorTexture02,
+        mumPhotoTexture
     ] = useTexture([
         'models/david_art.webp',
         'models/david_photo.webp',
@@ -77,7 +96,8 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
         'models/first_floor_01.webp',
         'models/first_floor_02.webp',
         'models/second_floor_01.webp',
-        'models/second_floor_02.webp'
+        'models/second_floor_02.webp',
+        'models/mum.webp'
     ])
 
     lighthouseTexture.flipY = false
@@ -167,6 +187,12 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
                 rotation={[0, 0.439, 0]}
             >
                 <meshBasicMaterial />
+            </mesh>
+            <mesh name='memorialPhoto' position={[-0.0149, 5.7865, 0.3479]} rotation={[0.1865, 3.259, 0.024]} scale={[0.024, 0.034, 1]}>
+                <planeGeometry args={[1, 1, 1, 1]} />
+                <Decal position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1}>
+                    <meshBasicMaterial map={mumPhotoTexture} polygonOffset polygonOffsetFactor={-1} />
+                </Decal>
             </mesh>
             <mesh
                 name='2ndFloor01'

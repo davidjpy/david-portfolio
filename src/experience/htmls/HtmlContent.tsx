@@ -1,26 +1,7 @@
 import { useEffect, useRef, memo, useState } from 'react'
 import Lottie, { LottieRefCurrentProps } from 'lottie-react'
-import {
-    FaGithub,
-    FaLinkedin,
-    FaInstagram,
-    FaPython,
-    FaReact,
-    FaVuejs,
-    FaNodeJs,
-    FaHtml5,
-    FaCss3Alt,
-    FaGitAlt,
-    FaDocker,
-    FaImages,
-    FaFigma,
-    FaKeyboard,
-    FaLink,
-    FaYoutube
-} from 'react-icons/fa'
-import { SiTypescript, SiTailwindcss, SiBlender } from 'react-icons/si'
-import { MdOutlinePhonelink, MdReplay } from 'react-icons/md'
-import { TbBrandThreejs } from 'react-icons/tb'
+import { FaGithub, FaLinkedin, FaInstagram, FaLink, FaYoutube } from 'react-icons/fa'
+import { MdReplay } from 'react-icons/md'
 
 import HtmlScrollContainer from '@/src/experience/htmls/HtmlScrollContainer'
 import HtmlSection from '@/src/experience/htmls/HtmlSection'
@@ -32,7 +13,8 @@ import {
     studySectionTop,
     lifeSectionTop,
     worksSectionTop,
-    testimonialsSectionTop
+    testimonialsSectionTop,
+    memorialSectionTop
 } from '@/src/utilities/constants'
 import webDesignAnimation from '@/assets/svgs/web_design.json'
 import softwareAnimation from '@/assets/svgs/software_skill.json'
@@ -47,30 +29,6 @@ const titles = [
     'Dog Lover',
     'Traveller',
     'Normal Person'
-]
-const softwareSkills = [
-    { name: 'Typescript', icon: <SiTypescript className='icon-svg' /> },
-    { name: 'Python', icon: <FaPython className='icon-svg' /> },
-    { name: 'React', icon: <FaReact strokeWidth={8} className='icon-svg' /> },
-    { name: 'Vue', icon: <FaVuejs className='icon-svg' /> },
-    { name: 'ThreeJS', icon: <TbBrandThreejs strokeWidth={1.5} className='icon-svg' /> },
-    { name: 'Node', icon: <FaNodeJs strokeWidth={8} className='icon-svg' /> },
-    { name: 'Semantic HTML', icon: <FaHtml5 className='icon-svg' /> },
-    { name: 'Responsiveness', icon: <MdOutlinePhonelink className='icon-svg' /> },
-    { name: 'Acessibility', icon: <FaKeyboard className='icon-svg' /> },
-    { name: 'CSS', icon: <FaCss3Alt className='icon-svg' /> },
-    { name: 'Tailwind CSS', icon: <SiTailwindcss className='icon-svg' /> },
-    { name: 'Figma', icon: <FaFigma strokeWidth={6} className='icon-svg' /> },
-    { name: 'Git', icon: <FaGitAlt className='icon-svg' /> },
-    { name: 'Docker', icon: <FaDocker className='icon-svg' /> }
-]
-const otherSkills = [
-    { name: 'Blender', icon: <SiBlender className='icon-svg' /> },
-    { name: 'Stable Diffusion', icon: <FaImages className='icon-svg' /> },
-    { name: 'Cantonese', icon: <h1 className='icon-text'>粵</h1> },
-    { name: 'Mandarin', icon: <h1 className='icon-text'>普</h1> },
-    { name: 'English', icon: <h1 className='icon-text'>En</h1> },
-    { name: 'Japanese (In Progress)', icon: <h1 className='icon-text'>日</h1> }
 ]
 const readingList = [
     {
@@ -605,6 +563,7 @@ const HtmlContent = memo(function HtmlContent() {
     const studySectionRef = useRef<HTMLElement>(null!)
     const workSectionRef = useRef<HTMLElement>(null!)
     const testimonialsSectionRef = useRef<HTMLElement>(null!)
+    const memorialSectionRef = useRef<HTMLElement>(null!)
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
     const [focusBook, setFocusBook] = useState<string>('')
@@ -747,14 +706,14 @@ const HtmlContent = memo(function HtmlContent() {
                                                 () => {
                                                     softwareLottieRef.current?.play()
                                                 },
-                                                delay * 100 + 1000
+                                                delay * 100 + 1200
                                             )
                                         } else if (HtmlListItem.getAttribute('data-name') === 'other') {
                                             setTimeout(
                                                 () => {
                                                     otherLottieRef.current?.play()
                                                 },
-                                                delay * 100 + 1200
+                                                delay * 100 + 1600
                                             )
                                         }
 
@@ -860,7 +819,7 @@ const HtmlContent = memo(function HtmlContent() {
         <div
             className='absolute z-40 w-full'
             style={{
-                height: perfectPageHeight * 25
+                height: perfectPageHeight * 29
             }}
         >
             <HtmlScrollContainer
@@ -1078,6 +1037,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <li className='keypoint-list-item'>React</li>
                                     <li className='keypoint-list-item'>Vue</li>
                                     <li className='keypoint-list-item'>ThreeJS</li>
+                                    <li className='keypoint-list-item'>GLSL</li>
                                     <li className='keypoint-list-item'>Node</li>
                                     <li className='keypoint-list-item'>Tailwind CSS</li>
                                     <li className='keypoint-list-item'>Docker</li>
@@ -1116,7 +1076,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <h1 className='text-center text-xl font-black text-accent'>Soft Skills</h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
-                                    I value continuous personal growth outside of the workplace.
+                                    I value continuous personal growth outside of the office.
                                 </p>
                                 <ul className='text-center'>
                                     <li className='keypoint-list-item'>English</li>
@@ -1417,6 +1377,30 @@ const HtmlContent = memo(function HtmlContent() {
                             </li>
                         ))}
                     </ul>
+                </HtmlSection>
+            </HtmlScrollContainer>
+
+            <HtmlScrollContainer
+                top={memorialSectionTop}
+                position='right'
+                backgroundTitle='Memorial'
+                topTitle='To get it off my chest...'
+                bottomTitle={
+                    <>
+                        The <span className='text-accent'> Memorial</span>
+                    </>
+                }
+                contentObserverRef={contentObserverRef}
+                ref={memorialSectionRef}
+            >
+                <HtmlSection
+                    title={
+                        <>
+                            My co-workers's <span className='text-accent'>comments</span>?
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
                 </HtmlSection>
             </HtmlScrollContainer>
         </div>
