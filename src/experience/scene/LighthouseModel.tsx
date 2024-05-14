@@ -188,7 +188,12 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
             >
                 <meshBasicMaterial />
             </mesh>
-            <mesh name='memorialPhoto' position={[-0.0149, 5.7865, 0.3479]} rotation={[0.1865, 3.259, 0.024]} scale={[0.024, 0.034, 1]}>
+            <mesh
+                name='memorialPhoto'
+                position={[-0.0149, 5.7865, 0.3479]}
+                rotation={[0.1865, 3.259, 0.024]}
+                scale={[0.024, 0.034, 1]}
+            >
                 <planeGeometry args={[1, 1, 1, 1]} />
                 <Decal position={[0, 0, 0]} rotation={[0, 0, 0]} scale={1}>
                     <meshBasicMaterial map={mumPhotoTexture} polygonOffset polygonOffsetFactor={-1} />
@@ -234,3 +239,4 @@ useTexture.preload('models/first_floor_01.webp')
 useTexture.preload('models/first_floor_02.webp')
 useTexture.preload('models/second_floor_01.webp')
 useTexture.preload('models/second_floor_02.webp')
+useTexture.preload('models/mum.webp')
