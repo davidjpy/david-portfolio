@@ -142,7 +142,6 @@ export default function Camera({ isMobile }: Props) {
         const isInSecondFloorSection = scrollTop <= secondFloorSectionTopEnd
         const isInComputerSection = scrollTop <= computerSectionTopEnd
         const isInLetterSection = scrollTop <= letterSectionTopEnd
-
         let nextCameraPosition
         let nextCameraLookAt
 
@@ -162,7 +161,6 @@ export default function Camera({ isMobile }: Props) {
                     contentPageHeight,
                     contentPageHeight + shortScrollDistance
                 )
-
                 nextCameraPosition = getNextCameraPosition(1, isMobile, firstFloorSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(1, isMobile, firstFloorSectionOffset)
                 break
@@ -174,7 +172,6 @@ export default function Camera({ isMobile }: Props) {
                     firstFloorSectionTopEnd,
                     firstFloorSectionTopEnd + shortScrollDistance
                 )
-
                 nextCameraPosition = getNextCameraPosition(2, isMobile, cabinetSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(2, isMobile, cabinetSectionOffset)
                 break
@@ -194,8 +191,8 @@ export default function Camera({ isMobile }: Props) {
                 const bookShelfSectionOffset = getInterpolatedValue(
                     [0, 1],
                     scrollTop,
-                    cabinetSectionTopEnd,
-                    cabinetSectionTopEnd + shortScrollDistance
+                    skillBoardSectionTopEnd,
+                    skillBoardSectionTopEnd + shortScrollDistance
                 )
                 nextCameraPosition = getNextCameraPosition(4, isMobile, bookShelfSectionOffset)
                 nextCameraLookAt = getNextCameraLookAt(4, isMobile, bookShelfSectionOffset)
