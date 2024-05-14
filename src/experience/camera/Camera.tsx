@@ -2,11 +2,31 @@ import * as THREE from 'three'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { CameraControls } from '@react-three/drei'
-// import { useControls } from 'leva'
+import { useControls } from 'leva'
 
 import { getInterpolatedValue } from '@/src/utilities/getInterpolatedValue'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 import { cameraMouseFactor, perfectPageHeight } from '@/src/utilities/constants'
+
+type Section =
+    | 'canvas'
+    | 'firstFloor'
+    | 'cabinet'
+    | 'board'
+    | 'bookshelf'
+    | 'first2SecondFloor'
+    | 'secondFloor'
+    | 'computer'
+    | 'letter'
+    | 'photo'
+
+interface CameraPositionMap {
+    [key: string]: {
+        index: number
+        min: number
+        max: number
+    }
+}
 
 export const tabletCameraPositions = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.046, 1.9557, 1.9249), new THREE.Vector3(0.217, 1.4057, 0.24)]),
@@ -26,6 +46,10 @@ export const tabletCameraPositions = [
     new THREE.CatmullRomCurve3([
         new THREE.Vector3(-0.0195, 1.6841, -0.0524),
         new THREE.Vector3(-0.0433, 1.7009, -0.0538)
+    ]),
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.0433, 1.7009, -0.0538),
+        new THREE.Vector3(-0.0817, 1.739, -0.0384)
     ])
 ]
 
@@ -44,6 +68,10 @@ const tabletCameraLookAts = [
     new THREE.CatmullRomCurve3([
         new THREE.Vector3(-0.0966, 1.6736, -0.0627),
         new THREE.Vector3(-0.0701, 1.6772, -0.0557)
+    ]),
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.0701, 1.6772, -0.0557),
+        new THREE.Vector3(-0.2201, 1.7128, -0.0883)
     ])
 ]
 
@@ -59,7 +87,11 @@ const mobileCameraPositions = [
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.0182, 1.5432, -0.0498), new THREE.Vector3(0.234, 1.5822, 0.1528)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.234, 1.5822, 0.1528), new THREE.Vector3(0.21, 1.7116, 0.1468)]),
     new THREE.CatmullRomCurve3([new THREE.Vector3(0.21, 1.7116, 0.1468), new THREE.Vector3(-0.0381, 1.6841, -0.0509)]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.0381, 1.6841, -0.0509), new THREE.Vector3(-0.06, 1.7003, -0.0706)])
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.0381, 1.6841, -0.0509),
+        new THREE.Vector3(-0.06, 1.7003, -0.0706)
+    ]),
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.06, 1.7003, -0.0706), new THREE.Vector3(-0.085, 1.7382, -0.0338)])
 ]
 
 const mobileCameraLookAts = [
@@ -74,6 +106,10 @@ const mobileCameraLookAts = [
     new THREE.CatmullRomCurve3([
         new THREE.Vector3(-0.1036, 1.6836, -0.0263),
         new THREE.Vector3(-0.0958, 1.6549, -0.0854)
+    ]),
+    new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.0958, 1.6549, -0.0854),
+        new THREE.Vector3(-0.1405, 1.7309, -0.0445)
     ])
 ]
 
@@ -92,24 +128,86 @@ const secondFloorSectionTopEnd = firstFloorToSecondFloorSectionTopEnd + secondFl
 const computerSectionTopEnd = secondFloorSectionTopEnd + contentPageHeight
 const letterSectionTopEnd = computerSectionTopEnd + contentPageHeight
 
+const nextExactPositionMap: CameraPositionMap = {
+    canvas: {
+        index: 0,
+        min: 0,
+        max: longScrollDistance
+    },
+    firstFloor: {
+        index: 1,
+        min: contentPageHeight,
+        max: contentPageHeight + shortScrollDistance
+    },
+    cabinet: {
+        index: 2,
+        min: firstFloorSectionTopEnd,
+        max: firstFloorSectionTopEnd + shortScrollDistance
+    },
+    board: {
+        index: 3,
+        min: cabinetSectionTopEnd,
+        max: cabinetSectionTopEnd + shortScrollDistance
+    },
+    bookshelf: {
+        index: 4,
+        min: skillBoardSectionTopEnd,
+        max: skillBoardSectionTopEnd + shortScrollDistance
+    },
+    first2SecondFloor: {
+        index: 5,
+        min: bookShelfSectionTopEnd,
+        max: bookShelfSectionTopEnd + shortScrollDistance
+    },
+    secondFloor: {
+        index: 6,
+        min: firstFloorToSecondFloorSectionTopEnd,
+        max: firstFloorToSecondFloorSectionTopEnd + shortScrollDistance
+    },
+    computer: {
+        index: 7,
+        min: firstFloorToSecondFloorSectionTopEnd,
+        max: firstFloorToSecondFloorSectionTopEnd + longScrollDistance
+    },
+    letter: {
+        index: 8,
+        min: computerSectionTopEnd,
+        max: computerSectionTopEnd + shortScrollDistance
+    },
+    photo: {
+        index: 9,
+        min: letterSectionTopEnd,
+        max: letterSectionTopEnd + shortScrollDistance
+    }
+}
+
 interface Props {
     isMobile: boolean
 }
 
 export default function Camera({ isMobile }: Props) {
     const cameraControlRef = useRef() as React.RefObject<CameraControls>
-    // const { position, lookAt } = useControls('Camera', {
-    //     position: {
-    //         value: [-0.0506, 1.6944, -0.0538],
-    //         step: 0.0001
-    //     },
-    //     lookAt: {
-    //         value: [-0.1, 1.6531, -0.0548],
-    //         step: 0.0001
-    //     }
-    // })
-    // console.log(position, lookAt)
-
+    const { position, lookAt } = useControls('Camera', {
+        position: {
+            value: [-0.0817, 1.739, -0.0384],
+            step: 0.0001
+        },
+        lookAt: {
+            value: [-0.2201, 1.7128, -0.0883],
+            step: 0.0001
+        }
+    })
+    console.log(position, lookAt)
+    // [
+    //     -0.08500000000000008,
+    //     1.7382000000000002,
+    //     -0.033799999999999664
+    // ]
+    // [
+    // -0.1405000000000006,
+    // 1.7308999999999999,
+    // -0.044499999999999394
+    // ]
     const getNextCameraPosition = (index: number, isMobile: boolean, offset: number): THREE.Vector3 => {
         return isMobile ? mobileCameraPositions[index].getPoint(offset) : tabletCameraPositions[index].getPoint(offset)
     }
@@ -130,129 +228,71 @@ export default function Camera({ isMobile }: Props) {
     //     )
     // })
 
+    const getCurrentSection = (scrollTop: number): Section => {
+        if (scrollTop <= contentPageHeight) {
+            return 'canvas'
+        } else if (scrollTop > contentPageHeight && scrollTop <= firstFloorSectionTopEnd) {
+            return 'firstFloor'
+        } else if (scrollTop > firstFloorSectionTopEnd && scrollTop <= cabinetSectionTopEnd) {
+            return 'cabinet'
+        } else if (scrollTop > cabinetSectionTopEnd && scrollTop <= skillBoardSectionTopEnd) {
+            return 'board'
+        } else if (scrollTop > skillBoardSectionTopEnd && scrollTop <= bookShelfSectionTopEnd) {
+            return 'bookshelf'
+        } else if (scrollTop > bookShelfSectionTopEnd && scrollTop <= firstFloorToSecondFloorSectionTopEnd) {
+            return 'first2SecondFloor'
+        } else if (scrollTop > firstFloorToSecondFloorSectionTopEnd && scrollTop <= secondFloorSectionTopEnd) {
+            return 'secondFloor'
+        } else if (scrollTop > secondFloorSectionTopEnd && scrollTop <= computerSectionTopEnd) {
+            return 'computer'
+        } else if (scrollTop > computerSectionTopEnd && scrollTop <= letterSectionTopEnd) {
+            return 'letter'
+        } else {
+            return 'photo'
+        }
+
+        // const isInCanvasSection = scrollTop <= contentPageHeight
+        // const isInFirstFloorSection = scrollTop > contentPageHeight && scrollTop <= firstFloorSectionTopEnd
+        // const isInCabinetSection = scrollTop > firstFloorSectionTopEnd && scrollTop <= cabinetSectionTopEnd
+        // const isInSkillBoardSection = scrollTop > cabinetSectionTopEnd && scrollTop <= skillBoardSectionTopEnd
+        // const isInBookShelfSection = scrollTop > skillBoardSectionTopEnd && scrollTop <= bookShelfSectionTopEnd
+        // const isInFirstFloorToSecondFloorSection =
+        //     scrollTop > bookShelfSectionTopEnd && scrollTop <= firstFloorToSecondFloorSectionTopEnd
+        // const isInSecondFloorSection =
+        //     scrollTop > firstFloorToSecondFloorSectionTopEnd && scrollTop <= secondFloorSectionTopEnd
+        // const isInComputerSection = scrollTop > secondFloorSectionTopEnd && scrollTop <= computerSectionTopEnd
+        // const isInLetterSection = scrollTop > computerSectionTopEnd && scrollTop <= letterSectionTopEnd
+        // const isInMemorialSection = scrollTop > letterSectionTopEnd && scrollTop <= memorialSectionTopEnd
+    }
+
     useFrame(({ pointer }) => {
         const scrollTop = document.documentElement.scrollTop
-
-        const isInCanvasSection = scrollTop <= contentPageHeight
-        const isInFirstFloorSection = scrollTop <= firstFloorSectionTopEnd
-        const isInCabinetSection = scrollTop <= cabinetSectionTopEnd
-        const isInSkillBoardSection = scrollTop <= skillBoardSectionTopEnd
-        const isInBookShelfSection = scrollTop <= bookShelfSectionTopEnd
-        const isInFirstFloorToSecondFloorSection = scrollTop <= firstFloorToSecondFloorSectionTopEnd
-        const isInSecondFloorSection = scrollTop <= secondFloorSectionTopEnd
-        const isInComputerSection = scrollTop <= computerSectionTopEnd
-        const isInLetterSection = scrollTop <= letterSectionTopEnd
+        let nextSection: Section = getCurrentSection(scrollTop)
         let nextCameraPosition
         let nextCameraLookAt
-
         cameraControlRef.current!.disconnect()
 
-        switch (true) {
-            case isInCanvasSection:
-                const canvasSectionOffset = Math.min(scrollTop / longScrollDistance, 1)
-                nextCameraPosition = getNextCameraPosition(0, isMobile, canvasSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(0, isMobile, canvasSectionOffset)
-                break
-
-            case isInFirstFloorSection:
-                const firstFloorSectionOffset = getInterpolatedValue(
-                    [0, 1],
-                    scrollTop,
-                    contentPageHeight,
-                    contentPageHeight + shortScrollDistance
-                )
-                nextCameraPosition = getNextCameraPosition(1, isMobile, firstFloorSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(1, isMobile, firstFloorSectionOffset)
-                break
-
-            case isInCabinetSection:
-                const cabinetSectionOffset = getInterpolatedValue(
-                    [0, 1],
-                    scrollTop,
-                    firstFloorSectionTopEnd,
-                    firstFloorSectionTopEnd + shortScrollDistance
-                )
-                nextCameraPosition = getNextCameraPosition(2, isMobile, cabinetSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(2, isMobile, cabinetSectionOffset)
-                break
-
-            case isInSkillBoardSection:
-                const skillBoardSectionOffset = getInterpolatedValue(
-                    [0, 1],
-                    scrollTop,
-                    cabinetSectionTopEnd,
-                    cabinetSectionTopEnd + shortScrollDistance
-                )
-                nextCameraPosition = getNextCameraPosition(3, isMobile, skillBoardSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(3, isMobile, skillBoardSectionOffset)
-                break
-
-            case isInBookShelfSection:
-                const bookShelfSectionOffset = getInterpolatedValue(
-                    [0, 1],
-                    scrollTop,
-                    skillBoardSectionTopEnd,
-                    skillBoardSectionTopEnd + shortScrollDistance
-                )
-                nextCameraPosition = getNextCameraPosition(4, isMobile, bookShelfSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(4, isMobile, bookShelfSectionOffset)
-                break
-
-            case isInFirstFloorToSecondFloorSection:
-                const firstFloorToSecondFloorSectionOffset = getInterpolatedValue(
-                    [0, 1],
-                    scrollTop,
-                    bookShelfSectionTopEnd,
-                    bookShelfSectionTopEnd + shortScrollDistance
-                )
-                nextCameraPosition = getNextCameraPosition(5, isMobile, firstFloorToSecondFloorSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(5, isMobile, firstFloorToSecondFloorSectionOffset)
-                break
-
-            case isInSecondFloorSection:
-                const secondFloorSectionOffset = getInterpolatedValue(
-                    [0, 1],
-                    scrollTop,
-                    firstFloorToSecondFloorSectionTopEnd,
-                    firstFloorToSecondFloorSectionTopEnd + shortScrollDistance
-                )
-                nextCameraPosition = getNextCameraPosition(6, isMobile, secondFloorSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(6, isMobile, secondFloorSectionOffset)
-                break
-
-            case isInComputerSection:
-                const computerSectionOffset = getInterpolatedValue(
-                    [0, 1],
-                    scrollTop,
-                    firstFloorToSecondFloorSectionTopEnd,
-                    firstFloorToSecondFloorSectionTopEnd + longScrollDistance
-                )
-                nextCameraPosition = getNextCameraPosition(7, isMobile, computerSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(7, isMobile, computerSectionOffset)
-                break
-
-            case isInLetterSection:
-            default:
-                const letterSectionOffset = getInterpolatedValue(
-                    [0, 1],
-                    scrollTop,
-                    computerSectionTopEnd,
-                    computerSectionTopEnd + shortScrollDistance
-                )
-                nextCameraPosition = getNextCameraPosition(8, isMobile, letterSectionOffset)
-                nextCameraLookAt = getNextCameraLookAt(8, isMobile, letterSectionOffset)
-                break
-        }
+        const nextExactPosition = nextExactPositionMap[nextSection]
+        const offset = getInterpolatedValue([0, 1], scrollTop, nextExactPosition.min, nextExactPosition.max)
+        nextCameraPosition = getNextCameraPosition(nextExactPosition.index, isMobile, offset)
+        nextCameraLookAt = getNextCameraLookAt(nextExactPosition.index, isMobile, offset)
 
         const cameraDistance = cameraControlRef.current!.camera.position.distanceTo(nextCameraLookAt)
         const clampedDistanceFactor = getClampedValue(Math.pow(cameraDistance, 3), 0.02, 1.5)
         const pointerX = getClampedValue(pointer.x, -1, 1)
         const pointerY = getClampedValue(pointer.y, -1, 1)
 
+        const cameraX = nextCameraPosition.x + pointerX * cameraMouseFactor * clampedDistanceFactor
+        const cameraY = nextCameraPosition.y + pointerY * cameraMouseFactor * clampedDistanceFactor
+        const cameraZ =
+            nextCameraPosition.y < 1.58 || scrollTop <= contentPageHeight
+                ? nextCameraPosition.z
+                : nextCameraPosition.z - pointerX * cameraMouseFactor * clampedDistanceFactor
+
         cameraControlRef.current!.setLookAt(
-            nextCameraPosition.x + pointerX * cameraMouseFactor * clampedDistanceFactor,
-            nextCameraPosition.y + pointerY * cameraMouseFactor * clampedDistanceFactor,
-            nextCameraPosition.z,
+            cameraX,
+            cameraY,
+            cameraZ,
             nextCameraLookAt.x,
             nextCameraLookAt.y,
             nextCameraLookAt.z,

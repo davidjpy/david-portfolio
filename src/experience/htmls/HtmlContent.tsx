@@ -775,6 +775,12 @@ const HtmlContent = memo(function HtmlContent() {
                 testimonialsSectionTop + 2 * perfectPageHeight + 300
             )
 
+            const isInMemorialSection = isNumberInRange(
+                scrollTop,
+                memorialSectionTop - perfectPageHeight - 300,
+                memorialSectionTop + 2 * perfectPageHeight + 300
+            )
+
             const width = aboutSectionRef.current?.clientWidth
 
             switch (true) {
@@ -800,6 +806,10 @@ const HtmlContent = memo(function HtmlContent() {
 
                 case isInTestimonialsSection:
                     setHTMLSectionBorderRadius(testimonialsSectionRef.current, width, 'left')
+                    break
+
+                case isInMemorialSection:
+                    setHTMLSectionBorderRadius(memorialSectionRef.current, width, 'right')
                     break
 
                 default:
@@ -1400,8 +1410,7 @@ const HtmlContent = memo(function HtmlContent() {
                         </>
                     }
                     contentObserverRef={contentObserverRef}
-                >
-                </HtmlSection>
+                ></HtmlSection>
             </HtmlScrollContainer>
         </div>
     )
