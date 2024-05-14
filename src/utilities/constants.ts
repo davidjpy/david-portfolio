@@ -1,5 +1,5 @@
 export const cameraConfig = {
-    fov: 45,
+    fov: 60,
     near: 0.007,
     far: 40
 }

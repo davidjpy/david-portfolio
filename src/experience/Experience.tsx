@@ -18,9 +18,13 @@ function Scene() {
         const handleResizeExperience = () => {
             if (window.innerWidth <= 968) {
                 setIsMobile(true)
-                camera.fov = 80
             } else {
                 setIsMobile(false)
+            }
+
+            if (window.innerWidth <= 1280) {
+                camera.fov = 80
+            } else {
                 camera.fov = getClampedValue((perfectWindowWidth - window.innerWidth) / 40 + 60, 60, 70)
             }
             camera.updateProjectionMatrix()
