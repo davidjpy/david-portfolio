@@ -551,7 +551,7 @@ const testimonialsList = [
                 </li>
             </ul>
         ),
-        summary: `From my time working alongside David, he has demonstrated his remarkable ability to solve problems and adapt quickly to new subjects. It's all the more impressive given that he transitioned to this field from a completely different career. Any team would be lucky to have him.`
+        summary: `David exhibits a remarkable capacity for learning. Coupled with his strong sense of responsibility, he diligently applies his knowledge to exceed expectations and meet deadlines consistently. David's combination of aptitude and reliability makes him an invaluable person in any endeavor he undertakes.`
     }
 ]
 const HtmlContent = memo(function HtmlContent() {
@@ -1406,11 +1406,32 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection
                     title={
                         <>
-                            My co-workers's <span className='text-accent'>comments</span>?
+                            To my dearest <span className='text-accent'>mother</span>
                         </>
                     }
                     contentObserverRef={contentObserverRef}
-                ></HtmlSection>
+                >
+                    <p>
+                        If there is a time machine like this website, I would go back in time and trade every single
+                        second I spent building it for the chance to be by your side. The world didn't treat you well,
+                        and I know it. I can only imagine the pain and suffering you've been through. Please don't feel
+                        sorry for me, you've always been the best mom in the world to me. I love you, and may you find
+                        joy and peace in a better place.
+                    </p>
+                </HtmlSection>
+                <HtmlSection
+                    title={
+                        <>
+                            To<span className='text-accent'> anyone</span> who's reading this
+                        </>
+                    }
+                    contentObserverRef={contentObserverRef}
+                >
+                    <p>
+                        Nothing is more important than your loved ones, neither your work, nor your parties. I've
+                        learned it the hard way. So if you're reading this, you should go spend some time with them.
+                    </p>
+                </HtmlSection>
             </HtmlScrollContainer>
         </div>
     )

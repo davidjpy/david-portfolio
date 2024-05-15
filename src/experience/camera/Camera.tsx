@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { CameraControls } from '@react-three/drei'
-import { useControls } from 'leva'
+// import { useControls } from 'leva'
 
 import { getInterpolatedValue } from '@/src/utilities/getInterpolatedValue'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
@@ -91,7 +91,7 @@ const mobileCameraPositions = [
         new THREE.Vector3(-0.0381, 1.6841, -0.0509),
         new THREE.Vector3(-0.06, 1.7003, -0.0706)
     ]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.06, 1.7003, -0.0706), new THREE.Vector3(-0.085, 1.7382, -0.0338)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.06, 1.7003, -0.0706), new THREE.Vector3(-0.0858, 1.7402, -0.0341)])
 ]
 
 const mobileCameraLookAts = [
@@ -109,7 +109,7 @@ const mobileCameraLookAts = [
     ]),
     new THREE.CatmullRomCurve3([
         new THREE.Vector3(-0.0958, 1.6549, -0.0854),
-        new THREE.Vector3(-0.1405, 1.7309, -0.0445)
+        new THREE.Vector3(-0.1422, 1.7293, -0.0445)
     ])
 ]
 
@@ -127,6 +127,7 @@ const secondFloorSectionHeight = perfectPageHeight * 0.5
 const secondFloorSectionTopEnd = firstFloorToSecondFloorSectionTopEnd + secondFloorSectionHeight
 const computerSectionTopEnd = secondFloorSectionTopEnd + contentPageHeight
 const letterSectionTopEnd = computerSectionTopEnd + contentPageHeight
+const memorialSectionTopEnd = letterSectionTopEnd + contentPageHeight
 
 const nextExactPositionMap: CameraPositionMap = {
     canvas: {
@@ -187,27 +188,18 @@ interface Props {
 
 export default function Camera({ isMobile }: Props) {
     const cameraControlRef = useRef() as React.RefObject<CameraControls>
-    const { position, lookAt } = useControls('Camera', {
-        position: {
-            value: [-0.0817, 1.739, -0.0384],
-            step: 0.0001
-        },
-        lookAt: {
-            value: [-0.2201, 1.7128, -0.0883],
-            step: 0.0001
-        }
-    })
-    console.log(position, lookAt)
-    // [
-    //     -0.08500000000000008,
-    //     1.7382000000000002,
-    //     -0.033799999999999664
-    // ]
-    // [
-    // -0.1405000000000006,
-    // 1.7308999999999999,
-    // -0.044499999999999394
-    // ]
+    // const { position, lookAt } = useControls('Camera', {
+    //     position: {
+    //         value: [-0.085, 1.7382, -0.0338],
+    //         step: 0.0001
+    //     },
+    //     lookAt: {
+    //         value: [-0.1405, 1.7309, -0.0445],
+    //         step: 0.0001
+    //     }
+    // })
+    // console.log(position, lookAt)
+
     const getNextCameraPosition = (index: number, isMobile: boolean, offset: number): THREE.Vector3 => {
         return isMobile ? mobileCameraPositions[index].getPoint(offset) : tabletCameraPositions[index].getPoint(offset)
     }
@@ -250,19 +242,6 @@ export default function Camera({ isMobile }: Props) {
         } else {
             return 'photo'
         }
-
-        // const isInCanvasSection = scrollTop <= contentPageHeight
-        // const isInFirstFloorSection = scrollTop > contentPageHeight && scrollTop <= firstFloorSectionTopEnd
-        // const isInCabinetSection = scrollTop > firstFloorSectionTopEnd && scrollTop <= cabinetSectionTopEnd
-        // const isInSkillBoardSection = scrollTop > cabinetSectionTopEnd && scrollTop <= skillBoardSectionTopEnd
-        // const isInBookShelfSection = scrollTop > skillBoardSectionTopEnd && scrollTop <= bookShelfSectionTopEnd
-        // const isInFirstFloorToSecondFloorSection =
-        //     scrollTop > bookShelfSectionTopEnd && scrollTop <= firstFloorToSecondFloorSectionTopEnd
-        // const isInSecondFloorSection =
-        //     scrollTop > firstFloorToSecondFloorSectionTopEnd && scrollTop <= secondFloorSectionTopEnd
-        // const isInComputerSection = scrollTop > secondFloorSectionTopEnd && scrollTop <= computerSectionTopEnd
-        // const isInLetterSection = scrollTop > computerSectionTopEnd && scrollTop <= letterSectionTopEnd
-        // const isInMemorialSection = scrollTop > letterSectionTopEnd && scrollTop <= memorialSectionTopEnd
     }
 
     useFrame(({ pointer }) => {
@@ -278,9 +257,13 @@ export default function Camera({ isMobile }: Props) {
         nextCameraLookAt = getNextCameraLookAt(nextExactPosition.index, isMobile, offset)
 
         const cameraDistance = cameraControlRef.current!.camera.position.distanceTo(nextCameraLookAt)
-        const clampedDistanceFactor = getClampedValue(Math.pow(cameraDistance, 3), 0.02, 1.5)
+        let clampedDistanceFactor = getClampedValue(Math.pow(cameraDistance, 3), 0.02, 1.5)
         const pointerX = getClampedValue(pointer.x, -1, 1)
         const pointerY = getClampedValue(pointer.y, -1, 1)
+
+        if (scrollTop > letterSectionTopEnd && scrollTop <= memorialSectionTopEnd) {
+            clampedDistanceFactor = 0
+        }
 
         const cameraX = nextCameraPosition.x + pointerX * cameraMouseFactor * clampedDistanceFactor
         const cameraY = nextCameraPosition.y + pointerY * cameraMouseFactor * clampedDistanceFactor
@@ -300,5 +283,5 @@ export default function Camera({ isMobile }: Props) {
         )
     })
 
-    return <CameraControls ref={cameraControlRef} smoothTime={0.3} />
+    return <CameraControls ref={cameraControlRef} smoothTime={0.4} />
 }
