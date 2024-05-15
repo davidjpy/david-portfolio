@@ -1086,7 +1086,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <h1 className='text-center text-xl font-black text-accent'>Soft Skills</h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
-                                    I value continuous personal growth outside of the office.
+                                    I value continuous personal growth outside the office.
                                 </p>
                                 <ul className='text-center'>
                                     <li className='keypoint-list-item'>English</li>
@@ -1413,7 +1413,7 @@ const HtmlContent = memo(function HtmlContent() {
                 >
                     <p>
                         If there is a time machine like this website, I would go back in time and trade every single
-                        second I spent building it for the chance to be by your side. The world didn't treat you well,
+                        second I spent building it for the chance to be by your side. This world didn't treat you well,
                         and I know it. I can only imagine the pain and suffering you've been through. Please don't feel
                         sorry for me, you've always been the best mom in the world to me. I love you, and may you find
                         joy and peace in a better place.
