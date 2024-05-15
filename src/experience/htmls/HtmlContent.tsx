@@ -1415,8 +1415,8 @@ const HtmlContent = memo(function HtmlContent() {
                         If there is a time machine like this website, I would go back in time and trade every single
                         second I spent building it for the chance to be by your side. This world didn't treat you well,
                         and I know it. I can only imagine the pain and suffering you've been through. Please don't feel
-                        sorry for me, you've always been the best mom in the world to me. I love you, and may you find
-                        joy and peace in a better place.
+                        sorry for me, you've always been the best mom in the world to me. I miss you and I love you, and
+                        may you find joy and peace in a better place.
                     </p>
                 </HtmlSection>
                 <HtmlSection
