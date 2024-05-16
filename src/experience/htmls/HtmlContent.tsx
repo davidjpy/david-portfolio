@@ -555,8 +555,8 @@ const testimonialsList = [
     }
 ]
 const HtmlContent = memo(function HtmlContent() {
+    const typingEffectIntervalRef = useRef<number | null>(null)
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
-    const willChangePropObserverRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
     const lifeSectionRef = useRef<HTMLElement>(null!)
     const skillsSectionRef = useRef<HTMLElement>(null!)
@@ -617,12 +617,14 @@ const HtmlContent = memo(function HtmlContent() {
         }
     }
 
-    useEffect(() => {
+    const setTypingEffectInterval = () => {
         let currentWord = 0
         let currentLetter = 0
         let shouldType = true
 
-        const typingEffectInterval = setInterval(() => {
+        typingEffectIntervalRef.current = setInterval(() => {
+            console.log('working')
+
             if (typingTextRef.current) {
                 typingTextRef.current.textContent = titles[currentWord].slice(0, currentLetter)
 
@@ -647,11 +649,43 @@ const HtmlContent = memo(function HtmlContent() {
                 }
             }
         }, 100)
+    }
 
-        return () => {
-            clearInterval(typingEffectInterval)
-        }
-    }, [])
+    // useEffect(() => {
+    //     let currentWord = 0
+    //     let currentLetter = 0
+    //     let shouldType = true
+
+    //     const typingEffectInterval = setInterval(() => {
+    //         if (typingTextRef.current) {
+    //             typingTextRef.current.textContent = titles[currentWord].slice(0, currentLetter)
+
+    //             if (currentLetter === titles[currentWord].length) {
+    //                 if (shouldType) {
+    //                     currentLetter += 10
+    //                 }
+    //                 shouldType = false
+    //             } else if (currentLetter === 0 && !shouldType) {
+    //                 currentWord++
+    //                 shouldType = true
+    //             }
+
+    //             if (currentWord > titles.length - 1) {
+    //                 currentWord = 0
+    //             }
+
+    //             if (shouldType) {
+    //                 currentLetter++
+    //             } else {
+    //                 currentLetter--
+    //             }
+    //         }
+    //     }, 100)
+
+    //     return () => {
+    //         clearInterval(typingEffectInterval)
+    //     }
+    // }, [])
 
     useEffect(() => {
         const contentObserver = new IntersectionObserver(
@@ -671,6 +705,10 @@ const HtmlContent = memo(function HtmlContent() {
                                 entry.target.children.item(1)?.classList.replace('w-0', 'w-40')
                                 entry.target.children.item(2)?.classList.replace('hidden-content', 'revealed-content')
                                 entry.target.children.item(3)?.classList.replace('hidden-content', 'revealed-content')
+
+                                if (!typingEffectIntervalRef.current) {
+                                    setTypingEffectInterval()
+                                }
 
                                 if (contactListRef.current) {
                                     for (const child of contactListRef.current.children) {
@@ -692,6 +730,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         const HtmlListItem = listItem as HTMLElement
 
                                         HtmlListItem.style.transition = `transform 0.6s ease-out ${delay}s, opacity 0.6s ease-out ${delay}s, filter 0.4s ease-out`
+                                        HtmlListItem.classList.add('will-change-transform')
                                         HtmlListItem.classList.replace('hidden-content', 'revealed-content')
 
                                         if (HtmlListItem.getAttribute('data-name') === 'design') {
@@ -723,6 +762,17 @@ const HtmlContent = memo(function HtmlContent() {
                                 break
                             default:
                                 break
+                        }
+                    } else {
+                        const entryName = entry.target.getAttribute('data-name')
+
+                        if (entryName === 'se') {
+                            if (entry.target.children.item(1)?.tagName === 'UL') {
+                                for (const listItem of entry.target.children.item(1)?.children!) {
+                                    const HtmlListItem = listItem as HTMLElement
+                                    HtmlListItem.classList.remove('will-change-transform')
+                                }
+                            }
                         }
                     }
                 })
@@ -951,7 +1001,7 @@ const HtmlContent = memo(function HtmlContent() {
                         that a dash of spontaneity and a sprinkle of randomness can refresh your mindset and illuminate
                         your life.
                     </p>
-                    <PhotoMasonry willChangePropObserverRef={willChangePropObserverRef} />
+                    <PhotoMasonry />
                 </HtmlSection>
             </HtmlScrollContainer>
 
@@ -1154,7 +1204,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     rel='noreferrer noopener'
                                     className='section-list-item'
                                 >
-                                    <figure>
+                                    <figure className='flex-shrink-0'>
                                         <img loading='lazy' alt={book.alt} src={book.image} className='book-list-img' />
                                     </figure>
                                     <div className='w-full pl-4'>
@@ -1197,7 +1247,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     rel='noreferrer noopener'
                                     className='section-list-item'
                                 >
-                                    <figure>
+                                    <figure className='flex-shrink-0'>
                                         <img
                                             loading='lazy'
                                             alt={course.alt}
@@ -1245,7 +1295,7 @@ const HtmlContent = memo(function HtmlContent() {
                         {workList.map((work, index) => (
                             <li
                                 key={index}
-                                className='hidden-content relative'
+                                className='hidden-content'
                                 style={{
                                     filter: focusWork && focusWork !== work.title ? 'opacity(40%)' : undefined
                                 }}
@@ -1259,10 +1309,10 @@ const HtmlContent = memo(function HtmlContent() {
                                     aria-label={work.ariaLabel}
                                     className='section-list-item'
                                 >
-                                    <figure>
+                                    <figure className='flex-shrink-0'>
                                         <img
-                                            alt={work.alt}
                                             loading='lazy'
+                                            alt={work.alt}
                                             src={work.image}
                                             className='project-list-img'
                                         />
@@ -1280,6 +1330,7 @@ const HtmlContent = memo(function HtmlContent() {
                         ))}
                     </ul>
                 </HtmlSection>
+
                 <HtmlSection
                     title={
                         <>
@@ -1292,7 +1343,7 @@ const HtmlContent = memo(function HtmlContent() {
                         {certificateList.map((certificate, index) => (
                             <li
                                 key={index}
-                                className='hidden-content relative'
+                                className='hidden-content'
                                 style={{
                                     filter: focusCert && focusCert !== certificate.title ? 'opacity(40%)' : undefined
                                 }}
@@ -1306,7 +1357,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     aria-label={certificate.ariaLabel}
                                     className='section-list-item'
                                 >
-                                    <figure>
+                                    <figure className='flex-shrink-0'>
                                         <img
                                             alt={certificate.alt}
                                             loading='lazy'
