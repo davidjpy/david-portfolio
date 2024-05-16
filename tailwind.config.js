@@ -37,7 +37,8 @@ export default {
                 inter: ['Inter']
             },
             screens: {
-                mobile: '969px'
+                mobile: '969px',
+                xm: '400px'
             },
             gridTemplateRows: {
                 12: 'repeat(12, minmax(0, 1fr))'

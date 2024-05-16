@@ -1135,7 +1135,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     />
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
-                                    <h1 className='text-center text-xl font-black text-accent'>Soft Skills</h1>
+                                    <h1 className='text-center text-xl font-black text-accent'>Other Skills</h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
                                     I value continuous personal growth outside the office.
@@ -1483,7 +1483,8 @@ const HtmlContent = memo(function HtmlContent() {
                 >
                     <p>
                         Nothing is more important than your loved ones, neither your work, nor your parties. I've
-                        learned it the hard way. So if you're reading this, you should go spend some time with them.
+                        learned it the hard way. So if you're reading this, you should go spend some time with the loved
+                        ones.
                     </p>
                 </HtmlSection>
             </HtmlScrollContainer>

@@ -39,11 +39,11 @@ export default function LoadingScreen() {
 
     return (
         <section
-            className='fixed flex h-screen w-screen flex-col items-center justify-center bg-[#FFF8E7] transition-opacity duration-500 ease-in'
+            className='fixed flex h-screen w-screen flex-col items-center justify-center overflow-y-auto bg-[#FFF8E7] transition-opacity duration-500 ease-in'
             style={{ opacity: isStarted ? 0 : 1, pointerEvents: isStarted ? 'none' : 'all' }}
         >
             {isLoading ? (
-                <h1 className='text-4xl font-extrabold text-[#505050]'>
+                <h1 className='max-xm:text-xl text-4xl font-extrabold text-[#505050] max-md:text-3xl max-sm:text-2xl'>
                     Sailing To the <span className='text-accent'>Lighthouse</span>...
                 </h1>
             ) : (
@@ -56,7 +56,7 @@ export default function LoadingScreen() {
                             autoPlay={false}
                             loop={false}
                             onComplete={handleLoopLighthouseAnimation}
-                            className='w-[600px]'
+                            className='max-xm:w-[320px] w-[600px] max-md:w-[450px] max-sm:w-[400px]'
                         />
                     </span>
                     <button
@@ -69,7 +69,7 @@ export default function LoadingScreen() {
                             boatWheelLottieRef.current?.pause()
                         }}
                         aria-label='Start'
-                        className='pointer-events-none absolute left-1/2 flex -translate-x-1/2 -translate-y-[30%] items-center rounded-[12px] pb-[8px] pl-[12px] pr-[12px] pt-[8px] [transition:background-color_0.2s_ease-out] hover:bg-[#dfbf913f]'
+                        className='pointer-events-none m-auto flex h-[50px] items-center rounded-[12px]  [transition:background-color_0.2s_ease-out]'
                     >
                         <Lottie
                             lottieRef={dockLottieRef}
@@ -82,7 +82,7 @@ export default function LoadingScreen() {
                                     startButtonRef.current.style.pointerEvents = 'auto'
                                 }
                             }}
-                            className='mr-[8px] w-[60px]'
+                            className='mr-[8px] h-[50px] w-[75px] max-md:w-[60px] max-sm:w-[50px]'
                             aria-hidden={true}
                         />
                         <Lottie
@@ -90,7 +90,7 @@ export default function LoadingScreen() {
                             animationData={wheelAnimation}
                             autoPlay={true}
                             loop={true}
-                            className='wheel w-[40px]'
+                            className='wheel h-[50px] w-[50px] max-md:w-[45px] max-sm:w-[40px]'
                             onDOMLoaded={() => boatWheelLottieRef.current?.stop()}
                             aria-hidden={true}
                         />
