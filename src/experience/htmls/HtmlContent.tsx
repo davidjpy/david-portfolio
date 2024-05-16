@@ -1012,6 +1012,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         onClick={() => webDesignLottieRef.current?.goToAndPlay(0)}
                                         size={24}
                                         className='icon-link-md'
+                                        aria-label='Replay'
                                     />
                                 </button>
                             </div>
@@ -1061,6 +1062,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         }}
                                         size={24}
                                         className='icon-link-md'
+                                        aria-label='Replay'
                                     />
                                 </button>
                             </div>
@@ -1104,6 +1106,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         }}
                                         size={24}
                                         className='icon-link-md'
+                                        aria-label='Replay'
                                     />
                                 </button>
                             </div>

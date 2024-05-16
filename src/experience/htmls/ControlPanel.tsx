@@ -280,12 +280,16 @@ export default function ControlPanel() {
                         strokeWidth={16}
                         preserveAspectRatio='none'
                         className='ml-[6px] mr-[6px] h-[22px] w-[30px]'
+                        aria-label='Hide'
+                        aria-expanded={true}
                     />
                 ) : (
                     <IoIosArrowDown
                         strokeWidth={16}
                         preserveAspectRatio='none'
                         className='ml-[6px] mr-[6px] h-[22px] w-[30px]'
+                        aria-label='Show'
+                        aria-expanded={false}
                     />
                 )}
             </button>

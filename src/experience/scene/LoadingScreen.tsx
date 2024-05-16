@@ -68,6 +68,7 @@ export default function LoadingScreen() {
                         onMouseLeave={() => {
                             boatWheelLottieRef.current?.pause()
                         }}
+                        aria-label='Start'
                         className='pointer-events-none absolute left-1/2 flex -translate-x-1/2 -translate-y-[30%] items-center rounded-[12px] pb-[8px] pl-[12px] pr-[12px] pt-[8px] [transition:background-color_0.2s_ease-out] hover:bg-[#dfbf913f]'
                     >
                         <Lottie
@@ -82,6 +83,7 @@ export default function LoadingScreen() {
                                 }
                             }}
                             className='mr-[8px] w-[60px]'
+                            aria-hidden={true}
                         />
                         <Lottie
                             lottieRef={boatWheelLottieRef}
@@ -90,6 +92,7 @@ export default function LoadingScreen() {
                             loop={true}
                             className='wheel w-[40px]'
                             onDOMLoaded={() => boatWheelLottieRef.current?.stop()}
+                            aria-hidden={true}
                         />
                     </button>
                 </div>
