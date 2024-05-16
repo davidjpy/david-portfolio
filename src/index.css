@@ -120,7 +120,11 @@
     }
 
     .life-list-img-wrapper {
-        @apply relative overflow-hidden rounded-[4px];
+        @apply relative overflow-hidden rounded-[4px] outline-2 outline-focus-outline;
+    }
+
+    .life-list-img-wrapper:focus {
+        @apply outline;
     }
 
     .life-list-img {
@@ -152,11 +156,11 @@
     }
 
     .project-list-img {
-        @apply w-[100px] rounded-[4px] object-cover shadow-lg;
+        @apply max-w-[100px] rounded-[4px] object-cover shadow-lg;
     }
 
     .book-list-img {
-        @apply max-h-[70px] flex-shrink-0 rounded-[4px] object-cover shadow-lg;
+        @apply max-h-[70px] rounded-[4px] object-cover shadow-lg;
     }
 
     .testimonials-list-img {
