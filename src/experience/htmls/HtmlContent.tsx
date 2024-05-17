@@ -207,7 +207,7 @@ const courseList = [
                 </li>
             </ul>
         ),
-        summary: 'An introduction to basic data structures and algorithmic approaches to programming problems.',
+        summary: 'An introduction to data structures and algorithmic approaches to problems.',
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>DSA</li>
@@ -269,7 +269,7 @@ const courseList = [
         summary: 'A guide on industry best practices for React.',
         keypoints: (
             <ul>
-                <li className='keypoint-list-item'>Style</li>
+                <li className='keypoint-list-item'>Code Style</li>
                 <li className='keypoint-list-item'>Project Structure</li>
                 <li className='keypoint-list-item'>Testing</li>
             </ul>
