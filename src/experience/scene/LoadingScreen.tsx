@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react'
+import { useContext, useMemo, useRef } from 'react'
 import Lottie from 'lottie-react'
 
 import { AppContext } from '@/src/context/appContext'
@@ -26,7 +26,7 @@ export default function LoadingScreen() {
 
         if (startButtonRef.current) {
             startButtonRef.current.style.opacity = '0'
-            startButtonRef.current.style.transform = 'translate(-50%, -80%)'
+            startButtonRef.current.style.transform = 'translate(0, -80%)'
         }
 
         setTimeout(() => {
@@ -37,9 +37,24 @@ export default function LoadingScreen() {
         }, 200)
     }
 
+    const memorizedLighthouseSvg = useMemo(() => {
+        return (
+            <Lottie
+                lottieRef={lighthouseLottieRef}
+                animationData={lighthouseAnimation}
+                initialSegment={[0, 900]}
+                autoPlay={false}
+                loop={false}
+                onComplete={handleLoopLighthouseAnimation}
+                onDOMLoaded={() => lighthouseLottieRef.current?.play()}
+                className='max-xm:w-[320px] w-[500px] max-md:w-[450px] max-sm:w-[400px]'
+            />
+        )
+    }, [])
+
     return (
         <section
-            className='fixed flex h-screen w-screen flex-col items-center justify-center overflow-y-auto bg-[#FFF8E7] transition-opacity duration-500 ease-in'
+            className='absolute flex h-full min-h-[600px] w-full flex-col items-center justify-center overflow-y-auto bg-[#FFF8E7] transition-opacity duration-500 ease-in'
             style={{ opacity: isStarted ? 0 : 1, pointerEvents: isStarted ? 'none' : 'all' }}
         >
             {isLoading ? (
@@ -47,18 +62,8 @@ export default function LoadingScreen() {
                     Sailing To the <span className='text-accent'>Lighthouse</span>...
                 </h1>
             ) : (
-                <div className='relative text-center'>
-                    <span>
-                        <Lottie
-                            lottieRef={lighthouseLottieRef}
-                            animationData={lighthouseAnimation}
-                            initialSegment={[0, 900]}
-                            autoPlay={false}
-                            loop={false}
-                            onComplete={handleLoopLighthouseAnimation}
-                            className='max-xm:w-[320px] w-[600px] max-md:w-[450px] max-sm:w-[400px]'
-                        />
-                    </span>
+                <div>
+                    <span>{memorizedLighthouseSvg}</span>
                     <button
                         ref={startButtonRef}
                         onClick={handleClickStartExperience}
@@ -69,7 +74,7 @@ export default function LoadingScreen() {
                             boatWheelLottieRef.current?.pause()
                         }}
                         aria-label='Start'
-                        className='pointer-events-none m-auto flex h-[50px] items-center rounded-[12px]  [transition:background-color_0.2s_ease-out]'
+                        className='pointer-events-none m-auto mt-[24px] flex h-[50px] items-center rounded-[12px]  [transition:opacity_0.2s_ease-out,transform_0.2s_ease-out]'
                     >
                         <Lottie
                             lottieRef={dockLottieRef}
@@ -82,7 +87,7 @@ export default function LoadingScreen() {
                                     startButtonRef.current.style.pointerEvents = 'auto'
                                 }
                             }}
-                            className='mr-[8px] h-[50px] w-[75px] max-md:w-[60px] max-sm:w-[50px]'
+                            className='mr-[8px] h-[50px] w-[75px] max-md:w-[65px] max-sm:w-[55px]'
                             aria-hidden={true}
                         />
                         <Lottie

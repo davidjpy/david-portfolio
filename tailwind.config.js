@@ -38,7 +38,7 @@ export default {
             },
             screens: {
                 mobile: '969px',
-                xm: '400px'
+                xm: '420px'
             },
             gridTemplateRows: {
                 12: 'repeat(12, minmax(0, 1fr))'
