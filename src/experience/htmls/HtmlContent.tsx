@@ -52,13 +52,14 @@ const readingList = [
             </ul>
         ),
         summary:
-            'A valuable lesson on how to improve the readiablity, maintainability and extensibility of the codebase.',
+            'A lesson on how to improve the readiablity, maintainability and extensibility of the codebase.',
 
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>Naming Convention</li>
-                <li className='keypoint-list-item'>Pure Function</li>
-                <li className='keypoint-list-item'>Centralized Error Handling</li>
+                <li className='keypoint-list-item'>Error Handling</li>
+                <li className='keypoint-list-item'>Testing</li>
+                <li className='keypoint-list-item'>Reusability</li>
             </ul>
         )
     },
@@ -75,7 +76,7 @@ const readingList = [
                         href='https://itpec.org/news/20220921_LMS.html'
                         target='_blank'
                         rel='noreferrer noopener'
-                        aria-label='New FE Textbook Vol.1 IT Fundamentals (opens in a new tab)'
+                        aria-label='Vol.1 IT Fundamentals (opens in a new tab)'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -85,17 +86,16 @@ const readingList = [
         summary: 'The book gives a firm foundation in IT principles, which are necessary for my daily work.',
         keypoints: (
             <ul>
-                <li className='keypoint-list-item'>Information Processing Systems</li>
-                <li className='keypoint-list-item'>Hardwware & Software</li>
+                <li className='keypoint-list-item'>Processing Systems</li>
+                <li className='keypoint-list-item'>Hardware & Software</li>
                 <li className='keypoint-list-item'>Database</li>
                 <li className='keypoint-list-item'>Network</li>
-                <li className='keypoint-list-item'>Security</li>
                 <li className='keypoint-list-item'>DSA</li>
             </ul>
         )
     },
     {
-        title: 'New FE Textbook Vol.2 IT Strategy & Management',
+        title: 'Vol.2: IT Strategy & Management',
         image: 'images/study/it_strategy_and_management.webp',
         alt: 'New FE Textbook Vol.2 IT Strategy & Management book cover',
         href: 'https://itpec.org/news/20220921_LMS.html',
@@ -115,12 +115,11 @@ const readingList = [
             </ul>
         ),
         summary:
-            'A sophisticated discussion on aligning IT with business objectives, project management & strategic innovation.',
+            'A discussion on aligning IT with business objectives, project management & strategic innovation.',
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>SDLC Model</li>
-                <li className='keypoint-list-item'>Risk Management</li>
-                <li className='keypoint-list-item'>Data-Driven Decision-Making</li>
+                <li className='keypoint-list-item'>IT Management</li>
             </ul>
         )
     }
@@ -153,7 +152,7 @@ const courseList = [
                 <li className='keypoint-list-item'>WebGL</li>
                 <li className='keypoint-list-item'>Three.js</li>
                 <li className='keypoint-list-item'>GLSL</li>
-                <li className='keypoint-list-item'>React Three Fiber</li>
+                <li className='keypoint-list-item'>R3F</li>
                 <li className='keypoint-list-item'>Blender</li>
             </ul>
         )
@@ -180,14 +179,13 @@ const courseList = [
             </ul>
         ),
         summary:
-            'An in-depth dive into the fundamentals of computer science. Additionally, it helped me learn how to think programmatically.',
+            'A dive into the fundamentals of computer science and programmatic thinking.',
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>C</li>
-                <li className='keypoint-list-item'>Memory Allocation</li>
+                <li className='keypoint-list-item'>Memory</li>
                 <li className='keypoint-list-item'>DSA</li>
                 <li className='keypoint-list-item'>Python</li>
-                <li className='keypoint-list-item'>Database</li>
             </ul>
         )
     },
@@ -216,7 +214,7 @@ const courseList = [
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>DSA</li>
-                <li className='keypoint-list-item'>Space & Time Complexity</li>
+                <li className='keypoint-list-item'>O(n)</li>
             </ul>
         )
     },
@@ -244,7 +242,6 @@ const courseList = [
         summary: 'The principles of machine learning and pattern recognition are well-established by this course.',
         keypoints: (
             <ul>
-                <li className='keypoint-list-item'>Algebra</li>
                 <li className='keypoint-list-item'>Regression</li>
                 <li className='keypoint-list-item'>Gradient Descent</li>
                 <li className='keypoint-list-item'>CNN</li>
@@ -276,11 +273,8 @@ const courseList = [
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>Style</li>
-                <li className='keypoint-list-item'>Folder Structure</li>
+                <li className='keypoint-list-item'>Project Structure</li>
                 <li className='keypoint-list-item'>Testing</li>
-                <li className='keypoint-list-item'>Performance</li>
-                <li className='keypoint-list-item'>State Management</li>
-                <li className='keypoint-list-item'> Error Handling</li>
             </ul>
         )
     }
@@ -1023,11 +1017,13 @@ const HtmlContent = memo(function HtmlContent() {
                                         onDOMLoaded={() => {
                                             webDesignLottieRef.current?.stop()
                                         }}
-                                        className='m-auto w-[400px]'
+                                        className='max-xs:w-full m-auto w-[400px] max-sm:w-[340px]'
                                     />
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
-                                    <h1 className='text-center text-xl font-black text-accent'>Web Design</h1>
+                                    <h1 className='max-xs:text-base text-center text-xl font-black text-accent'>
+                                        Web Design
+                                    </h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
                                     I love creating pixel-perfect, visually appealing, and accessible experiences.
@@ -1066,11 +1062,11 @@ const HtmlContent = memo(function HtmlContent() {
                                         onDOMLoaded={() => {
                                             softwareLottieRef.current?.stop()
                                         }}
-                                        className='m-auto w-[400px]'
+                                        className='max-xs:w-full m-auto w-[400px] max-sm:w-[340px]'
                                     />
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
-                                    <h1 className='text-center text-xl font-black text-accent'>
+                                    <h1 className='max-xs:text-base text-center text-xl font-black text-accent'>
                                         Full-Stack Development
                                     </h1>
                                 </header>
@@ -1084,6 +1080,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     <li className='keypoint-list-item'>Vue</li>
                                     <li className='keypoint-list-item'>ThreeJS</li>
                                     <li className='keypoint-list-item'>GLSL</li>
+                                    <li className='keypoint-list-item'>SQL</li>
                                     <li className='keypoint-list-item'>Node</li>
                                     <li className='keypoint-list-item'>Tailwind CSS</li>
                                     <li className='keypoint-list-item'>Docker</li>
@@ -1102,7 +1099,7 @@ const HtmlContent = memo(function HtmlContent() {
                                 </button>
                             </div>
                         </li>
-                        <li data-name='other' className='hidden-content section-list-item'>
+                        <li data-name='other' className='hidden-content section-list-item max-xs:w-full'>
                             <div className='relative w-full'>
                                 <figure>
                                     <Lottie
@@ -1116,11 +1113,13 @@ const HtmlContent = memo(function HtmlContent() {
                                         onDOMLoaded={() => {
                                             otherLottieRef.current?.stop()
                                         }}
-                                        className='m-auto w-[400px]'
+                                        className='m-auto w-[400px] max-sm:w-[340px]'
                                     />
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
-                                    <h1 className='text-center text-xl font-black text-accent'>Other Skills</h1>
+                                    <h1 className='max-xs:text-base text-center text-xl font-black text-accent'>
+                                        Other Skills
+                                    </h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
                                     I value continuous personal growth outside the office.
@@ -1189,11 +1188,11 @@ const HtmlContent = memo(function HtmlContent() {
                                     rel='noreferrer noopener'
                                     className='section-list-item'
                                 >
-                                    <figure className='flex-shrink-0'>
+                                    <figure className='flex-shrink-0 pr-4'>
                                         <img loading='lazy' alt={book.alt} src={book.image} className='book-list-img' />
                                     </figure>
-                                    <div className='w-full pl-4'>
-                                        <header className='w-[95%]'>
+                                    <div className='w-full'>
+                                        <header className='w-[90%]'>
                                             <h1 className='section-list-title'>{book.title}</h1>
                                         </header>
                                         <p className='section-list-summary'>{book.summary}</p>
@@ -1232,7 +1231,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     rel='noreferrer noopener'
                                     className='section-list-item'
                                 >
-                                    <figure className='flex-shrink-0'>
+                                    <figure className='flex-shrink-0 pr-4'>
                                         <img
                                             loading='lazy'
                                             alt={course.alt}
@@ -1240,8 +1239,8 @@ const HtmlContent = memo(function HtmlContent() {
                                             className='project-list-img'
                                         />
                                     </figure>
-                                    <div className='w-full pl-4'>
-                                        <header className='w-[95%]'>
+                                    <div className='w-full'>
+                                        <header className='w-[90%]'>
                                             <h1 className='section-list-title'>{course.title}</h1>
                                         </header>
                                         <p className='section-list-summary'>{course.summary}</p>
@@ -1294,7 +1293,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     aria-label={work.ariaLabel}
                                     className='section-list-item'
                                 >
-                                    <figure className='flex-shrink-0'>
+                                    <figure className='flex-shrink-0 pr-4'>
                                         <img
                                             loading='lazy'
                                             alt={work.alt}
@@ -1302,7 +1301,7 @@ const HtmlContent = memo(function HtmlContent() {
                                             className='project-list-img'
                                         />
                                     </figure>
-                                    <div className='w-full pl-4'>
+                                    <div className='w-full'>
                                         <header className='w-[90%]'>
                                             <h1 className='section-list-title'>{work.title}</h1>
                                         </header>
@@ -1342,7 +1341,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     aria-label={certificate.ariaLabel}
                                     className='section-list-item'
                                 >
-                                    <figure className='flex-shrink-0'>
+                                    <figure className='flex-shrink-0 pr-4'>
                                         <img
                                             alt={certificate.alt}
                                             loading='lazy'
@@ -1350,8 +1349,8 @@ const HtmlContent = memo(function HtmlContent() {
                                             className='project-list-img'
                                         />
                                     </figure>
-                                    <div className='w-full pl-4'>
-                                        <header className='w-[95%]'>
+                                    <div className='w-full'>
+                                        <header className='w-[90%]'>
                                             <h1 className='section-list-title'>{certificate.title}</h1>
                                         </header>
                                         <p className='section-list-summary'>{certificate.summary}</p>

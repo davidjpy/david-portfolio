@@ -29,8 +29,10 @@ export default function HtmlSection({ title, children, contentObserverRef, ...pr
         >
             {title && (
                 <header className='mb-4 flex items-center font-bold'>
-                    <span className='mr-2 h-1 w-4 bg-accent' />
-                    <h1>{title}</h1>
+                    <h1>
+                        <span className='mr-2 h-1 w-4 bg-accent inline-block align-middle' />
+                        {title}
+                    </h1>
                 </header>
             )}
             {children}

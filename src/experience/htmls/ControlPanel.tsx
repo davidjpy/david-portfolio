@@ -18,7 +18,8 @@ import {
     testimonialsSectionTop
 } from '@/src/utilities/constants'
 
-const containerHeight = 150
+const containerLaptopHeight = 150
+const containerMobileHeight = 230
 const extraPaddingTop = 20
 
 const toDos = [
@@ -51,26 +52,12 @@ export default function ControlPanel() {
     const [time, setTime] = useState<number[]>([0, 0, 0, 0, 0])
     const [toDoIndex, setTodoIndex] = useState<number>(0)
     const [timeSymbolIndex, setTimeSymbolIndex] = useState<number>(0)
-    const [shouldShowSlider, setShouldShowSlider] = useState<boolean>(true)
+    const [isPanelExpanded, setIsPanelExpanded] = useState<boolean>(window.innerWidth > 420)
     const { brightness, handleSetBrightness } = useContext(AppContext)
 
-    const handlePositionSlider = () => {
-        if (htmlContainerRef.current) {
-            htmlContainerRef.current.style.left = `${window.innerWidth - 440}px`
-        }
-    }
-
     const handleClickToggleSlider = () => {
-        setShouldShowSlider(!shouldShowSlider)
+        setIsPanelExpanded(!isPanelExpanded)
     }
-
-    useEffect(() => {
-        window.addEventListener('resize', handlePositionSlider)
-
-        return () => {
-            window.removeEventListener('resize', handlePositionSlider)
-        }
-    }, [])
 
     useEffect(() => {
         const currentHoursInMinutes = getInterpolatedValue(
@@ -133,6 +120,22 @@ export default function ControlPanel() {
         ])
     }, [brightness])
 
+    useEffect(() => {
+        const handleSetPanelCollapsedTop = () => {
+            if (htmlContainerRef.current) {
+                htmlContainerRef.current.style.transform = isPanelExpanded
+                    ? `translateY(-${extraPaddingTop}px)`
+                    : `translateY(-${window.innerWidth <= 420 ? containerMobileHeight : containerLaptopHeight}px)`
+            }
+        }
+
+        window.addEventListener('resize', handleSetPanelCollapsedTop)
+
+        return () => {
+            window.removeEventListener('resize', handleSetPanelCollapsedTop)
+        }
+    }, [isPanelExpanded])
+
     const isSingleDigit = (value: number | string): boolean => {
         return String(value).length === 1
     }
@@ -165,22 +168,20 @@ export default function ControlPanel() {
     )
 
     const htmlSpring = useSpring({
-        transform: shouldShowSlider ? `translateY(-${extraPaddingTop}px)` : `translateY(-${containerHeight}px)`,
-        boxShadow: shouldShowSlider ? '' : 'none',
+        transform: isPanelExpanded
+            ? `translateY(-${extraPaddingTop}px)`
+            : `translateY(-${window.innerWidth <= 420 ? containerMobileHeight : containerLaptopHeight}px)`,
+        boxShadow: isPanelExpanded ? '' : 'none',
         config: config.stiff
     })
 
     return (
         <animated.section
             ref={htmlContainerRef}
-            className='fixed top-0 z-50 grid w-[400px] grid-cols-7 grid-rows-3 gap-[6px] rounded-b-[12px] bg-black/40 p-[8px] pt-[28px] text-center text-white shadow-xl backdrop-blur-sm'
-            style={{
-                left: window.innerWidth - 440,
-                height: containerHeight,
-                ...htmlSpring
-            }}
+            className='max-xs:w-full max-xs:h-[230px] max-xs:grid-rows-5 fixed right-[40px] top-0 z-50 grid h-[150px] w-[400px] grid-cols-7 grid-rows-3 gap-[6px] rounded-b-[12px] bg-black/40 p-[8px] pt-[28px] text-center text-white shadow-xl backdrop-blur-sm max-md:right-0'
+            style={htmlSpring}
         >
-            <div className='clock-blackground-md col-span-3 row-span-1 select-none'>
+            <div className='clock-blackground-md max-xs:col-span-6 col-span-3 row-span-1 select-none'>
                 <label className='flex-center h-full'>
                     {clockDigitSpring.slice(0, 2).map((props, index) => (
                         <span key={index} className='clock-list-xl'>
@@ -211,7 +212,7 @@ export default function ControlPanel() {
                 </label>
             </div>
 
-            <div className='clock-blackground-sm col-span-1 row-span-1 overflow-hidden text-[16px]'>
+            <div className='clock-blackground-sm max-xs:col-span-1 col-span-1 row-span-1 overflow-hidden text-[16px]'>
                 <animated.ul style={timeSymbolSpring[0]}>
                     {timeSymbols.map((symbol, index) => (
                         <li key={index} className='flex-center h-[26px]'>
@@ -221,7 +222,7 @@ export default function ControlPanel() {
                 </animated.ul>
             </div>
 
-            <div className='clock-blackground-sm col-span-3 row-span-2 p-0'>
+            <div className='clock-blackground-sm max-xs:col-span-7 max-xs:row-span-2 col-span-3 row-span-2 p-0'>
                 <header className='flex-center h-[24px] w-full rounded-t-[8px] bg-[#d6493fd2] text-[12px] shadow-lg'>
                     <h1>Timetable</h1>
                 </header>
@@ -237,7 +238,7 @@ export default function ControlPanel() {
                 </span>
             </div>
 
-            <div className='relative col-span-4 row-span-1 rounded-full shadow-lg'>
+            <div className='max-xs:col-span-7 relative col-span-4 row-span-1 rounded-full shadow-lg'>
                 <IoMoon size={16} className='pointer-events-none absolute left-[8px] top-1/2 -translate-y-1/2' />
                 <label
                     htmlFor='brightnessSlider'
@@ -275,7 +276,7 @@ export default function ControlPanel() {
                 onClick={handleClickToggleSlider}
                 className='absolute bottom-0 right-0 -translate-x-1/2 translate-y-full cursor-pointer rounded-b-[8px] bg-clock-element shadow-lg transition-colors hover:bg-black'
             >
-                {shouldShowSlider ? (
+                {isPanelExpanded ? (
                     <IoIosArrowUp
                         strokeWidth={16}
                         preserveAspectRatio='none'

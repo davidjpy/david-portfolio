@@ -47,18 +47,18 @@ export default function LoadingScreen() {
                 loop={false}
                 onComplete={handleLoopLighthouseAnimation}
                 onDOMLoaded={() => lighthouseLottieRef.current?.play()}
-                className='max-xm:w-[320px] w-[500px] max-md:w-[450px] max-sm:w-[400px]'
+                className='max-xs:w-[320px] w-[500px] max-md:w-[450px] max-sm:w-[400px]'
             />
         )
     }, [])
 
     return (
         <section
-            className='absolute flex h-full min-h-[600px] w-full flex-col items-center justify-center overflow-y-auto bg-[#FFF8E7] transition-opacity duration-500 ease-in'
+            className='absolute flex h-full min-h-[650px] w-full flex-col items-center justify-center overflow-y-auto bg-[#FFF8E7] transition-opacity duration-500 ease-in'
             style={{ opacity: isStarted ? 0 : 1, pointerEvents: isStarted ? 'none' : 'all' }}
         >
             {isLoading ? (
-                <h1 className='max-xm:text-xl text-4xl font-extrabold text-[#505050] max-md:text-3xl max-sm:text-2xl'>
+                <h1 className='max-xs:text-xl text-4xl font-extrabold text-[#505050] max-md:text-3xl max-sm:text-2xl'>
                     Sailing To the <span className='text-accent'>Lighthouse</span>...
                 </h1>
             ) : (
