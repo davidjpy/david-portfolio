@@ -18,7 +18,7 @@ function AnimatedPhoto({ src, alt, title, description }: AnimatedPhotoProps) {
             />
             <span className='life-list-img-mask-bg group-hover:opacity-100 group-focus:opacity-100'></span>
             <span className='life-list-img-mask-frame group-hover:h-[75%] group-hover:w-[75%] group-hover:opacity-100 group-hover:backdrop-blur-[2px] group-focus:h-[75%] group-focus:w-[75%] group-focus:opacity-100' />
-            <figcaption className='life-list-img-caption group-hover:-translate-y-1/2 group-hover:opacity-100 group-focus:-translate-y-1/2 group-focus:opacity-100 w-[75%]'>
+            <figcaption className='life-list-img-caption w-[75%] group-hover:-translate-y-1/2 group-hover:opacity-100 group-focus:-translate-y-1/2 group-focus:opacity-100'>
                 <h1 className='font-medium'>{title}</h1>
                 <p className='text-sm'>{description}</p>
             </figcaption>
@@ -31,8 +31,8 @@ export default function PhotoMasonry() {
 
     return (
         <div
-            data-name='pl'
-            className='mt-6 grid h-[900px] w-full grid-cols-3 grid-rows-12 gap-[12px] rounded-[4px] bg-primary-monochrome p-[12px] max-2xl:h-[1100px] max-2xl:grid-cols-2 max-mobile:h-[900px] max-mobile:grid-cols-3 max-sm:grid-cols-2 max-xs:p-0 max-xs:gap-0'
+            data-name='pm'
+            className='mt-6 grid h-[900px] w-full grid-cols-3 grid-rows-12 gap-[12px] rounded-[4px] bg-primary-monochrome p-[12px] max-2xl:h-[1100px] max-2xl:grid-cols-2 max-mobile:h-[900px] max-mobile:grid-cols-3 max-sm:grid-cols-2 max-xs:gap-[4px] max-xs:p-0'
             ref={photoGalleryRef}
         >
             <figure tabIndex={0} className='life-list-img-wrapper group col-span-1 row-span-6'>

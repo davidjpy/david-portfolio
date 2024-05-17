@@ -120,15 +120,15 @@
     }
 
     .life-list-img-wrapper {
-        @apply max-xs:rounded-[0px] relative overflow-hidden rounded-[4px] outline-2 outline-focus-outline;
+        @apply relative overflow-hidden rounded-[4px] outline-2 outline-offset-2 outline-focus-outline;
     }
 
-    .life-list-img-wrapper:focus {
+    /* .life-list-img-wrapper:focus {
         @apply outline;
-    }
+    } */
 
     .life-list-img {
-        @apply h-full w-full scale-[1.01] object-cover transition-transform duration-700 ease-in-out;
+        @apply h-full w-full object-cover transition-transform duration-700 ease-in-out;
     }
 
     .life-list-img-mask-bg {

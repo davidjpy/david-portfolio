@@ -51,8 +51,7 @@ const readingList = [
                 </li>
             </ul>
         ),
-        summary:
-            'A lesson on how to improve the readiablity, maintainability and extensibility of the codebase.',
+        summary: 'A lesson on how to improve the readiablity, maintainability and extensibility of the codebase.',
 
         keypoints: (
             <ul>
@@ -114,8 +113,7 @@ const readingList = [
                 </li>
             </ul>
         ),
-        summary:
-            'A discussion on aligning IT with business objectives, project management & strategic innovation.',
+        summary: 'A discussion on aligning IT with business objectives, project management & strategic innovation.',
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>SDLC Model</li>
@@ -178,8 +176,7 @@ const courseList = [
                 </li>
             </ul>
         ),
-        summary:
-            'A dive into the fundamentals of computer science and programmatic thinking.',
+        summary: 'A dive into the fundamentals of computer science and programmatic thinking.',
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>C</li>
@@ -678,6 +675,12 @@ const HtmlContent = memo(function HtmlContent() {
                                 break
 
                             case 'se':
+                                if (entry.target.children.item(2)?.getAttribute('data-name') === 'pm') {
+                                    for (const child of entry.target.children.item(2)?.children!) {
+                                        child.children.item(0)?.classList.add('will-change-transform')
+                                    }
+                                }
+
                                 if (entry.target.classList.contains('revealed-content')) {
                                     break
                                 }
@@ -728,7 +731,6 @@ const HtmlContent = memo(function HtmlContent() {
                         }
                     } else {
                         const entryName = entry.target.getAttribute('data-name')
-
                         switch (entryName) {
                             case 'ch':
                                 entry.target.children.item(0)?.classList.remove('will-change-transform')
@@ -749,6 +751,10 @@ const HtmlContent = memo(function HtmlContent() {
                                     for (const listItem of entry.target.children.item(1)?.children!) {
                                         const HtmlListItem = listItem as HTMLElement
                                         HtmlListItem.classList.remove('will-change-transform')
+                                    }
+                                } else if (entry.target.children.item(2)?.getAttribute('data-name') === 'pm') {
+                                    for (const child of entry.target.children.item(2)?.children!) {
+                                        child.children.item(0)?.classList.remove('will-change-transform')
                                     }
                                 }
                                 break
@@ -1017,11 +1023,11 @@ const HtmlContent = memo(function HtmlContent() {
                                         onDOMLoaded={() => {
                                             webDesignLottieRef.current?.stop()
                                         }}
-                                        className='max-xs:w-full m-auto w-[400px] max-sm:w-[340px]'
+                                        className='m-auto w-[400px] max-sm:w-[340px] max-xs:w-full'
                                     />
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
-                                    <h1 className='max-xs:text-base text-center text-xl font-black text-accent'>
+                                    <h1 className='text-center text-xl font-black text-accent max-xs:text-base'>
                                         Web Design
                                     </h1>
                                 </header>
@@ -1062,11 +1068,11 @@ const HtmlContent = memo(function HtmlContent() {
                                         onDOMLoaded={() => {
                                             softwareLottieRef.current?.stop()
                                         }}
-                                        className='max-xs:w-full m-auto w-[400px] max-sm:w-[340px]'
+                                        className='m-auto w-[400px] max-sm:w-[340px] max-xs:w-full'
                                     />
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
-                                    <h1 className='max-xs:text-base text-center text-xl font-black text-accent'>
+                                    <h1 className='text-center text-xl font-black text-accent max-xs:text-base'>
                                         Full-Stack Development
                                     </h1>
                                 </header>
@@ -1117,7 +1123,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     />
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
-                                    <h1 className='max-xs:text-base text-center text-xl font-black text-accent'>
+                                    <h1 className='text-center text-xl font-black text-accent max-xs:text-base'>
                                         Other Skills
                                     </h1>
                                 </header>
