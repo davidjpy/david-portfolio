@@ -17,12 +17,18 @@ export default {
                 'focus-outline': 'rgb(var(--color-focus-outline) / <alpha-value>)'
             },
             animation: {
-                typing: 'typing 0.85s step-end infinite'
+                typing: 'typing 0.85s step-end infinite',
+                floating: 'floating 2s infinite ease-in-out'
             },
             keyframes: {
                 typing: {
                     '0%': { 'border-color': 'transparent' },
                     '50%': { 'border-color': 'rgb(var(--color-accent) / <alpha-value>)' }
+                },
+                floating: {
+                    '0%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-10px)' },
+                    '100%': { transform: 'translateY(0)' }
                 }
             },
             fontSize: {
@@ -38,7 +44,7 @@ export default {
             },
             screens: {
                 mobile: '969px',
-                xs: '420px',
+                xs: '420px'
             },
             gridTemplateRows: {
                 12: 'repeat(12, minmax(0, 1fr))'
