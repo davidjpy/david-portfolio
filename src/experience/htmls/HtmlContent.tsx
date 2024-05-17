@@ -623,8 +623,6 @@ const HtmlContent = memo(function HtmlContent() {
         let shouldType = true
 
         typingEffectIntervalRef.current = setInterval(() => {
-            console.log('working')
-
             if (typingTextRef.current) {
                 typingTextRef.current.textContent = titles[currentWord].slice(0, currentLetter)
 
@@ -651,42 +649,6 @@ const HtmlContent = memo(function HtmlContent() {
         }, 100)
     }
 
-    // useEffect(() => {
-    //     let currentWord = 0
-    //     let currentLetter = 0
-    //     let shouldType = true
-
-    //     const typingEffectInterval = setInterval(() => {
-    //         if (typingTextRef.current) {
-    //             typingTextRef.current.textContent = titles[currentWord].slice(0, currentLetter)
-
-    //             if (currentLetter === titles[currentWord].length) {
-    //                 if (shouldType) {
-    //                     currentLetter += 10
-    //                 }
-    //                 shouldType = false
-    //             } else if (currentLetter === 0 && !shouldType) {
-    //                 currentWord++
-    //                 shouldType = true
-    //             }
-
-    //             if (currentWord > titles.length - 1) {
-    //                 currentWord = 0
-    //             }
-
-    //             if (shouldType) {
-    //                 currentLetter++
-    //             } else {
-    //                 currentLetter--
-    //             }
-    //         }
-    //     }, 100)
-
-    //     return () => {
-    //         clearInterval(typingEffectInterval)
-    //     }
-    // }, [])
-
     useEffect(() => {
         const contentObserver = new IntersectionObserver(
             (entries) => {
@@ -699,6 +661,9 @@ const HtmlContent = memo(function HtmlContent() {
                                 if (entry.target.children.item(3)?.classList.contains('revealed-content')) {
                                     break
                                 }
+                                entry.target.children.item(0)?.classList.add('will-change-transform')
+                                entry.target.children.item(2)?.classList.add('will-change-transform')
+                                entry.target.children.item(3)?.classList.add('will-change-transform')
 
                                 entry.target.children.item(0)?.classList.replace('translate-x-[40px]', 'translate-x-0')
                                 entry.target.children.item(0)?.classList.replace('opacity-0', 'opacity-100')
@@ -712,6 +677,7 @@ const HtmlContent = memo(function HtmlContent() {
 
                                 if (contactListRef.current) {
                                     for (const child of contactListRef.current.children) {
+                                        child.classList.add('will-change-transform')
                                         child.classList.replace('hidden-content', 'revealed-content')
                                     }
                                 }
@@ -721,11 +687,14 @@ const HtmlContent = memo(function HtmlContent() {
                                 if (entry.target.classList.contains('revealed-content')) {
                                     break
                                 }
+
+                                entry.target.classList.add('will-change-transform')
                                 entry.target.classList.replace('hidden-content', 'revealed-content')
 
                                 if (entry.target.children.item(1)?.tagName === 'UL') {
                                     const increment = 0.15
                                     let delay = 0.5
+
                                     for (const listItem of entry.target.children.item(1)?.children!) {
                                         const HtmlListItem = listItem as HTMLElement
 
@@ -766,13 +735,29 @@ const HtmlContent = memo(function HtmlContent() {
                     } else {
                         const entryName = entry.target.getAttribute('data-name')
 
-                        if (entryName === 'se') {
-                            if (entry.target.children.item(1)?.tagName === 'UL') {
-                                for (const listItem of entry.target.children.item(1)?.children!) {
-                                    const HtmlListItem = listItem as HTMLElement
-                                    HtmlListItem.classList.remove('will-change-transform')
+                        switch (entryName) {
+                            case 'ch':
+                                entry.target.children.item(0)?.classList.remove('will-change-transform')
+                                entry.target.children.item(2)?.classList.remove('will-change-transform')
+                                entry.target.children.item(3)?.classList.remove('will-change-transform')
+
+                                if (contactListRef.current) {
+                                    for (const child of contactListRef.current.children) {
+                                        child.classList.remove('will-change-transform')
+                                    }
                                 }
-                            }
+
+                                break
+                            case 'se':
+                                entry.target.classList.remove('will-change-transform')
+
+                                if (entry.target.children.item(1)?.tagName === 'UL') {
+                                    for (const listItem of entry.target.children.item(1)?.children!) {
+                                        const HtmlListItem = listItem as HTMLElement
+                                        HtmlListItem.classList.remove('will-change-transform')
+                                    }
+                                }
+                                break
                         }
                     }
                 })
