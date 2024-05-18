@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+.ps__rail-x,
+.ps__rail-y {
+    opacity: 0.5;
+}
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y,
+.ps__rail-y.ps--clicking .ps__thumb-y {
+    background-color: var(--color-secondary-hex);
+    width: 8px;
+}
+
+.ps__thumb-y {
+    background-color: var(--color-secondary-hex);
+}
+
+.ps__rail-y {
+    width: 12px;
+}
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+    background-color: var(--color-secondary-hex-opacity);
+    opacity: 0.8;
+}
 @layer base {
     * {
         padding: 0;
@@ -17,6 +46,8 @@
         --color-primary: 255 248 231;
         --color-primary-monochrome: 245 239 224;
         --color-secondary: 80 80 80;
+        --color-secondary-hex: #505050;
+        --color-secondary-hex-opacity: #50505036;
         --color-secondary-bg: 130 130 130;
         --color-secondary-light: 120 120 120;
         --color-accent: 246 92 53;
@@ -29,6 +60,8 @@
         --color-primary: 66 52 48;
         --color-primary-monochrome: 78 62 57;
         --color-secondary: 228 210 209;
+        --color-secondary-hex: #dbcac8;
+        --color-secondary-hex-opacity: #dbcac836;
         --color-secondary-bg: 151 137 136;
         --color-secondary-light: 197 179 178;
         --color-accent: 246 92 53;
@@ -153,6 +186,10 @@
 
     .section-list-summary {
         @apply mt-2 text-sm text-secondary-light;
+    }
+
+    .list-img-wrapper {
+        @apply flex-shrink-0 pr-4 max-[500px]:hidden;
     }
 
     .project-list-img {

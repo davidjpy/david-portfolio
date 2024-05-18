@@ -24,13 +24,13 @@ export default function HtmlSection({ title, children, contentObserverRef, ...pr
         <section
             ref={sectionRef}
             data-name='se'
-            className='hidden-content mt-12 text-secondary [transition:transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'
+            className='hidden-content mt-[48px] text-secondary [transition:transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'
             {...props}
         >
             {title && (
-                <header className='mb-4 flex items-center font-bold'>
+                <header className='mb-[16px] flex items-center font-bold'>
                     <h1>
-                        <span className='mr-2 h-1 w-4 bg-accent inline-block align-middle' />
+                        <span className='mr-[8px] inline-block h-1 w-4 bg-accent align-middle' />
                         {title}
                     </h1>
                 </header>

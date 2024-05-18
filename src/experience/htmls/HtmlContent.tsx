@@ -1194,11 +1194,11 @@ const HtmlContent = memo(function HtmlContent() {
                                     rel='noreferrer noopener'
                                     className='section-list-item'
                                 >
-                                    <figure className='flex-shrink-0 pr-4'>
+                                    <figure className='list-img-wrapper'>
                                         <img loading='lazy' alt={book.alt} src={book.image} className='book-list-img' />
                                     </figure>
                                     <div className='w-full'>
-                                        <header className='w-[90%]'>
+                                        <header className='w-[85%]'>
                                             <h1 className='section-list-title'>{book.title}</h1>
                                         </header>
                                         <p className='section-list-summary'>{book.summary}</p>
@@ -1237,7 +1237,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     rel='noreferrer noopener'
                                     className='section-list-item'
                                 >
-                                    <figure className='flex-shrink-0 pr-4'>
+                                    <figure className='list-img-wrapper'>
                                         <img
                                             loading='lazy'
                                             alt={course.alt}
@@ -1246,7 +1246,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         />
                                     </figure>
                                     <div className='w-full'>
-                                        <header className='w-[90%]'>
+                                        <header className='w-[85%]'>
                                             <h1 className='section-list-title'>{course.title}</h1>
                                         </header>
                                         <p className='section-list-summary'>{course.summary}</p>
