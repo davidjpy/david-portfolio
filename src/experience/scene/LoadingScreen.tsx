@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useRef } from 'react'
+import { useContext, useMemo, useRef } from 'react'
 import Lottie from 'lottie-react'
 import { FaAngleDown } from 'react-icons/fa6'
 
