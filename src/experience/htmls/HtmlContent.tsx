@@ -649,18 +649,19 @@ const HtmlContent = memo(function HtmlContent() {
 
                         switch (entryName) {
                             case 'ch':
-                                if (entry.target.children.item(3)?.classList.contains('revealed-content')) {
+                                if (entry.target.children.item(2)?.classList.contains('revealed-content')) {
                                     break
                                 }
-                                entry.target.children.item(0)?.classList.add('will-change-transform')
+                                const bgText = entry.target.parentElement?.previousSibling as HTMLElement
+                                bgText.classList.add('will-change-transform')
+                                entry.target.children.item(1)?.classList.add('will-change-transform')
                                 entry.target.children.item(2)?.classList.add('will-change-transform')
-                                entry.target.children.item(3)?.classList.add('will-change-transform')
 
-                                entry.target.children.item(0)?.classList.replace('translate-x-[40px]', 'translate-x-0')
-                                entry.target.children.item(0)?.classList.replace('opacity-0', 'opacity-100')
-                                entry.target.children.item(1)?.classList.replace('w-0', 'w-40')
+                                bgText.classList.replace('translate-x-[40px]', 'translate-x-0')
+                                bgText.classList.replace('opacity-0', 'opacity-100')
+                                entry.target.children.item(0)?.classList.replace('w-0', 'w-40')
+                                entry.target.children.item(1)?.classList.replace('hidden-content', 'revealed-content')
                                 entry.target.children.item(2)?.classList.replace('hidden-content', 'revealed-content')
-                                entry.target.children.item(3)?.classList.replace('hidden-content', 'revealed-content')
 
                                 if (!typingEffectIntervalRef.current) {
                                     setTypingEffectInterval()
@@ -733,9 +734,10 @@ const HtmlContent = memo(function HtmlContent() {
                         const entryName = entry.target.getAttribute('data-name')
                         switch (entryName) {
                             case 'ch':
-                                entry.target.children.item(0)?.classList.remove('will-change-transform')
+                                const bgText = entry.target.parentElement?.previousSibling as HTMLElement
+                                bgText.classList.remove('will-change-transform')
+                                entry.target.children.item(1)?.classList.remove('will-change-transform')
                                 entry.target.children.item(2)?.classList.remove('will-change-transform')
-                                entry.target.children.item(3)?.classList.remove('will-change-transform')
 
                                 if (contactListRef.current) {
                                     for (const child of contactListRef.current.children) {
