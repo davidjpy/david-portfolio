@@ -16,12 +16,10 @@ interface Props extends React.ComponentProps<'section'> {
 const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
     ({ top, position, backgroundTitle, topTitle, bottomTitle, contentObserverRef, children, ...props }, ref) => {
         const containerHeaderRef = useRef<HTMLHeadElement>(null)
-        const scrollContainerRef = useRef<PerfectScrollbar>(null)
+        const scrollContentContainerRef = useRef<PerfectScrollbar>(null)
 
         const handleResizeScrollContainer = () => {
-            if (scrollContainerRef.current) {
-                scrollContainerRef.current.updateScroll()
-            }
+            scrollContentContainerRef.current?.updateScroll()
         }
 
         useEffect(() => {
@@ -42,7 +40,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
         return (
             <section
                 data-position={position}
-                className='scroll-text-box'
+                className='absolute -z-50 flex h-[2160px] w-1/2 flex-col overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px] max-mobile:w-full'
                 style={{
                     top: top,
                     right: position === 'right' ? 0 : undefined
@@ -50,27 +48,28 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                 ref={ref}
                 {...props}
             >
-                <h1 className='opacity-1 pointer-events-none absolute left-[176px] top-[160px] -z-50 translate-x-[40px] text-[250px] font-black text-primary-monochrome opacity-0 [transition:transform_0.6s_ease-out_0.4s,opacity_0.6s_ease-out_0.4s]'>
+                <span className='opacity-1 pointer-events-none absolute left-[176px] top-[160px] -z-50 translate-x-[40px] text-[250px] font-black text-primary-monochrome opacity-0 [transition:transform_0.6s_ease-out_0.4s,opacity_0.6s_ease-out_0.4s]'>
                     {backgroundTitle}
-                </h1>
+                </span>
+
+                <header data-name='ch' ref={containerHeaderRef} className='mb-[48px]'>
+                    <div className='mb-4 h-2 w-0 bg-accent transition-[width] duration-[1s] ease-out' />
+                    <h1 className='hidden-content text-xl font-bold text-secondary [transition:transform_0.6s_ease-out_0.4s,opacity_0.6s_ease-out_0.4s] sm:text-2xl'>
+                        {topTitle}
+                    </h1>
+                    <div className='hidden-content text-3xl font-black text-secondary [transition:transform_0.6s_ease-out_0.4s,opacity_0.6s_ease-out_0.4s] sm:text-4xl'>
+                        {bottomTitle}
+                    </div>
+                </header>
                 <PerfectScrollbar
-                    ref={scrollContainerRef}
+                    ref={scrollContentContainerRef}
                     options={{
                         suppressScrollX: true,
                         swipeEasing: true,
                         wheelSpeed: 0.5
                     }}
-                    className='h-[1560px]'
+                    className='min-h-[600px]'
                 >
-                    <header data-name='ch' ref={containerHeaderRef} className='relative'>
-                        <div className='header-divider mb-4 h-2 w-0 bg-accent transition-[width] duration-[1s] ease-out' />
-                        <h1 className='hidden-content text-xl font-bold text-secondary [transition:transform_0.6s_ease-out_0.4s,opacity_0.6s_ease-out_0.4s] sm:text-2xl'>
-                            {topTitle}
-                        </h1>
-                        <div className='hidden-content text-3xl font-black text-secondary [transition:transform_0.6s_ease-out_0.4s,opacity_0.6s_ease-out_0.4s] sm:text-4xl'>
-                            {bottomTitle}
-                        </div>
-                    </header>
                     {children}
                 </PerfectScrollbar>
             </section>

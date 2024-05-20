@@ -265,7 +265,7 @@ export default function ControlPanel() {
                     <button
                         key={index}
                         onClick={() => document.documentElement.scrollTo({ top: tab.top, behavior: 'smooth' })}
-                        className='tab-list-item'
+                        className="relative translate-y-[-1px] cursor-pointer pl-[4px] pr-[4px] text-sm font-medium after:absolute after:left-1/2 after:block after:h-[3px] after:w-0 after:-translate-y-[1px] after:bg-accent after:content-[''] after:[transition:width_0.15s_ease-out,left_0.15s_ease-out] hover:after:left-0 hover:after:w-full"
                     >
                         {tab.name}
                     </button>

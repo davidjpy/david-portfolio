@@ -652,7 +652,7 @@ const HtmlContent = memo(function HtmlContent() {
                                 if (entry.target.children.item(2)?.classList.contains('revealed-content')) {
                                     break
                                 }
-                                const bgText = entry.target.parentElement?.previousSibling as HTMLElement
+                                const bgText = entry.target?.previousSibling as HTMLElement
                                 bgText.classList.add('will-change-transform')
                                 entry.target.children.item(1)?.classList.add('will-change-transform')
                                 entry.target.children.item(2)?.classList.add('will-change-transform')
@@ -734,7 +734,7 @@ const HtmlContent = memo(function HtmlContent() {
                         const entryName = entry.target.getAttribute('data-name')
                         switch (entryName) {
                             case 'ch':
-                                const bgText = entry.target.parentElement?.previousSibling as HTMLElement
+                                const bgText = entry.target?.previousSibling as HTMLElement
                                 bgText.classList.remove('will-change-transform')
                                 entry.target.children.item(1)?.classList.remove('will-change-transform')
                                 entry.target.children.item(2)?.classList.remove('will-change-transform')
@@ -1182,19 +1182,19 @@ const HtmlContent = memo(function HtmlContent() {
                         {readingList.map((book, index) => (
                             <li
                                 key={index}
-                                className='hidden-content'
                                 style={{
                                     filter: focusBook && focusBook !== book.title ? 'opacity(40%)' : undefined
                                 }}
                                 onMouseEnter={() => setFocusBook(book.title)}
                                 onMouseLeave={() => setFocusBook('')}
+                                className='hidden-content section-list-item'
                             >
                                 <a
                                     href={book.href}
                                     target='_blank'
                                     aria-label={book.ariaLabel}
                                     rel='noreferrer noopener'
-                                    className='section-list-item'
+                                    className='flex'
                                 >
                                     <figure className='list-img-wrapper'>
                                         <img loading='lazy' alt={book.alt} src={book.image} className='book-list-img' />
@@ -1225,7 +1225,7 @@ const HtmlContent = memo(function HtmlContent() {
                         {courseList.map((course, index) => (
                             <li
                                 key={index}
-                                className='hidden-content'
+                                className='hidden-content section-list-item'
                                 style={{
                                     filter: focusCourse && focusCourse !== course.title ? 'opacity(40%)' : undefined
                                 }}
@@ -1237,7 +1237,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     href={course.href}
                                     aria-label={course.ariaLabel}
                                     rel='noreferrer noopener'
-                                    className='section-list-item'
+                                    className='flex'
                                 >
                                     <figure className='list-img-wrapper'>
                                         <img
@@ -1287,7 +1287,7 @@ const HtmlContent = memo(function HtmlContent() {
                         {workList.map((work, index) => (
                             <li
                                 key={index}
-                                className='hidden-content'
+                                className='hidden-content section-list-item'
                                 style={{
                                     filter: focusWork && focusWork !== work.title ? 'opacity(40%)' : undefined
                                 }}
@@ -1299,7 +1299,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     rel='noreferrer noopener'
                                     aria-label={work.ariaLabel}
-                                    className='section-list-item'
+                                    className='flex'
                                 >
                                     <figure className='flex-shrink-0 pr-4'>
                                         <img
@@ -1335,7 +1335,7 @@ const HtmlContent = memo(function HtmlContent() {
                         {certificateList.map((certificate, index) => (
                             <li
                                 key={index}
-                                className='hidden-content'
+                                className='hidden-content section-list-item'
                                 style={{
                                     filter: focusCert && focusCert !== certificate.title ? 'opacity(40%)' : undefined
                                 }}
@@ -1347,7 +1347,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     rel='noreferrer noopener'
                                     aria-label={certificate.ariaLabel}
-                                    className='section-list-item'
+                                    className='flex'
                                 >
                                     <figure className='flex-shrink-0 pr-4'>
                                         <img
@@ -1397,7 +1397,7 @@ const HtmlContent = memo(function HtmlContent() {
                         {testimonialsList.map((coworker, index) => (
                             <li
                                 key={index}
-                                className='hidden-content relative'
+                                className='hidden-content relative section-list-item'
                                 style={{
                                     filter: focusAck && focusAck !== coworker.name ? 'opacity(40%)' : undefined
                                 }}
@@ -1409,7 +1409,6 @@ const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     aria-label={coworker.ariaLabel}
                                     rel='noreferrer noopener'
-                                    className='section-list-item'
                                 >
                                     <div className='pl-4'>
                                         <div className='flex justify-between'>
