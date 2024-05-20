@@ -31,7 +31,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
         return (
             <section
                 data-position={position}
-                className='absolute -z-50 flex h-[2160px] w-1/2 flex-col overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px] max-mobile:w-full'
+                className='absolute -z-50 flex h-[2160px] w-1/2 flex-col overflow-hidden bg-primary pb-[300px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-mobile:w-full'
                 style={{
                     top: top,
                     right: position === 'right' ? 0 : undefined
@@ -43,7 +43,11 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                     {backgroundTitle}
                 </span>
 
-                <header data-name='ch' ref={containerHeaderRef} className='mb-[48px]'>
+                <header
+                    data-name='ch'
+                    ref={containerHeaderRef}
+                    className='mb-[48px] pl-[80px] pr-[80px] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px]'
+                >
                     <div className='mb-4 h-2 w-0 bg-accent transition-[width] duration-[1s] ease-out' />
                     <h1 className='hidden-content text-xl font-bold text-secondary [transition:transform_0.6s_ease-out_0.4s,opacity_0.6s_ease-out_0.4s] sm:text-2xl'>
                         {topTitle}
@@ -52,10 +56,23 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                         {bottomTitle}
                     </div>
                 </header>
-                <Scrollbars>{children}</Scrollbars>
+                <Scrollbars
+                    renderTrackVertical={(props) => (
+                        <div {...props} className='absolute bottom-[2px] right-[2px] top-[2px] w-[6px]' />
+                    )}
+                    renderThumbVertical={(props) => <div {...props} className='rounded-full bg-secondary opacity-30 group-hover:opacity-50 active:opacity-70 transition-opacity duration-100 ease-out' />}
+                    renderView={(props) => (
+                        <div
+                            {...props}
+                            className='pl-[80px] pr-[80px] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px]'
+                        />
+                    )}
+                    className='group'
+                >
+                    {children}
+                </Scrollbars>
             </section>
         )
     }
 )
-
 export default HtmlScrollContainer
