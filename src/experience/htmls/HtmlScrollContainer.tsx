@@ -1,7 +1,6 @@
 import { useEffect, useRef, forwardRef } from 'react'
-import PerfectScrollbar from 'react-perfect-scrollbar'
 
-import 'react-perfect-scrollbar/dist/css/styles.css'
+import { Scrollbars } from 'react-custom-scrollbars-2'
 
 interface Props extends React.ComponentProps<'section'> {
     top: number
@@ -16,24 +15,16 @@ interface Props extends React.ComponentProps<'section'> {
 const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
     ({ top, position, backgroundTitle, topTitle, bottomTitle, contentObserverRef, children, ...props }, ref) => {
         const containerHeaderRef = useRef<HTMLHeadElement>(null)
-        const scrollContentContainerRef = useRef<PerfectScrollbar>(null)
-
-        const handleResizeScrollContainer = () => {
-            scrollContentContainerRef.current?.updateScroll()
-        }
 
         useEffect(() => {
             if (containerHeaderRef.current) {
                 contentObserverRef.current?.observe(containerHeaderRef.current)
             }
 
-            handleResizeScrollContainer()
-            window.addEventListener('resize', handleResizeScrollContainer)
             return () => {
                 if (containerHeaderRef.current) {
                     contentObserverRef.current?.unobserve(containerHeaderRef.current)
                 }
-                window.removeEventListener('resize', handleResizeScrollContainer)
             }
         }, [])
 
@@ -61,17 +52,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                         {bottomTitle}
                     </div>
                 </header>
-                <PerfectScrollbar
-                    ref={scrollContentContainerRef}
-                    options={{
-                        suppressScrollX: true,
-                        swipeEasing: true,
-                        wheelSpeed: 0.5
-                    }}
-                    className='min-h-[600px]'
-                >
-                    {children}
-                </PerfectScrollbar>
+                <Scrollbars>{children}</Scrollbars>
             </section>
         )
     }

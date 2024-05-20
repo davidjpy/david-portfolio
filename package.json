@@ -16,9 +16,9 @@
         "autoprefixer": "^10.4.16",
         "lottie-react": "^2.4.0",
         "react": "^18.2.0",
+        "react-custom-scrollbars-2": "^4.5.0",
         "react-dom": "^18.2.0",
         "react-icons": "^5.0.1",
-        "react-perfect-scrollbar": "^1.5.8",
         "three": "^0.158.0"
     },
     "devDependencies": {
