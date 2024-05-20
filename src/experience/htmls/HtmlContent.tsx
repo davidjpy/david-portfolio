@@ -307,7 +307,7 @@ const workList = [
                 </li>
             </ul>
         ),
-        summary: `A demo project featuring a React frontend and a Django backend with a PostgreSQL database. They're deployed on Netlify and AWS respectively.`,
+        summary: `A project featuring a React frontend and a Django backend with a PostgreSQL database. They're hosted on Netlify and AWS respectively.`,
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>Javascript</li>
@@ -331,7 +331,7 @@ const workList = [
             <ul className='flex gap-2'>
                 <li className='focusable-li'>
                     <a
-                        href='https://github.com/davidjpy/wildbear'
+                        href='https://github.com/davidjpy/portfolio'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='GitHub (opens in a new tab)'
@@ -358,10 +358,9 @@ const workList = [
                 <li className='keypoint-list-item'>React</li>
                 <li className='keypoint-list-item'>R3F</li>
                 <li className='keypoint-list-item'>GLSL</li>
-                <li className='keypoint-list-item'>Tailwind CSS </li>
-                <li className='keypoint-list-item'>Blender</li>
+                <li className='keypoint-list-item'>Tailwind</li>
                 <li className='keypoint-list-item'>React Spring</li>
-                <li className='keypoint-list-item'>Adobe After Effects</li>
+                <li className='keypoint-list-item'>Blender</li>
                 <li className='keypoint-list-item'>Lottie</li>
             </ul>
         )
@@ -396,7 +395,6 @@ const certificateList = [
                 <li className='keypoint-list-item'>Robotics</li>
                 <li className='keypoint-list-item'>Python</li>
                 <li className='keypoint-list-item'>React</li>
-                <li className='keypoint-list-item'>ActiveMQ</li>
             </ul>
         )
     },
@@ -427,7 +425,6 @@ const certificateList = [
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>IoT</li>
-                <li className='keypoint-list-item'>Big Data</li>
                 <li className='keypoint-list-item'>React</li>
                 <li className='keypoint-list-item'>Python</li>
             </ul>
@@ -495,16 +492,6 @@ const testimonialsList = [
                         aria-label='Linkedin (opens in a new tab)'
                     >
                         <FaLinkedin className='icon-link-md' />
-                    </a>
-                </li>
-                <li className='focusable-li'>
-                    <a
-                        href='https://github.com/cursi36'
-                        target='_blank'
-                        rel='noreferrer noopener'
-                        aria-label='GitHub (opens in a new tab)'
-                    >
-                        <FaGithub className='icon-link-md' />
                     </a>
                 </li>
                 <li className='focusable-li'>
@@ -1046,13 +1033,11 @@ const HtmlContent = memo(function HtmlContent() {
                                     <li className='keypoint-list-item'>Acessibility</li>
                                 </ul>
 
-                                <button className='absolute right-0 top-0'>
-                                    <MdReplay
-                                        onClick={() => webDesignLottieRef.current?.goToAndPlay(0)}
-                                        size={24}
-                                        className='icon-link-md'
-                                        aria-label='Replay'
-                                    />
+                                <button
+                                    className='absolute right-0 top-0'
+                                    onClick={() => webDesignLottieRef.current?.goToAndPlay(0)}
+                                >
+                                    <MdReplay size={24} className='icon-link-md' aria-label='Replay' />
                                 </button>
                             </div>
                         </li>
@@ -1095,19 +1080,17 @@ const HtmlContent = memo(function HtmlContent() {
                                     <li className='keypoint-list-item'>Git</li>
                                 </ul>
 
-                                <button className='absolute right-0 top-0'>
-                                    <MdReplay
-                                        onClick={() => {
-                                            softwareLottieRef.current?.playSegments([0, 320], true)
-                                        }}
-                                        size={24}
-                                        className='icon-link-md'
-                                        aria-label='Replay'
-                                    />
+                                <button
+                                    className='absolute right-0 top-0'
+                                    onClick={() => {
+                                        softwareLottieRef.current?.playSegments([0, 320], true)
+                                    }}
+                                >
+                                    <MdReplay size={24} className='icon-link-md' aria-label='Replay' />
                                 </button>
                             </div>
                         </li>
-                        <li data-name='other' className='hidden-content section-list-item max-xs:w-full'>
+                        <li data-name='other' className='hidden-content section-list-item'>
                             <div className='relative w-full'>
                                 <figure>
                                     <Lottie
@@ -1121,7 +1104,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         onDOMLoaded={() => {
                                             otherLottieRef.current?.stop()
                                         }}
-                                        className='m-auto w-[400px] max-sm:w-[340px]'
+                                        className='m-auto w-[400px] max-sm:w-[340px] max-xs:w-full'
                                     />
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
@@ -1141,15 +1124,13 @@ const HtmlContent = memo(function HtmlContent() {
                                     <li className='keypoint-list-item'>Easy To Work With</li>
                                 </ul>
 
-                                <button className='absolute right-0 top-0'>
-                                    <MdReplay
-                                        onClick={() => {
-                                            otherLottieRef.current?.playSegments([0, 100], true)
-                                        }}
-                                        size={24}
-                                        className='icon-link-md'
-                                        aria-label='Replay'
-                                    />
+                                <button
+                                    className='absolute right-0 top-0'
+                                    onClick={() => {
+                                        otherLottieRef.current?.playSegments([0, 100], true)
+                                    }}
+                                >
+                                    <MdReplay size={24} className='icon-link-md' aria-label='Replay' />
                                 </button>
                             </div>
                         </li>
@@ -1301,7 +1282,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     aria-label={work.ariaLabel}
                                     className='flex'
                                 >
-                                    <figure className='flex-shrink-0 pr-4'>
+                                    <figure className='list-img-wrapper'>
                                         <img
                                             loading='lazy'
                                             alt={work.alt}
@@ -1310,7 +1291,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         />
                                     </figure>
                                     <div className='w-full'>
-                                        <header className='w-[90%]'>
+                                        <header className='w-[85%]'>
                                             <h1 className='section-list-title'>{work.title}</h1>
                                         </header>
                                         <p className='section-list-summary'>{work.summary}</p>
@@ -1349,7 +1330,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     aria-label={certificate.ariaLabel}
                                     className='flex'
                                 >
-                                    <figure className='flex-shrink-0 pr-4'>
+                                    <figure className='list-img-wrapper'>
                                         <img
                                             alt={certificate.alt}
                                             loading='lazy'
@@ -1358,7 +1339,7 @@ const HtmlContent = memo(function HtmlContent() {
                                         />
                                     </figure>
                                     <div className='w-full'>
-                                        <header className='w-[90%]'>
+                                        <header className='w-[85%]'>
                                             <h1 className='section-list-title'>{certificate.title}</h1>
                                         </header>
                                         <p className='section-list-summary'>{certificate.summary}</p>
@@ -1397,7 +1378,7 @@ const HtmlContent = memo(function HtmlContent() {
                         {testimonialsList.map((coworker, index) => (
                             <li
                                 key={index}
-                                className='hidden-content relative section-list-item'
+                                className='hidden-content section-list-item relative'
                                 style={{
                                     filter: focusAck && focusAck !== coworker.name ? 'opacity(40%)' : undefined
                                 }}
@@ -1410,9 +1391,9 @@ const HtmlContent = memo(function HtmlContent() {
                                     aria-label={coworker.ariaLabel}
                                     rel='noreferrer noopener'
                                 >
-                                    <div className='pl-4'>
-                                        <div className='flex justify-between'>
-                                            <figure className='flex items-center gap-4'>
+                                    <div>
+                                        <div className='w-[75%] max-[500px]:w-full'>
+                                            <figure className='flex items-center gap-4 pl-[12px] max-[500px]:flex-col max-[500px]:pl-0 max-[500px]:text-center'>
                                                 <img
                                                     alt={coworker.alt}
                                                     loading='lazy'
