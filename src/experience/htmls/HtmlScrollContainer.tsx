@@ -1,6 +1,8 @@
 import { useEffect, useRef, forwardRef } from 'react'
-
 import { Scrollbars } from 'react-custom-scrollbars-2'
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa6'
+
+import type { positionValues } from 'react-custom-scrollbars-2'
 
 interface Props extends React.ComponentProps<'section'> {
     top: number
@@ -12,9 +14,13 @@ interface Props extends React.ComponentProps<'section'> {
     children: React.ReactNode
 }
 
+const scrollIndicatorHeight = 20
+
 const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
     ({ top, position, backgroundTitle, topTitle, bottomTitle, contentObserverRef, children, ...props }, ref) => {
         const containerHeaderRef = useRef<HTMLHeadElement>(null)
+        const topScrollIndicatorRef = useRef<HTMLSpanElement>(null)
+        const bottomScrollIndicatorRef = useRef<HTMLSpanElement>(null)
 
         useEffect(() => {
             if (containerHeaderRef.current) {
@@ -28,10 +34,20 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
             }
         }, [])
 
+        const handleUpdateScrollContainer = (value: positionValues) => {
+            console.log(value)
+            if (topScrollIndicatorRef.current && bottomScrollIndicatorRef.current) {
+                topScrollIndicatorRef.current.style.top = `${value.scrollTop}px`
+                bottomScrollIndicatorRef.current.style.top = `${
+                    value.clientHeight + value.scrollTop - scrollIndicatorHeight
+                }px`
+            }
+        }
+
         return (
             <section
                 data-position={position}
-                className='absolute -z-50 flex h-[2160px] w-1/2 flex-col overflow-hidden bg-primary pb-[300px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-mobile:w-full'
+                className='absolute -z-50 flex h-[2160px] w-1/2 flex-col overflow-hidden bg-primary pb-[250px] pt-[300px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-mobile:w-full'
                 style={{
                     top: top,
                     right: position === 'right' ? 0 : undefined
@@ -57,19 +73,51 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                     </div>
                 </header>
                 <Scrollbars
+                    onUpdate={handleUpdateScrollContainer}
                     renderTrackVertical={(props) => (
-                        <div {...props} className='absolute bottom-[2px] right-[2px] top-[2px] w-[6px]' />
+                        <div
+                            {...props}
+                            className='absolute bottom-[2px] top-[2px] w-[6px]'
+                            style={{
+                                right: position === 'right' ? '6px' : undefined,
+                                left: position === 'left' ? '6px' : undefined
+                            }}
+                        />
                     )}
-                    renderThumbVertical={(props) => <div {...props} className='rounded-full bg-secondary opacity-30 group-hover:opacity-50 active:opacity-70 transition-opacity duration-100 ease-out' />}
+                    renderThumbVertical={(props) => (
+                        <div
+                            {...props}
+                            className='rounded-full bg-secondary opacity-30 transition-opacity duration-100 ease-out active:opacity-70 group-hover/scroll:opacity-50'
+                        />
+                    )}
                     renderView={(props) => (
                         <div
                             {...props}
-                            className='pl-[80px] pr-[80px] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px]'
+                            className='relative pl-[80px] pr-[80px] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px]'
                         />
                     )}
-                    className='group'
+                    className='group/scroll'
                 >
+                    <span
+                        ref={topScrollIndicatorRef}
+                        className='absolute top-0 z-50 w-[calc(100%-160px)] bg-[#000000] text-white max-[1669px]:w-[calc(100%-120px)] max-2xl:w-[calc(100%-80px)] max-xl:w-[calc(100%-32px)]'
+                        style={{
+                            height: scrollIndicatorHeight
+                        }}
+                    >
+                        <FaAngleUp size={24} className='m-auto' />
+                    </span>
                     {children}
+                    <span
+                        ref={bottomScrollIndicatorRef}
+                        className='absolute z-50 hidden w-[calc(100%-160px)] bg-[#000000] text-white max-[1669px]:w-[calc(100%-120px)] max-2xl:w-[calc(100%-80px)] max-xl:w-[calc(100%-32px)]'
+                        style={{
+                            height: scrollIndicatorHeight,
+                            top: `calc(100% - ${scrollIndicatorHeight}px)`
+                        }}
+                    >
+                        <FaAngleDown size={24} className='m-auto' />
+                    </span>
                 </Scrollbars>
             </section>
         )
