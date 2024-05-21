@@ -33,7 +33,6 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
         }, [])
 
         const handleUpdateScrollContainer = (value: positionValues) => {
-            console.log(value)
             if (topScrollIndicatorRef.current && bottomScrollIndicatorRef.current) {
                 if (value.scrollTop > 0) {
                     topScrollIndicatorRef.current.style.opacity = '1'
