@@ -55,7 +55,7 @@ export default function Experience() {
             // linear
             eventPrefix='client'
             eventSource={document.getElementById('root') as HTMLElement}
-            dpr={[1, 1]}
+            dpr={[1, 2]}
             camera={{
                 far: cameraConfig.far,
                 near: cameraConfig.near,
