@@ -132,7 +132,7 @@
     }
 
     .section-list-item {
-        @apply mb-4 flex rounded-[8px] bg-primary-monochrome p-4 shadow-md last-of-type:mb-0;
+        @apply mb-4 flex rounded-[8px] bg-primary-monochrome p-4 shadow-md last-of-type:mb-[4px];
     }
 
     .section-list-title {
