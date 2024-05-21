@@ -91,7 +91,7 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     ] = useTexture([
         'models/david_art.webp',
         'models/david_photo.webp',
-        'models/water_displacement_map.jpg',
+        'models/water_displacement_map.webp',
         'models/lighthouse_bake.webp',
         'models/first_floor_01.webp',
         'models/first_floor_02.webp',
