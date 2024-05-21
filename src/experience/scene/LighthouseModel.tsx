@@ -233,7 +233,7 @@ export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
 useGLTF.preload('models/lighthouse.glb')
 useTexture.preload('models/david_art.webp')
 useTexture.preload('models/david_photo.webp')
-useTexture.preload('models/water_displacement_map.jpg')
+useTexture.preload('models/water_displacement_map.webp')
 useTexture.preload('models/lighthouse_bake.webp')
 useTexture.preload('models/first_floor_01.webp')
 useTexture.preload('models/first_floor_02.webp')
