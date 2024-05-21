@@ -81,8 +81,8 @@ export default function LoadingScreen() {
                         onClick={handleClickStartExperience}
                         className='animate-floating pointer-events-none absolute bottom-[12px] opacity-0 transition-opacity duration-500 ease-out focus:outline-[#5613D1] text-[#505050] flex items-center flex-col'
                     >
-                        <LuMouse aria-hidden={true} size={38} className='mb-[8px]' />
-                        <FaAngleDown aria-hidden={true} size={26} />
+                        <LuMouse aria-hidden={true} className='mb-[8px] text-[38px] max-[500px]:text-[32px]' />
+                        <FaAngleDown aria-hidden={true} className='text-[26px] max-[500px]:text-[20px]' />
                     </button>
                 </>
             )}
