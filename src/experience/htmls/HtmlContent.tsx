@@ -55,7 +55,7 @@ const readingList = [
 
         keypoints: (
             <ul>
-                <li className='keypoint-list-item'>Naming Convention</li>
+                <li className='keypoint-list-item'>Naming</li>
                 <li className='keypoint-list-item'>Error Handling</li>
                 <li className='keypoint-list-item'>Testing</li>
                 <li className='keypoint-list-item'>Reusability</li>
@@ -450,7 +450,7 @@ const certificateList = [
                 </li>
             </ul>
         ),
-        summary: `I traveled to the Philippines for the Fundamental Information Technology Engineer Examination. It earned me the qualifications for the Engineering Visa in Japan.`
+        summary: `I traveled to the Philippines for the FE Examination. It earned me the qualifications for the Engineering Visa in Japan.`
     },
     {
         title: "Time's Person of the Year 2006",
@@ -471,7 +471,7 @@ const certificateList = [
                 </li>
             </ul>
         ),
-        summary: `In 2006, Time named me the official nominee for Person of the Year. I'm honored to receive such a distinction.`
+        summary: `In 2006, Time named me the official nominee for Person of the Year.`
     }
 ]
 const testimonialsList = [
