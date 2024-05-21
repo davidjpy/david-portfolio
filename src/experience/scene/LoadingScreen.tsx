@@ -1,6 +1,7 @@
 import { useContext, useMemo, useRef } from 'react'
 import Lottie from 'lottie-react'
-import { FaAngleDown } from 'react-icons/fa6'
+import { FaAngleDown  } from 'react-icons/fa6'
+import { LuMouse } from "react-icons/lu";
 
 import { AppContext } from '@/src/context/appContext'
 import lighthouseAnimation from '@/assets/svgs/lighthouse.json'
@@ -78,9 +79,10 @@ export default function LoadingScreen() {
                         ref={startButtonRef}
                         aria-label='Start'
                         onClick={handleClickStartExperience}
-                        className='animate-floating pointer-events-none absolute bottom-[12px] opacity-0 transition-opacity duration-500 ease-out focus:outline-[#5613D1]'
+                        className='animate-floating pointer-events-none absolute bottom-[12px] opacity-0 transition-opacity duration-500 ease-out focus:outline-[#5613D1] text-[#505050] flex items-center flex-col'
                     >
-                        <FaAngleDown aria-hidden={true} color='#505050' size={30} />
+                        <LuMouse aria-hidden={true} size={38} className='mb-[8px]' />
+                        <FaAngleDown aria-hidden={true} size={26} />
                     </button>
                 </>
             )}
