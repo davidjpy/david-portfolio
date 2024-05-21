@@ -39,12 +39,13 @@ const readingList = [
         ariaLabel: 'Clean Code: A Handbook of Agile Software Craftsmanship (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://github.com/jnguyen095/clean-code/tree/master'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Clean Code: A Handbook of Agile Software Craftsmanship (opens in a new tab)'
+                        className='block'
                     >
                         <FaGithub className='icon-link-md' />
                     </a>
@@ -70,12 +71,13 @@ const readingList = [
         ariaLabel: 'New FE Textbook Vol.1 IT Fundamentals (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://itpec.org/news/20220921_LMS.html'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Vol.1 IT Fundamentals (opens in a new tab)'
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -101,12 +103,13 @@ const readingList = [
         ariaLabel: 'New FE Textbook Vol.2 IT Strategy & Management (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://itpec.org/news/20220921_LMS.html'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='New FE Textbook Vol.2 IT Strategy & Management (opens in a new tab)'
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -132,12 +135,13 @@ const courseList = [
         ariaLabel: 'Three.js Journey (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://threejs-journey.com/'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Three.js Journey (opens in a new tab)'
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -164,12 +168,13 @@ const courseList = [
         ariaLabel: 'Harvard CS50: Introduction to Computer Science (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Harvard CS50: Introduction to Computer Science (opens in a new tab)'
+                        className='block'
                     >
                         <FaYoutube className='icon-link-md' />
                     </a>
@@ -195,12 +200,13 @@ const courseList = [
         ariaLabel: 'MIT 6.006 Introduction to Algorithms (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://www.youtube.com/watch?v=HtSuA80QTyo&ab_channel=MITOpenCourseWare'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='MIT 6.006 Introduction to Algorithms (opens in a new tab)'
+                        className='block'
                     >
                         <FaYoutube className='icon-link-md' />
                     </a>
@@ -224,12 +230,13 @@ const courseList = [
         ariaLabel: 'Stanford CS229: Machine Learning (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://www.youtube.com/watch?v=jGwO_UgTS7I&ab_channel=StanfordOnline'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Stanford CS229: Machine Learning (opens in a new tab)'
+                        className='block'
                     >
                         <FaYoutube className='icon-link-md' />
                     </a>
@@ -254,12 +261,13 @@ const courseList = [
         ariaLabel: 'Bulletproof React (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://github.com/alan2207/bulletproof-react'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Bulletproof React (opens in a new tab)'
+                        className='block'
                     >
                         <FaGithub className='icon-link-md' />
                     </a>
@@ -285,22 +293,24 @@ const workList = [
         ariaLabel: 'WildBear Shop (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://github.com/davidjpy/wildbear'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='GitHub (opens in a new tab)'
+                        className='block'
                     >
                         <FaGithub className='icon-link-md' />
                     </a>
                 </li>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://www.wildbear-shop.com/'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='WildBear Shop (opens in a new tab)'
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -325,26 +335,28 @@ const workList = [
         title: 'Lighthouse Portfolio',
         image: 'images/work/portfolio.webp',
         alt: 'Lighthouse Portfolio hero section',
-        href: 'https://www.wildbear-shop.com/',
+        href: 'https://davidlighthouse.com/',
         ariaLabel: 'Lighthouse Portfolio (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://github.com/davidjpy/portfolio'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='GitHub (opens in a new tab)'
+                        className='block'
                     >
                         <FaGithub className='icon-link-md' />
                     </a>
                 </li>
-                <li className='focusable-li'>
+                <li>
                     <a
-                        href='https://www.wildbear-shop.com/'
+                        href='https://davidlighthouse.com/'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Lighthouse Portfolio (opens in a new tab)'
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -375,12 +387,13 @@ const certificateList = [
         href: 'https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3281124_32023070552.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwNTUyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='System and method for detecting surface defect of object (opens in a new tab)'
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -408,13 +421,14 @@ const certificateList = [
             'Method for detecting and predicting a bottleneck in a transportation process of a logistics center (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://esearch.ipd.gov.hk/nis-pos-view/#/pt/details/view/3276488_32023070062.9/0/1/10/0/null_null/KCFeIShhcHBsaWNOdW1iZXI6KDMyMDIzMDcwMDYyLjkpKSFeISkgQU5EIHB0UmVjb3JkU2VxOjE%3D?lang=en'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Method for detecting and predicting a bottleneck in a transportation process of a
                         logistics center (opens in a new tab)'
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -438,12 +452,13 @@ const certificateList = [
         ariaLabel: 'ITPEC Common Examination (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://itpec.org/about/itpec-common-exam.html'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='ITPEC Common Examination (opens in a new tab)'
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -460,11 +475,13 @@ const certificateList = [
         ariaLabel: "Time's Person of the Year 2006 (opens in a new tab)",
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://en.wikipedia.org/wiki/You_(Time_Person_of_the_Year)'
                         target='_blank'
+                        rel='noreferrer noopener'
                         aria-label="Time's Person of the Year 2006 (opens in a new tab)"
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -484,22 +501,24 @@ const testimonialsList = [
         ariaLabel: 'Francesco Cursi (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://www.linkedin.com/in/francesco-c-a94568111/'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Linkedin (opens in a new tab)'
+                        className='block'
                     >
                         <FaLinkedin className='icon-link-md' />
                     </a>
                 </li>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://francescocursi.com/'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Francesco Cursi (opens in a new tab)'
+                        className='block'
                     >
                         <FaLink className='icon-link-md' />
                     </a>
@@ -517,12 +536,13 @@ const testimonialsList = [
         ariaLabel: 'Adah Hu (opens in a new tab)',
         linkIcons: (
             <ul className='flex gap-2'>
-                <li className='focusable-li'>
+                <li>
                     <a
                         href='https://www.linkedin.com/in/adah-h-a0854554/'
                         target='_blank'
                         rel='noreferrer noopener'
                         aria-label='Linkedin (opens in a new tab)'
+                        className='block'
                     >
                         <FaLinkedin className='icon-link-md' />
                     </a>
@@ -870,32 +890,35 @@ const HtmlContent = memo(function HtmlContent() {
                             ></span>
                         </h1>
                         <ul ref={contactListRef} className='mt-4 flex gap-4'>
-                            <li className='hidden-content focusable-li [transition:transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'>
+                            <li className='hidden-content [transition:transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'>
                                 <a
                                     href='https://github.com/davidjpy'
                                     target='_blank'
                                     rel='noreferrer noopener'
                                     aria-label='GitHub (opens in a new tab)'
+                                    className='block'
                                 >
                                     <FaGithub className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content focusable-li [transition:transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
+                            <li className='hidden-content [transition:transform_0.4s_ease-out_0.45s,opacity_0.4s_ease-out_0.45s]'>
                                 <a
                                     href='https://www.linkedin.com/in/davidho-web/'
                                     target='_blank'
                                     rel='noreferrer noopener'
                                     aria-label='Linkedin (opens in a new tab)'
+                                    className='block'
                                 >
                                     <FaLinkedin className='icon-link-lg' />
                                 </a>
                             </li>
-                            <li className='hidden-content focusable-li [transition:transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
+                            <li className='hidden-content [transition:transform_0.4s_ease-out_0.55s,opacity_0.4s_ease-out_0.55s]'>
                                 <a
                                     href='https://www.instagram.com/___realdavid/'
                                     target='_blank'
                                     rel='noreferrer noopener'
                                     aria-label='Instagram (opens in a new tab)'
+                                    className='block'
                                 >
                                     <FaInstagram strokeWidth={20} className='icon-link-lg' />
                                 </a>
@@ -999,7 +1022,7 @@ const HtmlContent = memo(function HtmlContent() {
                     contentObserverRef={contentObserverRef}
                 >
                     <ul>
-                        <li data-name='design' className='hidden-content section-list-item'>
+                        <li data-name='design' className='hidden-content section-list-item p-4'>
                             <div className='relative w-full'>
                                 <figure>
                                     <Lottie
@@ -1039,7 +1062,7 @@ const HtmlContent = memo(function HtmlContent() {
                                 </button>
                             </div>
                         </li>
-                        <li data-name='software' className='hidden-content section-list-item'>
+                        <li data-name='software' className='hidden-content section-list-item p-4'>
                             <div className='relative w-full'>
                                 <figure>
                                     <Lottie
@@ -1088,7 +1111,7 @@ const HtmlContent = memo(function HtmlContent() {
                                 </button>
                             </div>
                         </li>
-                        <li data-name='other' className='hidden-content section-list-item'>
+                        <li data-name='other' className='hidden-content section-list-item p-4'>
                             <div className='relative w-full'>
                                 <figure>
                                     <Lottie
@@ -1173,7 +1196,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     aria-label={book.ariaLabel}
                                     rel='noreferrer noopener'
-                                    className='flex'
+                                    className='flex w-full rounded-[8px] p-4'
                                 >
                                     <figure className='list-img-wrapper'>
                                         <img loading='lazy' alt={book.alt} src={book.image} className='book-list-img' />
@@ -1216,7 +1239,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     href={course.href}
                                     aria-label={course.ariaLabel}
                                     rel='noreferrer noopener'
-                                    className='flex'
+                                    className='flex w-full rounded-[8px] p-4'
                                 >
                                     <figure className='list-img-wrapper'>
                                         <img
@@ -1278,7 +1301,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     rel='noreferrer noopener'
                                     aria-label={work.ariaLabel}
-                                    className='flex'
+                                    className='flex w-full rounded-[8px] p-4'
                                 >
                                     <figure className='list-img-wrapper'>
                                         <img
@@ -1326,7 +1349,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     rel='noreferrer noopener'
                                     aria-label={certificate.ariaLabel}
-                                    className='flex'
+                                    className='flex w-full rounded-[8px] p-4'
                                 >
                                     <figure className='list-img-wrapper'>
                                         <img
@@ -1388,6 +1411,7 @@ const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     aria-label={coworker.ariaLabel}
                                     rel='noreferrer noopener'
+                                    className='w-full rounded-[8px] p-4'
                                 >
                                     <div>
                                         <div className='w-[75%] max-[500px]:w-full'>
