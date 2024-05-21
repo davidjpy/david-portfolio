@@ -1,4 +1,4 @@
-import { useEffect, useRef, memo, useState } from 'react'
+import { useEffect, useRef, memo, useState, useLayoutEffect } from 'react'
 import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import { FaGithub, FaLinkedin, FaInstagram, FaLink, FaYoutube } from 'react-icons/fa'
 import { MdReplay } from 'react-icons/md'
@@ -627,7 +627,7 @@ const HtmlContent = memo(function HtmlContent() {
         }, 100)
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const contentObserver = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -756,9 +756,7 @@ const HtmlContent = memo(function HtmlContent() {
                 threshold: 0.1
             }
         )
-
         contentObserverRef.current = contentObserver
-
         return () => {
             contentObserverRef.current?.disconnect()
         }
