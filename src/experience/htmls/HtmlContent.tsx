@@ -550,6 +550,30 @@ const testimonialsList = [
             </ul>
         ),
         summary: `David exhibits a remarkable capacity for learning. Coupled with his strong sense of responsibility, he diligently applies his knowledge to exceed expectations and meet deadlines consistently. David's combination of aptitude and reliability makes him an invaluable person in any endeavor he undertakes.`
+    },
+    {
+        name: 'Jim Liu',
+        title: 'Automation Analyst, Hutchison Ports',
+        image: 'images/testimonials/jim.webp',
+        alt: "Jim Liu's avatar",
+        href: 'https://www.linkedin.com/in/jian-liu-001658212/',
+        ariaLabel: 'Jim Liu (opens in a new tab)',
+        linkIcons: (
+            <ul className='flex gap-2'>
+                <li>
+                    <a
+                        href='https://www.linkedin.com/in/jian-liu-001658212/'
+                        target='_blank'
+                        rel='noreferrer noopener'
+                        aria-label='Linkedin (opens in a new tab)'
+                        className='block'
+                    >
+                        <FaLinkedin className='icon-link-md' />
+                    </a>
+                </li>
+            </ul>
+        ),
+        summary: `David demonstrated great dedication when we worked together on machine learning projects. He is deeply interested in the underlying principles of the problems at hand and extends his curiosity to other parts of the system, ensuring comprehensive solutions. This is a valuable skill for an engineer. He is always smiling and proactive in communication, a trait essential for any adventurer.`
     }
 ]
 const HtmlContent = memo(function HtmlContent() {
