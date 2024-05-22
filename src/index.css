@@ -56,11 +56,11 @@
     }
 
     .brightness-slider::-webkit-slider-thumb {
-        @apply w-[34px] h-[34px] rounded-full bg-[#a14039] appearance-none shadow-[-213px_0_0_200px_rgb(203,87,79)];
+        @apply w-[34px] h-[34px] rounded-full bg-[#a14039] appearance-none shadow-[-217px_0_0_200px_rgb(203,87,79)];
     }
 
     .brightness-slider::-moz-range-thumb {
-        @apply w-[34px] h-[34px] rounded-full bg-[#a14039] border-none shadow-[-213px_0_0_200px_rgb(203,87,79)];
+        @apply w-[34px] h-[34px] rounded-full bg-[#a14039] border-none shadow-[-217px_0_0_200px_rgb(203,87,79)];
     }
 
     .icon-link-md {
