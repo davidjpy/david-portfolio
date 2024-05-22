@@ -1,5 +1,6 @@
 import { useRef, useEffect, useContext } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
+import { AdaptiveDpr } from '@react-three/drei'
 
 import LighthouseScene from '@/src/experience/scene/LighthouseScene'
 import Camera from '@/src/experience/camera/Camera'
@@ -42,6 +43,7 @@ function Scene() {
         <>
             <LighthouseScene oceanRef={oceanRef} />
             <Camera isMobile={isMobile} />
+            <AdaptiveDpr pixelated />
         </>
     )
 }
@@ -55,7 +57,7 @@ export default function Experience() {
             // linear
             eventPrefix='client'
             eventSource={document.getElementById('root') as HTMLElement}
-            dpr={[1, 1]}
+            dpr={[1, 2]}
             camera={{
                 far: cameraConfig.far,
                 near: cameraConfig.near,
