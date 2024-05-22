@@ -1292,7 +1292,7 @@ const HtmlContent = memo(function HtmlContent() {
                 top={worksSectionTop}
                 position='right'
                 backgroundTitle='Works'
-                topTitle='I Enjoy Creating Stuffs...'
+                topTitle='I Enjoy Creating Stuff...'
                 bottomTitle={
                     <>
                         My <span className='text-accent'> Works</span>
@@ -1352,7 +1352,7 @@ const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection
                     title={
                         <>
-                            Random <span className='text-accent'>certificates</span> that might helps?
+                            Random <span className='text-accent'>certificates</span> that might help?
                         </>
                     }
                     contentObserverRef={contentObserverRef}

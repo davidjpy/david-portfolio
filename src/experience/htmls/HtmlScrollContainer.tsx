@@ -17,6 +17,7 @@ interface Props extends React.ComponentProps<'section'> {
 const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
     ({ top, position, backgroundTitle, topTitle, bottomTitle, contentObserverRef, children, ...props }, ref) => {
         const containerHeaderRef = useRef<HTMLHeadElement>(null)
+        const scrollContainerRef = useRef<any>(null)
         const topScrollIndicatorRef = useRef<HTMLSpanElement>(null)
         const bottomScrollIndicatorRef = useRef<HTMLSpanElement>(null)
 
@@ -28,6 +29,38 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
             return () => {
                 if (containerHeaderRef.current) {
                     contentObserverRef.current?.unobserve(containerHeaderRef.current)
+                }
+            }
+        }, [])
+
+        useEffect(() => {
+            if (scrollContainerRef.current) {
+                const lastSectionElement: HTMLDivElement = scrollContainerRef.current.view.lastChild
+
+                if (lastSectionElement.lastElementChild!.tagName === 'UL') {
+                    const lastListItem = lastSectionElement.lastElementChild?.lastElementChild as HTMLElement
+
+                    if (lastListItem) {
+                        lastListItem.addEventListener(
+                            'transitionend',
+                            function handleTransitionEnd(e: TransitionEvent) {
+                                if (e.propertyName === 'transform') {
+                                    scrollContainerRef.current.handleWindowResize()
+                                    lastListItem.removeEventListener('transitionend', handleTransitionEnd)
+                                }
+                            }
+                        )
+                    }
+                } else {
+                    lastSectionElement.addEventListener(
+                        'transitionend',
+                        function handleTransitionEnd(e: TransitionEvent) {
+                            if (e.propertyName === 'transform') {
+                                scrollContainerRef.current.handleWindowResize()
+                                lastSectionElement.removeEventListener('transitionend', handleTransitionEnd)
+                            }
+                        }
+                    )
                 }
             }
         }, [])
@@ -86,6 +119,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                         </span>
                     </span>
                     <Scrollbars
+                        ref={scrollContainerRef as React.LegacyRef<Scrollbars>}
                         onUpdate={handleUpdateScrollContainer}
                         renderTrackVertical={(props) => (
                             <div
