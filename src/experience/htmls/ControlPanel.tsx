@@ -52,7 +52,7 @@ export default function ControlPanel() {
     const [time, setTime] = useState<number[]>([0, 0, 0, 0, 0])
     const [toDoIndex, setTodoIndex] = useState<number>(0)
     const [timeSymbolIndex, setTimeSymbolIndex] = useState<number>(0)
-    const [isPanelExpanded, setIsPanelExpanded] = useState<boolean>(window.innerWidth > 420)
+    const [isPanelExpanded, setIsPanelExpanded] = useState<boolean>(window.innerWidth > 768)
     const { brightness, handleSetBrightness } = useContext(AppContext)
 
     const handleClickToggleSlider = () => {
