@@ -84,7 +84,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
         return (
             <section
                 data-position={position}
-                className='absolute -z-50 flex h-[2160px] w-1/2 flex-col overflow-hidden bg-primary pb-[300px] pt-[250px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-mobile:w-full'
+                className='absolute -z-50 flex h-[2160px] w-1/2 flex-col overflow-hidden bg-primary pb-[300px] pt-[250px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-mobile:w-full pl-[80px] pr-[80px] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px]'
                 style={{
                     top: top,
                     right: position === 'right' ? 0 : undefined
@@ -99,7 +99,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                 <header
                     data-name='ch'
                     ref={containerHeaderRef}
-                    className='mb-[48px] pl-[80px] pr-[80px] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px]'
+                    className='mb-[48px]'
                 >
                     <div className='mb-4 h-2 w-0 bg-accent transition-[width] duration-[1s] ease-out' />
                     <h1 className='hidden-content text-xl font-bold text-secondary [transition:transform_0.6s_ease-out_0.4s,opacity_0.6s_ease-out_0.4s] sm:text-2xl'>
@@ -112,7 +112,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                 <div className='relative h-full w-full'>
                     <span
                         ref={topScrollIndicatorRef}
-                        className='absolute left-1/2 top-0 z-50 h-[25px] w-[calc(100%-160px)] -translate-x-1/2 bg-gradient-to-b from-[#00000021] to-transparent max-[1669px]:w-[calc(100%-120px)] max-2xl:w-[calc(100%-80px)] max-xl:w-[calc(100%-32px)]'
+                        className='absolute left-1/2 top-0 z-50 h-[25px] w-full -translate-x-1/2 bg-gradient-to-b from-[#00000021] to-transparent'
                     >
                         <span className='absolute left-[calc(50%-20px)] top-[8px] flex w-[40px] animate-floating text-accent'>
                             <FaAngleUp size={24} />
@@ -126,8 +126,8 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                                 {...props}
                                 className='absolute bottom-0 top-0 w-[6px]'
                                 style={{
-                                    right: position === 'right' ? '4px' : undefined,
-                                    left: position === 'left' ? '4px' : undefined
+                                    right: position === 'right' ? '0px' : undefined,
+                                    left: position === 'left' ? '0px' : undefined
                                 }}
                             />
                         )}
@@ -140,7 +140,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                         renderView={(props) => (
                             <div
                                 {...props}
-                                className='relative pl-[80px] pr-[80px] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px]'
+                                className='relative'
                             />
                         )}
                         className='group/scroll'
@@ -150,7 +150,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
 
                     <span
                         ref={bottomScrollIndicatorRef}
-                        className='absolute bottom-0 left-1/2 z-50 h-[25px] w-[calc(100%-160px)] -translate-x-1/2 bg-gradient-to-t from-[#00000021] to-transparent max-[1669px]:w-[calc(100%-120px)] max-2xl:w-[calc(100%-80px)] max-xl:w-[calc(100%-32px)]'
+                        className='absolute bottom-0 left-1/2 z-50 w-full h-[25px] -translate-x-1/2 bg-gradient-to-t from-[#00000021] to-transparent'
                     >
                         <span className='absolute bottom-[-4px] left-[calc(50%-20px)] flex w-[40px] animate-floating text-accent'>
                             <FaAngleDown size={24} />
