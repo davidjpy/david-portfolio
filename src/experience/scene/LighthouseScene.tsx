@@ -3,8 +3,8 @@ import { Sky, Stars, Sparkles } from '@react-three/drei'
 import { useSpring, animated } from '@react-spring/three'
 
 import { AppContext } from '@/src/context/appContext'
-import LighthouseModel from '@/experience/scene/LighthouseModel'
-import Ocean from '@/experience/scene/Ocean'
+import { LighthouseModel } from '@/experience/scene/LighthouseModel'
+import { Ocean } from '@/experience/scene/Ocean'
 import { maxBrightness, minBrightness } from '@/src/utilities/constants'
 
 interface Props {
@@ -22,7 +22,7 @@ function LoadingHandler({ setIsLoading }: { setIsLoading: React.Dispatch<React.S
     return null
 }
 
-export default function LighthouseScene({ oceanRef }: Props) {
+export function LighthouseScene({ oceanRef }: Props) {
     const { brightness, isLightMode, setIsLoading } = useContext(AppContext)
     const AnimatedSky = animated(Sky)
     const AnimatedStars = animated(Stars)

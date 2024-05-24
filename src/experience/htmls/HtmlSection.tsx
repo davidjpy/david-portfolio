@@ -5,7 +5,7 @@ interface Props extends Omit<React.ComponentProps<'section'>, 'title'> {
     contentObserverRef: React.MutableRefObject<IntersectionObserver | null>
 }
 
-export default function HtmlSection({ title, children, contentObserverRef, ...props }: Props) {
+export function HtmlSection({ title, children, contentObserverRef, ...props }: Props) {
     const sectionRef = useRef<HTMLElement>(null)
 
     useEffect(() => {
@@ -24,7 +24,7 @@ export default function HtmlSection({ title, children, contentObserverRef, ...pr
         <section
             ref={sectionRef}
             data-name='se'
-            className='hidden-content mb-[48px] text-secondary last-of-type:mb-0 [transition:transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s]'
+            className='hidden-content mb-[48px] text-secondary [transition:transform_0.4s_ease-out_0.4s,opacity_0.4s_ease-out_0.4s] last-of-type:mb-0'
             {...props}
         >
             {title && (

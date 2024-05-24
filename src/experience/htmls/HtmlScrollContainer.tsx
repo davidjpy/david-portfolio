@@ -14,7 +14,7 @@ interface Props extends React.ComponentProps<'section'> {
     children: React.ReactNode
 }
 
-const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
+export const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
     ({ top, position, backgroundTitle, topTitle, bottomTitle, contentObserverRef, children, ...props }, ref) => {
         const containerHeaderRef = useRef<HTMLHeadElement>(null)
         const scrollContainerRef = useRef<any>(null)
@@ -84,7 +84,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
         return (
             <section
                 data-position={position}
-                className='absolute -z-50 flex h-[2160px] w-1/2 flex-col overflow-hidden bg-primary pb-[300px] pt-[250px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-mobile:w-full pl-[80px] pr-[80px] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px]'
+                className='absolute -z-50 flex h-[2160px] w-1/2 flex-col overflow-hidden bg-primary pb-[300px] pl-[80px] pr-[80px] pt-[250px] shadow-2xl [transition:border-radius_0.1s_ease-out] max-[1669px]:pl-[60px] max-[1669px]:pr-[60px] max-2xl:pl-[40px] max-2xl:pr-[40px] max-xl:pl-[16px] max-xl:pr-[16px] max-mobile:w-full'
                 style={{
                     top: top,
                     right: position === 'right' ? 0 : undefined
@@ -96,11 +96,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                     {backgroundTitle}
                 </span>
 
-                <header
-                    data-name='ch'
-                    ref={containerHeaderRef}
-                    className='mb-[48px]'
-                >
+                <header data-name='ch' ref={containerHeaderRef} className='mb-[48px]'>
                     <div className='mb-4 h-2 w-0 bg-accent transition-[width] duration-[1s] ease-out' />
                     <h1 className='hidden-content text-xl font-bold text-secondary [transition:transform_0.6s_ease-out_0.4s,opacity_0.6s_ease-out_0.4s] sm:text-2xl'>
                         {topTitle}
@@ -137,12 +133,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                                 className='rounded-full bg-secondary opacity-30 transition-opacity duration-100 ease-out active:opacity-70 group-hover/scroll:opacity-50'
                             />
                         )}
-                        renderView={(props) => (
-                            <div
-                                {...props}
-                                className='relative'
-                            />
-                        )}
+                        renderView={(props) => <div {...props} className='relative' />}
                         className='group/scroll'
                     >
                         {children}
@@ -150,7 +141,7 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
 
                     <span
                         ref={bottomScrollIndicatorRef}
-                        className='absolute bottom-0 left-1/2 z-50 w-full h-[25px] -translate-x-1/2 bg-gradient-to-t from-[#00000021] to-transparent'
+                        className='absolute bottom-0 left-1/2 z-50 h-[25px] w-full -translate-x-1/2 bg-gradient-to-t from-[#00000021] to-transparent'
                     >
                         <span className='absolute bottom-[-4px] left-[calc(50%-20px)] flex w-[40px] animate-floating text-accent'>
                             <FaAngleDown size={24} />
@@ -161,4 +152,3 @@ const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
         )
     }
 )
-export default HtmlScrollContainer

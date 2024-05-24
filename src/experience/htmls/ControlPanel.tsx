@@ -47,7 +47,7 @@ const navTab = [
 
 const timeSymbols = [<IoSunny size={20} />, <IoMoon size={18} />]
 
-export default function ControlPanel() {
+export function ControlPanel() {
     const htmlContainerRef = useRef<HTMLDivElement>(null)
     const [time, setTime] = useState<number[]>([0, 0, 0, 0, 0])
     const [toDoIndex, setTodoIndex] = useState<number>(0)
@@ -178,10 +178,10 @@ export default function ControlPanel() {
     return (
         <animated.section
             ref={htmlContainerRef}
-            className='max-xs:w-full max-xs:h-[230px] max-xs:grid-rows-5 fixed right-[40px] top-0 z-50 grid h-[150px] w-[400px] grid-cols-7 grid-rows-3 gap-[6px] rounded-b-[12px] bg-black/40 p-[8px] pt-[28px] text-center text-white shadow-xl backdrop-blur-sm max-md:right-0'
+            className='fixed right-[40px] top-0 z-50 grid h-[150px] w-[400px] grid-cols-7 grid-rows-3 gap-[6px] rounded-b-[12px] bg-black/40 p-[8px] pt-[28px] text-center text-white shadow-xl backdrop-blur-sm max-md:right-0 max-xs:h-[230px] max-xs:w-full max-xs:grid-rows-5'
             style={htmlSpring}
         >
-            <div className='clock-blackground-md max-xs:col-span-6 col-span-3 row-span-1 select-none'>
+            <div className='clock-blackground-md col-span-3 row-span-1 select-none max-xs:col-span-6'>
                 <label className='flex-center h-full'>
                     {clockDigitSpring.slice(0, 2).map((props, index) => (
                         <span key={index} className='clock-list-xl'>
@@ -212,7 +212,7 @@ export default function ControlPanel() {
                 </label>
             </div>
 
-            <div className='clock-blackground-sm max-xs:col-span-1 col-span-1 row-span-1 overflow-hidden text-[16px]'>
+            <div className='clock-blackground-sm col-span-1 row-span-1 overflow-hidden text-[16px] max-xs:col-span-1'>
                 <animated.ul style={timeSymbolSpring[0]}>
                     {timeSymbols.map((symbol, index) => (
                         <li key={index} className='flex-center h-[26px]'>
@@ -222,7 +222,7 @@ export default function ControlPanel() {
                 </animated.ul>
             </div>
 
-            <div className='clock-blackground-sm max-xs:col-span-7 max-xs:row-span-2 col-span-3 row-span-2 p-0'>
+            <div className='clock-blackground-sm col-span-3 row-span-2 p-0 max-xs:col-span-7 max-xs:row-span-2'>
                 <header className='flex-center h-[24px] w-full rounded-t-[8px] bg-[#d6493fd2] text-[12px] shadow-lg'>
                     <h1>Timetable</h1>
                 </header>
@@ -238,7 +238,7 @@ export default function ControlPanel() {
                 </span>
             </div>
 
-            <div className='max-xs:col-span-7 relative col-span-4 row-span-1 rounded-full shadow-lg'>
+            <div className='relative col-span-4 row-span-1 rounded-full shadow-lg max-xs:col-span-7'>
                 <IoMoon size={16} className='pointer-events-none absolute left-[8px] top-1/2 -translate-y-1/2' />
                 <label
                     htmlFor='brightnessSlider'

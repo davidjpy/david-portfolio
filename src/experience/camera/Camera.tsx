@@ -91,9 +91,7 @@ const mobileCameraPositions = [
         new THREE.Vector3(-0.0381, 1.6841, -0.0509),
         new THREE.Vector3(-0.06, 1.7003, -0.0706)
     ]),
-    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.06, 1.7003, -0.0706), new THREE.Vector3(            -0.0858,
-        1.7371,
-        -0.0341)])
+    new THREE.CatmullRomCurve3([new THREE.Vector3(-0.06, 1.7003, -0.0706), new THREE.Vector3(-0.0858, 1.7371, -0.0341)])
 ]
 
 const mobileCameraLookAts = [
@@ -188,7 +186,7 @@ interface Props {
     isMobile: boolean
 }
 
-export default function Camera({ isMobile }: Props) {
+export function Camera({ isMobile }: Props) {
     const cameraControlRef = useRef() as React.RefObject<CameraControls>
     // const { position, lookAt } = useControls('Camera', {
     //     position: {

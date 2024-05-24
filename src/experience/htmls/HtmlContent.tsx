@@ -3,9 +3,9 @@ import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import { FaGithub, FaLinkedin, FaInstagram, FaLink, FaYoutube } from 'react-icons/fa'
 import { MdReplay } from 'react-icons/md'
 
-import HtmlScrollContainer from '@/src/experience/htmls/HtmlScrollContainer'
-import HtmlSection from '@/src/experience/htmls/HtmlSection'
-import PhotoMasonry from '@/src/experience/htmls/PhotoMasonry'
+import { HtmlScrollContainer } from '@/src/experience/htmls/HtmlScrollContainer'
+import { HtmlSection } from '@/src/experience/htmls/HtmlSection'
+import { PhotoMasonry } from '@/src/experience/htmls/PhotoMasonry'
 import {
     perfectPageHeight,
     aboutSectionTop,
@@ -576,7 +576,7 @@ const testimonialsList = [
         summary: `David demonstrated great dedication when we worked together on machine learning projects. He is deeply interested in the underlying principles of the problems at hand and extends his curiosity to other parts of the system, ensuring comprehensive solutions. This is a valuable skill for an engineer. He is always smiling and proactive in communication, a trait essential for any adventurer.`
     }
 ]
-const HtmlContent = memo(function HtmlContent() {
+export const HtmlContent = memo(function HtmlContent() {
     const typingEffectIntervalRef = useRef<number | null>(null)
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
     const aboutSectionRef = useRef<HTMLElement>(null!)
@@ -1509,5 +1509,3 @@ const HtmlContent = memo(function HtmlContent() {
         </div>
     )
 })
-
-export default HtmlContent

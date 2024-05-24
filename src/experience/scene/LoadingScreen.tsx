@@ -1,14 +1,14 @@
 import { useContext, useMemo, useRef } from 'react'
 import Lottie from 'lottie-react'
-import { FaAngleDown  } from 'react-icons/fa6'
-import { LuMouse } from "react-icons/lu";
+import { FaAngleDown } from 'react-icons/fa6'
+import { LuMouse } from 'react-icons/lu'
 
 import { AppContext } from '@/src/context/appContext'
 import lighthouseAnimation from '@/assets/svgs/lighthouse.json'
 
 import type { LottieRefCurrentProps } from 'lottie-react'
 
-export default function LoadingScreen() {
+export function LoadingScreen() {
     const { isLoading, isStarted, setIsStarted } = useContext(AppContext)
     const lighthouseLottieRef = useRef<LottieRefCurrentProps | null>(null)
     const boatWheelLottieRef = useRef<LottieRefCurrentProps | null>(null)
@@ -79,7 +79,7 @@ export default function LoadingScreen() {
                         ref={startButtonRef}
                         aria-label='Start'
                         onClick={handleClickStartExperience}
-                        className='animate-floating pointer-events-none absolute bottom-[12px] opacity-0 transition-opacity duration-500 ease-out focus:outline-[#5613D1] text-[#505050] flex items-center flex-col'
+                        className='pointer-events-none absolute bottom-[12px] flex animate-floating flex-col items-center text-[#505050] opacity-0 transition-opacity duration-500 ease-out focus:outline-[#5613D1]'
                     >
                         <LuMouse aria-hidden={true} className='mb-[8px] text-[38px] max-[500px]:text-[32px]' />
                         <FaAngleDown aria-hidden={true} className='text-[26px] max-[500px]:text-[20px]' />

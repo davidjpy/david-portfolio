@@ -26,7 +26,7 @@ function AnimatedPhoto({ src, alt, title, description }: AnimatedPhotoProps) {
     )
 }
 
-export default function PhotoMasonry() {
+export function PhotoMasonry() {
     const photoGalleryRef = useRef<HTMLDivElement>(null)
 
     return (

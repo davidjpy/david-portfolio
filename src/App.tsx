@@ -2,10 +2,10 @@ import { useState } from 'react'
 
 import { AppContext } from '@/context/appContext'
 import { useTheme } from '@/src/hooks/useTheme'
-import Experience from '@/experience/Experience'
-import LoadingScreen from '@/src/experience/scene/LoadingScreen'
-import HtmlContent from '@/src/experience/htmls/HtmlContent'
-import ControlPanel from '@/src/experience/htmls/ControlPanel'
+import { Experience } from '@/experience/Experience'
+import { LoadingScreen } from '@/src/experience/scene/LoadingScreen'
+import { HtmlContent } from '@/src/experience/htmls/HtmlContent'
+import { ControlPanel } from '@/src/experience/htmls/ControlPanel'
 
 function App() {
     const [isLoading, setIsLoading] = useState(true)

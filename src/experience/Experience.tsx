@@ -2,8 +2,8 @@ import { useRef, useEffect, useContext } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { AdaptiveDpr } from '@react-three/drei'
 
-import LighthouseScene from '@/src/experience/scene/LighthouseScene'
-import Camera from '@/src/experience/camera/Camera'
+import { LighthouseScene } from '@/src/experience/scene/LighthouseScene'
+import { Camera } from '@/src/experience/camera/Camera'
 import { getClampedValue } from '@/src/utilities/getClampedValue'
 import { cameraConfig } from '@/src/utilities/constants'
 import { AppContext } from '@/src/context/appContext'
@@ -48,7 +48,7 @@ function Scene() {
     )
 }
 
-export default function Experience() {
+export function Experience() {
     const { isStarted } = useContext(AppContext)
 
     return (

@@ -41,7 +41,7 @@ interface Props {
 const OceanMaterial = shaderMaterial(OceanMaterialUniform, oceanVertexShader, oceanFragmentShader)
 extend({ OceanMaterial })
 
-export default function Ocean({ oceanRef }: Props) {
+export function Ocean({ oceanRef }: Props) {
     const { isLightMode } = useContext(AppContext)
     const starsAnimationConfigs = useSpring({
         uColorOffset: isLightMode ? 0.3 : 0.2,

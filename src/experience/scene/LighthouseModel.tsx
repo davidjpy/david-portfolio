@@ -56,7 +56,7 @@ type GLTFResult = GLTF & {
     materials: {}
 }
 
-export default function LighthouseModel(props: JSX.IntrinsicElements['group']) {
+export function LighthouseModel(props: JSX.IntrinsicElements['group']) {
     // const { position, scale, rotation } = useControls('photo', {
     //     position: {
     //         value: [-0.0149, 5.7865, 0.3479],
