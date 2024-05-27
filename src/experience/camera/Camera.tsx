@@ -245,7 +245,7 @@ export function Camera({ isMobile }: Props) {
     }
 
     useFrame(({ pointer }) => {
-        const scrollTop = document.documentElement.scrollTop
+        const scrollTop = Math.max(document.documentElement.scrollTop, 0)
         let nextSection: Section = getCurrentSection(scrollTop)
         let nextCameraPosition
         let nextCameraLookAt
