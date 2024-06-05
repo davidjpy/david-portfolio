@@ -435,7 +435,7 @@ const certificateList = [
                 </li>
             </ul>
         ),
-        summary: `A short-term patent of a system for predicting bottlenecks in cargo logistics at Hong Kong Airport. We gathered data from sensors across the transport belts and created a predictive model can proactively identify potential congestion points.`,
+        summary: `A short-term patent of a system for predicting bottlenecks in cargo logistics at Hong Kong Airport. We gathered data from sensors across the transport belts and created a predictive model that can proactively identify potential congestion points.`,
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>IoT</li>
