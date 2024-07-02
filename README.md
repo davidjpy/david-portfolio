@@ -7,5 +7,12 @@
   <img src="public/images/work/portfolio.webp" alt="Portfolio hero page">
 </div>
 
+## :movie_camera:	Blender
+<div align="center">
+  <img src="public/images/readme/blender_lighthouse_model.webp" alt="Blender lighthouse model">
+  <img src="public/images/readme/blender_first_floor_model.webp" alt="Blender first floor model">
+  <img src="public/images/readme/blender_second_floor_model.webp" alt="Blender second floor model">
+</div>
+
 ## :computer: Tools Used
 Blender, React.js, Typescript, Three.js, React Three Fiber, React Spring, Tailwind, GLSL, Svgator, Lottie, Netlify
