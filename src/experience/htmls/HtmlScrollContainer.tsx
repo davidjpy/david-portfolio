@@ -130,11 +130,10 @@ export const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                         renderThumbVertical={(props) => (
                             <div
                                 {...props}
-                                className='rounded-full bg-secondary opacity-30 transition-opacity duration-100 ease-out active:opacity-70 group-hover/scroll:opacity-50'
+                                className='rounded-full bg-secondary opacity-30 transition-opacity duration-100 ease-out active:opacity-70'
                             />
                         )}
                         renderView={(props) => <div {...props} className='relative' />}
-                        className='group/scroll'
                     >
                         {children}
                     </Scrollbars>
