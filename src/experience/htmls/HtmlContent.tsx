@@ -30,8 +30,9 @@ const titles = [
     'Traveller',
     'Normal Person'
 ]
-const readingList = [
+const studyList = [
     {
+        type: 'book',
         title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
         image: 'images/study/clean_code.webp',
         alt: 'Clean Code: A Handbook of Agile Software Craftsmanship book cover',
@@ -64,6 +65,7 @@ const readingList = [
         )
     },
     {
+        type: 'book',
         title: 'New FE Textbook Vol.1 IT Fundamentals',
         image: 'images/study/it_fundamentals.webp',
         alt: 'New FE Textbook Vol.1 IT Fundamentals book cover',
@@ -96,6 +98,7 @@ const readingList = [
         )
     },
     {
+        type: 'book',
         title: 'Vol.2: IT Strategy & Management',
         image: 'images/study/it_strategy_and_management.webp',
         alt: 'New FE Textbook Vol.2 IT Strategy & Management book cover',
@@ -123,12 +126,10 @@ const readingList = [
                 <li className='keypoint-list-item'>IT Management</li>
             </ul>
         )
-    }
-]
-const courseList = [
+    },
     {
+        type: 'project',
         title: 'Three.js Journey',
-        author: 'Robert Cecil Martin',
         image: 'images/study/threejs_journey_cert.webp',
         alt: 'Three.js Journey certificate of completion',
         href: 'https://threejs-journey.com/',
@@ -160,8 +161,8 @@ const courseList = [
         )
     },
     {
+        type: 'project',
         title: 'Harvard CS50: Introduction to Computer Science',
-        author: 'Robert Cecil Martin',
         image: 'images/study/cs50.webp',
         alt: 'Harvard CS50: Introduction to Computer Science youtube preview',
         href: 'https://www.youtube.com/watch?v=8mAITcNt710&t=1s&ab_channel=freeCodeCamp.org',
@@ -192,8 +193,8 @@ const courseList = [
         )
     },
     {
+        type: 'project',
         title: 'MIT 6.006 Introduction to Algorithms',
-        author: 'Robert Cecil Martin',
         image: 'images/study/mit6.006.webp',
         alt: 'MIT 6.006 Introduction to Algorithms youtube preview',
         href: 'https://www.youtube.com/watch?v=HtSuA80QTyo&ab_channel=MITOpenCourseWare',
@@ -222,6 +223,7 @@ const courseList = [
         )
     },
     {
+        type: 'project',
         title: 'Stanford CS229: Machine Learning',
         author: 'Robert Cecil Martin',
         image: 'images/study/cs229.webp',
@@ -253,6 +255,7 @@ const courseList = [
         )
     },
     {
+        type: 'project',
         title: 'Bulletproof React',
         author: 'Robert Cecil Martin',
         image: 'images/study/bulletproof_react.webp',
@@ -286,6 +289,7 @@ const courseList = [
 ]
 const workList = [
     {
+        type: 'project',
         title: 'WildBear Shop',
         image: 'images/work/wildbear.webp',
         alt: 'WildBear Shop hero section',
@@ -332,6 +336,7 @@ const workList = [
         )
     },
     {
+        type: 'project',
         title: 'Lighthouse Portfolio',
         image: 'images/work/portfolio.webp',
         alt: 'Lighthouse Portfolio hero section',
@@ -376,10 +381,9 @@ const workList = [
                 <li className='keypoint-list-item'>Lottie</li>
             </ul>
         )
-    }
-]
-const certificateList = [
+    },
     {
+        type: 'project',
         title: 'System and method for detecting surface defect of object',
         image: 'images/work/defect_patent.webp',
         alt: 'System and method for detecting surface defect of object preview',
@@ -412,6 +416,7 @@ const certificateList = [
         )
     },
     {
+        type: 'project',
         title: `Method for detecting and predicting a bottleneck in a transportation process of a
         logistics center`,
         image: 'images/work/logistic_patent.webp',
@@ -445,6 +450,7 @@ const certificateList = [
         )
     },
     {
+        type: 'project',
         title: 'FE Exam Certificate',
         image: 'images/work/FE_exam_cert.webp',
         alt: 'FE Exam Certificate',
@@ -468,6 +474,7 @@ const certificateList = [
         summary: `I traveled to the Philippines for the FE Examination. It earned me the qualifications for the Engineering Visa in Japan.`
     },
     {
+        type: 'project',
         title: "Time's Person of the Year 2006",
         image: 'images/work/times_person_of_the_year.webp',
         alt: "Time's Person of the Year 2006 preview",
@@ -588,10 +595,8 @@ export const HtmlContent = memo(function HtmlContent() {
     const memorialSectionRef = useRef<HTMLElement>(null!)
     const typingTextRef = useRef<HTMLSpanElement>(null)
     const contactListRef = useRef<HTMLUListElement>(null)
-    const [focusBook, setFocusBook] = useState<string>('')
-    const [focusCourse, setFocusCourse] = useState<string>('')
+    const [focusStudy, setFocusStudy] = useState<string>('')
     const [focusWork, setFocusWork] = useState<string>('')
-    const [focusCert, setFocusCert] = useState<string>('')
     const [focusAck, setFocusAck] = useState<string>('')
     const webDesignLottieRef = useRef<LottieRefCurrentProps | null>(null)
     const softwareLottieRef = useRef<LottieRefCurrentProps | null>(null)
@@ -1199,89 +1204,41 @@ export const HtmlContent = memo(function HtmlContent() {
                 <HtmlSection
                     title={
                         <>
-                            Interesting <span className='text-accent'>books</span> I have read?
+                            Useful <span className='text-accent'>materials</span> I have studied?
                         </>
                     }
                     contentObserverRef={contentObserverRef}
                 >
                     <ul>
-                        {readingList.map((book, index) => (
+                        {studyList.map((study, index) => (
                             <li
                                 key={index}
                                 style={{
-                                    filter: focusBook && focusBook !== book.title ? 'opacity(40%)' : undefined
+                                    filter: focusStudy && focusStudy !== study.title ? 'opacity(40%)' : undefined
                                 }}
-                                onMouseEnter={() => setFocusBook(book.title)}
-                                onMouseLeave={() => setFocusBook('')}
+                                onMouseEnter={() => setFocusStudy(study.title)}
+                                onMouseLeave={() => setFocusStudy('')}
                                 className='hidden-content section-list-item'
                             >
                                 <a
-                                    href={book.href}
+                                    href={study.href}
                                     target='_blank'
-                                    aria-label={book.ariaLabel}
+                                    aria-label={study.ariaLabel}
                                     rel='noreferrer noopener'
                                     className='flex w-full rounded-[8px] p-4'
                                 >
                                     <figure className='list-img-wrapper'>
-                                        <img loading='lazy' alt={book.alt} src={book.image} className='book-list-img' />
+                                        <img loading='lazy' alt={study.alt} src={study.image} className={study.type === 'book' ? 'book-list-img' : 'project-list-img'} />
                                     </figure>
                                     <div className='w-full'>
                                         <header className='w-[85%]'>
-                                            <h1 className='section-list-title'>{book.title}</h1>
+                                            <h1 className='section-list-title'>{study.title}</h1>
                                         </header>
-                                        <p className='section-list-summary'>{book.summary}</p>
-                                        {book.keypoints}
+                                        <p className='section-list-summary'>{study.summary}</p>
+                                        {study.keypoints}
                                     </div>
                                 </a>
-                                <div className='icons-list-item'>{book.linkIcons}</div>
-                            </li>
-                        ))}
-                    </ul>
-                </HtmlSection>
-
-                <HtmlSection
-                    title={
-                        <>
-                            Useful <span className='text-accent'>courses</span> I have taken?
-                        </>
-                    }
-                    contentObserverRef={contentObserverRef}
-                >
-                    <ul>
-                        {courseList.map((course, index) => (
-                            <li
-                                key={index}
-                                className='hidden-content section-list-item'
-                                style={{
-                                    filter: focusCourse && focusCourse !== course.title ? 'opacity(40%)' : undefined
-                                }}
-                                onMouseEnter={() => setFocusCourse(course.title)}
-                                onMouseLeave={() => setFocusCourse('')}
-                            >
-                                <a
-                                    target='_blank'
-                                    href={course.href}
-                                    aria-label={course.ariaLabel}
-                                    rel='noreferrer noopener'
-                                    className='flex w-full rounded-[8px] p-4'
-                                >
-                                    <figure className='list-img-wrapper'>
-                                        <img
-                                            loading='lazy'
-                                            alt={course.alt}
-                                            src={course.image}
-                                            className='project-list-img'
-                                        />
-                                    </figure>
-                                    <div className='w-full'>
-                                        <header className='w-[85%]'>
-                                            <h1 className='section-list-title'>{course.title}</h1>
-                                        </header>
-                                        <p className='section-list-summary'>{course.summary}</p>
-                                        {course.keypoints}
-                                    </div>
-                                </a>
-                                <div className='icons-list-item'>{course.linkIcons}</div>
+                                <div className='icons-list-item'>{study.linkIcons}</div>
                             </li>
                         ))}
                     </ul>
@@ -1344,54 +1301,6 @@ export const HtmlContent = memo(function HtmlContent() {
                                     </div>
                                 </a>
                                 <div className='icons-list-item'>{work.linkIcons}</div>
-                            </li>
-                        ))}
-                    </ul>
-                </HtmlSection>
-
-                <HtmlSection
-                    title={
-                        <>
-                            Random <span className='text-accent'>certificates</span> that might help?
-                        </>
-                    }
-                    contentObserverRef={contentObserverRef}
-                >
-                    <ul>
-                        {certificateList.map((certificate, index) => (
-                            <li
-                                key={index}
-                                className='hidden-content section-list-item'
-                                style={{
-                                    filter: focusCert && focusCert !== certificate.title ? 'opacity(40%)' : undefined
-                                }}
-                                onMouseEnter={() => setFocusCert(certificate.title)}
-                                onMouseLeave={() => setFocusCert('')}
-                            >
-                                <a
-                                    href={certificate.href}
-                                    target='_blank'
-                                    rel='noreferrer noopener'
-                                    aria-label={certificate.ariaLabel}
-                                    className='flex w-full rounded-[8px] p-4'
-                                >
-                                    <figure className='list-img-wrapper'>
-                                        <img
-                                            alt={certificate.alt}
-                                            loading='lazy'
-                                            src={certificate.image}
-                                            className='project-list-img'
-                                        />
-                                    </figure>
-                                    <div className='w-full'>
-                                        <header className='w-[85%]'>
-                                            <h1 className='section-list-title'>{certificate.title}</h1>
-                                        </header>
-                                        <p className='section-list-summary'>{certificate.summary}</p>
-                                        {certificate.keypoints}
-                                    </div>
-                                </a>
-                                <div className='icons-list-item'>{certificate.linkIcons}</div>
                             </li>
                         ))}
                     </ul>
