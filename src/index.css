@@ -64,19 +64,11 @@
     }
 
     .icon-link-md {
-        @apply color-transition h-5 w-5 cursor-pointer text-secondary-bg hover:text-secondary;
+        @apply h-5 w-5 cursor-pointer text-secondary-bg hover:text-secondary;
     }
 
     .icon-link-lg {
         @apply icon-link-md h-8 w-8;
-    }
-
-    .icon-svg {
-        @apply color-transition inline h-10 w-10 text-secondary;
-    }
-
-    .icon-text {
-        @apply color-transition inline-block h-10 w-10 text-[2.2rem] font-black text-secondary;
     }
 
     .clock-blackground-sm {
@@ -95,10 +87,6 @@
         @apply block h-[10px] overflow-hidden text-[10px] font-semibold leading-[10px];
     }
 
-    .color-transition {
-        @apply transition-colors duration-200 ease-linear;
-    }
-
     .hidden-content {
         @apply translate-y-[20px] opacity-0;
     }
@@ -106,11 +94,7 @@
     .revealed-content {
         @apply translate-y-[0] opacity-100;
     }
-
-    .flex-center {
-        @apply flex items-center justify-center;
-    }
-
+    
     .life-list-img-wrapper {
         @apply relative overflow-hidden rounded-[4px] outline-2 outline-offset-2 outline-focus-outline;
     }

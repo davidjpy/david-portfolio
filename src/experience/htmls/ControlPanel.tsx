@@ -182,7 +182,7 @@ export function ControlPanel() {
             style={htmlSpring}
         >
             <div className='clock-blackground-md col-span-3 row-span-1 select-none max-xs:col-span-6'>
-                <label className='flex-center h-full'>
+                <label className='flex items-center justify-center h-full'>
                     {clockDigitSpring.slice(0, 2).map((props, index) => (
                         <span key={index} className='clock-list-xl'>
                             <animated.ul style={props}>
@@ -215,7 +215,7 @@ export function ControlPanel() {
             <div className='clock-blackground-sm col-span-1 row-span-1 overflow-hidden text-[16px] max-xs:col-span-1'>
                 <animated.ul style={timeSymbolSpring[0]}>
                     {timeSymbols.map((symbol, index) => (
-                        <li key={index} className='flex-center h-[26px]'>
+                        <li key={index} className='flex items-center justify-center h-[26px]'>
                             {symbol}
                         </li>
                     ))}
@@ -223,13 +223,13 @@ export function ControlPanel() {
             </div>
 
             <div className='clock-blackground-sm col-span-3 row-span-2 p-0 max-xs:col-span-7 max-xs:row-span-2'>
-                <header className='flex-center h-[24px] w-full rounded-t-[8px] bg-[#d6493fd2] text-[12px] shadow-lg'>
+                <header className='flex items-center justify-center h-[24px] w-full rounded-t-[8px] bg-[#d6493fd2] text-[12px] shadow-lg'>
                     <h1>Timetable</h1>
                 </header>
                 <span className='block h-[50px] overflow-hidden'>
                     <animated.ul style={toDoSpring[0]}>
                         {toDos.map((todo, index) => (
-                            <li key={index} className='flex-center h-[50px] text-[16px] font-bold'>
+                            <li key={index} className='flex items-center justify-center h-[50px] text-[16px] font-bold'>
                                 <p>{todo.name}</p>
                                 <span className='ml-[4px]'>{todo.icon}</span>
                             </li>
