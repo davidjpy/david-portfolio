@@ -1074,13 +1074,27 @@ export const HtmlContent = memo(function HtmlContent() {
                                     I love creating pixel-perfect, visually appealing, and accessible experiences.
                                 </p>
                                 <ul className='text-center'>
-                                    <li className='keypoint-list-item'>Figma</li>
-                                    <li className='keypoint-list-item'>Blender</li>
-                                    <li className='keypoint-list-item'>Svgator</li>
-                                    <li className='keypoint-list-item'>Svg Animation</li>
-                                    <li className='keypoint-list-item'>Stable Diffusion</li>
-                                    <li className='keypoint-list-item'>Responsiveness</li>
-                                    <li className='keypoint-list-item'>Acessibility</li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Figma</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Blender</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Svgator</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Svg Animation</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Stable Diffusion</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Responsiveness</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Acessibility</p>
+                                    </li>
                                 </ul>
 
                                 <button
@@ -1114,20 +1128,48 @@ export const HtmlContent = memo(function HtmlContent() {
                                     </h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
-                                    I enjoy coding and the process of building things from scratch.
+                                    I enjoy the process of building things from scratch.
                                 </p>
                                 <ul className='text-center'>
-                                    <li className='keypoint-list-item'>Typescript</li>
-                                    <li className='keypoint-list-item'>Python</li>
-                                    <li className='keypoint-list-item'>React</li>
-                                    <li className='keypoint-list-item'>Vue</li>
-                                    <li className='keypoint-list-item'>ThreeJS</li>
-                                    <li className='keypoint-list-item'>GLSL</li>
-                                    <li className='keypoint-list-item'>SQL</li>
-                                    <li className='keypoint-list-item'>Node</li>
-                                    <li className='keypoint-list-item'>Tailwind CSS</li>
-                                    <li className='keypoint-list-item'>Docker</li>
-                                    <li className='keypoint-list-item'>Git</li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Typescript</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Python</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>React</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Vue</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Node</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Django</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>MongoDB</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>SQL</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Tailwind CSS</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Docker</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Git</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>ThreeJS</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>GLSL</p>
+                                    </li>
                                 </ul>
 
                                 <button
@@ -1166,12 +1208,18 @@ export const HtmlContent = memo(function HtmlContent() {
                                     I value continuous personal growth outside the office.
                                 </p>
                                 <ul className='text-center'>
-                                    <li className='keypoint-list-item'>English</li>
-                                    <li className='keypoint-list-item'>Cantonese</li>
-                                    <li className='keypoint-list-item'>Mandarin</li>
-                                    <li className='keypoint-list-item'>Japanese</li>
-                                    <li className='keypoint-list-item'>Strong Adaptability</li>
-                                    <li className='keypoint-list-item'>Easy To Work With</li>
+                                    <li className='keypoint-list-item'>
+                                        <p>English</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Cantonese</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Mandarin</p>
+                                    </li>
+                                    <li className='keypoint-list-item'>
+                                        <p>Japanese</p>
+                                    </li>
                                 </ul>
 
                                 <button
@@ -1228,7 +1276,12 @@ export const HtmlContent = memo(function HtmlContent() {
                                     className='flex w-full rounded-[8px] p-4'
                                 >
                                     <figure className='list-img-wrapper'>
-                                        <img loading='lazy' alt={study.alt} src={study.image} className={study.type === 'book' ? 'book-list-img' : 'project-list-img'} />
+                                        <img
+                                            loading='lazy'
+                                            alt={study.alt}
+                                            src={study.image}
+                                            className={study.type === 'book' ? 'book-list-img' : 'project-list-img'}
+                                        />
                                     </figure>
                                     <div className='w-full'>
                                         <header className='w-[85%]'>
