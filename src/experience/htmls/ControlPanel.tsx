@@ -53,10 +53,14 @@ export function ControlPanel() {
     const [toDoIndex, setTodoIndex] = useState<number>(0)
     const [timeSymbolIndex, setTimeSymbolIndex] = useState<number>(0)
     const [isPanelExpanded, setIsPanelExpanded] = useState<boolean>(window.innerWidth > 768)
-    const { brightness, handleSetBrightness } = useContext(AppContext)
+    const { isLightMode, brightness, handleSetBrightness } = useContext(AppContext)
 
     const handleClickToggleSlider = () => {
         setIsPanelExpanded(!isPanelExpanded)
+    }
+
+    const handleClickToggleColorMode = () => {
+        handleSetBrightness(isLightMode ? 0 : 100)
     }
 
     useEffect(() => {
@@ -182,7 +186,7 @@ export function ControlPanel() {
             style={htmlSpring}
         >
             <div className='clock-blackground-md col-span-3 row-span-1 select-none max-xs:col-span-6'>
-                <label className='flex items-center justify-center h-full'>
+                <label className='flex h-full items-center justify-center'>
                     {clockDigitSpring.slice(0, 2).map((props, index) => (
                         <span key={index} className='clock-list-xl'>
                             <animated.ul style={props}>
@@ -212,24 +216,28 @@ export function ControlPanel() {
                 </label>
             </div>
 
-            <div className='clock-blackground-sm col-span-1 row-span-1 overflow-hidden text-[16px] max-xs:col-span-1'>
-                <animated.ul style={timeSymbolSpring[0]}>
+            <button
+                className='col-span-1 row-span-1 overflow-hidden rounded-[14px] bg-[#A14039] p-[4px] text-[16px] shadow-lg hover:cursor-pointer max-xs:col-span-1'
+                onClick={handleClickToggleColorMode}
+                aria-label='Toggle color mode'
+                >
+                <animated.ul style={timeSymbolSpring[0]} aria-hidden={true}>
                     {timeSymbols.map((symbol, index) => (
-                        <li key={index} className='flex items-center justify-center h-[26px]'>
+                        <li key={index} className='flex h-[26px] items-center justify-center'>
                             {symbol}
                         </li>
                     ))}
                 </animated.ul>
-            </div>
+            </button>
 
             <div className='clock-blackground-sm col-span-3 row-span-2 p-0 max-xs:col-span-7 max-xs:row-span-2'>
-                <header className='flex items-center justify-center h-[24px] w-full rounded-t-[8px] bg-[#d6493fd2] text-[12px] shadow-lg'>
+                <header className='flex h-[24px] w-full items-center justify-center rounded-t-[8px] bg-[#d6493fd2] text-[12px] shadow-lg'>
                     <h1>Timetable</h1>
                 </header>
                 <span className='block h-[50px] overflow-hidden'>
                     <animated.ul style={toDoSpring[0]}>
                         {toDos.map((todo, index) => (
-                            <li key={index} className='flex items-center justify-center h-[50px] text-[16px] font-bold'>
+                            <li key={index} className='flex h-[50px] items-center justify-center text-[16px] font-bold'>
                                 <p>{todo.name}</p>
                                 <span className='ml-[4px]'>{todo.icon}</span>
                             </li>
