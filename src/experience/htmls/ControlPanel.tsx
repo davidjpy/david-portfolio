@@ -217,10 +217,10 @@ export function ControlPanel() {
             </div>
 
             <button
-                className='col-span-1 row-span-1 overflow-hidden rounded-[14px] bg-[#A14039] p-[4px] text-[16px] shadow-lg hover:cursor-pointer max-xs:col-span-1'
+                className='col-span-1 row-span-1 overflow-hidden rounded-full bg-[#A14039] p-[4px] text-[16px] shadow-lg hover:cursor-pointer max-xs:col-span-1'
                 onClick={handleClickToggleColorMode}
                 aria-label='Toggle color mode'
-                >
+            >
                 <animated.ul style={timeSymbolSpring[0]} aria-hidden={true}>
                     {timeSymbols.map((symbol, index) => (
                         <li key={index} className='flex h-[26px] items-center justify-center'>
