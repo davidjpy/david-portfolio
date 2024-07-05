@@ -1273,7 +1273,7 @@ export const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     aria-label={study.ariaLabel}
                                     rel='noreferrer noopener'
-                                    className='flex w-full rounded-[8px] p-4'
+                                    className='flex w-full rounded-[8px] p-4 -outline-offset-2'
                                 >
                                     <figure className='list-img-wrapper'>
                                         <img
@@ -1335,7 +1335,7 @@ export const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     rel='noreferrer noopener'
                                     aria-label={work.ariaLabel}
-                                    className='flex w-full rounded-[8px] p-4'
+                                    className='flex w-full rounded-[8px] p-4 -outline-offset-2'
                                 >
                                     <figure className='list-img-wrapper'>
                                         <img
@@ -1397,7 +1397,7 @@ export const HtmlContent = memo(function HtmlContent() {
                                     target='_blank'
                                     aria-label={coworker.ariaLabel}
                                     rel='noreferrer noopener'
-                                    className='w-full rounded-[8px] p-4'
+                                    className='w-full rounded-[8px] p-4 -outline-offset-2'
                                 >
                                     <div>
                                         <div className='w-[75%] max-[500px]:w-full'>
