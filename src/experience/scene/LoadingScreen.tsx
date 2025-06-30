@@ -84,7 +84,7 @@ export function LoadingScreen() {
                         aria-label='Start'
                         className='pointer-events-none absolute bottom-[12px] flex animate-floating flex-col items-center text-[#505050] opacity-0 transition-opacity duration-500 ease-out focus:outline-[#5613D1]'
                     >
-                        {!isTouchDevice ?
+                        {isTouchDevice ?
                             <MdOutlineTouchApp aria-hidden={true} className='mb-[8px] text-[38px] max-[500px]:text-[32px]' />
                             :
                             <LuMouse aria-hidden={true} className='mb-[8px] text-[38px] max-[500px]:text-[32px]' />
