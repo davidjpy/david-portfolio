@@ -20,9 +20,10 @@ import webDesignAnimation from '@/assets/svgs/web_design.json'
 import softwareAnimation from '@/assets/svgs/software_skill.json'
 import otherSkillAnimation from '@/assets/svgs/other_skill.json'
 
-const titles = [
+const TITLES = [
     'Full-Stack Developer',
-    'Web Designer',
+    "Software Architect",
+    'Visual Designer',
     '3D Modeler',
     '2D Animator',
     'Gamer',
@@ -30,7 +31,7 @@ const titles = [
     'Traveller',
     'Normal Person'
 ]
-const studyList = [
+const STUDY_LIST = [
     {
         type: 'book',
         title: 'Clean Code: A Handbook of Agile Software Craftsmanship',
@@ -287,7 +288,7 @@ const studyList = [
         )
     }
 ]
-const workList = [
+const WORK_LIST = [
     {
         type: 'project',
         title: 'WildBear Shop',
@@ -498,7 +499,7 @@ const workList = [
         summary: `In 2006, Time named me the official nominee for Person of the Year.`
     }
 ]
-const testimonialsList = [
+const TESTIMONIALS_LIST = [
     {
         name: 'Francesco Cursi',
         title: 'Sr. Research Engineer, Huawei',
@@ -583,6 +584,34 @@ const testimonialsList = [
         summary: `David demonstrated great dedication when we worked together on machine learning projects. He is deeply interested in the underlying principles of the problems at hand and extends his curiosity to other parts of the system, ensuring comprehensive solutions. This is a valuable skill for an engineer. He is always smiling and proactive in communication, a trait essential for any adventurer.`
     }
 ]
+
+const VISUAL_DESIGN_SKILLs = [
+    'Figma',
+    'Blender',
+    'Vector Design',
+    'Animation',
+    'Responsiveness',
+    'Acessibility',
+]
+const FULLSTACK_DEVELOPMENT_SKILLS = [
+    'Web & Mobile',
+    'Typescript',
+    'Python',
+    'React',
+    'React Native',
+    'NodeJS',
+    'ORMs',
+    'SQL',
+    'MongoDB',
+    'Tailwind',
+]
+const SOFTWARE_ARCHITECTURE_SKILL = [
+    'Distributed System',
+    'Microservices',
+    'Event-Driven',
+    'Cloud Computing'
+]
+
 export const HtmlContent = memo(function HtmlContent() {
     const typingEffectIntervalRef = useRef<number | null>(null)
     const contentObserverRef = useRef<IntersectionObserver | null>(null)
@@ -651,9 +680,9 @@ export const HtmlContent = memo(function HtmlContent() {
 
         typingEffectIntervalRef.current = setInterval(() => {
             if (typingTextRef.current) {
-                typingTextRef.current.textContent = titles[currentWord].slice(0, currentLetter)
+                typingTextRef.current.textContent = TITLES[currentWord].slice(0, currentLetter)
 
-                if (currentLetter === titles[currentWord].length) {
+                if (currentLetter === TITLES[currentWord].length) {
                     if (shouldType) {
                         currentLetter += 10
                     }
@@ -663,7 +692,7 @@ export const HtmlContent = memo(function HtmlContent() {
                     shouldType = true
                 }
 
-                if (currentWord > titles.length - 1) {
+                if (currentWord > TITLES.length - 1) {
                     currentWord = 0
                 }
 
@@ -967,7 +996,7 @@ export const HtmlContent = memo(function HtmlContent() {
                     contentObserverRef={contentObserverRef}
                 >
                     <p>
-                        I'm an ambitious software engineer based in Hong Kong with over 2 years of professional
+                        I'm a passionate software engineer based in Hong Kong with over <span className='text-accent'>3 years</span> of professional
                         experience in transforming ideas from 0 to 100 and creating captivating digital experiences that
                         embody elegance, simplicity, and detail. In my full-time role as an application developer, I've
                         successfully made several significant improvements to products with over 2000 daily users while
@@ -1067,34 +1096,19 @@ export const HtmlContent = memo(function HtmlContent() {
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
                                     <h1 className='text-center text-xl font-black text-accent max-xs:text-base'>
-                                        Web Design
+                                        Visual Design
                                     </h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
                                     I love creating pixel-perfect, visually appealing, and accessible experiences.
                                 </p>
                                 <ul className='text-center'>
-                                    <li className='keypoint-list-item'>
-                                        <p>Figma</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Blender</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Svgator</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Svg Animation</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Stable Diffusion</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Responsiveness</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Acessibility</p>
-                                    </li>
+                                    {VISUAL_DESIGN_SKILLs.map((skill) =>
+                                        <li className='keypoint-list-item'>
+                                            <p>{skill}</p>
+                                        </li>
+
+                                    )}
                                 </ul>
 
                                 <button
@@ -1131,45 +1145,11 @@ export const HtmlContent = memo(function HtmlContent() {
                                     I enjoy the process of building things from scratch.
                                 </p>
                                 <ul className='text-center'>
-                                    <li className='keypoint-list-item'>
-                                        <p>Typescript</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Python</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>React</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Vue</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Node</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Django</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>MongoDB</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>SQL</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Tailwind CSS</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Docker</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Git</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>ThreeJS</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>GLSL</p>
-                                    </li>
+                                    {FULLSTACK_DEVELOPMENT_SKILLS.map((skill) =>
+                                        <li className='keypoint-list-item'>
+                                            <p>{skill}</p>
+                                        </li>
+                                    )}
                                 </ul>
 
                                 <button
@@ -1201,25 +1181,18 @@ export const HtmlContent = memo(function HtmlContent() {
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
                                     <h1 className='text-center text-xl font-black text-accent max-xs:text-base'>
-                                        Other Skills
+                                        Software Architecture
                                     </h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
-                                    I value continuous personal growth outside the office.
+                                    I specialize in designing scalable, efficient, and robust software systems.
                                 </p>
                                 <ul className='text-center'>
-                                    <li className='keypoint-list-item'>
-                                        <p>English</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Cantonese</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Mandarin</p>
-                                    </li>
-                                    <li className='keypoint-list-item'>
-                                        <p>Japanese</p>
-                                    </li>
+                                    {SOFTWARE_ARCHITECTURE_SKILL.map((skill) =>
+                                        <li className='keypoint-list-item'>
+                                            <p>{skill}</p>
+                                        </li>
+                                    )}
                                 </ul>
 
                                 <button
@@ -1258,7 +1231,7 @@ export const HtmlContent = memo(function HtmlContent() {
                     contentObserverRef={contentObserverRef}
                 >
                     <ul>
-                        {studyList.map((study, index) => (
+                        {STUDY_LIST.map((study, index) => (
                             <li
                                 key={index}
                                 style={{
@@ -1320,7 +1293,7 @@ export const HtmlContent = memo(function HtmlContent() {
                     contentObserverRef={contentObserverRef}
                 >
                     <ul>
-                        {workList.map((work, index) => (
+                        {WORK_LIST.map((work, index) => (
                             <li
                                 key={index}
                                 className='hidden-content section-list-item'
@@ -1382,7 +1355,7 @@ export const HtmlContent = memo(function HtmlContent() {
                     contentObserverRef={contentObserverRef}
                 >
                     <ul>
-                        {testimonialsList.map((coworker, index) => (
+                        {TESTIMONIALS_LIST.map((coworker, index) => (
                             <li
                                 key={index}
                                 className='hidden-content section-list-item relative'
