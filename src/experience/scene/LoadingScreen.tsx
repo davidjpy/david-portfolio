@@ -1,6 +1,7 @@
 import { useContext, useMemo, useRef } from 'react'
 import Lottie from 'lottie-react'
 import { FaAngleDown } from 'react-icons/fa6'
+import { MdOutlineTouchApp } from "react-icons/md";
 import { LuMouse } from 'react-icons/lu'
 
 import { AppContext } from '@/src/context/appContext'
@@ -14,6 +15,7 @@ export function LoadingScreen() {
     const boatWheelLottieRef = useRef<LottieRefCurrentProps | null>(null)
     const dockLottieRef = useRef<LottieRefCurrentProps | null>(null)
     const startButtonRef = useRef<HTMLButtonElement | null>(null)
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches
 
     const handleLoopLighthouseAnimation = () => {
         if (lighthouseLottieRef.current) {
@@ -24,6 +26,7 @@ export function LoadingScreen() {
     const handleClickStartExperience = () => {
         window.removeEventListener('wheel', handleClickStartExperience)
         window.removeEventListener('touchmove', handleClickStartExperience)
+        window.removeEventListener('click', handleClickStartExperience)
         lighthouseLottieRef.current?.playSegments([900, 2000], true)
 
         if (startButtonRef.current) {
@@ -52,7 +55,8 @@ export function LoadingScreen() {
                     setTimeout(() => {
                         if (startButtonRef.current) {
                             window.addEventListener('wheel', handleClickStartExperience)
-                            window.addEventListener('touchmove', handleClickStartExperience)
+                            window.addEventListener('touchstart', handleClickStartExperience)
+                            window.addEventListener('click', handleClickStartExperience)
                             startButtonRef.current.style.pointerEvents = 'auto'
                             startButtonRef.current.style.opacity = '1'
                         }
@@ -66,7 +70,7 @@ export function LoadingScreen() {
     return (
         <section
             className='absolute flex h-full min-h-[600px] w-full flex-col items-center justify-center overflow-y-auto bg-[#FFF8E7] transition-opacity duration-500 ease-in'
-            style={{ opacity: isStarted ? 0 : 1, pointerEvents: isStarted ? 'none' : 'all' }}
+            style={{ opacity: isStarted ? 0 : 1, pointerEvents: isStarted ? 'none' : 'all', cursor: 'pointer' }}
         >
             {isLoading ? (
                 <h1 className='text-4xl font-extrabold text-[#505050] max-md:text-3xl max-sm:text-2xl max-xs:text-xl'>
@@ -78,10 +82,13 @@ export function LoadingScreen() {
                     <button
                         ref={startButtonRef}
                         aria-label='Start'
-                        onClick={handleClickStartExperience}
                         className='pointer-events-none absolute bottom-[12px] flex animate-floating flex-col items-center text-[#505050] opacity-0 transition-opacity duration-500 ease-out focus:outline-[#5613D1]'
                     >
-                        <LuMouse aria-hidden={true} className='mb-[8px] text-[38px] max-[500px]:text-[32px]' />
+                        {!isTouchDevice ?
+                            <MdOutlineTouchApp aria-hidden={true} className='mb-[8px] text-[38px] max-[500px]:text-[32px]' />
+                            :
+                            <LuMouse aria-hidden={true} className='mb-[8px] text-[38px] max-[500px]:text-[32px]' />
+                        }
                         <FaAngleDown aria-hidden={true} className='text-[26px] max-[500px]:text-[20px]' />
                     </button>
                 </>
