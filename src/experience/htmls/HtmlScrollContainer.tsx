@@ -1,6 +1,5 @@
 import { useEffect, useRef, forwardRef } from 'react'
 import { Scrollbars } from 'react-custom-scrollbars-2'
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa6'
 
 import type { positionValues } from 'react-custom-scrollbars-2'
 
@@ -105,15 +104,7 @@ export const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                         {bottomTitle}
                     </div>
                 </header>
-                <div className='relative h-full w-full'>
-                    <span
-                        ref={topScrollIndicatorRef}
-                        className='absolute left-1/2 top-0 z-50 h-[25px] w-full -translate-x-1/2 bg-gradient-to-b from-[#00000021] to-transparent'
-                    >
-                        <span className='absolute left-[calc(50%-20px)] top-[8px] flex w-[40px] animate-floating text-accent'>
-                            <FaAngleUp size={24} />
-                        </span>
-                    </span>
+                <div className='flex-grow'>
                     <Scrollbars
                         ref={scrollContainerRef as React.LegacyRef<Scrollbars>}
                         onUpdate={handleUpdateScrollContainer}
@@ -133,19 +124,9 @@ export const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                                 className='rounded-full bg-secondary opacity-30 transition-opacity duration-100 ease-out active:opacity-70'
                             />
                         )}
-                        renderView={(props) => <div {...props} className='relative' />}
                     >
                         {children}
                     </Scrollbars>
-
-                    <span
-                        ref={bottomScrollIndicatorRef}
-                        className='absolute bottom-0 left-1/2 z-50 h-[25px] w-full -translate-x-1/2 bg-gradient-to-t from-[#00000021] to-transparent'
-                    >
-                        <span className='absolute bottom-[-4px] left-[calc(50%-20px)] flex w-[40px] animate-floating text-accent'>
-                            <FaAngleDown size={24} />
-                        </span>
-                    </span>
                 </div>
             </section>
         )
