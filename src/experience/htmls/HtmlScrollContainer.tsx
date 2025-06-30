@@ -124,6 +124,15 @@ export const HtmlScrollContainer = forwardRef<HTMLElement, Props>(
                                 className='rounded-full bg-secondary opacity-30 transition-opacity duration-100 ease-out active:opacity-70'
                             />
                         )}
+                        renderView={(props) => <div {...props} className='relative' style={{
+                            position: 'absolute',
+                            inset: 0,
+                            overflow: 'scroll',
+                            marginRight: -16,
+                            marginBottom: -16,
+                            paddingRight: 1,
+                            paddingBottom: 6,
+                        }} />}
                     >
                         {children}
                     </Scrollbars>
