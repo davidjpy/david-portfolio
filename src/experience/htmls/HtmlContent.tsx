@@ -21,8 +21,8 @@ import softwareAnimation from '@/assets/svgs/software_skill.json'
 import otherSkillAnimation from '@/assets/svgs/other_skill.json'
 
 const TITLES = [
-    'Full-Stack Developer',
-    "Software Architect",
+    'Software Engineer',
+    "System Architect",
     'Visual Designer',
     '3D Modeler',
     '2D Animator',
@@ -594,16 +594,16 @@ const VISUAL_DESIGN_SKILLs = [
     'Acessibility',
 ]
 const FULLSTACK_DEVELOPMENT_SKILLS = [
-    'Web & Mobile',
-    'Typescript',
-    'Python',
+    'TypeScript',
     'React',
     'React Native',
+    'Python',
+    '.NET',
+    'C#',
     'NodeJS',
-    'ORMs',
-    'SQL',
-    'MongoDB',
-    'Tailwind',
+    'Database',
+    'Azure DevOps',
+    'Docker'
 ]
 const SOFTWARE_ARCHITECTURE_SKILL = [
     'Distributed System',
@@ -1138,7 +1138,7 @@ export const HtmlContent = memo(function HtmlContent() {
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
                                     <h1 className='text-center text-xl font-black text-accent max-xs:text-base'>
-                                        Full-Stack Development
+                                        Software Engineering
                                     </h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
@@ -1181,7 +1181,7 @@ export const HtmlContent = memo(function HtmlContent() {
                                 </figure>
                                 <header className='mb-[8px] mt-[8px]'>
                                     <h1 className='text-center text-xl font-black text-accent max-xs:text-base'>
-                                        Software Architecture
+                                        System Architecture
                                     </h1>
                                 </header>
                                 <p className='text-center text-secondary-light'>
