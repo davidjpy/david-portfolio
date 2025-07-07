@@ -61,7 +61,6 @@ const STUDY_LIST = [
                 <li className='keypoint-list-item'>Naming</li>
                 <li className='keypoint-list-item'>Error Handling</li>
                 <li className='keypoint-list-item'>Testing</li>
-                <li className='keypoint-list-item'>Reusability</li>
             </ul>
         )
     },
@@ -91,7 +90,6 @@ const STUDY_LIST = [
         keypoints: (
             <ul>
                 <li className='keypoint-list-item'>Processing Systems</li>
-                <li className='keypoint-list-item'>Hardware & Software</li>
                 <li className='keypoint-list-item'>Database</li>
                 <li className='keypoint-list-item'>Network</li>
                 <li className='keypoint-list-item'>DSA</li>
